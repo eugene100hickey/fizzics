@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Eugene's Blog</title>
+    <link>https://fizzics.netlify.app</link>
+    <atom:link href="https://fizzics.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
+    <description>Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Thu, 06 May 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Welcome to Eugene's Blog</title>
+      <dc:creator>Nora Jones</dc:creator>
+      <link>https://fizzics.netlify.app/posts/welcome</link>
+      <description>Welcome to our new blog, Eugene's Blog. We hope you enjoy 
+reading what we have to say!</description>
+      <guid>https://fizzics.netlify.app/posts/welcome</guid>
+      <pubDate>Thu, 06 May 2021 00:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Derry Girls</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-05-06-derry-girls</link>
+      <description>Using FACE++ to read emotions on images of faces.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-05-06-derry-girls</guid>
+      <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-05-06-derry-girls/derry-girls_files/figure-html5/emotions-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+  </channel>
+</rss>
