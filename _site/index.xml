@@ -23,7 +23,7 @@ reading what we have to say!</description>
       <link>https://fizzics.netlify.app/posts/2021-05-06-solvay-conference</link>
       <description>This is what it looks like to change the world.</description>
       <guid>https://fizzics.netlify.app/posts/2021-05-06-solvay-conference</guid>
-      <pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 May 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/posts/2021-05-06-solvay-conference/solvay-conference_files/figure-html5/boxplot-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
@@ -34,6 +34,33 @@ reading what we have to say!</description>
       <guid>https://fizzics.netlify.app/posts/2021-05-06-derry-girls</guid>
       <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/posts/2021-05-06-derry-girls/derry-girls_files/figure-html5/emotions-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Schizophrenia Genes</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-05-08-schizophrenia-genes</link>
+      <description>A karyogram of the genes featured in GWAS of schizophrenia.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-05-08-schizophrenia-genes</guid>
+      <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-05-08-schizophrenia-genes/schizophrenia-genes_files/figure-html5/karyogram-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Meteorites....</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-05-08-meteorites</link>
+      <description>...and where to find them.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-05-08-meteorites</guid>
+      <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-05-08-meteorites/meteorites_files/figure-html5/mass_year-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Tennis Sets</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-05-08-tennis-sets</link>
+      <description>My tennis coach thinks that tennis matches frequently feature a close first set followed by a blow-out in the second.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-05-08-tennis-sets</guid>
+      <pubDate>Sat, 24 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-05-08-tennis-sets/tennis-sets_files/figure-html5/bar_chart-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
   </channel>
 </rss>

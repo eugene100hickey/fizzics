@@ -113,16 +113,28 @@ font_add_google("Lemonada", "Lemonada")
 showtext_auto()
 
 theme_set(theme_minimal())
-theme_update(text = element_text(size = 20, family = "Lemonada"))
+theme_update(text = element_text(size = 28, family = "Lemonada"))
 
-my_colours <- paletteer::paletteer_d("dutchmasters::milkmaid", n = 7)
+my_colours <- paletteer::paletteer_d("yarrr::eternal", n = 7)
 
-faces %>% 
+p <- faces %>% 
   select(scientist, anger:surprise) %>% 
   pivot_longer(-scientist, names_to = "emotion", values_to = "percentage") %>% 
   ggplot(aes(emotion, percentage %>% gtools::logit(max = 100))) +
   geom_boxplot(aes(fill = emotion), show.legend = F) +
   scale_fill_manual(values = my_colours) +
   labs(x = "", y = "Percentage %") +
-  theme(axis.text.x = element_blank()) +
+  theme(axis.text.x = element_blank(),
+        axis.text.y = element_text(color = my_colours)) +
   coord_flip()
+
+dat <- ggplot_build(p)$data[[1]]
+
+p + geom_segment(data=dat, aes(x=xmin, xend=xmax, 
+                               y=middle, yend=middle), colour="grey80", size=1)
+
+faces %>% 
+  select(scientist, anger:surprise) %>% 
+  pivot_longer(-scientist, names_to = "emotion", values_to = "percentage") %>% 
+  filter(percentage > 10, emotion != "neutral") %>% 
+  View()
