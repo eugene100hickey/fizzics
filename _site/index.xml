@@ -18,12 +18,21 @@ reading what we have to say!</description>
       <pubDate>Thu, 06 May 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
+      <title>Solvay Conference</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-05-06-solvay-conference</link>
+      <description>This is what it looks like to change the world.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-05-06-solvay-conference</guid>
+      <pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-05-06-solvay-conference/solvay-conference_files/figure-html5/boxplot-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
       <title>Derry Girls</title>
       <dc:creator>Eugene</dc:creator>
       <link>https://fizzics.netlify.app/posts/2021-05-06-derry-girls</link>
       <description>Using FACE++ to read emotions on images of faces.</description>
       <guid>https://fizzics.netlify.app/posts/2021-05-06-derry-girls</guid>
-      <pubDate>Sun, 02 May 2021 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/posts/2021-05-06-derry-girls/derry-girls_files/figure-html5/emotions-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
   </channel>
