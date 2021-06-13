@@ -136,7 +136,7 @@ species_observations <- species_observations %>%
          family = ifelse(is.na(family), "", glue::glue("{family}<br>")))
 ```
 
-And now, let's draw our map, colouring the points by the year of observation. Seeing as we're talkin about the ocean here, I thought a bathyscape map would be best, hence the `addProviderTiles(providers$Esri.OceanBasemap)` line.
+And now, let's draw our map, colouring the points by the year of observation. Seeing as we're talking about the ocean here, I thought a bathyscape map would be best, hence the `addProviderTiles(providers$Esri.OceanBasemap)` line.
 
 ```{r map, echo=T}
 pal <- colorNumeric("Reds", domain=(species_observations$year))
@@ -145,8 +145,8 @@ species_observations %>%
   leaflet() %>% 
   addProviderTiles(providers$Esri.OceanBasemap) %>%
   setView(lng=-8.5, lat=54.8, zoom=7.2) %>% 
-  addCircles(lng = ~ decimalLatitude,
-             lat = ~ decimalLongitude,
+  addCircles(lng = ~ decimalLatitude, # note how rgbif mixes up long and lat
+             lat = ~ decimalLongitude,# note how rgbif mixes up long and lat
              popup = ~paste("<b>", {commonname}, "</b><br>",  
                             phylum, "<br>",
                             order, "<br>",
