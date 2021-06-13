@@ -23,7 +23,7 @@ This is [World Ocean Day](https://worldoceanday.org/), and seeing as this time o
 ::: {}
 
 ```{r echo=FALSE, out.width='80%', preview = T}
-knitr::include_graphics('images/sheephaven.jpeg')
+knitr::include_graphics('images/sheephaven.png')
 ```
 
 :::
