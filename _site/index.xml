@@ -7,7 +7,16 @@
     <description>Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 06 May 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 07 Jun 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>World Ocean Day</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day</link>
+      <description>A map of the North Atlantic off the Donegal Coast, with pop-ups detailing various species observed at different locations.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day</guid>
+      <pubDate>Mon, 07 Jun 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day/images/sheephaven.jpeg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Solvay Conference</title>
       <dc:creator>Eugene</dc:creator>

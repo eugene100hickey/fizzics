@@ -4,10 +4,6 @@ library(httr)
 library(tidyverse)
 library(showtext)
 
-font_add_google("Amiri", "Amiri")
-
-showtext_auto()
-
 myauth <- readRDS("../myauth_faceplusplus")
 
 facepp <- function(fullpath, auth) {
@@ -120,7 +116,7 @@ my_colours <- paletteer::paletteer_d("yarrr::eternal", n = 7)
 p <- faces %>% 
   select(scientist, anger:surprise) %>% 
   pivot_longer(-scientist, names_to = "emotion", values_to = "percentage") %>% 
-  ggplot(aes(emotion, percentage %>% gtools::logit(max = 100))) +
+  ggplot(aes(emotion, percentage %>% gtools::logit(min = -0.0001, max = 100))) +
   geom_boxplot(aes(fill = emotion), show.legend = F) +
   scale_fill_manual(values = my_colours) +
   labs(x = "", y = "Percentage %") +
