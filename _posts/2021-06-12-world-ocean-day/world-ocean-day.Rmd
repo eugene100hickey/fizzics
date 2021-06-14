@@ -38,7 +38,7 @@ This place is rife with wildlife, with a strong emphasis on bio-diversity, so I 
 
 ## The Observations  
 
-For this, there is no better place than the [Global Biodiversity Information Facility](https://www.gbif.org/). The r package `rgbif` links directly to this, with the function `occ_search` doing the heavy lifting. The function can be spatially limited to a bounding box, we picked an area of about km<sup>2</sup>. off the North and West Donegal coast. This is shown in the first code chunk below:
+For this, there is no better place than the [Global Biodiversity Information Facility](https://www.gbif.org/). The r package `rgbif` links directly to this, with the function `occ_search` doing the heavy lifting. The function can be spatially limited to a bounding box, we picked an area of about 20,000 km<sup>2</sup>. off the North and West Donegal coast. This is shown in the first code chunk below:
 
 ```{r libraries, echo=F}
 library(tidyverse)
@@ -98,13 +98,15 @@ species_observations %>%
   )
 ```
 
+<br>
+
 The scientific species names are a little obscure, I'd like to map them to more familiar names. That's where the package `taxize` comes in. It can map the scientific names of species to their common names via the function `sci2comm`. But first we need to remove the information in parentheses for each observation, e.g <i>(Gmelin, 1789)</i>, that gives the naturalist and date of the species' classification.
 
 ```{r clean_species, echo=T}
 species_observations <- species_observations %>% 
   select(Species = acceptedScientificName,
-         longitude = decimalLatitude,
-         latitude = decimalLongitude,
+         longitude = decimalLatitude, # note how rgbif mixes up long and lat
+         latitude = decimalLongitude, # note how rgbif mixes up long and lat
          phylum,
          order,
          family,

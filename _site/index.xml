@@ -6,6 +6,11 @@
     <atom:link href="https://fizzics.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
     <description>Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
 </description>
+    <image>
+      <title>Eugene's Blog</title>
+      <url>https://fizzics.netlify.app/favicon.ico</url>
+      <link>https://fizzics.netlify.app</link>
+    </image>
     <generator>Distill</generator>
     <lastBuildDate>Mon, 07 Jun 2021 00:00:00 +0000</lastBuildDate>
     <item>
