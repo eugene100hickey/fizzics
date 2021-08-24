@@ -92,7 +92,7 @@ horn_head_10m <- raster::stack(b02_image_file_10m,
                        b04_image_file_10m)
 ext = c(560000, 570000, 6113000, 6123000) # horn-head
 horn_head_10m_crop <- crop(horn_head_10m, ext)
-plotRGB(horn_head_10m_crop, r = 3, g = 2, b = 1, stretch = "hist")
+plotRGB(horn_head_10m_crop, r = 3, g = 2, b = 1, stretch = "lin")
 ```
 
 Giving:

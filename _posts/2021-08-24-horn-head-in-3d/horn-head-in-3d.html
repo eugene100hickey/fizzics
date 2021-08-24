@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/aoi","data/horn-head-10m-crop","data/N55_crop_utm","data/N55_crop_utm_matrix","data/sentinel-fields","horn-head-in-3d_files/anchor-4.2.2/anchor.min.js","horn-head-in-3d_files/bowser-1.9.3/bowser.min.js","horn-head-in-3d_files/distill-2.2.21/template.v2.js","horn-head-in-3d_files/header-attrs-2.7/header-attrs.js","horn-head-in-3d_files/jquery-1.11.3/jquery.min.js","horn-head-in-3d_files/popper-2.6.0/popper.min.js","horn-head-in-3d_files/tippy-6.2.7/tippy-bundle.umd.min.js","horn-head-in-3d_files/tippy-6.2.7/tippy-light-border.css","horn-head-in-3d_files/tippy-6.2.7/tippy.css","horn-head-in-3d_files/tippy-6.2.7/tippy.umd.min.js","horn-head-in-3d_files/webcomponents-2.0.0/webcomponents.js","img/elevation.png","img/horn-head-2021.png","img/three-D-model.png"]}
+  {"type":"character","attributes":{},"value":["data/aoi","data/horn-head-10m-crop","data/N55_crop_utm","data/N55_crop_utm_matrix","data/sentinel-fields","horn-head-in-3d_files/anchor-4.2.2/anchor.min.js","horn-head-in-3d_files/bowser-1.9.3/bowser.min.js","horn-head-in-3d_files/distill-2.2.21/template.v2.js","horn-head-in-3d_files/header-attrs-2.7/header-attrs.js","horn-head-in-3d_files/jquery-1.11.3/jquery.min.js","horn-head-in-3d_files/popper-2.6.0/popper.min.js","horn-head-in-3d_files/tippy-6.2.7/tippy-bundle.umd.min.js","horn-head-in-3d_files/tippy-6.2.7/tippy-light-border.css","horn-head-in-3d_files/tippy-6.2.7/tippy.css","horn-head-in-3d_files/tippy-6.2.7/tippy.umd.min.js","horn-head-in-3d_files/webcomponents-2.0.0/webcomponents.js","img/elevation.png","img/horn-head-2021.png","img/three-D-model.png","img/three-D-model1.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1575,7 +1575,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
                        <span class='va'>b04_image_file_10m</span><span class='op'>)</span>
 <span class='va'>ext</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>560000</span>, <span class='fl'>570000</span>, <span class='fl'>6113000</span>, <span class='fl'>6123000</span><span class='op'>)</span> <span class='co'># horn-head</span>
 <span class='va'>horn_head_10m_crop</span> <span class='op'>&lt;-</span> <span class='fu'>crop</span><span class='op'>(</span><span class='va'>horn_head_10m</span>, <span class='va'>ext</span><span class='op'>)</span>
-<span class='fu'>plotRGB</span><span class='op'>(</span><span class='va'>horn_head_10m_crop</span>, r <span class='op'>=</span> <span class='fl'>3</span>, g <span class='op'>=</span> <span class='fl'>2</span>, b <span class='op'>=</span> <span class='fl'>1</span>, stretch <span class='op'>=</span> <span class='st'>"hist"</span><span class='op'>)</span>
+<span class='fu'>plotRGB</span><span class='op'>(</span><span class='va'>horn_head_10m_crop</span>, r <span class='op'>=</span> <span class='fl'>3</span>, g <span class='op'>=</span> <span class='fl'>2</span>, b <span class='op'>=</span> <span class='fl'>1</span>, stretch <span class='op'>=</span> <span class='st'>"lin"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
