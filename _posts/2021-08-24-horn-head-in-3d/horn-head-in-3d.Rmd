@@ -150,5 +150,6 @@ render_snapshot(title_text = "Horn Head, Donegal | Imagery: Sentinel-2 | DEM: 30
 
 The final snapshot looks something like this. Note the difficulty in layering over the steep cliffs on the North of the peninsula, I guess that's asking too much of Sentinel to capture them:
 
-![](img/three-D-model.png)
-
+```{r echo=FALSE, out.width='80%', preview = T}
+knitr::include_graphics('img/three-D-model.png')
+```
