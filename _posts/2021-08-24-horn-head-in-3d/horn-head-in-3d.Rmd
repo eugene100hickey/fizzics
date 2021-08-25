@@ -1,7 +1,7 @@
 ---
 title: "Horn Head in 3D"
 description: |
-  Horn Head gets the _Rayshader_ Treatment.
+  Horn Head gets the <i>Rayshader</i> Treatment.
 author:
   - name: Eugene
     url: https://fizzics.netliffy.app
@@ -9,6 +9,7 @@ date: 08-24-2021
 output:
   distill::distill_article:
     self_contained: false
+preview: img/three-D-model.png
 ---
 
 
@@ -100,7 +101,7 @@ plotRGB(horn_head_10m_crop, r = 3, g = 2, b = 1, stretch = "lin")
 
 Giving:
 
-```{r echo=FALSE, out.width='80%', preview = T}
+```{r echo=FALSE, out.width='80%', preview = F}
 knitr::include_graphics('img/horn-head-2021.png')
 ```
 
