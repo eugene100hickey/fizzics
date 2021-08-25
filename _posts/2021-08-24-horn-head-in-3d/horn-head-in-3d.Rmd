@@ -15,12 +15,15 @@ output:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = F, warning = F)
+rgl::setupKnitr(autoprint = TRUE)
+options(rgl.useNULL = TRUE) # Suppress the separate window.
 ```
 
 ```{r libraries}
 library(tidyverse)
 library(raster)
 library(rayshader)
+library(rgl)
 ```
 
 ```{r data, cache=F}
@@ -97,7 +100,9 @@ plotRGB(horn_head_10m_crop, r = 3, g = 2, b = 1, stretch = "lin")
 
 Giving:
 
-![](img/horn-head-2021.png)
+```{r echo=FALSE, out.width='80%', preview = T}
+knitr::include_graphics('img/horn-head-2021.png')
+```
 
 With a crs and extent of:
 
@@ -150,6 +155,15 @@ render_snapshot(title_text = "Horn Head, Donegal | Imagery: Sentinel-2 | DEM: 30
 
 The final snapshot looks something like this. Note the difficulty in layering over the steep cliffs on the North of the peninsula, I guess that's asking too much of Sentinel to capture them:
 
-```{r echo=FALSE, out.width='80%', preview = T}
-knitr::include_graphics('img/three-D-model.png')
+
+```{r, rgl-setup}
+library(rgl)
+knitr::knit_hooks$set(webgl = hook_webgl)
+```
+
+```{r, test-rgl, webgl=TRUE}
+img <- png::readPNG("img/horn-head-2021.png")
+
+plot_3d(img, N55_crop_utm_matrix, windowsize = c(1000,1000), zscale = 5, shadowdepth = -50,
+        zoom=0.5, phi=45,theta=-45,fov=70, background = "#F2E1D0", shadowcolor = "#523E2B")
 ```
