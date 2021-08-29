@@ -12,14 +12,23 @@
       <link>https://fizzics.netlify.app</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 23 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 28 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Donegal's Architectural Heritage</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-08-29-donegals-architectural-heritage</link>
+      <description>Having a look at some of the historical buildings in Donegal, thanks to data from the National Inventory of Architectural Heritage. Also a chance to check out crosstalk and leafpop.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-08-29-donegals-architectural-heritage</guid>
+      <pubDate>Sat, 28 Aug 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-08-29-donegals-architectural-heritage/img/oakpark.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Horn Head in 3D</title>
       <dc:creator>Eugene</dc:creator>
       <link>https://fizzics.netlify.app/posts/2021-08-24-horn-head-in-3d</link>
       <description>Horn Head gets the &lt;i&gt;Rayshader&lt;/i&gt; Treatment.</description>
       <guid>https://fizzics.netlify.app/posts/2021-08-24-horn-head-in-3d</guid>
-      <pubDate>Mon, 23 Aug 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 24 Aug 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/posts/2021-08-24-horn-head-in-3d/img/three-D-model.png" medium="image" type="image/png" width="535" height="360"/>
     </item>
     <item>
