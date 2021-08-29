@@ -1,7 +1,7 @@
 ---
 title: "Donegal's Architectural Heritage"
 description: |
-  Having a look at some of the historical buildings in Donegal, thanks to data from the National Inventory of Architectural Heritage. Also a chance to check out crosstalk and leafpop.
+  Having a look at some of the historical buildings in Donegal, thanks to data from the National Inventory of Architectural Heritage. Also a chance to check out crosstalk and leafpop. Note; images will take a while to appear
 author:
   - name: Eugene
     url: https://fizzics.netliffy.app
@@ -51,7 +51,8 @@ donegal_map <- donegal_df %>%
                              "<br><i>", DATEFROM, "</i>: ",
                              ORIGINAL_TYPE, "<br>"),
              group = "sites",
-             col = ~pal(ORIGINAL_TYPE)) %>%
+             col = ~pal(ORIGINAL_TYPE),
+             radius = 500) %>%
   setView(lng = -7.7, lat = 55, zoom=10) %>% 
   addPopupImages(image = donegal$IMAGE_LINK, 
                  group = "sites", 
