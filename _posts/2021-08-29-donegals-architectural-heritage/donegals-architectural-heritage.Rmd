@@ -44,15 +44,15 @@ pal <- colorFactor("Paired", domain=(donegal$ORIGINAL_TYPE))
 
 donegal_map <- donegal_df %>% 
   leaflet() %>% 
-  addProviderTiles("Esri.NatGeoWorldMap") %>%
-  addCircles(lat = ~LATITUDE,
+  addProviderTiles("OpenStreetMap") %>%
+  addCircleMarkers(lat = ~LATITUDE,
              lng = ~LONGITUDE,
              popup = ~paste0("<b>", NAME, "</b>",
                              "<br><i>", DATEFROM, "</i>: ",
                              ORIGINAL_TYPE, "<br>"),
              group = "sites",
              col = ~pal(ORIGINAL_TYPE),
-             radius = 500) %>%
+             radius = 10) %>%
   setView(lng = -7.7, lat = 55, zoom=10) %>% 
   addPopupImages(image = donegal$IMAGE_LINK, 
                  group = "sites", 
