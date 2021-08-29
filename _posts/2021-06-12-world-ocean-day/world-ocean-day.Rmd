@@ -147,7 +147,7 @@ species_observations %>%
   leaflet() %>% 
   addProviderTiles(providers$Esri.OceanBasemap) %>%
   setView(lng=-8.5, lat=54.8, zoom=7.2) %>% 
-  addCircles(lng = ~ decimalLatitude, # note how rgbif mixes up long and lat
+  addCircleMarkers(lng = ~ decimalLatitude, # note how rgbif mixes up long and lat
              lat = ~ decimalLongitude,# note how rgbif mixes up long and lat
              popup = ~paste("<b>", {commonname}, "</b><br>",  
                             phylum, "<br>",
@@ -157,9 +157,9 @@ species_observations %>%
                             strftime(species_observations$eventDate, 
                                      format = "%d %B %Y")),
              color = ~pal(year),
-             radius = 3000)
+             radius = 5)
 ```
 
-See if you can find the two whales, one off Malin and the second off Belmullet.
+See if you can find the two whales, one off Malin and the second off Belmullet, and the Portugeese sole from the 18<sup>th</sup> century.
 
 Now, time for some watersports....
