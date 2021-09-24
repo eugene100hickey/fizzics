@@ -7,7 +7,9 @@ author:
     url: https://fizzics.netliffy.app
 date: 09-24-2021
 output:
-  distill::distill_article:
+  distill::distill_article:    
+    includes:
+      in_header: ../../favicon.html
     self_contained: false
 ---
 
