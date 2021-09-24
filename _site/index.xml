@@ -12,7 +12,16 @@
       <link>https://fizzics.netlify.app</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 29 Aug 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 23 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>University Rankings</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-09-24-university-rankings</link>
+      <description>Seeing the world through QS university rankings.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-09-24-university-rankings</guid>
+      <pubDate>Thu, 23 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-09-24-university-rankings/university-rankings_files/figure-html5/map-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Donegal's Architectural Heritage</title>
       <dc:creator>Eugene</dc:creator>
@@ -37,7 +46,7 @@
       <link>https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day</link>
       <description>A map of the North Atlantic off the Donegal Coast, with pop-ups detailing various species observed at different locations.</description>
       <guid>https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day</guid>
-      <pubDate>Mon, 07 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day/images/sheephaven.png" medium="image" type="image/png" width="1208" height="673"/>
     </item>
     <item>
