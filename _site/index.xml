@@ -12,14 +12,23 @@
       <link>https://fizzics.netlify.app</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 09 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 26 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Halloween Poster</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-10-27-halloween-poster</link>
+      <description>Giving a COVID poster that halloween vibe.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-10-27-halloween-poster</guid>
+      <pubDate>Tue, 26 Oct 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-10-27-halloween-poster/halloween-poster_files/figure-html5/poster-1.png" medium="image" type="image/png" width="1042" height="1500"/>
+    </item>
     <item>
       <title>Electoral Vote</title>
       <dc:creator>Eugene</dc:creator>
       <link>https://fizzics.netlify.app/posts/2021-10-10-electoral-vote</link>
       <description>Tracking US politician's in the news.</description>
       <guid>https://fizzics.netlify.app/posts/2021-10-10-electoral-vote</guid>
-      <pubDate>Sat, 09 Oct 2021 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 10 Oct 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/posts/2021-10-10-electoral-vote/electoral-vote_files/figure-html5/plot-1.png" medium="image" type="image/png" width="2304" height="1152"/>
     </item>
     <item>
