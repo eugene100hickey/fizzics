@@ -11,6 +11,7 @@ output:
     self_contained: false
 ---
 
+
 We posted previously about FACE++ and the article from [Theresa Kuntzler](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/extracting-emotions/) showing how to integrate this into R. I couldn't resist taking this for a spin one more time, on this occasion using it to examine one of the most famous conference photographs of them all, the one from the 5th [Solvay Conference](https://en.wikipedia.org/wiki/Solvay_Conference) of 1927.
 
 Here is the photograph, it features a veritable who's-who of physicists and chemists from a century ago. As a physicist, seeing the people that gave rise to so many brilliant theories and techniques always brings a thrill.
@@ -32,7 +33,7 @@ library(kableExtra)
 ```
 
 
-```{r face-function, echo = F}
+```{r face-function, echo = F, cache=TRUE}
 facepp <- function(fullpath, auth) {
   ## Initilize Object to store API output for single image
   face <- NULL
@@ -146,13 +147,14 @@ scientists <- faces$fullpath %>%
 faces$scientist <- scientists
 ```
 
-```{r table}
+
+```{r table, fig.height=8}
 faces %>% 
   select(scientist, anger:surprise) %>% 
   kable("html") %>%
   kable_styling() %>%
-  scroll_box(
-    height = "30%",
+   scroll_box(
+    height = "200px",
     box_css = "border: 1px solid #ddd; padding: 5px; ",
     fixed_thead = TRUE
   )
