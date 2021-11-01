@@ -159,7 +159,7 @@ faces %>%
     fixed_thead = TRUE
   )
 ```
-\newline
+<br>
 
 As you can see, the over-riding emotion comes out as being _neutral_. The modern vogue of having a sea of smiling faces for your conference photograph wasn't obviously a thing back in 1927. But there is enough variation to warrant taking a closer look. Below we show boxplots of all seven emotions. The _percentage %_ is transformed to a logit scale to highlight variations. From the outliers we can see signs of _sadness_ and _disgust_ and that someone is particularly _happy_. 
 
