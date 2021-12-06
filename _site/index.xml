@@ -12,7 +12,16 @@
       <link>https://fizzics.netlify.app</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 27 Oct 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>University Choices</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-12-06-university-choices</link>
+      <description>Navigating through the college choice options from the CAO.</description>
+      <guid>https://fizzics.netlify.app/posts/2021-12-06-university-choices</guid>
+      <pubDate>Mon, 06 Dec 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-12-06-university-choices/university-choices_files/figure-html5/plot-1.png" medium="image" type="image/png" width="1728" height="1344"/>
+    </item>
     <item>
       <title>Halloween Poster</title>
       <dc:creator>Eugene</dc:creator>
@@ -73,7 +82,7 @@
       <link>https://fizzics.netlify.app/posts/2021-05-06-solvay-conference</link>
       <description>This is what it looks like to change the world.</description>
       <guid>https://fizzics.netlify.app/posts/2021-05-06-solvay-conference</guid>
-      <pubDate>Wed, 05 May 2021 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 06 May 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/posts/2021-05-06-solvay-conference/solvay-conference_files/figure-html5/boxplot-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
