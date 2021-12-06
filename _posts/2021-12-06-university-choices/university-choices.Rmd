@@ -133,6 +133,7 @@ z <- z %>%
 courses <- z1 %>% filter(str_detect(last_name, "Environmental Science"),
                          !str_detect(last_name, "Agri")) %>% 
   pull(code)
+courses <- courses[1:9]
 
 max_years <- z %>%  filter(code %in% courses[1:9]) %>%  
   group_by(code) %>% 
@@ -143,7 +144,7 @@ Now we take this data (all `r dim(z)[1]` rows of it), pick out the courses with 
 
 
 ```{r plot, fig.width=9, fig.height=7}
-z %>%  filter(code %in% courses[1:9]) %>%  
+z %>%  filter(code %in% courses) %>%  
   left_join(max_years) %>% 
   mutate(last_name = str_replace(last_name, "Environmental Science", "EnvSci.")) %>% 
   mutate(label = ifelse(year == year_max, code, "")) %>% 
@@ -175,3 +176,5 @@ And the libraries used are:
 
 ```{r appendix2, ref.label="libraries", echo=TRUE, eval=FALSE}
 ```
+
+Full code can be seen on [github](https://github.com/eugene100hickey/fizzics/blob/master/_posts/2021-12-06-university-choices/university-choices.Rmd).
