@@ -12,6 +12,22 @@ output:
 ---
 
 
+<style>
+
+p a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #CBF8DF;
+  box-shadow: inset 0 -4px 0 #CBF8DF;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+</style>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = F, message = F)
 ```
@@ -20,7 +36,7 @@ I have a daughter finishing up school and so looking at her university options f
 
 The preference (at the moment, it changes frequently) is for something featuring _Environmental Science_. To that end, we looked around at the different options available at Irish universities and colleges. There are about 10 Irish universities, an amazing number for a small country, but then we have a strong academic ethos here. There are also a similar number of smaller colleges. Looking through the various offerings, there are North of 1000 different courses available for students wishing to undertake a four year degree. Quite the range of choices.
 
-Next question is, which ones feature _Environmental Science_? To find out, we went to the [CAO website](www2.cao.ie). There you can track down and access a bunch of pdf's and excel spreadsheets that detail the various courses, as well as the points required for entry. And it gives this information going back several years. A data treasure trove.
+Next question is, which ones feature _Environmental Science_? To find out, we went to the [CAO website](http://www2.cao.ie). There you can track down and access a bunch of pdf's and excel spreadsheets that detail the various courses, as well as the points required for entry. And it gives this information going back several years. A data treasure trove.
 
 Of course, pdf's and excel spreadsheet are not usually designed for easy access for data mining. The `pdftools` package helps a lot, but there is still plenty of data wrangling to do to get things in to middling half decent shape
 

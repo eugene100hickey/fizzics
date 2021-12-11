@@ -1482,9 +1482,24 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<style>
+
+p a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #CBF8DF;
+  box-shadow: inset 0 -4px 0 #CBF8DF;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+</style>
 <p>I have a daughter finishing up school and so looking at her university options for next year. In Ireland, there is a central clearing house (called the CAO) that takes care of university admission based on performance in an end-of-school exam. This exam gives you a certain number of points, with a maximum of 625.</p>
 <p>The preference (at the moment, it changes frequently) is for something featuring <em>Environmental Science</em>. To that end, we looked around at the different options available at Irish universities and colleges. There are about 10 Irish universities, an amazing number for a small country, but then we have a strong academic ethos here. There are also a similar number of smaller colleges. Looking through the various offerings, there are North of 1000 different courses available for students wishing to undertake a four year degree. Quite the range of choices.</p>
-<p>Next question is, which ones feature <em>Environmental Science</em>? To find out, we went to the <a href="www2.cao.ie">CAO website</a>. There you can track down and access a bunch of pdf’s and excel spreadsheets that detail the various courses, as well as the points required for entry. And it gives this information going back several years. A data treasure trove.</p>
+<p>Next question is, which ones feature <em>Environmental Science</em>? To find out, we went to the <a href="http://www2.cao.ie">CAO website</a>. There you can track down and access a bunch of pdf’s and excel spreadsheets that detail the various courses, as well as the points required for entry. And it gives this information going back several years. A data treasure trove.</p>
 <p>Of course, pdf’s and excel spreadsheet are not usually designed for easy access for data mining. The <code>pdftools</code> package helps a lot, but there is still plenty of data wrangling to do to get things in to middling half decent shape</p>
 <div class="layout-chunk" data-layout="l-body">
 
