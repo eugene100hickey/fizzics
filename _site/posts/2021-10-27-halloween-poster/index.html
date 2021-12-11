@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Eugene's Blog: Halloween Poster</title>
@@ -479,7 +480,7 @@ d-title {
 
 </style>
 
-<script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="../../site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
 <link href="../../site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
 <script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
@@ -1886,7 +1887,10 @@ function init_distill() {
 
     // hoverable references
     $('span.citation[data-cites]').each(function() {
-      var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+      var refs = $(this).attr('data-cites').split(" ");
+      var refHtml = refs.map(function(ref) {
+        return "<p>" + $('#ref-' + ref).html() + "</p>";
+      }).join("\n");
       window.tippy(this, {
         allowHTML: true,
         content: refHtml,
@@ -2057,8 +2061,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.10/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.11/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2114,6 +2118,21 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <div class="d-article">
+<style>
+
+p a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #CBF8DF;
+  box-shadow: inset 0 -4px 0 #CBF8DF;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+</style>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -2127,7 +2146,7 @@ document.addEventListener('DOMContentLoaded', function() {
 That said, this is a special time of year, so we felt appropriate to give coronavirus a halloweenesque (halloweenable, halloweenish?) treatment. We’re going to make a Halloween poster featuring the virus, and we’re going to do it with <code>magick</code>. Of course.</p>
 <h2 id="materials-and-methods">Materials and Methods</h2>
 <p><strong>Fonts</strong>: the run-of-the-mill fonts just don’t quite do it for halloween. So we turned to <a href="https://www.fonts4free.net/fonts-by-sinister-fonts.html">fonts4free</a> and their line-up of sinister fonts. <em>Ghastly Panic</em> and <em>Gypsy Curse</em>, and <em>Fiendish</em> looked about right, with an honourable mention to <em>October Crow</em>. The <em>extrafont</em> package is pretty good at handling the installation of new fonts, but for these three I just downloaded the .ttf files and put them in my <em>fonts</em> directory.<br />
-<strong>Background</strong>: There are lots corona posters out there. We chose one from the <a href="www.hse.ie">Health Service Executive</a> here in Ireland. We downloaded it and put it in a local directory.</p>
+<strong>Background</strong>: There are lots corona posters out there. We chose one from the <a href="http://www.hse.ie">Health Service Executive</a> here in Ireland. We downloaded it and put it in a local directory.</p>
 <h2 id="the-code">The Code</h2>
 <p>First we put in place the libraries we’ll need:</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2144,17 +2163,17 @@ That said, this is a special time of year, so we felt appropriate to give corona
 Next we’ll load up those fonts.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'>font_add</span><span class='op'>(</span><span class='st'>"Ghastly Panic"</span>, <span class='st'>"fonts/Font1/Ghastly Panic.ttf"</span><span class='op'>)</span>
-<span class='fu'>font_add</span><span class='op'>(</span><span class='st'>"Gypsy Curse"</span>, <span class='st'>"fonts/Font2/Gypsy Curse.ttf"</span><span class='op'>)</span>
-<span class='fu'>font_add</span><span class='op'>(</span><span class='st'>"Fiendish"</span>, <span class='st'>"fonts/Font3/Fiendish.ttf"</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='fu'><a href='https://rdrr.io/pkg/sysfonts/man/font_add.html'>font_add</a></span><span class='op'>(</span><span class='st'>"Ghastly Panic"</span>, <span class='st'>"fonts/Font1/Ghastly Panic.ttf"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/sysfonts/man/font_add.html'>font_add</a></span><span class='op'>(</span><span class='st'>"Gypsy Curse"</span>, <span class='st'>"fonts/Font2/Gypsy Curse.ttf"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/pkg/sysfonts/man/font_add.html'>font_add</a></span><span class='op'>(</span><span class='st'>"Fiendish"</span>, <span class='st'>"fonts/Font3/Fiendish.ttf"</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
 <p>Now we can start to build our poster. We use <code>magick</code> to read in the hse image file. It initially has a white border that is then cropped out. On top on this we place a yellow block and a white block to cover existing <em>Coronavirus</em> and <em>Covid-19</em> text (we had discerned the exact shade of yellow beforehand, thank you <code>colorfindr</code>), and a white block to cover other text further down the poster. Then we replace these with the same text in our Halloween fonts.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>corona</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='st'>"images/covid.jpg"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='st'>"625x900+185+50"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>corona</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/editing.html'>image_read</a></span><span class='op'>(</span><span class='st'>"images/covid.jpg"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='st'>"625x900+185+50"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_draw</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='co'># get rid of existing text by putting colour blocks over them</span>
 <span class='fu'><a href='https://rdrr.io/r/graphics/rect.html'>rect</a></span><span class='op'>(</span>xleft <span class='op'>=</span> <span class='fl'>0</span>, ybottom <span class='op'>=</span> <span class='fl'>150</span>, xright <span class='op'>=</span> <span class='fl'>400</span>, ytop <span class='op'>=</span> <span class='fl'>0</span>, border <span class='op'>=</span> <span class='cn'>NA</span>, col <span class='op'>=</span> <span class='st'>"#FFEE00"</span><span class='op'>)</span>
@@ -2173,44 +2192,44 @@ Next we’ll load up those fonts.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>spider</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_graph</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>300</span>, height <span class='op'>=</span> <span class='fl'>400</span>, res <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
-<span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'><a href='https://rdrr.io/pkg/emojifont/man/geom_emoji.html'>geom_emoji</a></span><span class='op'>(</span><span class='st'>"spider"</span>, color<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme_void</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme</span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'>element_rect</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFEE00"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>spider</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>spider</span>, <span class='st'>"299x399+1+1"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFEE00"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>spider</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>spider</span>, <span class='st'>"299x399+1+1"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_scale</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span>
 
 <span class='va'>bat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_graph</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>300</span>, height <span class='op'>=</span> <span class='fl'>400</span>, res <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
-<span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'><a href='https://rdrr.io/pkg/emojifont/man/geom_emoji.html'>geom_emoji</a></span><span class='op'>(</span><span class='st'>"bat"</span>, color<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme_void</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme</span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'>element_rect</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFEE00"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>bat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>bat</span>, <span class='st'>"299x399+1+1"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFEE00"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>bat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>bat</span>, <span class='st'>"299x399+1+1"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_scale</a></span><span class='op'>(</span><span class='fl'>50</span><span class='op'>)</span>
 
 <span class='va'>scream</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_graph</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>300</span>, height <span class='op'>=</span> <span class='fl'>400</span>, res <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
-<span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'><a href='https://rdrr.io/pkg/emojifont/man/geom_emoji.html'>geom_emoji</a></span><span class='op'>(</span><span class='st'>"scream"</span>, color<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme_void</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme</span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'>element_rect</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFEE00"</span><span class='op'>)</span><span class='op'>)</span>
-<span class='va'>scream</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>scream</span>, <span class='st'>"319x349+1+1"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_scale</a></span><span class='op'>(</span><span class='fl'>80</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFEE00"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>scream</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>scream</span>, <span class='st'>"319x349+1+1"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_scale</a></span><span class='op'>(</span><span class='fl'>80</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_rotate</a></span><span class='op'>(</span><span class='fl'>270</span><span class='op'>)</span>
 
 <span class='va'>skull</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_graph</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>300</span>, height <span class='op'>=</span> <span class='fl'>400</span>, res <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
-<span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'><a href='https://rdrr.io/pkg/emojifont/man/geom_emoji.html'>geom_emoji</a></span><span class='op'>(</span><span class='st'>"skull"</span>, color<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme_void</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme</span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'>element_rect</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFFFFF"</span><span class='op'>)</span><span class='op'>)</span> 
-<span class='va'>skull</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>skull</span>, <span class='st'>"299x329+1+1"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFFFFF"</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='va'>skull</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>skull</span>, <span class='st'>"299x329+1+1"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_scale</a></span><span class='op'>(</span><span class='fl'>60</span><span class='op'>)</span>
 
 <span class='va'>head_bandage</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/device.html'>image_graph</a></span><span class='op'>(</span>width <span class='op'>=</span> <span class='fl'>300</span>, height <span class='op'>=</span> <span class='fl'>400</span>, res <span class='op'>=</span> <span class='fl'>50</span><span class='op'>)</span>
-<span class='fu'>ggplot</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
   <span class='fu'><a href='https://rdrr.io/pkg/emojifont/man/geom_emoji.html'>geom_emoji</a></span><span class='op'>(</span><span class='st'>"face_with_head_bandage"</span>, color<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme_void</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
-  <span class='fu'>theme</span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'>element_rect</span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFFFFF"</span><span class='op'>)</span><span class='op'>)</span> 
-<span class='va'>head_bandage</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>head_bandage</span>, <span class='st'>"299x309+1+1"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>panel.background <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_rect</a></span><span class='op'>(</span>fill <span class='op'>=</span> <span class='st'>"#FFFFFF"</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='va'>head_bandage</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_crop</a></span><span class='op'>(</span><span class='va'>head_bandage</span>, <span class='st'>"299x309+1+1"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
   <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_scale</a></span><span class='op'>(</span><span class='fl'>60</span><span class='op'>)</span>
 </code></pre>
 </div>
@@ -2218,11 +2237,11 @@ Next we’ll load up those fonts.</p>
 <p>And finally to the complete poster, adding in our <code>emojifont</code> graphics. The exact position took a bit of trial and error.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>corona</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>spider</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>bat</span>, offset <span class='op'>=</span> <span class='st'>"+200"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>skull</span>, offset <span class='op'>=</span> <span class='st'>"+148+272"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>head_bandage</span>, offset <span class='op'>=</span> <span class='st'>"+420+275"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>scream</span>, offset <span class='op'>=</span> <span class='st'>"+535+550"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>corona</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>spider</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>bat</span>, offset <span class='op'>=</span> <span class='st'>"+200"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>skull</span>, offset <span class='op'>=</span> <span class='st'>"+148+272"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>head_bandage</span>, offset <span class='op'>=</span> <span class='st'>"+420+275"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://docs.ropensci.org/magick/reference/composite.html'>image_composite</a></span><span class='op'>(</span><span class='va'>scream</span>, offset <span class='op'>=</span> <span class='st'>"+535+550"</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
   <span class='fu'><a href='https://docs.ropensci.org/magick/reference/transform.html'>image_resize</a></span><span class='op'>(</span><span class='st'>"2000x1500"</span><span class='op'>)</span>
 </code></pre>
 </div>

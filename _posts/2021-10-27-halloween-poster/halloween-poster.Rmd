@@ -12,6 +12,22 @@ output:
 preview: images/covid-header.png
 ---
 
+<style>
+
+p a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #CBF8DF;
+  box-shadow: inset 0 -4px 0 #CBF8DF;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+</style>
+
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, cache = FALSE)
 ```
@@ -35,7 +51,7 @@ That said, this is a special time of year, so we felt appropriate to give corona
 
 ## Materials and Methods
 **Fonts**: the run-of-the-mill fonts just don't quite do it for halloween. So we turned to [fonts4free](https://www.fonts4free.net/fonts-by-sinister-fonts.html) and their line-up of sinister fonts. _Ghastly Panic_ and _Gypsy Curse_, and  _Fiendish_ looked about right, with an honourable mention to _October Crow_. The _extrafont_ package is pretty good at handling the installation of new fonts, but for these three I just downloaded the .ttf files and put them in my _fonts_ directory.  
-**Background**: There are lots corona posters out there. We chose one from the [Health Service Executive](www.hse.ie) here in Ireland. We downloaded it and put it in a local directory.
+**Background**: There are lots corona posters out there. We chose one from the [Health Service Executive](http://www.hse.ie) here in Ireland. We downloaded it and put it in a local directory.
 
 
 ## The Code

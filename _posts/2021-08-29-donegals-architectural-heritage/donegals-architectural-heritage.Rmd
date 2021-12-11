@@ -12,6 +12,21 @@ output:
 preview: img/oakpark.jpg
 ---
 
+<style>
+
+p a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #CBF8DF;
+  box-shadow: inset 0 -4px 0 #CBF8DF;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+</style>
   
 ```{r setup, include=FALSE}
 library(tidyverse)

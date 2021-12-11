@@ -1,7 +1,7 @@
 ---
 title: "Horn Head in 3D"
 description: |
-  Horn Head gets the <i>Rayshader</i> Treatment.
+  Horn Head gets the Rayshader Treatment.
 author:
   - name: Eugene
     url: https://fizzics.netliffy.app
@@ -12,7 +12,21 @@ output:
 preview: img/three-D-model.png
 ---
 
+<style>
 
+p a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #CBF8DF;
+  box-shadow: inset 0 -4px 0 #CBF8DF;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = F, warning = F)
@@ -75,7 +89,12 @@ sentinel_records <- getSentinel_records(time_range, "Sentinel-2") %>%
 This gives the following table of images:
 
 ```{r sentinel-results}
-knitr::kable(query %>% dplyr::select(-c(record_id)))
+knitr::kable(tibble(Tile =query$tile_id, 
+                    Orbit = query$orbit_number,
+                    Date = query$date_acquisition,
+                    Cloud = glue::glue("{round(query$cloudcov, 2)}%")
+                    )
+             )
 ```
 
 The image from July 17<sup>th</sup> is clearly the best for clouds so we'll work with this. It has a `record_id` of `best_id =` `r query$record_id[3]`.

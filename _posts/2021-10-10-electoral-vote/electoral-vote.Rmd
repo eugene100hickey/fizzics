@@ -11,12 +11,28 @@ output:
     self_contained: false
 ---
 
+<style>
+
+p a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #CBF8DF;
+  box-shadow: inset 0 -4px 0 #CBF8DF;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+</style>
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = F, message = F)
 ```
 
-[Electoral-vote.com](Electoral-vote.com) is one of my favourite websites. It gives a daily digest of news pertaining to US elections, usually getting around 11:00 GMT, syncing pretty well with my mid-morning coffee. It's written by Andrew Tanenbaum (who wrote Minix, a pioneering Unix-like system), and Christopher Bates (an American historian based in UCLA). It combines facts and opinions an edgy sense of humour that makes it a compelling read.
+[Electoral-vote.com](https://Electoral-vote.com) is one of my favourite websites. It gives a daily digest of news pertaining to US elections, usually getting around 11:00 GMT, syncing pretty well with my mid-morning coffee. It's written by Andrew Tanenbaum (who wrote Minix, a pioneering Unix-like system), and Christopher Bates (an American historian based in UCLA). It combines facts and opinions an edgy sense of humour that makes it a compelling read.
 
 Of course, for the past few years, US President #45 has loomed large over such reporting, so I thought it'd be interesting to look back and see his presence, measured by how often he is name-checked on the site, has changed over time. Hence a little time series chart.
 
