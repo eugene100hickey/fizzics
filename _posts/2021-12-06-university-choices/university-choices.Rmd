@@ -17,8 +17,8 @@ output:
 p a {
   text-decoration: none;
   color: black;
-  border-bottom: 3px solid #CBF8DF;
-  box-shadow: inset 0 -4px 0 #CBF8DF;
+  border-bottom: 3px solid #9ae28f;
+  box-shadow: inset 0 -4px 0 #9ae28f;
   background: transparent;
   transition: background 150ms ease;
   font-style: italic;

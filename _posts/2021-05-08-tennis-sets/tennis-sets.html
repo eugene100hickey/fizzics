@@ -56,7 +56,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
 code span.cf { color: #007ba5; } /* ControlFlow */
@@ -77,13 +77,14 @@ code span.kw { color: #007ba5; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
 code span.ot { color: #007ba5; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Tennis Sets</title>
@@ -116,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["data/atp_matches_all.csv","tennis-sets_files/figure-html5/bar_chart-1.png","tennis-sets_files/figure-html5/chisquared_plot-1.png","tennis-sets_files/figure-html5/tiling-1.png","tennis-sets_files/figure-html5/time_series-1.png"]}
+  {"type":"character","attributes":{},"value":["data/atp_matches_all.csv","tennis-sets_files/anchor-4.2.2/anchor.min.js","tennis-sets_files/bowser-1.9.3/bowser.min.js","tennis-sets_files/distill-2.2.21/template.v2.js","tennis-sets_files/figure-html5/bar_chart-1.png","tennis-sets_files/figure-html5/chisquared_plot-1.png","tennis-sets_files/figure-html5/tiling-1.png","tennis-sets_files/figure-html5/time_series-1.png","tennis-sets_files/header-attrs-2.7/header-attrs.js","tennis-sets_files/jquery-1.11.3/jquery.min.js","tennis-sets_files/popper-2.6.0/popper.min.js","tennis-sets_files/tippy-6.2.7/tippy-bundle.umd.min.js","tennis-sets_files/tippy-6.2.7/tippy-light-border.css","tennis-sets_files/tippy-6.2.7/tippy.css","tennis-sets_files/tippy-6.2.7/tippy.umd.min.js","tennis-sets_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1263,7 +1264,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1434,8 +1438,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="tennis-sets_files/header-attrs-2.7/header-attrs.js"></script>
-  <script src="tennis-sets_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="tennis-sets_files/header-attrs-2.11/header-attrs.js"></script>
+  <script src="tennis-sets_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="tennis-sets_files/popper-2.6.0/popper.min.js"></script>
   <link href="tennis-sets_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="tennis-sets_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1478,6 +1482,21 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<style>
+
+p a {
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #CBF8DF;
+  box-shadow: inset 0 -4px 0 #CBF8DF;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+</style>
 <h2 id="the-concept">The Concept</h2>
 <p>Our tennis coach has a theory. As well as being a teacher and player he’s also an avid follower of the game. And he reckons that an inordinate amount of competitive, two-set tennis matches finish with a closely matched first set followed by a relative blow out in the second. 7-5, 6-2 just about covers it.</p>
 <p>Jimmy’s thinking is that a player who loses the first set, however close it was, will try to change things up to rescue the match. Every now and again this tactic works, and a player wins when they were otherwise destined to lose. However, mostly it just makes things worse and leads to the kind of scores that Jimmy predicts. But what odds, losing 7-5 6-2 is no different than losing 7-5 7-5. Is he right, or is this another example of confirmation bias rearing his ugly head? Let’s see what the data says.</p>
@@ -1493,27 +1512,27 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <span class='va'>atp</span><span class='op'>$</span><span class='va'>score</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>gsub</a></span><span class='op'>(</span><span class='st'>'\\(..\\)|\\(.\\)'</span>,<span class='st'>''</span>, <span class='va'>atp</span><span class='op'>$</span><span class='va'>score</span><span class='op'>)</span>
 
 <span class='co'>#split the overall score into three set scores</span>
-<span class='va'>atp</span> <span class='op'>&lt;-</span> <span class='va'>atp</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>separate</span><span class='op'>(</span><span class='va'>score</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Set1"</span>, <span class='st'>"Set2"</span>, <span class='st'>"Set3"</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>" "</span>, fill<span class='op'>=</span><span class='st'>"right"</span><span class='op'>)</span>
+<span class='va'>atp</span> <span class='op'>&lt;-</span> <span class='va'>atp</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://tidyr.tidyverse.org/reference/separate.html'>separate</a></span><span class='op'>(</span><span class='va'>score</span>, into <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Set1"</span>, <span class='st'>"Set2"</span>, <span class='st'>"Set3"</span><span class='op'>)</span>, sep<span class='op'>=</span><span class='st'>" "</span>, fill<span class='op'>=</span><span class='st'>"right"</span><span class='op'>)</span>
 
 <span class='co'>#adding a year column to the dataframe</span>
-<span class='va'>atp</span> <span class='op'>&lt;-</span> <span class='va'>atp</span> <span class='op'>%&gt;%</span>
-  <span class='fu'>mutate</span><span class='op'>(</span>year <span class='op'>=</span> <span class='fu'>lubridate</span><span class='fu'>::</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='fu'><a href='http://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>tourney_date</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>atp</span> <span class='op'>&lt;-</span> <span class='va'>atp</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>year <span class='op'>=</span> <span class='fu'>lubridate</span><span class='fu'>::</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/year.html'>year</a></span><span class='op'>(</span><span class='fu'><a href='https://lubridate.tidyverse.org/reference/ymd.html'>ymd</a></span><span class='op'>(</span><span class='va'>tourney_date</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'>#pick out just the 2 set games</span>
-<span class='va'>two_sets</span> <span class='op'>=</span> <span class='va'>atp</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>Set3</span><span class='op'>)</span><span class='op'>)</span> 
+<span class='va'>two_sets</span> <span class='op'>=</span> <span class='va'>atp</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/NA.html'>is.na</a></span><span class='op'>(</span><span class='va'>Set3</span><span class='op'>)</span><span class='op'>)</span> 
 
 <span class='co'>#weed out matches with retirements</span>
 <span class='va'>scores</span> <span class='op'>&lt;-</span>  <span class='fu'><a href='https://rdrr.io/r/base/names.html'>names</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>two_sets</span><span class='op'>$</span><span class='va'>Set1</span><span class='op'>)</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>two_sets</span><span class='op'>$</span><span class='va'>Set1</span><span class='op'>)</span><span class='op'>/</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>two_sets</span><span class='op'>$</span><span class='va'>Set1</span><span class='op'>)</span><span class='op'>&gt;</span><span class='fl'>0.005</span><span class='op'>]</span><span class='op'>)</span>
-<span class='va'>two_sets</span> <span class='op'>&lt;-</span> <span class='va'>two_sets</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Set1</span> <span class='op'>%in%</span> <span class='va'>scores</span>, <span class='va'>Set2</span> <span class='op'>%in%</span> <span class='va'>scores</span><span class='op'>)</span>
+<span class='va'>two_sets</span> <span class='op'>&lt;-</span> <span class='va'>two_sets</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>Set1</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>scores</span>, <span class='va'>Set2</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>scores</span><span class='op'>)</span>
 
 <span class='co'>#show a little table to see what the frame looks like</span>
 <span class='va'>two_sets</span>
 </code></pre>
 </div>
-<pre><code># A tibble: 45,616 x 5
+<pre><code># A tibble: 45,616 × 5
    Set1  Set2  Set3  tourney_date  year
    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt;
  1 7-6   6-1   &lt;NA&gt;      19900305  1990
@@ -1529,8 +1548,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 # … with 45,606 more rows</code></pre>
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'>#finally, reduce the number of columns in the dataset</span>
-<span class='va'>two_sets</span> <span class='op'>&lt;-</span> <span class='va'>two_sets</span> <span class='op'>%&gt;%</span> 
-  <span class='fu'>select</span><span class='op'>(</span><span class='va'>Set1</span>, <span class='va'>Set2</span>, <span class='va'>year</span><span class='op'>)</span>
+<span class='va'>two_sets</span> <span class='op'>&lt;-</span> <span class='va'>two_sets</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>Set1</span>, <span class='va'>Set2</span>, <span class='va'>year</span><span class='op'>)</span>
 </code></pre>
 </div>
 </div>
