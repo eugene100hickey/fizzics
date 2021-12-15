@@ -114,6 +114,13 @@ p a {
   font-family: menu;
   font-stretch: extra-expanded;
 }
+
+p a:hover {
+  text-decoration: none;
+  --bg-opacity: 1;
+  background-color: #9ae28f;
+  background-color: rgba(154, 226, 143, var(--bg-opacity));
+}
 /*-- Additional custom styles --*/
 /* Add any additional CSS rules below                      */
 
