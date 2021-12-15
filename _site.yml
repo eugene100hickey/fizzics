@@ -3,6 +3,7 @@ title: "Eugene's Blog"
 description: |
   Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
 base_url: https://fizzics.netlify.app
+favicon: images/logo.png
 output_dir: "_site"
 navbar:
   logo:
@@ -12,7 +13,10 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+    - icon: fa fa-github
+      href: https://github.com/eugene100hickey/fizzics
+    - icon: fa fa-rss
+      href: index.xml
 output:
   distill::distill_article:
     css: theme.css
-favicon: images/favicon.ico

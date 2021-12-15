@@ -92,7 +92,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="description" itemprop="description" content="Seeing the world through QS university rankings."/>
 
 <link rel="canonical" href="https://fizzics.netlify.app/posts/2021-09-24-university-rankings/"/>
-<link rel="icon" type="image/vnd.microsoft.icon" href="../../images/favicon.ico"/>
+<link rel="icon" type="image/png" href="../../images/logo.png"/>
 
 <!--  https://schema.org/Article -->
 <meta property="article:published" itemprop="datePublished" content="2021-09-24"/>
@@ -2134,9 +2134,9 @@ d-appendix {
 /* These properties only apply to Distill sites and blogs  */
 
 .distill-site-header {
-  --title-size:       25px;
+  --title-size:       40px;
   --text-color:       rgba(255, 255, 255, 0.8);
-  --text-size:        25px;
+  --text-size:        40px;
   --hover-color:      white;
   --bkgd-color:       #176940; /* edited from #0F2E3D; */
 }
@@ -2149,10 +2149,13 @@ d-appendix {
 }
 
 .distill-site-nav  {
-  color: #FFFFFF;
-  background-color: #176940;
-  text-size:        25px;
-  hover-color:      grey;
+  color: #ffffff;
+  font-weight: 400;
+  background: #176940;
+  border-bottom: 2px solid #DECF40;
+  -webkit-box-shadow: 1px 1px 18px #4d4d4d;
+  -moz-box-shadow: 1px 1px 18px #4d4d4d;
+  box-shadow: 1px 1px 18px #4d4d4d;
 }
 
 .distill-site-header .logo img {
@@ -2161,12 +2164,9 @@ d-appendix {
    margin-top: 10px;
 }
 
-d-title p {
-    font-weight: 300;
-    color: #176940;
-    font-size: 1.2rem;
-    line-height: 1.55em;
-    grid-column: text;
+d-title {
+  background: #575757;
+  color: white;
 }
 
 d-article h2 {
@@ -2228,6 +2228,12 @@ p a:hover {
 <div class="nav-right">
 <a href="../../index.html">Home</a>
 <a href="../../about.html">About</a>
+<a href="https://github.com/eugene100hickey/fizzics">
+<i class="fa fa-github" aria-hidden="true"></i>
+</a>
+<a href="../../index.xml">
+<i class="fa fa-rss" aria-hidden="true"></i>
+</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2250,21 +2256,6 @@ p a:hover {
 </div>
 
 <div class="d-article">
-<style>
-
-p a {
-  text-decoration: none;
-  color: black;
-  border-bottom: 3px solid #CBF8DF;
-  box-shadow: inset 0 -4px 0 #CBF8DF;
-  background: transparent;
-  transition: background 150ms ease;
-  font-style: italic;
-  font-family: menu;
-  font-stretch: extra-expanded;
-}
-
-</style>
 <p><a href="https://www.topuniversities.com/">Quacquarelli Symonds</a> produces a list of the top ranked international universities every year. I thought it’d be interesting to see how this looks across the globe, not so much with a map, but with a silhouette showing the positions of the top colleges.</p>
 <p>QS publish their data, but it’s a little awkward to scrape them, so I referred to <a href="https://www.kaggle.com/divyansh22/qs-world-university-rankings">this</a> kaggle dataset with the figures for 2020.</p>
 <div class="layout-chunk" data-layout="l-body">
