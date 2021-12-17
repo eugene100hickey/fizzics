@@ -106,3 +106,5 @@ spect1 %>%
   scale_x_continuous(name = "Wavelength (nm)")
 ```
 
+
+Full code is available from [github](https://github.com/eugene100hickey/fizzics/tree/master/_posts/2021-12-16-sdss-data-access).
