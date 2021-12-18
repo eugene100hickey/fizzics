@@ -89,7 +89,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_meta_tags-->
 <title>Eugene's Blog: SDSS Data Access</title>
 
-<meta property="description" itemprop="description" content="How to get hold of data from the SDSS astrnomical catalogue."/>
+<meta property="description" itemprop="description" content="How to get hold of data from the SDSS astronomical catalogue."/>
 
 <link rel="canonical" href="https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/"/>
 <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
@@ -103,7 +103,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="Eugene&#39;s Blog: SDSS Data Access"/>
 <meta property="og:type" content="article"/>
-<meta property="og:description" content="How to get hold of data from the SDSS astrnomical catalogue."/>
+<meta property="og:description" content="How to get hold of data from the SDSS astronomical catalogue."/>
 <meta property="og:url" content="https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/"/>
 <meta property="og:image" content="https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/sdss-data-access_files/figure-html5/plot_spectrum-1.png"/>
 <meta property="og:image:width" content="1248"/>
@@ -114,7 +114,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://dev.twitter.com/cards/types/summary -->
 <meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:title" content="Eugene&#39;s Blog: SDSS Data Access"/>
-<meta property="twitter:description" content="How to get hold of data from the SDSS astrnomical catalogue."/>
+<meta property="twitter:description" content="How to get hold of data from the SDSS astronomical catalogue."/>
 <meta property="twitter:url" content="https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/"/>
 <meta property="twitter:image" content="https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/sdss-data-access_files/figure-html5/plot_spectrum-1.png"/>
 <meta property="twitter:image:width" content="1248"/>
@@ -132,7 +132,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["SDSS Data Access"]},{"type":"character","attributes":{},"value":["How to get hold of data from the SDSS astrnomical catalogue."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Eugene"]},{"type":"character","attributes":{},"value":["https://fizzics.netliffy.app"]}]}]},{"type":"character","attributes":{},"value":["2021-12-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/"]},{"type":"character","attributes":{},"value":["https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["SDSS Data Access"]},{"type":"character","attributes":{},"value":["How to get hold of data from the SDSS astronomical catalogue."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Eugene"]},{"type":"character","attributes":{},"value":["https://fizzics.netlify.app"]}]}]},{"type":"character","attributes":{},"value":["2021-12-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/"]},{"type":"character","attributes":{},"value":["https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2203,7 +2203,27 @@ d-appendix {
 
 .posts-list > h1 {
   color: black!important; /* prints "Test Blog" */
-} </style>
+} 
+
+
+p a { /* underlines links */
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #9ae28f;
+  box-shadow: inset 0 -4px 0 #9ae28f;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+p a:hover { /* makes links go green on hover */
+  text-decoration: none;
+  --bg-opacity: 1;
+  background-color: #9ae28f;
+  background-color: rgba(154, 226, 143, var(--bg-opacity));
+}</style>
 <style type="text/css">
 /* base style */
 
@@ -2434,6 +2454,27 @@ d-appendix d-footnote-list a.footnote-backlink {
 .posts-list > h1 {
   color: black!important; /* prints "Test Blog" */
 } 
+
+
+p a { /* underlines links */
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #9ae28f;
+  box-shadow: inset 0 -4px 0 #9ae28f;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+p a:hover { /* makes links go green on hover */
+  text-decoration: none;
+  --bg-opacity: 1;
+  background-color: #9ae28f;
+  background-color: rgba(154, 226, 143, var(--bg-opacity));
+}
+
 </style>
 <!--/radix_placeholder_site_in_header-->
 
@@ -2445,7 +2486,7 @@ d-appendix d-footnote-list a.footnote-backlink {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"SDSS Data Access","description":"How to get hold of data from the SDSS astrnomical catalogue.","authors":[{"author":"Eugene","authorURL":"https://fizzics.netliffy.app","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-12-16T00:00:00.000+00:00","citationText":"Eugene, 2021"}
+{"title":"SDSS Data Access","description":"How to get hold of data from the SDSS astronomical catalogue.","authors":[{"author":"Eugene","authorURL":"https://fizzics.netlify.app","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-12-16T00:00:00.000+00:00","citationText":"Eugene, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2489,17 +2530,18 @@ d-appendix d-footnote-list a.footnote-backlink {
 <h1>SDSS Data Access</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-<p><p>How to get hold of data from the SDSS astrnomical catalogue.</p></p>
+<p><p>How to get hold of data from the SDSS astronomical catalogue.</p></p>
 </div>
 
 <div class="d-byline">
-  Eugene <a href="https://fizzics.netliffy.app" class="uri">https://fizzics.netliffy.app</a> 
+  Eugene <a href="https://fizzics.netlify.app" class="uri">https://fizzics.netlify.app</a> 
   
 <br/>2021-12-16
 </div>
 
 <div class="d-article">
 <p>When it comes to astronomical catalogues, SDSS was without peer for many years. We used it routinely for our work on differential photometry, and developed ways of accessing SDSS data directly to R. This post is really just a reminder-to-self, so that next time I need to get my SDSS data I won’t need to scrabble around looking for old scripts.</p>
+<p>The packages needed are <a href="https://joss.theoj.org/papers/10.21105/joss.01686">tidyverse</a> (of course), <a href="https://CRAN.R-project.org/package=RCurl">RCurl</a>, and <a href="https://CRAN.R-project.org/package=glue">glue</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>

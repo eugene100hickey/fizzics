@@ -2202,7 +2202,27 @@ d-appendix {
 
 .posts-list > h1 {
   color: black!important; /* prints "Test Blog" */
-} </style>
+} 
+
+
+p a { /* underlines links */
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #9ae28f;
+  box-shadow: inset 0 -4px 0 #9ae28f;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+p a:hover { /* makes links go green on hover */
+  text-decoration: none;
+  --bg-opacity: 1;
+  background-color: #9ae28f;
+  background-color: rgba(154, 226, 143, var(--bg-opacity));
+}</style>
 <style type="text/css">
 /* base style */
 
@@ -2435,6 +2455,27 @@ d-appendix d-footnote-list a.footnote-backlink {
 .posts-list > h1 {
   color: black!important; /* prints "Test Blog" */
 } 
+
+
+p a { /* underlines links */
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #9ae28f;
+  box-shadow: inset 0 -4px 0 #9ae28f;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+p a:hover { /* makes links go green on hover */
+  text-decoration: none;
+  --bg-opacity: 1;
+  background-color: #9ae28f;
+  background-color: rgba(154, 226, 143, var(--bg-opacity));
+}
+
 </style>
 <!--/radix_placeholder_site_in_header-->
 

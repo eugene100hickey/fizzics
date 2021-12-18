@@ -1,10 +1,10 @@
 ---
 title: "SDSS Data Access"
 description: |
-  How to get hold of data from the SDSS astrnomical catalogue.
+  How to get hold of data from the SDSS astronomical catalogue.
 author:
   - name: Eugene
-    url: https://fizzics.netliffy.app
+    url: https://fizzics.netlify.app
 date: 2021-12-16
 output:
   distill::distill_article:
@@ -17,6 +17,8 @@ knitr::opts_chunk$set(echo = FALSE, message=F, warning=F)
 ```
 
 When it comes to astronomical catalogues, SDSS was without peer for many years. We used it routinely for our work on differential photometry, and developed ways of accessing SDSS data directly to R. This post is really just a reminder-to-self, so that next time I need to get my SDSS data I won't need to scrabble around looking for old scripts.
+
+The packages needed are [tidyverse](https://joss.theoj.org/papers/10.21105/joss.01686) (of course), [RCurl](https://CRAN.R-project.org/package=RCurl), and [glue](https://CRAN.R-project.org/package=glue).
 
 ```{r libraries}
 library(tidyverse)
