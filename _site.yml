@@ -1,22 +1,60 @@
 name: "fizzics"
 title: "Eugene's Blog"
+theme: theme.css
 description: |
   Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
 base_url: https://fizzics.netlify.app
-favicon: images/logo.png
+favicon: images/atlantic.png
 output_dir: "_site"
+twitter: 
+  site: "@eugene100hickey"
+repository_url: https://github.com/eugene100hickey/fizzics
+creative_commons: CC BY
+collections:
+  posts:
+    categories: true
+    categories_metadata: true
+    authors_metadata: false
+    feed_iems_max: 20 # default
+    disqus: physics
+    share: [twitter, linkedin]
+    subscribe: _subscribe.html
+    custom: _custom.html
+  talks:
+    categories: true
+    categories_metadata: true
+    authors_metadata: false
+    feed_iems_max: 20 # default
+    disqus: physics
+    share: [twitter, linkedin]
 navbar:
   logo:
-    image: images/logo.png
-  right:
+    image: images/atlantic.png
+    href: https://fizzics.netlify.app/
+  left:
     - text: "Home"
       href: index.html
+    - text: "CV"
+      href: cv.html
+    - text: "Projects"
+      href: projects.html
+    - text: "Teaching"
+      href: teaching.html
+    - text: "Talks"
+      href: talks.html
+    - text: "Blog"
+      href: blog.html
+    - text: "Resources"
+      href: resources.html
     - text: "About"
       href: about.html
-    - icon: fa fa-github
-      href: https://github.com/eugene100hickey/fizzics
+  right:
+    - icon: fab fa-github
+      href: https://github.com/eugene100hickey
+    - icon: fab fa-twitter
+      href: https://twitter.com/eugene100hickey
     - icon: fa fa-rss
-      href: index.xml
+      href: blog.xml
 output:
   distill::distill_article:
     css: theme.css
