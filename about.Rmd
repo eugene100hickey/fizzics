@@ -272,8 +272,11 @@ h2.f4.text-normal.mb-3 {
 
 <div id="canvas">
 
+<br>
+<br>
+
 <div class="profile-photo">
-<img  src="images/euge.jpg" alt="Profile photo">  
+<img  src="images/euge.JPG" alt="Profile photo">  
 </div>
 
 I lecture in physics at the Technological University Dublin and I'm a part of [ML-Labs](https://ml-labs.ie/). Research-wise, I work in data science, mostly astrophysics or neuroscience. My original background was in materials science, making new inter-metallic compounds based on uranium and looking at their structural and physical properties at temperatures down to 2.2K. I then spent some time as a medical physicist, developing teleradiology systems. But then discovered R programming about 2015 and haven't looked back since.

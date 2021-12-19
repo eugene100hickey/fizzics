@@ -87,32 +87,32 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 
   <!--radix_placeholder_meta_tags-->
-  <title>EVH: About</title>
+  <title>EVH: Resources</title>
 
-  <meta property="description" itemprop="description" content=""/>
+  <meta property="description" itemprop="description" content="This section contains some resources that are perhaps useful for others."/>
 
   <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
   <link rel="icon" type="image/png" href="images/atlantic.png"/>
 
 
   <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
-  <meta property="og:title" content="EVH: About"/>
+  <meta property="og:title" content="EVH: Resources"/>
   <meta property="og:type" content="article"/>
-  <meta property="og:description" content=""/>
+  <meta property="og:description" content="This section contains some resources that are perhaps useful for others."/>
   <meta property="og:locale" content="en_US"/>
   <meta property="og:site_name" content="EVH"/>
 
   <!--  https://dev.twitter.com/cards/types/summary -->
   <meta property="twitter:card" content="summary"/>
-  <meta property="twitter:title" content="EVH: About"/>
-  <meta property="twitter:description" content=""/>
+  <meta property="twitter:title" content="EVH: Resources"/>
+  <meta property="twitter:description" content="This section contains some resources that are perhaps useful for others."/>
   <meta property="twitter:site" content="@eugene100hickey"/>
 
   <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["About"]},{"type":"character","attributes":{},"value":[""]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description"]}},"value":[{"type":"character","attributes":{},"value":["Resources"]},{"type":"character","attributes":{},"value":["This section contains some resources that are perhaps useful for others."]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   <!--radix_placeholder_navigation_in_header-->
@@ -2474,7 +2474,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"About","description":"","authors":[]}
+{"title":"Resources","description":"This section contains some resources that are perhaps useful for others.","authors":[]}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2515,10 +2515,10 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_site_before_body-->
 
 <div class="d-title">
-<h1>About</h1>
+<h1>Resources</h1>
 <!--radix_placeholder_categories-->
 <!--/radix_placeholder_categories-->
-
+<p><p>This section contains some resources that are perhaps useful for others.</p></p>
 </div>
 
 
@@ -2527,314 +2527,50 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 d-title {
  display:none;
 }
-body {
-  font-size: 18px;
-  line-height: 1.4;
-  font-family: var(--body-font), var(--body-default);
+d-article li, d-article ul {
+  margin-bottom: 0em;
 }
-
-@page{
-  size: letter portrait;
-  margin: 1in 0.5in 1in 0.25in;
-}
-
-a {
-  color: #FFB6C1;
-}
-
-*{
-  box-sizing: border-box;
-}
-
-:root{
-  --page-width: 8.5in;
-}
-
-
-#canvas {
-    max-width: var(--page-width);
-    margin: auto;
-}
-
-.distill-site-footer {
-  --text-color:       rgba(0, 0, 0, 1);
-  --text-size:        15px;
-  --hover-color:      black;
-  --bkgd-color:       white;
-}
-
-.profile-photo {
-  vertical-align: middle;
-  padding: 1.5rem!important;
-  box-sizing: border-box;
-}
-
-.profile-photo img {
-  // border: 1px solid black;
-  border-radius: 50%!important;
-  width: 12rem!important;
-}
-
-
-/* --- github calender --- */
-
-:root {
-  --color-calendar-graph-day-bg: #dddbdb;
-  --color-calendar-graph-day-L1-bg: #cd669b;
-  --color-calendar-graph-day-L2-bg: #bd327a;
-  --color-calendar-graph-day-L3-bg: #ad0059;
-  --color-calendar-graph-day-L4-bg: #79003e;
-}
-
-rect.ContributionCalendar-day[data-level='0'] {
-    fill: var(--color-calendar-graph-day-bg);
-}
-
-rect.ContributionCalendar-day[data-level='1'] {
-    fill: var(--color-calendar-graph-day-L1-bg);
-}
-
-rect.ContributionCalendar-day[data-level='2'] {
-    fill: var(--color-calendar-graph-day-L2-bg);
-}
-
-rect.ContributionCalendar-day[data-level='3'] {
-    fill: var(--color-calendar-graph-day-L3-bg);
-}
-
-rect.ContributionCalendar-day[data-level='4'] {
-    fill: var(--color-calendar-graph-day-L4-bg);
-}
-
-.calendar {
-    width: 100%;
-    background-color: white;
-    font-family: Helvetica, arial;
-    border: 1px solid #DDDDDD;
-    border-radius: 3px;
-    min-height: 243px;
-    text-align: center;
-    margin: 0 auto;
-    padding: 10px;
-    color: black;
-}
-
-.js-calendar-graph-svg {
-  width: 100%;
-}
-
-.calendar-graph text.wday,
-.calendar-graph text.month {
-    font-size: 10px;
-    fill: #aaa;
-}
-
-.contrib-legend {
-    text-align: right;
-    padding: 0 10px 10px 0;
-    display: inline-block;
-    float: right;
-}
-
-.contrib-legend .legend {
-    display: inline-block;
-    list-style: none;
-    margin: 0 5px;
-    position: relative;
-    bottom: -1px;
-    padding: 0;
-}
-
-.contrib-legend .legend li {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-}
-
-.text-small {
-    font-size: 12px;
-    color: #767676;
-}
-
-.calendar-graph {
-    padding: 5px 0 0;
-    text-align: center;
-}
-
-.contrib-column {
-    padding: 15px 0;
-    text-align: center;
-    border-left: 1px solid #ddd;
-    border-top: 1px solid #ddd;
-    font-size: 11px;
-}
-
-.contrib-column-first {
-    border-left: 0;
-}
-
-.table-column {
-    display: table-cell;
-    width: 5%;
-    padding-right: 10px;
-    padding-left: 10px;
-    vertical-align: top;
-}
-
-.contrib-number {
-    font-weight: 300;
-    line-height: 1.3em;
-    font-size: 24px;
-    display: block;
-    color: #333;
-}
-
-.calendar img.spinner {
-    width: 70px;
-    margin-top: 50px;
-    min-height: 70px;
-}
-
-.ContributionCalendar-label {
-  font-size: 8pt;
-}
-
-.monospace {
-    text-align: center;
-    color: #000;
-    font-family: monospace;
-}
-
-.monospace a {
-    color: #1D75AB;
-    text-decoration: none;
-}
-
-.contrib-footer {
-    font-size: 11px;
-    padding: 0 10px 12px;
-    text-align: left;
-    width: 100%;
-    box-sizing: border-box;
-    height: 26px;
-}
-
-.left.text-muted {
-    float: left;
-    margin-left: 9px;
-    color: #767676;
-}
-.left.text-muted a {
-    color: #4078c0;
-    text-decoration: none;
-}
-.left.text-muted a:hover,
-.monospace a:hover {
-    text-decoration: underline;
-}
-
-h2.f4.text-normal.mb-3 {
-    display: none;
-}
-
-.float-left.text-gray {
-    float: left;
-}
-#user-activity-overview{
-    display:none;
-}
-
-.day-tooltip {
-    white-space: nowrap;
-    position: absolute;
-    z-index: 99999;
-    padding: 10px;
-    font-size: 12px;
-    color: #959da5;
-    text-align: center;
-    background: rgba(0,0,0,.85);
-    border-radius: 3px;
-    display: none;
-    pointer-events: none;
-}
-.day-tooltip strong {
-    color: #dfe2e5;
-}
-.day-tooltip.is-visible {
-    display: block;
-}
-.day-tooltip:after {
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    box-sizing: border-box;
-    margin: 0 0 0 -5px;
-    content: " ";
-    border: 5px solid transparent;
-    border-top-color: rgba(0,0,0,.85)
-}
-
-
-.navbar {
-  display: none; 
-}
-#navigation .navbar {
- display: block;
+.small {
+  font-size: 0.8rem;
 }
 </style>
-<div id="canvas">
-<p><br> <br></p>
-<div class="profile-photo">
-<p><img  src="images/euge.JPG" alt="Profile photo"></p>
-</div>
-<p>I lecture in physics at the Technological University Dublin and I’m a part of <a href="https://ml-labs.ie/">ML-Labs</a>. Research-wise, I work in data science, mostly astrophysics or neuroscience. My original background was in materials science, making new inter-metallic compounds based on uranium and looking at their structural and physical properties at temperatures down to 2.2K. I then spent some time as a medical physicist, developing teleradiology systems. But then discovered R programming about 2015 and haven’t looked back since.</p>
-<p>This blog is an eclectic set of posts featuring stuff I find interesting. I’ve have a fondness for maps, and specifically coordinate transformations, and especially maps of my home turf of Donegal. Over the years, I’ve spent a lot of time on golf courses, volleyball courts, and tennis courts, so they feature here too. I’m involved in politics. And of course there will be plenty of physics, and not just the astrophysics / neuroscience / bioinformatics stuff.</p>
-<script
-  src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js">
-</script>
-<div class="l-body-outset">
-<a href="https://github.com/eugene100hickey">
-<div class="calendar">
-<p>Loading my github calendar data.</p>
-</div>
-<p></a></p>
-</div>
-<script>
-GitHubCalendar(".calendar", "eugene100hickey", { responsive: true });
-</script>
-<h2 id="you-can-find-me-at">You can find me at …</h2>
-<div class="layout-chunk" data-layout="l-body">
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 72%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;"><i class="fab fa-twitter"></i></td>
-<td style="text-align: left;"><a href="https://twitter.com/eugene100hickey">eugene100hickey</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><i class="fab fa-github"></i></td>
-<td style="text-align: left;"><a href="https://github.com/eugene100hickey">eugene100hickey</a></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;"><i class="fas fa-envelope"></i></td>
-<td style="text-align: left;"><a href="eugene.hickey@tudulin.ie">eugene.hickey@tudulin.ie</a></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;"><i class="fas fa-map-marker-alt"></i></td>
-<td style="text-align: left;">Department of Applied Science<br>Technological University Dublin,<br>Tallaght<br>D24FKT9<br>Ireland</td>
-</tr>
-</tbody>
-</table>
-</div>
-<iframe src="https://www.google.com/maps/d/embed?mid=1m4FhES89FKiwadPn0bu8Z2d5F6COe1rU&amp;ehbc=2E312F" width="640" height="480">
-</iframe>
-<p>You can also find me at various conferences and events. I’m a regular at the <a href="https://nhsrcommunity.com/">NHSr Community Conferences</a>, involved with <a href="https://2021.whyr.pl/">WhyR!</a> and various <a href="https://www.meetup.com">meetups in Dublin</a> (or other chapters sometimes).</p>
-</div>
+<h1 id="resources">Resources</h1>
+<h2 id="genomics">Genomics</h2>
+<ul>
+<li>The laboratory of Rafael Irizarry <a href="https://rafalab.github.io/"><i class="fa fa-flask" aria-hidden="true"></i></a></li>
+<li>Book by Avril Coghlan <a href="https://a-little-book-of-r-for-bioinformatics.readthedocs.io/en/latest/index.html"><i class="fas fa-book-open"></i></a></li>
+<li>Book by Cristianini and Hahn <a href="https://computationalgenomics.blogs.bristol.ac.uk/"><i class="fas fa-book-open"></i></a></li>
+<li>Bioconductor conferences <a href="https://bioc2021.bioconductor.org/conferences/"><i class="fa fa-users" aria-hidden="true"></i></a></li>
+</ul>
+<h2 id="maps-stuff">Maps Stuff</h2>
+<ul>
+<li>R and GIS <a href="https://datascienceplus.com/r-as-gis-part-1-vector/"><i class="fa fa-compass" aria-hidden="true"></i></a></li>
+<li>Book by Lovelace and Nowosad <a href="https://geocompr.robinlovelace.net/"><i class="fas fa-book-open"></i></a></li>
+<li>Course from Antonio Paez <a href="https://paezha.github.io/spatial-analysis-r/"><i class="fas fa-chalkboard-teacher"></i></a></li>
+<li>Copernicus (Sentinel etc) satellite data <a href="https://scihub.copernicus.eu/"><i class="fa fa-globe" aria-hidden="true"></i></a></li>
+</ul>
+<h2 id="learning-r">Learning R</h2>
+<ul>
+<li>Dublin R Meetup <a href="https://www.meetup.com/DublinR/"><i class="fab fa-meetup"></i></a> <a href="https://twitter.com/DublinR"><i class="fab fa-twitter"></i></a></li>
+<li>R for data science community <a href="https://www.rfordatasci.com/"><i class="fas fa-globe"></i></a> <a href="https://rfordatascience.slack.com/join/shared_invite/zt-n46lijeb-2RRzQ70U34eH530~PyZsmg#/shared-invite/email"><i class="fab fa-slack"></i></a></li>
+<li><a href="https://github.com/rfordatascience/tidytuesday">Tidy Tuesday</a></li>
+<li>Big Book of R <a href="https://www.bigbookofr.com/"><i class="fab fa-r-project"></i></a></li>
+</ul>
+<h2 id="data-visualisation">Data Visualisation</h2>
+<ul>
+<li>Excellent course from Cédric Scherer <a href="https://z3tt.github.io/hands-on-ggplot2/"><i class="fas fa-chalkboard-teacher"></i></a></li>
+<li>Book by Claus Wilkie <a href="https://clauswilke.com/dataviz/"><i class="fas fa-book-open"></i></a></li>
+<li>Book by Kieran Healy <a href="https://socviz.co/index.html"><i class="fas fa-book-open"></i></a></li>
+<li>Cheatsheet from Zev Ross <a href="http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/"><i class="fas fa-info-circle"></i></a></li>
+</ul>
+<h2 id="blogs-i-like">Blogs I like</h2>
+<ul>
+<li>Shannon Pileggi at Piping Hot Data <a href="https://www.pipinghotdata.com/"><i class="fa fa-rss-square" aria-hidden="true"></i></a></li>
+<li>Shirin Elsinghorst on all things R <a href="https://shirinsplayground.netlify.app/page/about/"><i class="fab fa-r-project"></i></a></li>
+<li>Garrick Aden-Buie, he of xaringanExtra etc <a href="https://www.garrickadenbuie.com/"><i class="fa fa-rss-square" aria-hidden="true"></i></a></li>
+<li>Will Chase and the Glamour of Graphics <a href="https://www.williamrchase.com/"><i class="fas fa-pencil-alt"></i></a></li>
+<li>And Maëlle Salmon for R coding <a href="https://masalmon.eu/"><i class="fab fa-r-project"></i></a></li>
+</ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
