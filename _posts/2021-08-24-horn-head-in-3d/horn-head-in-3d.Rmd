@@ -4,29 +4,15 @@ description: |
   Horn Head gets the Rayshader Treatment.
 author:
   - name: Eugene
-    url: https://fizzics.netliffy.app
+    url: https://fizzics.netlify.app
 date: 08-24-2021
+categories: [Maps, Donegal]
 output:
   distill::distill_article:
     self_contained: false
 preview: img/three-D-model.png
 ---
 
-<style>
-
-p a {
-  text-decoration: none;
-  color: black;
-  border-bottom: 3px solid #CBF8DF;
-  box-shadow: inset 0 -4px 0 #CBF8DF;
-  background: transparent;
-  transition: background 150ms ease;
-  font-style: italic;
-  font-family: menu;
-  font-stretch: extra-expanded;
-}
-
-</style>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = F, warning = F)

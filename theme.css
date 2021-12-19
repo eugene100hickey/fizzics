@@ -1,4 +1,10 @@
-
+/* atma-regular - latin */
+  @font-face {
+    font-family: 'Annie Use Your Telescope';
+    font-style: normal;
+    font-weight: 400;
+      url('fonts/AnnieUseYourTelescope-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
+  }
 /* base variables */
 
 /* Edit the CSS properties in this file to create a custom

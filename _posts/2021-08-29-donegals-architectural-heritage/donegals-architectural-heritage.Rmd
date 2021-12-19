@@ -4,29 +4,16 @@ description: |
   Having a look at some of the historical buildings in Donegal, thanks to data from the National Inventory of Architectural Heritage. Also a chance to check out crosstalk and leafpop. Note; images will take a while to appear
 author:
   - name: Eugene
-    url: https://fizzics.netliffy.app
+    url: https://fizzics.netlify.app
 date: 08-29-2021
+categories: [Maps, Donegal]
 output:
   distill::distill_article:
     self_contained: false
 preview: img/oakpark.jpg
 ---
 
-<style>
 
-p a {
-  text-decoration: none;
-  color: black;
-  border-bottom: 3px solid #CBF8DF;
-  box-shadow: inset 0 -4px 0 #CBF8DF;
-  background: transparent;
-  transition: background 150ms ease;
-  font-style: italic;
-  font-family: menu;
-  font-stretch: extra-expanded;
-}
-
-</style>
   
 ```{r setup, include=FALSE}
 library(tidyverse)

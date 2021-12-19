@@ -4,8 +4,9 @@ description: |
   ...and where to find them.
 author:
   - name: Eugene
-    url: https://fizzics.netliffy.app
+    url: https://fizzics.netlify.app
 date: 04-25-2021
+categories: [Physics]
 output:
   distill::distill_article:
     self_contained: false

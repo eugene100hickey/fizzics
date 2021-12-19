@@ -4,8 +4,9 @@ description: |
   A map of the North Atlantic off the Donegal Coast, with pop-ups detailing various species observed at different locations.
 author:
   - name: Eugene
-    url: https://fizzics.netliffy.app
+    url: https://fizzics.netlify.app
 date: 06-08-2021
+categories: [Maps, Donegal]
 output:
   distill::distill_article:
     self_contained: false

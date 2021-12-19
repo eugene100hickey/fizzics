@@ -4,8 +4,9 @@ description: |
   This is what it looks like to change the world.
 author:
   - name: Eugene 
-    url: https://fizzics.netliffy.app
+    url: https://fizzics.netlify.app
 date: 05-06-2021
+categories: [Images, R]
 output:
   distill::distill_article:
     self_contained: false
