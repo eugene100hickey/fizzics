@@ -4,7 +4,7 @@ description: |
   Giving a COVID poster that halloween vibe.
 author:
   - name: Eugene
-    url: https://fizzics.netliffy.app
+    url: https://fizzics.netlify.app
 date: 10-27-2021
 categories: [Images, Fun]
 output:

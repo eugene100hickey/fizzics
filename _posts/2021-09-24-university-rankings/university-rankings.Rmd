@@ -4,7 +4,7 @@ description: |
   Seeing the world through QS university rankings.
 author:
   - name: Eugene
-    url: https://fizzics.netliffy.app
+    url: https://fizzics.netlify.app
 date: 09-24-2021
 categories: [Academia, R, Maps]
 output:
