@@ -20,8 +20,8 @@
       "title": "Resources",
       "description": "This section contains some resources that are perhaps useful for others.",
       "author": [],
-      "contents": "\n\nd-title {\n display:none;\n}\nd-article li, d-article ul {\n  margin-bottom: 0em;\n}\n.small {\n  font-size: 0.8rem;\n}\nResources\nGenomics\nThe laboratory of Rafael Irizarry \nBook by Avril Coghlan \nBook by Cristianini and Hahn \nBioconductor conferences \nMaps Stuff\nR and GIS \nBook by Lovelace and Nowosad \nCourse from Antonio Paez \nCopernicus (Sentinel etc) satellite data \nLearning R\nDublin R Meetup  \nR for data science community  \nTidy Tuesday\nBig Book of R \nData Visualisation\nExcellent course from Cédric Scherer \nBook by Claus Wilkie \nBook by Kieran Healy \nCheatsheet from Zev Ross \nBlogs I like\nShannon Pileggi at Piping Hot Data \nShirin Elsinghorst on all things R \nGarrick Aden-Buie, he of xaringanExtra etc \nWill Chase and the Glamour of Graphics \nAnd Maëlle Salmon for R coding \n\n\n\n",
-      "last_modified": "2021-12-19T19:06:47+00:00"
+      "contents": "\n\nd-title {\n display:none;\n}\nd-article li, d-article ul {\n  margin-bottom: 0em;\n}\n.small {\n  font-size: 0.8rem;\n}\n\nResources\nGenomics\nThe laboratory of Rafael Irizarry \nBook by Avril Coghlan \nBook by Cristianini and Hahn \nBioconductor conferences \nMaps Stuff\nR and GIS \nBook by Lovelace and Nowosad \nCourse from Antonio Paez \nCopernicus (Sentinel etc) satellite data \nLearning R\nDublin R Meetup  \nR for data science community  \nTidy Tuesday\nBig Book of R \nData Visualisation\nExcellent course from Cédric Scherer \nBook by Claus Wilkie \nBook by Kieran Healy \nCheatsheet from Zev Ross \nBlogs I like\nShannon Pileggi at Piping Hot Data \nShirin Elsinghorst on all things R \nGarrick Aden-Buie, he of xaringanExtra etc \nWill Chase and the Glamour of Graphics \nAnd Maëlle Salmon for R coding \nAnd Emi Tanaka who largely inspired the layout of these pages \n\n\n\n",
+      "last_modified": "2021-12-20T21:02:47+00:00"
     }
   ],
   "collections": ["posts/posts.json"]

@@ -16,7 +16,8 @@ d-article li, d-article ul {
 }
 </style>
 
-
+<br>
+<br>
 
 # Resources
 
@@ -58,3 +59,4 @@ d-article li, d-article ul {
 * Garrick Aden-Buie, he of xaringanExtra etc [<i class="fa fa-rss-square" aria-hidden="true"></i>](https://www.garrickadenbuie.com/)
 * Will Chase and the Glamour of Graphics [<i class="fas fa-pencil-alt"></i>](https://www.williamrchase.com/)
 * And Maëlle Salmon for R coding [<i class="fab fa-r-project"></i>](https://masalmon.eu/)
+* And Emi Tanaka who largely inspired the layout of these pages [<i class="fa fa-rss-square" aria-hidden="true"></i>](https://emitanaka.org/)

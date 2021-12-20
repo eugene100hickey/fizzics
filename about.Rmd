@@ -315,7 +315,7 @@ knitr::kable(df, col.names = c("", ""), escape = FALSE)
 ```
 
 
-<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1m4FhES89FKiwadPn0bu8Z2d5F6COe1rU&ehbc=2E312F&zoom=9" width="640" height="480"></iframe>
+<iframe src="https://www.google.com/maps/d/u/0/embed?mid=1m4FhES89FKiwadPn0bu8Z2d5F6COe1rU&ehbc=2E312F&zoom=6" width="640" height="480"></iframe>
 
 You can also find me at various conferences and events. I'm a regular at the [NHSr Community Conferences](https://nhsrcommunity.com/), involved with [WhyR!](https://2021.whyr.pl/) and various [meetups in Dublin](https://www.meetup.com) (or other chapters sometimes). 
 
