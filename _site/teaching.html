@@ -2526,35 +2526,52 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 d-title {
  display:none;
 }
+p a { /* underlines links */
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #9ae28f;
+  box-shadow: inset 0 -4px 0 #9ae28f;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+p a:hover { /* makes links go green on hover */
+  text-decoration: none;
+  --bg-opacity: 1;
+  background-color: #9ae28f;
+  background-color: rgba(154, 226, 143, var(--bg-opacity));
+}
 </style>
 <p><br> <br></p>
 <h3 id="teaching">Teaching</h3>
 <p>I currently teach on the following courses</p>
 <ul>
-<li><a href="https://www.tudublin.ie/study/postgraduate/courses/data-science/"><strong>Data Visualisation with ggplot2 to Postgraduate Students</strong></a> (100%)</li>
-<li><a href="https://www.tudublin.ie/study/undergraduate/courses/pharmaceutical-science-tu876/"><strong>Manufacturing Technology to 4th Year Pharmaceutical Science</strong></a> (50%)</li>
-<li><a href="https://www.tudublin.ie/study/undergraduate/courses/bioanalysis-tu760/"><strong>Computer Measurement Systems to 2nd Year Bioanalysis</strong></a> (33%)</li>
-<li><a href="https://www.tudublin.ie/study/undergraduate/courses/sports-science-and-health-tu936/"><strong>Principles of Pnysics to 1st Year Sports Science</strong></a> (100%)</li>
+<li><a href="https://www.tudublin.ie/study/postgraduate/courses/data-science/" target="_blank"><strong>Data Visualisation with ggplot2 to Postgraduate Students</strong></a> (100%)</li>
+<li><a href="https://www.tudublin.ie/study/undergraduate/courses/pharmaceutical-science-tu876/" target="_blank"><strong>Manufacturing Technology to 4th Year Pharmaceutical Science</strong></a> (50%)</li>
+<li><a href="https://www.tudublin.ie/study/undergraduate/courses/bioanalysis-tu760/" target="_blank"><strong>Computer Measurement Systems to 2nd Year Bioanalysis</strong></a> (33%)</li>
+<li><a href="https://www.tudublin.ie/study/undergraduate/courses/sports-science-and-health-tu936/" target="_blank"><strong>Principles of Pnysics to 1st Year Sports Science</strong></a> (100%)</li>
 </ul>
 <h3 id="laboratory-resources">Laboratory Resources</h3>
 <p>The undergraduate courses above use the following laboratory resources:</p>
 <ul>
 <li>Manufacturing Technology
 <ul>
-<li>we use Process Simulator programme <a href="https://www.honeywellprocess.com/en-US/explore/products/advanced-applications/unisim/Pages/default.aspx">UniSim490 from Honeywell</a></li>
-<li>examples of the labs from 2019 are given <a href="assets/ManTech_Lab_Manual_2019.pdf">here</a><br />
-</li>
+<li>we use Process Simulator programme <a href="https://www.honeywellprocess.com/en-US/explore/products/advanced-applications/unisim/Pages/default.aspx" target="_blank">UniSim490 from Honeywell</a></li>
+<li>examples of the labs from 2019 are given <a href="assets/ManTech_Lab_Manual_2019.pdf" target="_blank">here</a></li>
 </ul></li>
 <li>Computer Measurement Systems
 <ul>
-<li>we use <a href="https://www.ni.com/en-ie/shop/labview.html">LabVIEW from National Instruments</a> to make virtual instruments.</li>
-<li>some of the laboratory assignments we do can be seen <a href="assets/LabVIEW_2021.pdf">here</a></li>
+<li>we use <a href="https://www.ni.com/en-ie/shop/labview.html" target="_blank">LabVIEW from National Instruments</a> to make virtual instruments.</li>
+<li>some of the laboratory assignments we do can be seen <a href="assets/LabVIEW_2021.pdf" target="_blank">here</a></li>
 </ul></li>
 <li>Principals of Physics
 <ul>
 <li>during COVID19 lockdown we put together a series of online experiments for the students<br />
 </li>
-<li>these can be seen here</li>
+<li>these can be seen <a href="assets/physics-labs/lab-list" target="_blank">here</a></li>
 </ul></li>
 </ul>
 <h3 id="final-year-projects">Final Year Projects</h3>

@@ -1,0 +1,21 @@
+---
+output: html_document
+theme: theme.css
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ <br>
+ <br>
+ 
+- [Graph Rules](https://tud.netlify.app/graph-rules.html){target="_blank"}
+
+- [Projectile Motion](https://tud.netlify.app/projectile.html){target="_blank"}
+
+- [Conservation of Momentum](https://tud.netlify.app/collision.html){target="_blank"}
+
+- [Conservation of Energy](https://tud.netlify.app/energy.html){target="_blank"}
+
+- [Black Body Radiation](https://tud.netlify.app/wien.html){target="_blank"}

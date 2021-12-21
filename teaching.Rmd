@@ -8,6 +8,24 @@ description: |
 d-title {
  display:none;
 }
+p a { /* underlines links */
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #9ae28f;
+  box-shadow: inset 0 -4px 0 #9ae28f;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+p a:hover { /* makes links go green on hover */
+  text-decoration: none;
+  --bg-opacity: 1;
+  background-color: #9ae28f;
+  background-color: rgba(154, 226, 143, var(--bg-opacity));
+}
 </style>
 
 <br>
@@ -17,24 +35,24 @@ d-title {
 
 I currently teach on the following courses
 
-  * [**Data Visualisation with ggplot2 to Postgraduate Students**](https://www.tudublin.ie/study/postgraduate/courses/data-science/) (100%)
-  * [**Manufacturing Technology to 4th Year Pharmaceutical Science**](https://www.tudublin.ie/study/undergraduate/courses/pharmaceutical-science-tu876/) (50%)
-  * [**Computer Measurement Systems to 2nd Year Bioanalysis**](https://www.tudublin.ie/study/undergraduate/courses/bioanalysis-tu760/) (33%)
-  * [**Principles of Pnysics to 1st Year Sports Science**](https://www.tudublin.ie/study/undergraduate/courses/sports-science-and-health-tu936/) (100%)
+  * [**Data Visualisation with ggplot2 to Postgraduate Students**](https://www.tudublin.ie/study/postgraduate/courses/data-science/){target="_blank"} (100%)
+  * [**Manufacturing Technology to 4th Year Pharmaceutical Science**](https://www.tudublin.ie/study/undergraduate/courses/pharmaceutical-science-tu876/){target="_blank"} (50%)
+  * [**Computer Measurement Systems to 2nd Year Bioanalysis**](https://www.tudublin.ie/study/undergraduate/courses/bioanalysis-tu760/){target="_blank"} (33%)
+  * [**Principles of Pnysics to 1st Year Sports Science**](https://www.tudublin.ie/study/undergraduate/courses/sports-science-and-health-tu936/){target="_blank"} (100%)
   
 ### Laboratory Resources
 
 The undergraduate courses above use the following laboratory resources:
 
 - Manufacturing Technology  
-  - we use Process Simulator programme [UniSim490 from Honeywell](https://www.honeywellprocess.com/en-US/explore/products/advanced-applications/unisim/Pages/default.aspx)
-  - examples of the labs from 2019 are given [here](assets/ManTech_Lab_Manual_2019.pdf)  
+  - we use Process Simulator programme [UniSim490 from Honeywell](https://www.honeywellprocess.com/en-US/explore/products/advanced-applications/unisim/Pages/default.aspx){target="_blank"}
+  - examples of the labs from 2019 are given [here](assets/ManTech_Lab_Manual_2019.pdf){target="_blank"} 
 - Computer Measurement Systems  
-  - we use [LabVIEW from National Instruments](https://www.ni.com/en-ie/shop/labview.html) to make virtual instruments.
-  - some of the laboratory assignments we do can be seen [here](assets/LabVIEW_2021.pdf) 
+  - we use [LabVIEW from National Instruments](https://www.ni.com/en-ie/shop/labview.html){target="_blank"} to make virtual instruments.
+  - some of the laboratory assignments we do can be seen [here](assets/LabVIEW_2021.pdf){target="_blank"} 
 - Principals of Physics  
   - during COVID19 lockdown we put together a series of online experiments for the students  
-  - these can be seen here
+  - these can be seen [here](assets/physics-labs/lab-list){target="_blank"}
   
   
 ### Final Year Projects
