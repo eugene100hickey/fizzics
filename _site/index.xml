@@ -110,7 +110,7 @@
       <category>Maps</category>
       <category>Donegal</category>
       <guid>https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day</guid>
-      <pubDate>Mon, 07 Jun 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day/images/sheephaven.png" medium="image" type="image/png" width="1208" height="673"/>
     </item>
     <item>
@@ -146,13 +146,14 @@
       <media:content url="https://fizzics.netlify.app/posts/2021-05-08-schizophrenia-genes/schizophrenia-genes_files/figure-html5/karyogram-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
-      <title>Welcome to Eugene's Blog</title>
+      <title>Meteorites....</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/welcome</link>
-      <description>Welcome to our new blog, Eugene's Blog. We hope you enjoy 
-reading what we have to say!</description>
-      <guid>https://fizzics.netlify.app/posts/welcome</guid>
+      <link>https://fizzics.netlify.app/posts/2021-05-08-meteorites</link>
+      <description>...and where to find them.</description>
+      <category>Physics</category>
+      <guid>https://fizzics.netlify.app/posts/2021-05-08-meteorites</guid>
       <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-05-08-meteorites/meteorites_files/figure-html5/mass_year-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Tennis Sets</title>
@@ -166,14 +167,13 @@ reading what we have to say!</description>
       <media:content url="https://fizzics.netlify.app/posts/2021-05-08-tennis-sets/tennis-sets_files/figure-html5/bar_chart-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
-      <title>Meteorites....</title>
+      <title>Welcome to Eugene's Blog</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-05-08-meteorites</link>
-      <description>...and where to find them.</description>
-      <category>Physics</category>
-      <guid>https://fizzics.netlify.app/posts/2021-05-08-meteorites</guid>
+      <link>https://fizzics.netlify.app/posts/welcome</link>
+      <description>Welcome to our new blog, Eugene's Blog. We hope you enjoy 
+reading what we have to say!</description>
+      <guid>https://fizzics.netlify.app/posts/welcome</guid>
       <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-05-08-meteorites/meteorites_files/figure-html5/mass_year-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
   </channel>
 </rss>

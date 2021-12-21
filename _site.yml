@@ -42,8 +42,6 @@ navbar:
       href: teaching.html
     - text: "Talks"
       href: talks.html
-    - text: "Blog"
-      href: blog.html
     - text: "Resources"
       href: resources.html
     - text: "About"
