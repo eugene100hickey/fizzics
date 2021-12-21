@@ -10,17 +10,10 @@ d-title {
 }
 </style>
 
-```{r setup, include = FALSE}
-library(tidyverse)
-knitr::opts_chunk$set(echo = FALSE,
-                      message = FALSE,
-                      warning = FALSE)
-```
-
 <br>
 <br>
 
-# Teaching
+### Teaching
 
 I currently teach on the following courses
 
@@ -28,6 +21,23 @@ I currently teach on the following courses
   * [**Manufacturing Technology to 4th Year Pharmaceutical Science**](https://www.tudublin.ie/study/undergraduate/courses/pharmaceutical-science-tu876/) (50%)
   * [**Computer Measurement Systems to 2nd Year Bioanalysis**](https://www.tudublin.ie/study/undergraduate/courses/bioanalysis-tu760/) (33%)
   * [**Principles of Pnysics to 1st Year Sports Science**](https://www.tudublin.ie/study/undergraduate/courses/sports-science-and-health-tu936/) (100%)
+  
+### Laboratory Resources
+
+The undergraduate courses above use the following laboratory resources:
+
+- Manufacturing Technology  
+  - we use Process Simulator programme [UniSim490 from Honeywell](https://www.honeywellprocess.com/en-US/explore/products/advanced-applications/unisim/Pages/default.aspx)
+  - examples of the labs from 2019 are given [here](assets/ManTech_Lab_Manual_2019.pdf)  
+- Computer Measurement Systems  
+  - we use [LabVIEW from National Instruments](https://www.ni.com/en-ie/shop/labview.html) to make virtual instruments.
+  - some of the laboratory assignments we do can be seen [here](assets/LabVIEW_2021.pdf) 
+- Principals of Physics  
+  - during COVID19 lockdown we put together a series of online experiments for the students  
+  - these can be seen here
+  
+  
+### Final Year Projects
 
 I'm also involved in final year projects with the pharmaceutical science students. These have been:
 
