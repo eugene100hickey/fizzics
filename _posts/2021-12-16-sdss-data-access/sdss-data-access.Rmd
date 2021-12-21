@@ -109,5 +109,7 @@ spect1 %>%
   scale_x_continuous(name = "Wavelength (nm)")
 ```
 
+The spectrum from sdss can be seen [here](http://cas.sdss.org/dr17/VisualTools/explore/summary?objId=1237650795146576079)
+
 
 Full code is available from [github](https://github.com/eugene100hickey/fizzics/tree/master/_posts/2021-12-16-sdss-data-access).
