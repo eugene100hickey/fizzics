@@ -13,7 +13,7 @@
       "title": "Eugene's Blog",
       "author": [],
       "contents": "\n\n\n\n",
-      "last_modified": "2021-12-21T03:26:41+00:00"
+      "last_modified": "2021-12-21T17:15:55+00:00"
     },
     {
       "path": "resources.html",
@@ -24,6 +24,14 @@
       "last_modified": "2021-12-21T09:03:46+00:00"
     },
     {
+      "path": "talks.html",
+      "title": "Selected Talk listing",
+      "description": "This section contains the list of my talks and workshops where made available. Not all talks are listed here.\n",
+      "author": [],
+      "contents": "\n\n\n.thumbnail {\n  border: 1px solid black;\n}\n\n\n\n\n",
+      "last_modified": "2021-12-23T14:42:52+00:00"
+    },
+    {
       "path": "teaching.html",
       "title": "Teaching",
       "description": "This section discusses my teaching experience.",
@@ -32,5 +40,5 @@
       "last_modified": "2021-12-21T08:58:31+00:00"
     }
   ],
-  "collections": ["posts/posts.json"]
+  "collections": ["posts/posts.json", "talks/talks.json"]
 }

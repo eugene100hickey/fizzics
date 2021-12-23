@@ -1,0 +1,13 @@
+---
+title: "Selected Talk listing"
+description: |
+  This section contains the list of my talks and workshops where made available. Not all talks are listed here.
+listing: talks
+---
+
+```{css, echo = FALSE}
+.thumbnail {
+  border: 1px solid black;
+}
+```
+

@@ -1,0 +1,45 @@
+[
+  {
+    "path": "talks/2020-11-04-NHSR/",
+    "title": "The Power of Data Visualisations",
+    "description": "A presentation at the 2020 NHSr Community Conference.",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://fizzics.netlify.app"
+      }
+    ],
+    "date": "2020-11-10",
+    "categories": [
+      "R",
+      "Data Visualisation"
+    ],
+    "contents": "\nClick below for the video.\n\n\n\n\n\nThe slides are here\n\n\n\n",
+    "preview": "talks/2020-11-04-NHSR/preview.png",
+    "last_modified": "2021-12-23T14:39:56+00:00",
+    "input_file": {},
+    "preview_width": 1270,
+    "preview_height": 587
+  },
+  {
+    "path": "talks/2019-09-06-TEDx/",
+    "title": "Use Open Source Software",
+    "description": "A talk given at TEDx Ballyroan",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://fizzics.netlify.app"
+      }
+    ],
+    "date": "2019-09-06",
+    "categories": [
+      "R"
+    ],
+    "contents": "\nA video of the talk is available here\nThe slides are here\n\n\n\n",
+    "preview": "talks/2019-09-06-TEDx/tedx.png",
+    "last_modified": "2021-12-23T14:12:39+00:00",
+    "input_file": {},
+    "preview_width": 1251,
+    "preview_height": 606
+  }
+]
