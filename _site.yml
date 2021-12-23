@@ -57,7 +57,7 @@ navbar:
     - icon: fab fa-twitter
       href: https://twitter.com/eugene100hickey
     - icon: fa fa-rss
-      href: blog.xml
+      href: index.xml
 output:
   distill::distill_article:
     css: theme.css
