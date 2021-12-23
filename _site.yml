@@ -20,6 +20,13 @@ collections:
     share: [twitter, linkedin]
     subscribe: _subscribe.html
     custom: _custom.html
+  projects:
+    categories: true
+    categories_metadata: true
+    authors_metadata: false
+    feed_iems_max: 20 # default
+    disqus: physics
+    share: [twitter, linkedin]
   talks:
     categories: true
     categories_metadata: true
@@ -34,8 +41,6 @@ navbar:
   left:
     - text: "Home"
       href: index.html
-    - text: "CV"
-      href: cv.html
     - text: "Projects"
       href: projects.html
     - text: "Teaching"
