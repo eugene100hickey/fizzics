@@ -16,6 +16,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 - [Conservation of Momentum](https://tud.netlify.app/collision.html){target="_blank"}
 
-- [Conservation of Energy](https://tud.netlify.app/energy.html){target="_blank"}
+- [Pressure and Temperature of a Gas](https://tud.netlify.app/pv-nrt/pv-lab){target="_blank"}
 
 - [Black Body Radiation](https://tud.netlify.app/wien.html){target="_blank"}
