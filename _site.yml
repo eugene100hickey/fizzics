@@ -34,6 +34,13 @@ collections:
     feed_iems_max: 20 # default
     disqus: physics
     share: [twitter, linkedin]
+  teaching:
+    categories: true
+    categories_metadata: true
+    authors_metadata: false
+    feed_iems_max: 20 # default
+    disqus: physics
+    share: [twitter, linkedin]
 navbar:
   logo:
     image: images/atlantic.png
@@ -57,7 +64,7 @@ navbar:
     - icon: fab fa-twitter
       href: https://twitter.com/eugene100hickey
     - icon: fa fa-rss
-      href: index.xml
+      href: blog.xml
 output:
   distill::distill_article:
     css: theme.css

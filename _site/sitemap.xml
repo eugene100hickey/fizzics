@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://fizzics.netlify.app/teaching.html</loc>
-    <lastmod>2021-12-21T08:58:26+00:00</lastmod>
+    <lastmod>2021-12-24T10:05:07+00:00</lastmod>
   </url>
   <url>
     <loc>https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/</loc>
@@ -103,5 +103,25 @@
   <url>
     <loc>https://fizzics.netlify.app/talks/2019-09-06-TEDx/</loc>
     <lastmod>2021-12-23T14:12:39+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://fizzics.netlify.app/teaching/2021-09-09-4th-year-projects/</loc>
+    <lastmod>2021-12-24T09:29:27+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs/</loc>
+    <lastmod>2021-12-24T10:07:44+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://fizzics.netlify.app/teaching/2021-09-09-ManTech-Labs/</loc>
+    <lastmod>2021-12-24T10:11:46+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://fizzics.netlify.app/teaching/2021-09-09-Sports-Physics/</loc>
+    <lastmod>2021-12-24T11:53:51+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://fizzics.netlify.app/teaching/2021-01-20-NHSr-DataVis/</loc>
+    <lastmod>2021-12-24T12:11:42+00:00</lastmod>
   </url>
 </urlset>
