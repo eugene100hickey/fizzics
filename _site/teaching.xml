@@ -14,27 +14,6 @@
     <generator>Distill</generator>
     <lastBuildDate>Thu, 09 Sep 2021 00:00:00 +0000</lastBuildDate>
     <item>
-      <title>Final Year Projects</title>
-      <dc:creator>Eugene Hickey</dc:creator>
-      <link>https://fizzics.netlify.app/teaching/2021-09-09-4th-year-projects</link>
-      <description>I've run a series of final year projects with pharmaceutical science students, this page gives the titles going back over the years.</description>
-      <category>R</category>
-      <category>Academia</category>
-      <guid>https://fizzics.netlify.app/teaching/2021-09-09-4th-year-projects</guid>
-      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/teaching/2021-09-09-4th-year-projects/img/daria.png" medium="image" type="image/png" width="621" height="358"/>
-    </item>
-    <item>
-      <title>Computer Measurement Systems</title>
-      <dc:creator>Eugene Hickey</dc:creator>
-      <link>https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs</link>
-      <description>I teach computer instrumentation to 2nd year bioanalysis students</description>
-      <category>R</category>
-      <guid>https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs</guid>
-      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs/img/LabVIEW.png" medium="image" type="image/png" width="789" height="372"/>
-    </item>
-    <item>
       <title>Manufacturing Technology</title>
       <dc:creator>Eugene Hickey</dc:creator>
       <link>https://fizzics.netlify.app/teaching/2021-09-09-ManTech-Labs</link>
@@ -57,12 +36,36 @@
       <media:content url="https://fizzics.netlify.app/teaching/2021-09-09-Sports-Physics/img/sports.png" medium="image" type="image/png" width="658" height="475"/>
     </item>
     <item>
+      <title>Final Year Projects</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://fizzics.netlify.app/teaching/2021-09-09-4th-year-projects</link>
+      <description>I've run a series of final year projects with pharmaceutical science students, this page gives the titles going back over the years.</description>
+      <category>R</category>
+      <category>Academia</category>
+      <category>Bioinformatics</category>
+      <guid>https://fizzics.netlify.app/teaching/2021-09-09-4th-year-projects</guid>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/teaching/2021-09-09-4th-year-projects/img/daria.png" medium="image" type="image/png" width="621" height="358"/>
+    </item>
+    <item>
+      <title>Computer Measurement Systems</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs</link>
+      <description>I teach computer instrumentation to 2nd year bioanalysis students</description>
+      <category>R</category>
+      <category>Academia</category>
+      <guid>https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs</guid>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs/img/LabVIEW.png" medium="image" type="image/png" width="789" height="372"/>
+    </item>
+    <item>
       <title>NHSr Workshop - Introduction to ggplot</title>
       <dc:creator>Eugene Hickey</dc:creator>
       <link>https://fizzics.netlify.app/teaching/2021-01-20-NHSr-DataVis</link>
       <description>A one day workshop on data visualisation delivered to the NHSr Community</description>
       <category>R</category>
       <category>Academia</category>
+      <category>Data Visualisation</category>
       <guid>https://fizzics.netlify.app/teaching/2021-01-20-NHSr-DataVis</guid>
       <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/teaching/2021-01-20-NHSr-DataVis/img/ggplot.png" medium="image" type="image/png" width="713" height="405"/>
