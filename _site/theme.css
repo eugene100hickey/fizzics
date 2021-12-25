@@ -1,11 +1,4 @@
-/* atma-regular - latin */
-  @font-face {
-    font-family: 'Annie Use Your Telescope';
-    font-style: normal;
-    font-weight: 400;
-      url('fonts/AnnieUseYourTelescope-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
-  }
-/* base variables */
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Fuzzy+Bubbles&family=Shizuru&display=swap');
 
 /* Edit the CSS properties in this file to create a custom
    Distill theme. Only edit values in the right column
@@ -36,7 +29,7 @@
       --heading-font:    Atma;
     --mono-font:       monospace;
     --body-font:       sans-serif;
-    --navbar-font:     'Annie Use Your Telescope';  /* websites + blogs only */
+    --navbar-font:     "Annie Use Your Telescope", serif;
   }
 
   .distill-site-header {

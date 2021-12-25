@@ -2118,14 +2118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   /*-- Additional custom styles --*/
   /* Add any additional CSS rules below                      */
   </style>
-  <style type="text/css">/* atma-regular - latin */
-    @font-face {
-      font-family: 'Annie Use Your Telescope';
-      font-style: normal;
-      font-weight: 400;
-        url('fonts/AnnieUseYourTelescope-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    }
-  /* base variables */
+  <style type="text/css">@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Fuzzy+Bubbles&family=Shizuru&display=swap');
 
   /* Edit the CSS properties in this file to create a custom
      Distill theme. Only edit values in the right column
@@ -2156,7 +2149,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         --heading-font:    Atma;
       --mono-font:       monospace;
       --body-font:       sans-serif;
-      --navbar-font:     'Annie Use Your Telescope';  /* websites + blogs only */
+      --navbar-font:     "Annie Use Your Telescope", serif;
     }
 
     .distill-site-header {
@@ -2372,15 +2365,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/webcomponents-2.0.0/webcomponents.js"></script>
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
+  <script type="text/javascript" cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-TS6NR7FSMQ"></script>
+  <script type="text/javascript" cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TS6NR7FSMQ');
+  </script>
   <style type="text/css">
-  /* atma-regular - latin */
-    @font-face {
-      font-family: 'Annie Use Your Telescope';
-      font-style: normal;
-      font-weight: 400;
-        url('fonts/AnnieUseYourTelescope-Regular.ttf') format('truetype'), /* Safari, Android, iOS */
-    }
-  /* base variables */
+  @import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Fuzzy+Bubbles&family=Shizuru&display=swap');
 
   /* Edit the CSS properties in this file to create a custom
      Distill theme. Only edit values in the right column
@@ -2411,7 +2404,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
         --heading-font:    Atma;
       --mono-font:       monospace;
       --body-font:       sans-serif;
-      --navbar-font:     'Annie Use Your Telescope';  /* websites + blogs only */
+      --navbar-font:     "Annie Use Your Telescope", serif;
     }
 
     .distill-site-header {
@@ -2648,6 +2641,41 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption" data-caption=""></h1>
+<a href="teaching/2021-09-09-4th-year-projects/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["R","Academia","Bioinformatics"]}</script>
+<div class="metadata">
+<div class="publishedDate">Sept. 9, 2021</div>
+</div>
+<div class="thumbnail">
+<img src="teaching/2021-09-09-4th-year-projects/img/daria.png"/>
+</div>
+<div class="description">
+<h2>Final Year Projects</h2>
+<div class="dt-tags">
+<div class="dt-tag">R</div>
+<div class="dt-tag">Academia</div>
+<div class="dt-tag">Bioinformatics</div>
+</div>
+<p>I've run a series of final year projects with pharmaceutical science students, this page gives the titles going back over the years.</p>
+</div>
+</a>
+<a href="teaching/2021-09-09-CMS-Labs/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["R","Academia"]}</script>
+<div class="metadata">
+<div class="publishedDate">Sept. 9, 2021</div>
+</div>
+<div class="thumbnail">
+<img src="teaching/2021-09-09-CMS-Labs/img/LabVIEW.png"/>
+</div>
+<div class="description">
+<h2>Computer Measurement Systems</h2>
+<div class="dt-tags">
+<div class="dt-tag">R</div>
+<div class="dt-tag">Academia</div>
+</div>
+<p>I teach computer instrumentation to 2nd year bioanalysis students</p>
+</div>
+</a>
 <a href="teaching/2021-09-09-ManTech-Labs/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["R","Academia"]}</script>
 <div class="metadata">
@@ -2680,41 +2708,6 @@ function init_posts_list() {
 <div class="dt-tag">Academia</div>
 </div>
 <p>I teach physics to first year sports science.</p>
-</div>
-</a>
-<a href="teaching/2021-09-09-4th-year-projects/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Academia","Bioinformatics"]}</script>
-<div class="metadata">
-<div class="publishedDate">Sept. 9, 2021</div>
-</div>
-<div class="thumbnail">
-<img src="teaching/2021-09-09-4th-year-projects/img/daria.png"/>
-</div>
-<div class="description">
-<h2>Final Year Projects</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Academia</div>
-<div class="dt-tag">Bioinformatics</div>
-</div>
-<p>I've run a series of final year projects with pharmaceutical science students, this page gives the titles going back over the years.</p>
-</div>
-</a>
-<a href="teaching/2021-09-09-CMS-Labs/" class="post-preview">
-<script class="post-metadata" type="text/json">{"categories":["R","Academia"]}</script>
-<div class="metadata">
-<div class="publishedDate">Sept. 8, 2021</div>
-</div>
-<div class="thumbnail">
-<img src="teaching/2021-09-09-CMS-Labs/img/LabVIEW.png"/>
-</div>
-<div class="description">
-<h2>Computer Measurement Systems</h2>
-<div class="dt-tags">
-<div class="dt-tag">R</div>
-<div class="dt-tag">Academia</div>
-</div>
-<p>I teach computer instrumentation to 2nd year bioanalysis students</p>
 </div>
 </a>
 <a href="teaching/2021-01-20-NHSr-DataVis/" class="post-preview">
