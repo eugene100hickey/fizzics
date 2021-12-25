@@ -30,8 +30,8 @@
       <dc:creator>Eugene Hickey</dc:creator>
       <link>https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs</link>
       <description>I teach computer instrumentation to 2nd year bioanalysis students</description>
-      <category>R</category>
       <category>Academia</category>
+      <category>LabVIEW</category>
       <guid>https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs</guid>
       <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs/img/LabVIEW.png" medium="image" type="image/png" width="789" height="372"/>
@@ -41,8 +41,8 @@
       <dc:creator>Eugene Hickey</dc:creator>
       <link>https://fizzics.netlify.app/teaching/2021-09-09-ManTech-Labs</link>
       <description>The chemical engineering element of pharmaceutical science.</description>
-      <category>R</category>
       <category>Academia</category>
+      <category>UniSim</category>
       <guid>https://fizzics.netlify.app/teaching/2021-09-09-ManTech-Labs</guid>
       <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/teaching/2021-09-09-ManTech-Labs/img/unisim.png" medium="image" type="image/png" width="715" height="286"/>
@@ -52,10 +52,10 @@
       <dc:creator>Eugene Hickey</dc:creator>
       <link>https://fizzics.netlify.app/teaching/2021-09-09-Sports-Physics</link>
       <description>I teach physics to first year sports science.</description>
-      <category>R</category>
       <category>Academia</category>
+      <category>Physics</category>
       <guid>https://fizzics.netlify.app/teaching/2021-09-09-Sports-Physics</guid>
-      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate>
       <media:content url="https://fizzics.netlify.app/teaching/2021-09-09-Sports-Physics/img/sports.png" medium="image" type="image/png" width="658" height="475"/>
     </item>
     <item>

@@ -13,7 +13,7 @@ url: http://fizzics.netlify.app
 base_url: http://fizzics.netlify.app
 twitter:
   creator: "@eugene100hickey"
-categories: [R, Academia]
+categories: [Academia, LabVIEW]
 output:
   distill::distill_article:
     self_contained: false
