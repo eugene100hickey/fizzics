@@ -1527,7 +1527,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># downloads target data</span>
 <span class='co'># dataframe target has necessary info</span>
 <span class='va'>master_target_SqlQuery</span> <span class='op'>&lt;-</span> <span class='fu'>str_squish</span><span class='op'>(</span><span class='va'>master_target_SqlQuery</span><span class='op'>)</span>
-<span class='va'>urlBase</span> <span class='op'>&lt;-</span> <span class='st'>"http://skyserver.sdss.org/dr15/SkyserverWS/SearchTools/SqlSearch?"</span>
+<span class='va'>urlBase</span> <span class='op'>&lt;-</span> <span class='st'>"http://skyserver.sdss.org/dr17/SkyserverWS/SearchTools/SqlSearch?"</span>
 <span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>getForm</span><span class='op'>(</span><span class='va'>urlBase</span>, cmd <span class='op'>=</span> <span class='va'>master_target_SqlQuery</span>, format <span class='op'>=</span> <span class='st'>"csv"</span><span class='op'>)</span>
 <span class='va'>master_targets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='va'>X</span>, header <span class='op'>=</span> <span class='cn'>TRUE</span>, sep <span class='op'>=</span> <span class='st'>","</span>, dec <span class='op'>=</span> <span class='st'>"."</span>, comment.char <span class='op'>=</span> <span class='st'>"#"</span><span class='op'>)</span>
 </code></pre>
@@ -1892,71 +1892,71 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_right">145.57</td>
-<td class="gt_row gt_right">1.00</td>
-<td class="gt_row gt_right">18.92</td>
-<td class="gt_row gt_right">17.79</td>
-<td class="gt_row gt_right">17.32</td>
-<td class="gt_row gt_right">17.12</td>
-<td class="gt_row gt_right">17.05</td>
-<td class="gt_row gt_left">1237650797293469696</td>
-<td class="gt_row gt_left">299593306415851520</td>
-<td class="gt_row gt_left">F5</td>
-<td class="gt_row gt_right">266</td>
-<td class="gt_row gt_right">51630</td>
-<td class="gt_row gt_right">378</td></tr>
-    <tr><td class="gt_row gt_right">145.29</td>
-<td class="gt_row gt_right">0.38</td>
-<td class="gt_row gt_right">19.31</td>
-<td class="gt_row gt_right">18.14</td>
-<td class="gt_row gt_right">17.67</td>
-<td class="gt_row gt_right">17.50</td>
-<td class="gt_row gt_right">17.44</td>
-<td class="gt_row gt_left">1237648721752424704</td>
-<td class="gt_row gt_left">299584510322829312</td>
-<td class="gt_row gt_left">F2</td>
-<td class="gt_row gt_right">266</td>
-<td class="gt_row gt_right">51630</td>
-<td class="gt_row gt_right">346</td></tr>
-    <tr><td class="gt_row gt_right">177.00</td>
-<td class="gt_row gt_right">-0.26</td>
-<td class="gt_row gt_right">19.15</td>
-<td class="gt_row gt_right">17.96</td>
+    <tr><td class="gt_row gt_right">135.04</td>
+<td class="gt_row gt_right">39.21</td>
+<td class="gt_row gt_right">19.35</td>
+<td class="gt_row gt_right">18.07</td>
+<td class="gt_row gt_right">17.65</td>
+<td class="gt_row gt_right">17.51</td>
 <td class="gt_row gt_right">17.46</td>
-<td class="gt_row gt_right">17.27</td>
-<td class="gt_row gt_right">17.20</td>
-<td class="gt_row gt_left">1237674649927417856</td>
-<td class="gt_row gt_left">319839718780987392</td>
-<td class="gt_row gt_left">G2</td>
-<td class="gt_row gt_right">284</td>
-<td class="gt_row gt_right">51943</td>
-<td class="gt_row gt_right">306</td></tr>
-    <tr><td class="gt_row gt_right">145.77</td>
-<td class="gt_row gt_right">0.30</td>
-<td class="gt_row gt_right">17.94</td>
-<td class="gt_row gt_right">16.54</td>
-<td class="gt_row gt_right">15.99</td>
-<td class="gt_row gt_right">15.77</td>
-<td class="gt_row gt_right">15.66</td>
-<td class="gt_row gt_left">1237648721752621056</td>
-<td class="gt_row gt_left">299607874944919552</td>
+<td class="gt_row gt_left">1237657774468956416</td>
+<td class="gt_row gt_left">1348848749018900480</td>
 <td class="gt_row gt_left">F9</td>
-<td class="gt_row gt_right">266</td>
-<td class="gt_row gt_right">51630</td>
-<td class="gt_row gt_right">431</td></tr>
-    <tr><td class="gt_row gt_right">178.68</td>
-<td class="gt_row gt_right">0.42</td>
-<td class="gt_row gt_right">17.80</td>
-<td class="gt_row gt_right">16.90</td>
-<td class="gt_row gt_right">16.52</td>
-<td class="gt_row gt_right">16.35</td>
-<td class="gt_row gt_right">16.28</td>
-<td class="gt_row gt_left">1237674651001880576</td>
-<td class="gt_row gt_left">319895793874003968</td>
+<td class="gt_row gt_right">1198</td>
+<td class="gt_row gt_right">52669</td>
+<td class="gt_row gt_right">75</td></tr>
+    <tr><td class="gt_row gt_right">230.79</td>
+<td class="gt_row gt_right">14.45</td>
+<td class="gt_row gt_right">21.68</td>
+<td class="gt_row gt_right">19.48</td>
+<td class="gt_row gt_right">18.54</td>
+<td class="gt_row gt_right">18.59</td>
+<td class="gt_row gt_right">17.99</td>
+<td class="gt_row gt_left">1237668311088496896</td>
+<td class="gt_row gt_left">6182367616998594560</td>
+<td class="gt_row gt_left">K3V (32147)</td>
+<td class="gt_row gt_right">5491</td>
+<td class="gt_row gt_right">56034</td>
+<td class="gt_row gt_right">186</td></tr>
+    <tr><td class="gt_row gt_right">9.66</td>
+<td class="gt_row gt_right">-9.60</td>
+<td class="gt_row gt_right">19.08</td>
+<td class="gt_row gt_right">18.15</td>
+<td class="gt_row gt_right">17.79</td>
+<td class="gt_row gt_right">17.61</td>
+<td class="gt_row gt_right">17.56</td>
+<td class="gt_row gt_left">1237652947992969216</td>
+<td class="gt_row gt_left">3496091640144175104</td>
 <td class="gt_row gt_left">F5</td>
-<td class="gt_row gt_right">284</td>
-<td class="gt_row gt_right">51943</td>
-<td class="gt_row gt_right">510</td></tr>
+<td class="gt_row gt_right">3105</td>
+<td class="gt_row gt_right">54825</td>
+<td class="gt_row gt_right">627</td></tr>
+    <tr><td class="gt_row gt_right">134.64</td>
+<td class="gt_row gt_right">39.14</td>
+<td class="gt_row gt_right">17.11</td>
+<td class="gt_row gt_right">15.92</td>
+<td class="gt_row gt_right">15.40</td>
+<td class="gt_row gt_right">15.26</td>
+<td class="gt_row gt_right">15.19</td>
+<td class="gt_row gt_left">1237657774468825088</td>
+<td class="gt_row gt_left">1348859194379364352</td>
+<td class="gt_row gt_left">F9</td>
+<td class="gt_row gt_right">1198</td>
+<td class="gt_row gt_right">52669</td>
+<td class="gt_row gt_right">113</td></tr>
+    <tr><td class="gt_row gt_right">7.55</td>
+<td class="gt_row gt_right">6.42</td>
+<td class="gt_row gt_right">20.42</td>
+<td class="gt_row gt_right">19.52</td>
+<td class="gt_row gt_right">19.23</td>
+<td class="gt_row gt_right">19.17</td>
+<td class="gt_row gt_right">19.20</td>
+<td class="gt_row gt_left">1237669765472911616</td>
+<td class="gt_row gt_left">3497046289655373824</td>
+<td class="gt_row gt_left">A0</td>
+<td class="gt_row gt_right">3106</td>
+<td class="gt_row gt_right">54738</td>
+<td class="gt_row gt_right">4</td></tr>
   </tbody>
   
   
@@ -1989,14 +1989,17 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="sdss-data-access_files/figure-html5/plot_spectrum-1.png" width="624" /></p>
 </div>
-<p>The spectrum from sdss is shown below, and can be seen <a href="http://cas.sdss.org/dr17/VisualTools/explore/summary?objId=1237650795146576079">here</a></p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>The spectrum from sdss is shown below, and can be seen <a href="https://cas.sdss.org/dr17/VisualTools/explore/summary?objId=1237667430104694861">here</a></p>
 <figure>
 <img src="images/spectrum.png" alt="SDSS Spectrum RA = 146.91381, Dec = -0.64451" /><figcaption aria-hidden="true">SDSS Spectrum RA = 146.91381, Dec = -0.64451</figcaption>
 </figure>
 <p>The SDSS image of the star itself is given here</p>
-<p><IMG SRC="http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?ra=146.91380913331&dec=-0.644514137461172&scale=0.79224&width=400&height=400&opt=GST" ></p>
+<p><IMG SRC="http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?ra=167.086974149243&dec=26.1582751020721&scale=0.79224&width=400&height=400&opt=GST" ></p>
 <p>Full code is available from <a href="https://github.com/eugene100hickey/fizzics/tree/master/_posts/2021-12-16-sdss-data-access">github</a>.</p>
-<p>Note, for some reason the SDSS objid returned from the SSQL query is incorrect. I’m still trying to figure out why and to fix this.</p>
+<p>Note, for some reason the SDSS objid returned from the SQL query is incorrect. I’m still trying to figure out why and to fix this.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
