@@ -68,7 +68,7 @@ master_targets <- read.table(text = X, header = TRUE, sep = ",", dec = ".", comm
 
 ```{r targets_table}
 master_targets %>% 
-  mutate(across(is.numeric, round, 2),
+  mutate(across(where(is.numeric), round, 2),
          objid = as.character(objid),
          specobjid = as.character(specobjid)) %>% 
   dplyr::slice_sample(n=5) %>%
@@ -113,4 +113,10 @@ The spectrum from sdss is shown below, and can be seen [here](http://cas.sdss.or
 
 ![SDSS Spectrum RA = 146.91381, Dec = -0.64451](images/spectrum.png)
 
+The SDSS image of the star itself is given here
+
+<IMG `r glue::glue('SRC="http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?ra={master_targets[index,]$ra}&dec={master_targets[index,]$dec}&scale=0.79224&width=400&height=400&opt=GST"')` >
+
 Full code is available from [github](https://github.com/eugene100hickey/fizzics/tree/master/_posts/2021-12-16-sdss-data-access).
+
+Note, for some reason the SDSS objid returned from the SSQL query is incorrect. I'm still trying to figure out why and to fix this.
