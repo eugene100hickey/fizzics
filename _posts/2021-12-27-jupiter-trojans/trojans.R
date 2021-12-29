@@ -3,13 +3,30 @@
 library(tidyverse)
 library(rvest)
 library(lubridate)
+library(ggokabeito)
+library(ggtext)
 library(ggpointdensity)
+library(showtext)
+font_add("Fuzzy Bubbles", regular = "_posts/2021-12-27-jupiter-trojans/fonts/FuzzyBubbles-Regular.ttf")
+showtext_auto()
+
+theme_clean <- function() {
+  theme_minimal(base_family = "Fuzzy Bubbles") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size = 28, family = "Fuzzy Bubbles"),
+          plot.background = element_rect(fill = "white", color = NA),
+          axis.text = element_text(size = 32),
+          axis.title = element_text(face = "bold", size = 36),
+          strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
+          strip.background = element_rect(fill = "grey80", color = NA),
+          legend.text = element_text(size = 24))
+}
 
 
 z <- read_csv("_posts/2021-12-27-jupiter-trojans/data/nasa-small-bodies-database.csv") %>%
   mutate(first_obs = as.Date(first_obs),
          designation = str_extract(full_name, pattern = "(?<=\\().*(?=\\))")) %>%
-  dplyr::select(designation, name, spkid, diameter, albedo,
+  dplyr::select(designation, pdes, name, spkid, diameter, albedo,
                 rot_per, ma, n, first_obs)
 
 url <- "https://www.minorplanetcenter.net/iau/lists/JupiterTrojans.html"
@@ -21,13 +38,24 @@ pathway_data_html <- rvest::html_nodes(w, xml)
 ev <- rvest::html_text(pathway_data_html) %>%
   str_split("\n") %>%
   unlist()
+tjn <- ev[-c(1, 3, 10794)] %>%
+  str_sub(start = 1, end = 8)
+tjn <- tjn[-1] %>% 
+  str_remove("\\(") %>% 
+  str_remove("\\)") %>% 
+  str_remove(" +")
 ev <- ev[-c(1, 3)] %>%
   str_sub(start = 28) %>%
   str_replace_all(" +", " ")
+
 trojans <- read_table(ev) %>%
   janitor::clean_names() %>%
-  unite(col = designation, prov:des, sep = " ", remove = F) %>% 
-  mutate(des = str_sub(des, start=1, end = 1)) %>% 
+  unite(col = design, prov:des, sep = " ", remove = F) %>% 
+  mutate(des = str_sub(des, start=1, end = 1),
+         pdes = tjn)
+z <- z %>% left_join(trojans %>% select(pdes, design))
+trojans <- trojans %>%
+  select(-pdes) %>% 
   left_join(z)
 
 # sizing
@@ -50,13 +78,14 @@ trojan_dist <- read_table(ev) %>%
   select(h = value, everything()) %>% 
   select(-name)
 
-calibration <- loess(new_diameter ~ h, data = trojan_dist, span = 0.5)
-trojans <- trojans %>% mutate(new_diam = predict(calibration, newdata = trojans))
+calibration <- loess(new_diameter ~ h, data = trojan_dist, span = 0.25)
+trojans <- trojans %>% mutate(new_diam = predict(calibration, newdata = trojans),
+                              diameter = ifelse(is.na(diameter), new_diam, diameter))
 
-trojans <- trojans %>% 
-  mutate(h_real = h,
-         h = round(h/0.5)*0.5) %>% 
-  left_join(trojan_dist, by = c("h" = "abs_mag"))
+# trojans <- trojans %>% 
+#   mutate(h_real = h,
+#          h = round(h/0.5)*0.5) %>% 
+#   left_join(trojan_dist, by = c("h" = "abs_mag"))
 
 trojans %>% ggplot(aes(first_obs, fill = ln)) +
   geom_histogram(position = "dodge") +  
@@ -93,7 +122,7 @@ trojans %>%
 
 trojans %>% 
   ggplot() +
-  geom_histogram(aes(rot_per, fill = ln, y = ..ncount..),
+  geom_histogram(aes(diameter, fill = ln, y = ..ncount..),
                  position = "dodge", 
                  show.legend = F) +
   scale_fill_okabe_ito() +

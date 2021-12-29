@@ -12,7 +12,7 @@ output:
     self_contained: false
 ---
 
-The Jupiter Trojans are two groups of asteroids, beyond the main asteroid belt in stable orbits at the L4 and L5 Lagrange points of Jupiter. This means that they are about the same distance from the Sun as Jupiter (5.2AU), and either $60^{\circ}$ ahead or behind Jupiter's orbit.
+The Jupiter Trojans are two groups of asteroids, beyond the main asteroid belt in stable orbits at the L4 and L5 Lagrange points of Jupiter. This means that they are about the same distance from the Sun as Jupiter (5.2AU), and either $60^{\circ}$ ahead (L4) or behind (L5) Jupiter's orbit.
 
 There are lots of them, comparable in number to the main asteroids. The larger ones are named and follow a convention using Greek (L4) or Trojan (L5) warriors. Except for the early ones, leading to some spies in the opposite camps.
 
@@ -189,7 +189,7 @@ trojans %>%
 We're seeing albedos typically around 0.05-0.1, with some very dark bodies indeed, and a minimum albedo of `r min(trojans$albedo, na.rm = T) %>% signif(2)`.  
 
 ```{r rotations}
-my_title <- "Rotation Period distributions for the <span style='color:#E69F00;'>L4</span> and <span style='color:#56B4E9;'>L5</span> Trojans."
+my_title <- "Rot<sup>n</sup> Period distributions for the <span style='color:#E69F00;'>L4</span> and <span style='color:#56B4E9;'>L5</span> Trojans."
 trojans %>% 
   ggplot() +
   geom_histogram(aes(rot_per, fill = ln, y = ..ncount..),
