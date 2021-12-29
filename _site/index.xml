@@ -12,7 +12,18 @@
       <link>https://fizzics.netlify.app</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 16 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 27 Dec 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Jupiter Trojans</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://fizzics.netlify.app/posts/2021-12-27-jupiter-trojans</link>
+      <description>NASA's Lucy mission launched earlier this year, setting out to examine the Jupiter Trojans. We'll have a look at them now.</description>
+      <category>Physics</category>
+      <category>R</category>
+      <guid>https://fizzics.netlify.app/posts/2021-12-27-jupiter-trojans</guid>
+      <pubDate>Mon, 27 Dec 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/posts/2021-12-27-jupiter-trojans/jupiter-trojans_files/figure-html5/distances-1.png" medium="image" type="image/png" width="1248" height="1536"/>
+    </item>
     <item>
       <title>SDSS Data Access</title>
       <dc:creator>Eugene</dc:creator>

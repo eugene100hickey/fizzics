@@ -3061,6 +3061,34 @@ p a:hover { /* makes links go green on hover */
 <p><IMG SRC="http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?ra=167.086974149243&dec=26.1582751020721&scale=0.79224&width=400&height=400&opt=GST" ></p>
 <p>Full code is available from <a href="https://github.com/eugene100hickey/fizzics/tree/master/_posts/2021-12-16-sdss-data-access">github</a>.</p>
 <p>Note, for some reason the SDSS objid returned from the SQL query is incorrect. I’m still trying to figure out why and to fix this.</p>
+<p>Update, the following is an ugly workaround on the objid issue. Haven’t verified that it always works yet.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>radial_url_root</span> <span class='op'>&lt;-</span> <span class='st'>"http://skyserver.sdss.org/dr17/SkyServerWS/SearchTools/SqlSearch?cmd="</span>
+<span class='va'>radial_url_core</span> <span class='op'>&lt;-</span> <span class='fu'>glue</span><span class='op'>(</span><span class='st'>"SELECT top {N} p.ra, p.dec, "</span>,
+                        <span class='st'>"p.u, p.g, p.r, p.i, p.z, p.objid, "</span>, 
+                        <span class='st'>"s.specobjid, s.class, s.subclass, s.survey, "</span>, 
+                        <span class='st'>"s.plate, s.mjd, s.fiberid "</span>, 
+                        <span class='st'>"FROM photoObj AS p "</span>, 
+                        <span class='st'>"JOIN SpecObj AS s ON s.bestobjid = p.objid "</span>,
+                        <span class='st'>"WHERE p.g BETWEEN {bands_min} AND {bands_max} "</span>,
+                        <span class='st'>"AND p.r BETWEEN {bands_min} AND {bands_max} "</span>, 
+                        <span class='st'>"AND p.i BETWEEN {bands_min} AND {bands_max} "</span>, 
+                        <span class='st'>"AND s.class = 'STAR' "</span>,
+                        <span class='st'>"AND s.survey != 'eboss'"</span> <span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>str_replace_all</span><span class='op'>(</span><span class='st'>" "</span>, <span class='st'>"%20"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>str_replace_all</span><span class='op'>(</span><span class='st'>"\n"</span>, <span class='st'>""</span><span class='op'>)</span>
+<span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'>rvest</span><span class='fu'>::</span><span class='fu'><a href='http://xml2.r-lib.org/reference/read_xml.html'>read_html</a></span><span class='op'>(</span><span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='va'>radial_url_root</span>, <span class='va'>radial_url_core</span>, <span class='st'>"&amp;format=csv"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>as_list</span><span class='op'>(</span><span class='va'>w</span><span class='op'>)</span><span class='op'>$</span><span class='va'>html</span><span class='op'>$</span><span class='va'>body</span><span class='op'>$</span><span class='va'>p</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>str_remove</span><span class='op'>(</span><span class='st'>"#Table1\n"</span><span class='op'>)</span>
+<span class='va'>master_targets</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/utils/read.table.html'>read.table</a></span><span class='op'>(</span>text <span class='op'>=</span> <span class='va'>X</span>, header <span class='op'>=</span> <span class='cn'>TRUE</span>, sep <span class='op'>=</span> <span class='st'>","</span>, dec <span class='op'>=</span> <span class='st'>"."</span>, comment.char <span class='op'>=</span> <span class='st'>"#"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> 
+  <span class='fu'>mutate</span><span class='op'>(</span><span class='fu'>across</span><span class='op'>(</span><span class='fu'>where</span><span class='op'>(</span><span class='va'>is.numeric</span><span class='op'>)</span>, <span class='va'>round</span>, <span class='fl'>2</span><span class='op'>)</span>,
+         objid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>objid</span><span class='op'>)</span>,
+         specobjid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>specobjid</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">

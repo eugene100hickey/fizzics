@@ -138,3 +138,32 @@ The SDSS image of the star itself is given here
 Full code is available from [github](https://github.com/eugene100hickey/fizzics/tree/master/_posts/2021-12-16-sdss-data-access).
 
 Note, for some reason the SDSS objid returned from the SQL query is incorrect. I'm still trying to figure out why and to fix this.
+
+Update, the following is an ugly workaround on the objid issue. Haven't verified that it always works yet.
+
+```{r objid_fudge, eval=FALSE, echo=T}
+radial_url_root <- "http://skyserver.sdss.org/dr17/SkyServerWS/SearchTools/SqlSearch?cmd="
+radial_url_core <- glue("SELECT top {N} p.ra, p.dec, ",
+                        "p.u, p.g, p.r, p.i, p.z, p.objid, ", 
+                        "s.specobjid, s.class, s.subclass, s.survey, ", 
+                        "s.plate, s.mjd, s.fiberid ", 
+                        "FROM photoObj AS p ", 
+                        "JOIN SpecObj AS s ON s.bestobjid = p.objid ",
+                        "WHERE p.g BETWEEN {bands_min} AND {bands_max} ",
+                        "AND p.r BETWEEN {bands_min} AND {bands_max} ", 
+                        "AND p.i BETWEEN {bands_min} AND {bands_max} ", 
+                        "AND s.class = 'STAR' ",
+                        "AND s.survey != 'eboss'" ) %>% 
+  str_replace_all(" ", "%20") %>% 
+  str_replace_all("\n", "")
+w <- rvest::read_html(glue::glue(radial_url_root, radial_url_core, "&format=csv"))
+X <- as_list(w)$html$body$p[[1]] %>% 
+  as.character() %>% 
+  str_remove("#Table1\n")
+master_targets <- read.table(text = X, header = TRUE, sep = ",", dec = ".", comment.char = "#") %>% 
+  mutate(across(where(is.numeric), round, 2),
+         objid = as.character(objid),
+         specobjid = as.character(specobjid))
+
+```
+

@@ -13,29 +13,6 @@ output:
 ---
 
 
-<style>
-
-p a {
-  text-decoration: none;
-  color: black;
-  border-bottom: 3px solid #9ae28f;
-  box-shadow: inset 0 -4px 0 #9ae28f;
-  background: transparent;
-  transition: background 150ms ease;
-  font-style: italic;
-  font-family: menu;
-  font-stretch: extra-expanded;
-}
-
-p a:hover {
-  text-decoration: none;
-  --bg-opacity: 1;
-  background-color: #9ae28f;
-  background-color: rgba(154, 226, 143, var(--bg-opacity));
-}
-
-</style>
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = F, message = F)
 ```
