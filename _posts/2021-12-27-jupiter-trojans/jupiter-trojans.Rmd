@@ -254,3 +254,20 @@ trojans %>%
         plot.title = element_markdown())
 ```
 
+### And the data
+
+This is an excerpt from the data table, all the asteroids but not all the columns
+
+```{r data_table}
+trojans %>% 
+  select(Name = name,
+         Designation = design,
+         Lagrange = ln,
+         Perihelion = q,
+         Aphelion = q_2,
+         Diameter = diameter,
+         Albedo = albedo,
+         Rotation = rot_per) %>% 
+  DT::datatable()
+```
+
