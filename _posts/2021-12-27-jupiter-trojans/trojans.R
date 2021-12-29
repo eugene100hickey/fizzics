@@ -47,8 +47,11 @@ trojan_dist <- read_table(ev) %>%
                            name == "H2" ~ (D_min + D_max)/2/1e3,
                            name == "H3" ~ (D_min + D_max)/2/1e6)) %>% 
   arrange(name, value) %>% 
-  select(abs_mag = value, everything()) %>% 
+  select(h = value, everything()) %>% 
   select(-name)
+
+calibration <- loess(new_diameter ~ h, data = trojan_dist, span = 0.5)
+trojans <- trojans %>% mutate(new_diam = predict(calibration, newdata = trojans))
 
 trojans <- trojans %>% 
   mutate(h_real = h,
@@ -79,13 +82,42 @@ trojans %>% ggplot(aes(incl, fill = ln)) +
   geom_histogram(position = "dodge") +
   scale_x_log10()
 
-trojans %>% ggplot() +
-  geom_histogram(aes(h, fill = ln, y = ..ncount..), position = "dodge") +
-  scale_x_log10()
+trojans %>% 
+  ggplot() +
+  geom_histogram(aes(e, fill = ln, y = ..ncount..), position = "dodge") 
 
-trojans %>% ggplot() +
-  geom_histogram(position = "dodge", aes(albedo, fill = ln, y = ..ncount..)) +
-  scale_x_log10()
+trojans %>% 
+  filter(ln == "L4") %>% 
+  ggplot(aes(a, e, col = ln)) +
+  geom_point(size = 0.1)
+
+trojans %>% 
+  ggplot() +
+  geom_histogram(aes(rot_per, fill = ln, y = ..ncount..),
+                 position = "dodge", 
+                 show.legend = F) +
+  scale_fill_okabe_ito() +
+  scale_x_log10() +
+  labs(title = "Rotational Period distributions<br>for the <span style='color:#E69F00;'>L4</span> and <span style='color:#56B4E9;'>L5</span> Jupiter Trojans.",
+       x = "Albedo") +
+  theme_clean() + 
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        title = element_markdown())
+
+trojans %>% 
+  ggplot() +
+  geom_histogram(aes(h, fill = ln, y = ..ncount..),
+                 position = "dodge", 
+                 show.legend = F) +
+  scale_fill_okabe_ito() +
+  scale_x_log10(breaks = seq(8, 15, by = 1)) +
+  labs(title = "Diameter distributions<br>for the <span style='color:#E69F00;'>L4</span> and <span style='color:#56B4E9;'>L5</span> Jupiter Trojans.",
+       x = "Albedo") +
+  theme_clean() + 
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank(),
+        title = element_markdown())
 
 trojans %>% ggplot(aes(incl, a, col = ln)) +
   geom_pointdensity(show.legend = F, size= 0.13) +
