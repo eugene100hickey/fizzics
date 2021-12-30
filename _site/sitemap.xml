@@ -13,6 +13,10 @@
     <lastmod>2021-12-23T22:12:32+00:00</lastmod>
   </url>
   <url>
+    <loc>https://fizzics.netlify.app/publications.html</loc>
+    <lastmod>2021-12-30T13:58:41+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://fizzics.netlify.app/resources.html</loc>
     <lastmod>2021-12-21T09:03:39+00:00</lastmod>
   </url>
@@ -26,11 +30,11 @@
   </url>
   <url>
     <loc>https://fizzics.netlify.app/posts/2021-12-27-jupiter-trojans/</loc>
-    <lastmod>2021-12-30T12:30:11+00:00</lastmod>
+    <lastmod>2021-12-30T12:30:14+00:00</lastmod>
   </url>
   <url>
     <loc>https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/</loc>
-    <lastmod>2021-12-26T16:09:04+00:00</lastmod>
+    <lastmod>2021-12-26T16:09:06+00:00</lastmod>
   </url>
   <url>
     <loc>https://fizzics.netlify.app/posts/2021-12-15-university-points/</loc>
@@ -38,7 +42,7 @@
   </url>
   <url>
     <loc>https://fizzics.netlify.app/posts/2021-12-06-university-choices/</loc>
-    <lastmod>2021-12-29T12:06:57+00:00</lastmod>
+    <lastmod>2021-12-29T12:07:00+00:00</lastmod>
   </url>
   <url>
     <loc>https://fizzics.netlify.app/posts/2021-10-27-halloween-poster/</loc>
@@ -114,18 +118,30 @@
   </url>
   <url>
     <loc>https://fizzics.netlify.app/teaching/2021-09-09-CMS-Labs/</loc>
-    <lastmod>2021-12-25T14:48:27+00:00</lastmod>
+    <lastmod>2021-12-25T14:48:31+00:00</lastmod>
   </url>
   <url>
     <loc>https://fizzics.netlify.app/teaching/2021-09-09-ManTech-Labs/</loc>
-    <lastmod>2021-12-25T14:48:46+00:00</lastmod>
+    <lastmod>2021-12-25T14:48:47+00:00</lastmod>
   </url>
   <url>
     <loc>https://fizzics.netlify.app/teaching/2021-09-09-Sports-Physics/</loc>
-    <lastmod>2021-12-25T14:49:18+00:00</lastmod>
+    <lastmod>2021-12-25T14:49:19+00:00</lastmod>
   </url>
   <url>
     <loc>https://fizzics.netlify.app/teaching/2021-01-20-NHSr-DataVis/</loc>
     <lastmod>2021-12-24T12:48:55+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://fizzics.netlify.app/publications/2021-12-15-Locus_Algorithm/</loc>
+    <lastmod>2021-12-30T14:26:32+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://fizzics.netlify.app/publications/2020-11-01-Quasar_Catalogue/</loc>
+    <lastmod>2021-12-30T14:11:50+00:00</lastmod>
+  </url>
+  <url>
+    <loc>https://fizzics.netlify.app/publications/2019-10-02-Data_Mining_Grid/</loc>
+    <lastmod>2021-12-30T14:11:08+00:00</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>EVH</title>
+    <link>https://fizzics.netlify.app</link>
+    <atom:link href="https://fizzics.netlify.app/publications.xml" rel="self" type="application/rss+xml"/>
+    <description>Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
+</description>
+    <image>
+      <title>EVH</title>
+      <url>https://fizzics.netlify.app/images/atlantic.png</url>
+      <link>https://fizzics.netlify.app</link>
+    </image>
+    <generator>Distill</generator>
+    <lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The Locus Algorithm: A novel technique for identifying optimised pointings for differential photometry</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://fizzics.netlify.app/publications/2021-12-15-Locus_Algorithm</link>
+      <description>The publication detailing the workings of the Locus Algorithm, a technique to identify the best reference stars for a given target star and to calculate the corresponding telescope pointing to capture them all in the telescope field of view.</description>
+      <category>Physics</category>
+      <category>Academia</category>
+      <category>R</category>
+      <guid>https://fizzics.netlify.app/publications/2021-12-15-Locus_Algorithm</guid>
+      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://ars.els-cdn.com/content/image/1-s2.0-S2213133721000822-gr5_lrg.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>A catalogue of Locus Algorithm pointings for optimal differential photometry for 23 779 quasars</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://fizzics.netlify.app/publications/2020-11-01-Quasar_Catalogue</link>
+      <description>This publication details the results from running the Locus Algorithm on all the quasars identified by SDSS. It leads to the identification of quasars with a good surrounding of reference stars. In general, quasars are more difficult to observe with differential photometry because their specra are so different from stars, making it harder to account for the effects of the Earth's atmosphere.</description>
+      <category>Physics</category>
+      <category>Academia</category>
+      <guid>https://fizzics.netlify.app/publications/2020-11-01-Quasar_Catalogue</guid>
+      <pubDate>Mon, 10 Aug 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/publications/2020-11-01-Quasar_Catalogue/img/qso.png" medium="image" type="image/png" width="542" height="356"/>
+    </item>
+    <item>
+      <title>Data Mining by Grid Computing in the Search for Extrasolar Planets</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://fizzics.netlify.app/publications/2019-10-02-Data_Mining_Grid</link>
+      <description>Oisin Creaner's Thesis. Using the SDSS catalogue to refine the process of Differential Photometry.</description>
+      <category>Academia</category>
+      <category>Physics</category>
+      <guid>https://fizzics.netlify.app/publications/2019-10-02-Data_Mining_Grid</guid>
+      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://fizzics.netlify.app/publications/2019-10-02-Data_Mining_Grid/img/front.png" medium="image" type="image/png" width="585" height="582"/>
+    </item>
+  </channel>
+</rss>

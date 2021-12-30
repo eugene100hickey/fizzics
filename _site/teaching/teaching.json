@@ -39,8 +39,8 @@
     ],
     "contents": "\n\nd-title {\n display:none;\n}\nWe use LabVIEW from National Instruments to make virtual instruments. Some of the laboratory assignments we do can be seen here\nThe labs include:\nmaking a LabVIEW thermometer and measuring the rise time of a thermocouple\nexamining the frequency spectrum of various sounds\nverifying Nyquist Theorem and observing the effects of signal aliasing\nusing USB to connect an oscilloscope to a LabVIEW programme\nPID control of a tank fill system\n\n\n\n",
     "preview": "teaching/2021-09-09-CMS-Labs/img/LabVIEW.png",
-    "last_modified": "2021-12-25T14:48:27+00:00",
-    "input_file": "cms-labs.knit.md",
+    "last_modified": "2021-12-25T14:48:31+00:00",
+    "input_file": {},
     "preview_width": 789,
     "preview_height": 372
   },
@@ -61,8 +61,8 @@
     ],
     "contents": "\n\nd-title {\n display:none;\n}\nI teach Manufacturing Technology to 4th Year Pharmaceutical Science students. This involves lots of chemical engineering, and my favourite part which is crystallography. The chemical engineering part looks at material balances, heat exchangers, and distillation columns. In crystallography, we go the way from Bravais Lattices, to Miller Indices, Space Groups, and X-ray Diffraction.\nThe laboratory component of this module uses a Process Simulator programme UniSim490 from Honeywell. We use this to set up virtual processes and compare their operation to theory. Examples of the labs from 2019 are given here.\n\n\n\n",
     "preview": "teaching/2021-09-09-ManTech-Labs/img/unisim.png",
-    "last_modified": "2021-12-25T14:48:46+00:00",
-    "input_file": "mantech-labs.knit.md",
+    "last_modified": "2021-12-25T14:48:47+00:00",
+    "input_file": {},
     "preview_width": 715,
     "preview_height": 286
   },
@@ -83,8 +83,8 @@
     ],
     "contents": "\n\nd-title {\n display:none;\n}\nI teach physics to 1st Year Sports Science students. This is primarily biomechanics; kicking-off with linear motion, then progressing to circular motion, before finishing with a section on vectors.\nDuring COVID19 lockdown we put together a series of online experiments for the students. These can be seen here. They use simulations from PHET Colorado\n\n\n\n",
     "preview": "teaching/2021-09-09-Sports-Physics/img/sports.png",
-    "last_modified": "2021-12-25T14:49:18+00:00",
-    "input_file": "sports-physics.knit.md",
+    "last_modified": "2021-12-25T14:49:19+00:00",
+    "input_file": {},
     "preview_width": 658,
     "preview_height": 475
   },
