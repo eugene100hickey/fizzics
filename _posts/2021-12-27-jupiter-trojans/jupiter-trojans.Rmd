@@ -134,7 +134,7 @@ semi_major <- trojans %>%
   ggplot(aes(q, q_2, col = ln)) +
   geom_point(size = 0.1, show.legend = F) +
   scale_color_okabe_ito() +
-  labs(x = "Perihelion (AU)", y = "Aphelion (AU") +
+  labs(x = "Perihelion (AU)", y = "Aphelion (AU)") +
   theme_clean()
   
 (perihelion + aphelion) / semi_major +
@@ -146,7 +146,26 @@ semi_major <- trojans %>%
                   axis.title = element_text(size = 24)))
 ```
 
-Nothing here seems too startling, and the eccentricities for L4 and L5 seem similar.  
+Nothing here seems too startling, and the eccentricities for L4 and L5 seem similar.
+
+In the main asteroid belt we see evidence of several collisional families, asteroids groups with a narrow range of inclinations along a strip of semi-major axes. These are all formed by some impact in the past. Let's' see if there is evidence of this in the Trojans.
+
+```{r collision_families}
+trojans %>% ggplot(aes(a, incl, col = ln)) +
+  geom_point(size = 0.1, show.legend = F) +
+  scale_color_okabe_ito() +
+  labs(title = "Orbital Inclination versus Semi-Major Axis<br>for the <span style='color:#E69F00;'>L4</span> and <span style='color:#56B4E9;'>L5</span> Jupiter Trojans.",
+       y = "Inclination <span>&#176;</span>",
+       x = "Semi-Major Axis (AU)") +
+  scale_fill_okabe_ito() +
+  theme_clean() + 
+  theme(plot.title = element_markdown(size = 32, family = "Fuzzy Bubbles"),
+        axis.title.y = element_markdown(size = 24, family = "Fuzzy Bubbles"),
+        axis.title.x = element_markdown(size = 24, family = "Fuzzy Bubbles"))
+  
+```
+
+We see no sign of these collisional families here. This squares with the Nice model, the origin of the Trojans is late capture of Kuiper Belt objects. The timing means that they avoided most of the maelstrom of early Solar System formation.
 
 Looking at the inclinations of these asteroids, we can see that L5 Trojans tends to have higher inclinations. This is something that has been [noticed already](https://ui.adsabs.harvard.edu/abs/2020IAUS..345..345S/abstract) but not yet explained.
 
@@ -166,9 +185,9 @@ trojans %>% ggplot() +
         axis.text.y = element_blank())
 ```
 
-### Trojan Physics Properties
+### Trojan Physical Properties
 
-The Trojans are dark, much darker than the stony (S type) or metallic (M type) asteroids that we frequency find in the main asteroid belt. Let's see how this stacks up with our data, examining the albedo of our Trojans.
+The Trojans are dark, much darker than the stony (S type) or metallic (M type) asteroids that we frequently find in the main asteroid belt. Let's see how this stacks up with our data, examining the albedo of our Trojans.
 
 ```{r albedo}
 my_title <- "Albedo distributions for the <span style='color:#E69F00;'>L4</span> and <span style='color:#56B4E9;'>L5</span> Trojans."
