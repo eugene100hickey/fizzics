@@ -1493,13 +1493,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>N</span> <span class='op'>&lt;-</span> <span class='fl'>50</span>
-<span class='va'>sub_N</span> <span class='op'>&lt;-</span> <span class='fl'>10</span>
-<span class='va'>delta</span> <span class='op'>&lt;-</span> <span class='fl'>0.1</span>
-<span class='va'>bands_min</span> <span class='op'>&lt;-</span> <span class='fl'>15</span>
-<span class='va'>bands_max</span> <span class='op'>&lt;-</span> <span class='fl'>20</span>
-<span class='va'>delta_gr_mag</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span>, min <span class='op'>=</span> <span class='op'>-</span><span class='fl'>2</span>, max <span class='op'>=</span> <span class='op'>+</span><span class='fl'>2</span><span class='op'>)</span>
-<span class='va'>delta_ri_mag</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/Uniform.html'>runif</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fl'>1</span>, min <span class='op'>=</span> <span class='op'>-</span><span class='fl'>2</span>, max <span class='op'>=</span> <span class='op'>+</span><span class='fl'>2</span><span class='op'>)</span>
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>N</span> <span class='op'>&lt;-</span> <span class='fl'>5</span> <span class='co'># makes a table of 5 star targets</span>
+<span class='co'># we'll just get the spectrum from the first one</span>
+<span class='co'># delta &lt;- 0.1 # </span>
+<span class='va'>bands_min</span> <span class='op'>&lt;-</span> <span class='fl'>15</span> <span class='co'># this places an upper limit on the brightness of the star</span>
+<span class='va'>bands_max</span> <span class='op'>&lt;-</span> <span class='fl'>20</span> <span class='co'># this places an lower limit on the brightness of the star</span>
+<span class='co'># fainter stars have noisy spectra</span>
 </code></pre>
 </div>
 </div>
@@ -1525,7 +1524,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='co'># downloads target data</span>
-<span class='co'># dataframe target has necessary info</span>
+<span class='co'># dataframe master_targets has necessary info</span>
 <span class='va'>master_target_SqlQuery</span> <span class='op'>&lt;-</span> <span class='fu'>str_squish</span><span class='op'>(</span><span class='va'>master_target_SqlQuery</span><span class='op'>)</span>
 <span class='va'>urlBase</span> <span class='op'>&lt;-</span> <span class='st'>"http://skyserver.sdss.org/dr17/SkyserverWS/SearchTools/SqlSearch?"</span>
 <span class='va'>X</span> <span class='op'>&lt;-</span> <span class='fu'>getForm</span><span class='op'>(</span><span class='va'>urlBase</span>, cmd <span class='op'>=</span> <span class='va'>master_target_SqlQuery</span>, format <span class='op'>=</span> <span class='st'>"csv"</span><span class='op'>)</span>
@@ -1533,13 +1532,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </code></pre>
 </div>
 </div>
+<p><br></p>
 <div class="layout-chunk" data-layout="l-body">
-<div id="dbxbvjsakb" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="qeayjdrzqo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dbxbvjsakb .gt_table {
+#qeayjdrzqo .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1564,7 +1564,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-left-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_heading {
+#qeayjdrzqo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1576,7 +1576,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_title {
+#qeayjdrzqo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1586,7 +1586,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-width: 0;
 }
 
-#dbxbvjsakb .gt_subtitle {
+#qeayjdrzqo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1596,13 +1596,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-width: 0;
 }
 
-#dbxbvjsakb .gt_bottom_border {
+#qeayjdrzqo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_col_headings {
+#qeayjdrzqo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1617,7 +1617,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_col_heading {
+#qeayjdrzqo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1637,7 +1637,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#dbxbvjsakb .gt_column_spanner_outer {
+#qeayjdrzqo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1649,15 +1649,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 4px;
 }
 
-#dbxbvjsakb .gt_column_spanner_outer:first-child {
+#qeayjdrzqo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dbxbvjsakb .gt_column_spanner_outer:last-child {
+#qeayjdrzqo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dbxbvjsakb .gt_column_spanner {
+#qeayjdrzqo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1669,7 +1669,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   width: 100%;
 }
 
-#dbxbvjsakb .gt_group_heading {
+#qeayjdrzqo .gt_group_heading {
   padding: 8px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1691,7 +1691,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#dbxbvjsakb .gt_empty_group_heading {
+#qeayjdrzqo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1706,15 +1706,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   vertical-align: middle;
 }
 
-#dbxbvjsakb .gt_from_md > :first-child {
+#qeayjdrzqo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dbxbvjsakb .gt_from_md > :last-child {
+#qeayjdrzqo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dbxbvjsakb .gt_row {
+#qeayjdrzqo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1733,7 +1733,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   overflow-x: hidden;
 }
 
-#dbxbvjsakb .gt_stub {
+#qeayjdrzqo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1745,7 +1745,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-left: 12px;
 }
 
-#dbxbvjsakb .gt_summary_row {
+#qeayjdrzqo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1755,7 +1755,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#dbxbvjsakb .gt_first_summary_row {
+#qeayjdrzqo .gt_first_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1765,7 +1765,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_grand_summary_row {
+#qeayjdrzqo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1775,7 +1775,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   padding-right: 5px;
 }
 
-#dbxbvjsakb .gt_first_grand_summary_row {
+#qeayjdrzqo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1785,11 +1785,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-top-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_striped {
+#qeayjdrzqo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dbxbvjsakb .gt_table_body {
+#qeayjdrzqo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1798,7 +1798,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-bottom-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_footnotes {
+#qeayjdrzqo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1812,13 +1812,13 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_footnote {
+#qeayjdrzqo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding: 4px;
 }
 
-#dbxbvjsakb .gt_sourcenotes {
+#qeayjdrzqo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1832,41 +1832,41 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   border-right-color: #D3D3D3;
 }
 
-#dbxbvjsakb .gt_sourcenote {
+#qeayjdrzqo .gt_sourcenote {
   font-size: 90%;
   padding: 4px;
 }
 
-#dbxbvjsakb .gt_left {
+#qeayjdrzqo .gt_left {
   text-align: left;
 }
 
-#dbxbvjsakb .gt_center {
+#qeayjdrzqo .gt_center {
   text-align: center;
 }
 
-#dbxbvjsakb .gt_right {
+#qeayjdrzqo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dbxbvjsakb .gt_font_normal {
+#qeayjdrzqo .gt_font_normal {
   font-weight: normal;
 }
 
-#dbxbvjsakb .gt_font_bold {
+#qeayjdrzqo .gt_font_bold {
   font-weight: bold;
 }
 
-#dbxbvjsakb .gt_font_italic {
+#qeayjdrzqo .gt_font_italic {
   font-style: italic;
 }
 
-#dbxbvjsakb .gt_super {
+#qeayjdrzqo .gt_super {
   font-size: 65%;
 }
 
-#dbxbvjsakb .gt_footnote_marks {
+#qeayjdrzqo .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 65%;
@@ -1892,71 +1892,71 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     </tr>
   </thead>
   <tbody class="gt_table_body">
-    <tr><td class="gt_row gt_right">135.04</td>
-<td class="gt_row gt_right">39.21</td>
-<td class="gt_row gt_right">19.35</td>
-<td class="gt_row gt_right">18.07</td>
-<td class="gt_row gt_right">17.65</td>
-<td class="gt_row gt_right">17.51</td>
-<td class="gt_row gt_right">17.46</td>
-<td class="gt_row gt_left">1237657774468956416</td>
-<td class="gt_row gt_left">1348848749018900480</td>
-<td class="gt_row gt_left">F9</td>
-<td class="gt_row gt_right">1198</td>
-<td class="gt_row gt_right">52669</td>
-<td class="gt_row gt_right">75</td></tr>
-    <tr><td class="gt_row gt_right">230.79</td>
-<td class="gt_row gt_right">14.45</td>
-<td class="gt_row gt_right">21.68</td>
-<td class="gt_row gt_right">19.48</td>
-<td class="gt_row gt_right">18.54</td>
-<td class="gt_row gt_right">18.59</td>
-<td class="gt_row gt_right">17.99</td>
-<td class="gt_row gt_left">1237668311088496896</td>
-<td class="gt_row gt_left">6182367616998594560</td>
-<td class="gt_row gt_left">K3V (32147)</td>
-<td class="gt_row gt_right">5491</td>
-<td class="gt_row gt_right">56034</td>
-<td class="gt_row gt_right">186</td></tr>
-    <tr><td class="gt_row gt_right">9.66</td>
-<td class="gt_row gt_right">-9.60</td>
-<td class="gt_row gt_right">19.08</td>
-<td class="gt_row gt_right">18.15</td>
-<td class="gt_row gt_right">17.79</td>
-<td class="gt_row gt_right">17.61</td>
-<td class="gt_row gt_right">17.56</td>
-<td class="gt_row gt_left">1237652947992969216</td>
-<td class="gt_row gt_left">3496091640144175104</td>
-<td class="gt_row gt_left">F5</td>
-<td class="gt_row gt_right">3105</td>
-<td class="gt_row gt_right">54825</td>
-<td class="gt_row gt_right">627</td></tr>
-    <tr><td class="gt_row gt_right">134.64</td>
-<td class="gt_row gt_right">39.14</td>
-<td class="gt_row gt_right">17.11</td>
-<td class="gt_row gt_right">15.92</td>
-<td class="gt_row gt_right">15.40</td>
-<td class="gt_row gt_right">15.26</td>
-<td class="gt_row gt_right">15.19</td>
-<td class="gt_row gt_left">1237657774468825088</td>
-<td class="gt_row gt_left">1348859194379364352</td>
-<td class="gt_row gt_left">F9</td>
-<td class="gt_row gt_right">1198</td>
-<td class="gt_row gt_right">52669</td>
-<td class="gt_row gt_right">113</td></tr>
-    <tr><td class="gt_row gt_right">7.55</td>
-<td class="gt_row gt_right">6.42</td>
-<td class="gt_row gt_right">20.42</td>
-<td class="gt_row gt_right">19.52</td>
-<td class="gt_row gt_right">19.23</td>
-<td class="gt_row gt_right">19.17</td>
-<td class="gt_row gt_right">19.20</td>
-<td class="gt_row gt_left">1237669765472911616</td>
-<td class="gt_row gt_left">3497046289655373824</td>
-<td class="gt_row gt_left">A0</td>
-<td class="gt_row gt_right">3106</td>
-<td class="gt_row gt_right">54738</td>
-<td class="gt_row gt_right">4</td></tr>
+    <tr><td class="gt_row gt_right">167.0870</td>
+<td class="gt_row gt_right">26.15828</td>
+<td class="gt_row gt_right">16.51</td>
+<td class="gt_row gt_right">15.64</td>
+<td class="gt_row gt_right">15.38</td>
+<td class="gt_row gt_right">15.28</td>
+<td class="gt_row gt_right">15.27</td>
+<td class="gt_row gt_left">1237667430104694784</td>
+<td class="gt_row gt_left">7220539695150946304</td>
+<td class="gt_row gt_left">F0IV (81937)</td>
+<td class="gt_row gt_right">6413</td>
+<td class="gt_row gt_right">56336</td>
+<td class="gt_row gt_right">522</td></tr>
+    <tr><td class="gt_row gt_right">167.0042</td>
+<td class="gt_row gt_right">26.44916</td>
+<td class="gt_row gt_right">19.31</td>
+<td class="gt_row gt_right">18.40</td>
+<td class="gt_row gt_right">18.14</td>
+<td class="gt_row gt_right">18.04</td>
+<td class="gt_row gt_right">18.02</td>
+<td class="gt_row gt_left">1237667323249950976</td>
+<td class="gt_row gt_left">7220550140511410176</td>
+<td class="gt_row gt_left">F3/F5V (30743)</td>
+<td class="gt_row gt_right">6413</td>
+<td class="gt_row gt_right">56336</td>
+<td class="gt_row gt_right">560</td></tr>
+    <tr><td class="gt_row gt_right">167.3888</td>
+<td class="gt_row gt_right">25.94575</td>
+<td class="gt_row gt_right">20.15</td>
+<td class="gt_row gt_right">19.57</td>
+<td class="gt_row gt_right">19.37</td>
+<td class="gt_row gt_right">19.28</td>
+<td class="gt_row gt_right">19.25</td>
+<td class="gt_row gt_left">1237667429567955200</td>
+<td class="gt_row gt_left">7220550690267224064</td>
+<td class="gt_row gt_left">CV</td>
+<td class="gt_row gt_right">6413</td>
+<td class="gt_row gt_right">56336</td>
+<td class="gt_row gt_right">562</td></tr>
+    <tr><td class="gt_row gt_right">167.4996</td>
+<td class="gt_row gt_right">26.31292</td>
+<td class="gt_row gt_right">15.61</td>
+<td class="gt_row gt_right">15.67</td>
+<td class="gt_row gt_right">15.96</td>
+<td class="gt_row gt_right">16.22</td>
+<td class="gt_row gt_right">16.47</td>
+<td class="gt_row gt_left">1237667430104891392</td>
+<td class="gt_row gt_left">7220551240023037952</td>
+<td class="gt_row gt_left">O8e (188001)</td>
+<td class="gt_row gt_right">6413</td>
+<td class="gt_row gt_right">56336</td>
+<td class="gt_row gt_right">564</td></tr>
+    <tr><td class="gt_row gt_right">167.7413</td>
+<td class="gt_row gt_right">26.13576</td>
+<td class="gt_row gt_right">19.60</td>
+<td class="gt_row gt_right">18.68</td>
+<td class="gt_row gt_right">18.35</td>
+<td class="gt_row gt_right">18.28</td>
+<td class="gt_row gt_right">18.21</td>
+<td class="gt_row gt_left">1237667322713341952</td>
+<td class="gt_row gt_left">7220564434162571264</td>
+<td class="gt_row gt_left">F3/F5V (30743)</td>
+<td class="gt_row gt_right">6413</td>
+<td class="gt_row gt_right">56336</td>
+<td class="gt_row gt_right">612</td></tr>
   </tbody>
   
   
@@ -1994,7 +1994,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p>The spectrum from sdss is shown below, and can be seen <a href="https://cas.sdss.org/dr17/VisualTools/explore/summary?objId=1237667430104694861">here</a></p>
 <figure>
-<img src="images/spectrum.png" alt="SDSS Spectrum RA = 146.91381, Dec = -0.64451" /><figcaption aria-hidden="true">SDSS Spectrum RA = 146.91381, Dec = -0.64451</figcaption>
+<img src="images/spectrum.png" alt="SDSS Spectrum RA = 167.0869741, Dec = 26.1582751" /><figcaption aria-hidden="true">SDSS Spectrum RA = 167.0869741, Dec = 26.1582751</figcaption>
 </figure>
 <p>The SDSS image of the star itself is given here</p>
 <p><IMG SRC="http://skyserver.sdss.org/dr16/SkyServerWS/ImgCutout/getjpeg?ra=167.086974149243&dec=26.1582751020721&scale=0.79224&width=400&height=400&opt=GST" ></p>
@@ -2025,6 +2025,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'>mutate</span><span class='op'>(</span><span class='fu'>across</span><span class='op'>(</span><span class='fu'>where</span><span class='op'>(</span><span class='va'>is.numeric</span><span class='op'>)</span>, <span class='va'>round</span>, <span class='fl'>2</span><span class='op'>)</span>,
          objid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>objid</span><span class='op'>)</span>,
          specobjid <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>specobjid</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>master_targets</span><span class='op'>$</span><span class='va'>objid</span> <span class='co'># check the top one to see if this works</span>
 </code></pre>
 </div>
 </div>

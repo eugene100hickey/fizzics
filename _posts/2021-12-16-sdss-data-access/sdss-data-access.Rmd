@@ -22,6 +22,8 @@ When it comes to astronomical catalogues, SDSS was without peer for many years. 
 The packages needed are [tidyverse](https://joss.theoj.org/papers/10.21105/joss.01686) (of course), [RCurl](https://CRAN.R-project.org/package=RCurl), and [glue](https://CRAN.R-project.org/package=glue).
 
 ```{r libraries}
+set.seed(42)
+
 library(tidyverse)
 library(glue)
 library(RCurl)
@@ -30,18 +32,17 @@ library(xml2)
 theme_set(theme_minimal())
 ```
 
-```{r params, cache=TRUE, echo = TRUE}
-N <- 50
-sub_N <- 10
-delta <- 0.1
-bands_min <- 15
-bands_max <- 20
-delta_gr_mag <- runif(n = 1, min = -2, max = +2)
-delta_ri_mag <- runif(n = 1, min = -2, max = +2)
+```{r params, cache=F, echo = TRUE}
+N <- 5 # makes a table of 5 star targets
+# we'll just get the spectrum from the first one
+# delta <- 0.1 # 
+bands_min <- 15 # this places an upper limit on the brightness of the star
+bands_max <- 20 # this places an lower limit on the brightness of the star
+# fainter stars have noisy spectra
 ```
 
 
-```{r sql, cache=TRUE, echo = TRUE}
+```{r sql, cache=FALSE, echo = TRUE}
 # SQL that downloads some info on the chosen target from SDSS.
 # ObjID from SDSS specifies the target
 
@@ -58,21 +59,23 @@ master_target_SqlQuery <- glue("SELECT top {N} p.ra, p.dec, ",
                        "AND s.survey != 'eboss'" )
 ```
 
-```{r data_download, cache=TRUE, echo = TRUE}
+```{r data_download, cache=F, echo = TRUE}
 # downloads target data
-# dataframe target has necessary info
+# dataframe master_targets has necessary info
 master_target_SqlQuery <- str_squish(master_target_SqlQuery)
 urlBase <- "http://skyserver.sdss.org/dr17/SkyserverWS/SearchTools/SqlSearch?"
 X <- getForm(urlBase, cmd = master_target_SqlQuery, format = "csv")
 master_targets <- read.table(text = X, header = TRUE, sep = ",", dec = ".", comment.char = "#")
 ```
 
-```{r targets_table}
+<br>
+
+```{r targets_table, cache=FALSE}
 master_targets %>% 
-  mutate(across(where(is.numeric), round, 2),
+  mutate(across(where(is.numeric), round, 5),
+         across(u:z, round, 2),
          objid = as.character(objid),
          specobjid = as.character(specobjid)) %>% 
-  dplyr::slice_sample(n=5) %>%
   select(-class, -survey) %>% 
   gt::gt()
 ```
@@ -82,7 +85,7 @@ There are times when the SDSS data server is down. In this case, expect to see a
 
 Now that we have the plate, mjd, and fiberid for some stars, we can go ahead and download their spectra.
 
-```{r spectrum_download, cache=TRUE, echo = TRUE}
+```{r spectrum_download, cache=F, echo = TRUE}
 index <- 1 # uses first star from list
 get_spectrum <- function(object, wavelength_lower_limit = 5500, wavelength_upper_limit = 7000){
   plate <- object$plate
@@ -99,6 +102,7 @@ spect1 <- get_spectrum(master_targets[index,],
                        wavelength_lower_limit = 3500, 
                        wavelength_upper_limit = 8000)
 ```
+
 
 This gives a dataframe with wavelength and intensity. Let's plot this
 
@@ -129,7 +133,7 @@ url_objid <- glue::glue("https://cas.sdss.org/dr17/VisualTools/explore/summary?o
 
 The spectrum from sdss is shown below, and can be seen [here](`r url_objid`)
 
-![SDSS Spectrum RA = 146.91381, Dec = -0.64451](images/spectrum.png)
+![SDSS Spectrum RA = `r master_targets$ra[index]`, Dec = `r master_targets$dec[index]`](images/spectrum.png)
 
 The SDSS image of the star itself is given here
 
@@ -141,7 +145,7 @@ Note, for some reason the SDSS objid returned from the SQL query is incorrect. I
 
 Update, the following is an ugly workaround on the objid issue. Haven't verified that it always works yet.
 
-```{r objid_fudge, eval=FALSE, echo=T}
+```{r objid_fudge, eval=F, echo=T}
 radial_url_root <- "http://skyserver.sdss.org/dr17/SkyServerWS/SearchTools/SqlSearch?cmd="
 radial_url_core <- glue("SELECT top {N} p.ra, p.dec, ",
                         "p.u, p.g, p.r, p.i, p.z, p.objid, ", 
@@ -164,6 +168,6 @@ master_targets <- read.table(text = X, header = TRUE, sep = ",", dec = ".", comm
   mutate(across(where(is.numeric), round, 2),
          objid = as.character(objid),
          specobjid = as.character(specobjid))
-
+master_targets$objid # check the top one to see if this works
 ```
 
