@@ -40,4 +40,4 @@ knitr::opts_chunk$set(echo = FALSE,
 
 I'm part of team looking at the status of TU Dublin within the university rankings world. This group is being led by [Ayesha O'Reilly](ayesha.oreilly@tudublin.ie), [Ailbhe Roche](ailbhe.roche@tudublin.ie), [Phil Mulvaney](phil.mulvaney@tudublin.ie), and [Mark Russell](mark.russell@tudublin.ie). We look at rankings from [Times Higher Education](https://www.timeshighereducation.com/datapoints), [Quacquarelli Symonds](https://www.topuniversities.com/university-rankings), and [U-Multirank](https://www.umultirank.org/), as well as keeping tabs on CAO points for our university.  
 
-I put together presentations for the 17 Sustainability Development Goals that are part of the THE submission. [Here](projects/2021-09-04-THE/energy.html) is the one for SDG7 - Energy. Note that the data for this is confidential so the data you see above are randomly shuffled.  
+I put together presentations for the 17 Sustainability Development Goals that are part of the THE submission. [Here](SDG7/energy.html) is the one for SDG7 - Energy. Note that the data for this is confidential so the data you see above are randomly shuffled.  

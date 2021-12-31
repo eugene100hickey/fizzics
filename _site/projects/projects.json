@@ -16,8 +16,8 @@
     ],
     "contents": "\n\n\n.thumbnail {\n  border: 1px solid black;\n}\n\n\nUniversity Rankings\nI’m part of team looking at the status of TU Dublin within the university rankings world. This group is being led by Ayesha O’Reilly, Ailbhe Roche, Phil Mulvaney, and Mark Russell. We look at rankings from Times Higher Education, Quacquarelli Symonds, and U-Multirank, as well as keeping tabs on CAO points for our university.\nI put together presentations for the 17 Sustainability Development Goals that are part of the THE submission. Here is the one for SDG7 - Energy. Note that the data for this is confidential so the data you see above are randomly shuffled.\n\n\n\n",
     "preview": "projects/2021-09-04-THE/SDG7/img/rankings-map.png",
-    "last_modified": "2021-12-23T22:21:20+00:00",
-    "input_file": {},
+    "last_modified": "2021-12-31T22:07:10+00:00",
+    "input_file": "rankings.knit.md",
     "preview_width": 710,
     "preview_height": 613
   },
