@@ -34,9 +34,12 @@ donegal <- read_csv("data/Ulster.csv") %>%
   filter(COUNTY == "Donegal") %>% 
   mutate(NAME = NAME %>% iconv(from = "UTF-8", to = "UTF-8", sub = ""),
          NAME = ifelse(is.na(NAME), TOWNLAND, NAME),
+         NAME = glue::glue("<a href='{WEBSITE_LINK}'>{NAME}</a>"),
          DATEFROM = as.numeric(DATEFROM),
-         ORIGINAL_TYPE = ORIGINAL_TYPE %>% iconv(from = "UTF-8", to = "UTF-8", sub = ""))
-
+         ORIGINAL_TYPE = ORIGINAL_TYPE %>% 
+           iconv(from = "UTF-8", to = "UTF-8", sub = ""),
+         ORIGINAL_TYPE_sel = ORIGINAL_TYPE %>% 
+           as.factor() %>% fct_lump_n(6))
 ```
 
 
@@ -64,14 +67,15 @@ donegal_map <- donegal_df %>%
 reactable_table <-  reactable(
   donegal_df,
   columns = list(
-    NAME = colDef("Name"),
-    TOWNLAND = colDef("Townland"),
+    NAME = colDef("Name", html=T),
+    TOWNLAND = colDef("Townland", show = FALSE),
     DATEFROM = colDef("Year"),
-    WEBSITE_LINK = colDef("website"),
+    WEBSITE_LINK = colDef("website", show = FALSE),
     LATITUDE = colDef("Latitude", show = FALSE),
     LONGITUDE = colDef("Longitude", show = FALSE),
     IMAGE_LINK = colDef("Image", show = FALSE),
-    ORIGINAL_TYPE = colDef("Type", show = FALSE),
+    ORIGINAL_TYPE = colDef("Type", show = T),
+    ORIGINAL_TYPE_sel = colDef("Type", show = FALSE),
     LATITUDE = colDef("Latitude", show = FALSE),
     COUNTY = colDef("County", show = FALSE))
 )
@@ -80,9 +84,9 @@ reactable_table <-  reactable(
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
 div(
   h1("Donegal Historic Buildings"),
-  h3("Filter by Year"),
-#  br(),
+  h3("Filter by Year and Type"),
   filter_slider("year", "Year", donegal_df, ~DATEFROM, width = 500),
+  filter_checkbox("type", "Type", donegal_df, ~ORIGINAL_TYPE_sel, columns = 6),
   br(),
   donegal_map,
   br(),
