@@ -17,6 +17,8 @@ preview: img/oakpark.jpg
   
 ```{r setup, include=FALSE}
 library(tidyverse)
+library(lubridate)
+library(knitr)
 library(reactable)
 library(plotly)
 library(crosstalk)
@@ -24,6 +26,10 @@ library(htmltools)
 library(leaflet)
 library(leafpop)
 library(RColorBrewer)
+
+knit_hooks$set(inline = function(x) {
+  prettyNum(x, big.mark="")
+})
 
 # https://www.buildingsofireland.ie/resources/
 ```
@@ -35,7 +41,8 @@ donegal <- read_csv("data/Ulster.csv") %>%
   mutate(NAME = NAME %>% iconv(from = "UTF-8", to = "UTF-8", sub = ""),
          NAME = ifelse(is.na(NAME), TOWNLAND, NAME),
          NAME = glue::glue("<a href='{WEBSITE_LINK}'>{NAME}</a>"),
-         DATEFROM = as.numeric(DATEFROM),
+         DATEFROM = as_date(as.character(DATEFROM), format = "%Y") %>% year(),
+         DATEFROM_slider = DATEFROM %>% ymd(),
          ORIGINAL_TYPE = ORIGINAL_TYPE %>% 
            iconv(from = "UTF-8", to = "UTF-8", sub = ""),
          ORIGINAL_TYPE_sel = ORIGINAL_TYPE %>% 
@@ -82,10 +89,14 @@ reactable_table <-  reactable(
 ```
 
 ```{r, echo = FALSE, warning=FALSE, message=FALSE}
+knit_hooks$set(inline = function(x) {
+  prettyNum(x, big.mark="")
+})
+
 div(
   h1("Donegal Historic Buildings"),
   h3("Filter by Year and Type"),
-  filter_slider("year", "Year", donegal_df, ~DATEFROM, width = 500),
+  filter_slider("year", "Year", donegal_df, ~DATEFROM, width = 500, sep = NULL),
   filter_checkbox("type", "Type", donegal_df, ~ORIGINAL_TYPE_sel, columns = 6),
   br(),
   donegal_map,
