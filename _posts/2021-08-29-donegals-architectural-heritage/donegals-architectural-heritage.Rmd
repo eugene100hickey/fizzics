@@ -46,7 +46,7 @@ donegal <- read_csv("data/Ulster.csv") %>%
          ORIGINAL_TYPE = ORIGINAL_TYPE %>% 
            iconv(from = "UTF-8", to = "UTF-8", sub = ""),
          ORIGINAL_TYPE_sel = ORIGINAL_TYPE %>% 
-           as.factor() %>% fct_lump_n(6))
+           as.factor() %>% fct_lump_n(7))
 ```
 
 
