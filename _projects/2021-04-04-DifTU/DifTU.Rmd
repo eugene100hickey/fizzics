@@ -42,10 +42,10 @@ knitr::opts_chunk$set(echo = FALSE,
 
 This project incorporated a survey carried out in our university at a time of severe lock-down. We asked students and staff about their digital experiences with the college, and we found some interesting results. We compared our responses to those for a similar survey from 2019, i.e. pre-COVID, called INDEx. 
 
-From the responses to the question below, we can the impact of restrictions on new ways of course delivery, note the overall increase in all things digital from INDEx to DifTU. dramatic rise of _Recorded Lectures_.
+From the responses to the question below, we can the impact of restrictions on new ways of course delivery, note the overall increase in all things digital from INDEx to DifTU.
 
 
-```{r}
+```{r fig.height=10, fig.width=12}
 # All defaults
 include_graphics("img/Q12.png")
 ```
