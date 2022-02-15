@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
-    <title/>
+    <title>Euge</title>
     <link>https://fizzics.netlify.app</link>
     <atom:link href="https://fizzics.netlify.app/talks.xml" rel="self" type="application/rss+xml"/>
     <description>Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
 </description>
     <image>
-      <title/>
+      <title>Euge</title>
       <url>https://fizzics.netlify.app/images/atlantic.png</url>
       <link>https://fizzics.netlify.app</link>
     </image>
