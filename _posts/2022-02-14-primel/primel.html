@@ -1499,17 +1499,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>x_split <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_split.html'>str_split</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>""</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>indices_no_repeats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>numbers</span><span class='op'>$</span><span class='va'>x_split</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>}</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>numbers</span> <span class='op'>&lt;-</span> <span class='va'>numbers</span><span class='op'>[</span><span class='va'>indices_no_repeats</span>,<span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>numbers</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
+<pre><code>[1] 10243 10247 10253 10259 10267 10273</code></pre>
 </div>
 <p>We end up with 2529 prime numbers with unique digits. The first one of these is 10243. So let’s plug that in to today’s primel.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/first-guess.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <p><em>1</em>, <em>0</em>, and <em>3</em> came up as correct digits, but in each case in the wrong place. So let’s try primes that start with <em>3</em>, and finish with <em>01</em>. To do this, we set up a vector of numbers from 30001 to 40000, with a step size of 100. Then we check which ones are primes. We end up with 17 possibilities. After our initial guess, we can exclude ones that include the digits <em>2</em> and <em>4</em>, and again we’d prefer ones with no repeat digits. 35801 is the first in our list to satisfy these criteria. Let’s try it.</p>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="images/second-guess.png" width="50%" style="display: block; margin: auto;" /></p>
-</div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>begin</span> <span class='op'>&lt;-</span> <span class='fl'>30001</span>
@@ -1523,6 +1522,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <pre><code> [1] 31601 32401 32801 33301 33601 34301 34501 35201 35401 35801 36901
 [12] 37201 37501 38201 38501 39301 39901</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/second-guess.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <p>From these results, we see that <em>3</em> and <em>1</em> are indeed the first and last digits, and <em>0</em> must be the middle digit. Let’s run this again to see which primes satisfy these conditions.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -1561,7 +1563,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/fourth-guess.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

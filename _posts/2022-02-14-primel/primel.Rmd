@@ -36,6 +36,7 @@ numbers <- numbers %>%
   mutate(x_split = str_split(x, ""))
 indices_no_repeats <- map(numbers$x_split, function(x){table(x) %>% max() == 1}) %>% unlist()
 numbers <- numbers[indices_no_repeats,]
+head(numbers$x)
 ```
 
 We end up with `r length(numbers$x)` prime numbers with unique digits. The first one of these is `r numbers$x[1]`. So let's plug that in to today's primel.
@@ -46,10 +47,6 @@ knitr::include_graphics(path="images/first-guess.png")
 
 _1_, _0_, and _3_ came up as correct digits, but in each case in the wrong place. So let's try primes that start with _3_, and finish with _01_. To do this, we set up a vector of numbers from 30001 to 40000, with a step size of 100. Then we check which ones are primes. We end up with 17 possibilities. After our initial guess, we can exclude ones that include the digits _2_ and _4_, and again we'd prefer ones with no repeat digits. 35801 is the first in our list to satisfy these criteria. Let's try it.  
 
-```{r, fig.align='center', out.width="50%", echo=FALSE}
-knitr::include_graphics(path="images/second-guess.png")
-```
-
 ```{r second}
 begin <- 30001
 end <- 40000
@@ -58,6 +55,10 @@ my_step <- 100
 numbers <- seq(begin, end, by = my_step)
 
 numbers[isprime(numbers)==1]
+```
+
+```{r, fig.align='center', out.width="50%", echo=FALSE}
+knitr::include_graphics(path="images/second-guess.png")
 ```
 
 From these results, we see that _3_ and _1_ are indeed the first and last digits, and _0_ must be the middle digit. Let's run this again to see which primes satisfy these conditions.  

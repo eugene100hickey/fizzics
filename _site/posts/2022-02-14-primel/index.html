@@ -91,7 +91,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <meta property="description" itemprop="description" content="Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R."/>
 
-<link rel="canonical" href="https://fizzics.netlify.app/posts/2022-02-14-primel/"/>
+<link rel="canonical" href="https://www.fizzics.ie/posts/2022-02-14-primel/"/>
 <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
 <link rel="icon" type="image/png" href="../../images/atlantic.png"/>
 
@@ -104,8 +104,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:title" content="Euge: Primel"/>
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R."/>
-<meta property="og:url" content="https://fizzics.netlify.app/posts/2022-02-14-primel/"/>
-<meta property="og:image" content="https://fizzics.netlify.app/posts/2022-02-14-primel/images/first-guess.png"/>
+<meta property="og:url" content="https://www.fizzics.ie/posts/2022-02-14-primel/"/>
+<meta property="og:image" content="https://www.fizzics.ie/posts/2022-02-14-primel/images/first-guess.png"/>
 <meta property="og:image:width" content="527"/>
 <meta property="og:image:height" content="524"/>
 <meta property="og:locale" content="en_US"/>
@@ -115,15 +115,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="twitter:card" content="summary_large_image"/>
 <meta property="twitter:title" content="Euge: Primel"/>
 <meta property="twitter:description" content="Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R."/>
-<meta property="twitter:url" content="https://fizzics.netlify.app/posts/2022-02-14-primel/"/>
-<meta property="twitter:image" content="https://fizzics.netlify.app/posts/2022-02-14-primel/images/first-guess.png"/>
+<meta property="twitter:url" content="https://www.fizzics.ie/posts/2022-02-14-primel/"/>
+<meta property="twitter:image" content="https://www.fizzics.ie/posts/2022-02-14-primel/images/first-guess.png"/>
 <meta property="twitter:image:width" content="527"/>
 <meta property="twitter:image:height" content="524"/>
 <meta property="twitter:site" content="@eugene100hickey"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Euge: Primel"/>
-<meta name="citation_fulltext_html_url" content="https://fizzics.netlify.app/posts/2022-02-14-primel/"/>
+<meta name="citation_fulltext_html_url" content="https://www.fizzics.ie/posts/2022-02-14-primel/"/>
 <meta name="citation_fulltext_world_readable" content=""/>
 <meta name="citation_online_date" content="2022/02/15"/>
 <meta name="citation_publication_date" content="2022/02/15"/>
@@ -132,7 +132,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Primel"]},{"type":"character","attributes":{},"value":["Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Eugene"]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie"]}]}]},{"type":"character","attributes":{},"value":["2022-02-15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://fizzics.netlify.app/posts/2022-02-14-primel/"]},{"type":"character","attributes":{},"value":["https://fizzics.netlify.app/posts/2022-02-14-primel/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Primel"]},{"type":"character","attributes":{},"value":["Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Eugene"]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie"]}]}]},{"type":"character","attributes":{},"value":["2022-02-15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie/posts/2022-02-14-primel/"]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie/posts/2022-02-14-primel/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2556,17 +2556,16 @@ p a:hover { /* makes links go green on hover */
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>x_split <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_split.html'>str_split</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='st'>""</span><span class='op'>)</span><span class='op'>)</span>
 <span class='va'>indices_no_repeats</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>numbers</span><span class='op'>$</span><span class='va'>x_split</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span><span class='op'>{</span><span class='fu'><a href='https://rdrr.io/r/base/table.html'>table</a></span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>==</span> <span class='fl'>1</span><span class='op'>}</span><span class='op'>)</span> <span class='op'><a href='https://magrittr.tidyverse.org/reference/pipe.html'>%&gt;%</a></span> <span class='fu'><a href='https://rdrr.io/r/base/unlist.html'>unlist</a></span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>numbers</span> <span class='op'>&lt;-</span> <span class='va'>numbers</span><span class='op'>[</span><span class='va'>indices_no_repeats</span>,<span class='op'>]</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>numbers</span><span class='op'>$</span><span class='va'>x</span><span class='op'>)</span>
 </code></pre>
 </div>
+<pre><code>[1] 10243 10247 10253 10259 10267 10273</code></pre>
 </div>
 <p>We end up with 2529 prime numbers with unique digits. The first one of these is 10243. So let’s plug that in to today’s primel.</p>
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/first-guess.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <p><em>1</em>, <em>0</em>, and <em>3</em> came up as correct digits, but in each case in the wrong place. So let’s try primes that start with <em>3</em>, and finish with <em>01</em>. To do this, we set up a vector of numbers from 30001 to 40000, with a step size of 100. Then we check which ones are primes. We end up with 17 possibilities. After our initial guess, we can exclude ones that include the digits <em>2</em> and <em>4</em>, and again we’d prefer ones with no repeat digits. 35801 is the first in our list to satisfy these criteria. Let’s try it.</p>
-<div class="layout-chunk" data-layout="l-body">
-<p><img src="images/second-guess.png" width="50%" style="display: block; margin: auto;" /></p>
-</div>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>begin</span> <span class='op'>&lt;-</span> <span class='fl'>30001</span>
@@ -2580,6 +2579,9 @@ p a:hover { /* makes links go green on hover */
 </div>
 <pre><code> [1] 31601 32401 32801 33301 33601 34301 34501 35201 35401 35801 36901
 [12] 37201 37501 38201 38501 39301 39901</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="images/second-guess.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
 <p>From these results, we see that <em>3</em> and <em>1</em> are indeed the first and last digits, and <em>0</em> must be the middle digit. Let’s run this again to see which primes satisfy these conditions.</p>
 <div class="layout-chunk" data-layout="l-body">
@@ -2618,7 +2620,7 @@ p a:hover { /* makes links go green on hover */
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/fourth-guess.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
@@ -2629,10 +2631,10 @@ p a:hover { /* makes links go green on hover */
     </span>
     <span class="article-sharing">
       Share: &nbsp;
-      <a href="https://twitter.com/share?text=Primel&amp;url=https%3A%2F%2Ffizzics.netlify.app%2Fposts%2F2022-02-14-primel%2F" aria-label="share on twitter">
+      <a href="https://twitter.com/share?text=Primel&amp;url=https%3A%2F%2Fwww.fizzics.ie%2Fposts%2F2022-02-14-primel%2F" aria-label="share on twitter">
         <i class="fab fa-twitter" aria-hidden="true"></i>
       </a>
-      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Ffizzics.netlify.app%2Fposts%2F2022-02-14-primel%2F&amp;title=Primel" aria-label="share on linkedin">
+      <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.fizzics.ie%2Fposts%2F2022-02-14-primel%2F&amp;title=Primel" aria-label="share on linkedin">
         <i class="fab fa-linkedin" aria-hidden="true"></i>
       </a>
     </span>
@@ -2641,7 +2643,7 @@ p a:hover { /* makes links go green on hover */
   <div id="disqus_thread" class="hidden"></div>
   <script type="text/javascript" cookie-consent="functionality">
 var disqus_config = function () {
-  this.page.url = 'https://fizzics.netlify.app/posts/2022-02-14-primel/';
+  this.page.url = 'https://www.fizzics.ie/posts/2022-02-14-primel/';
   this.page.identifier = 'posts/2022-02-14-primel/';
 };
 (function() {
@@ -2679,12 +2681,12 @@ var disqus_config = function () {
   <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/eugene100hickey/fizzics">https://github.com/eugene100hickey/fizzics</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Eugene (2022, Feb. 15). Euge: Primel. Retrieved from https://fizzics.netlify.app/posts/2022-02-14-primel/</pre>
+  <pre class="citation-appendix short">Eugene (2022, Feb. 15). Euge: Primel. Retrieved from https://www.fizzics.ie/posts/2022-02-14-primel/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{eugene2022primel,
   author = {Eugene, },
   title = {Euge: Primel},
-  url = {https://fizzics.netlify.app/posts/2022-02-14-primel/},
+  url = {https://www.fizzics.ie/posts/2022-02-14-primel/},
   year = {2022}
 }</pre>
 </div>

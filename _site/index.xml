@@ -2,197 +2,197 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
   <channel>
     <title>Euge</title>
-    <link>https://fizzics.netlify.app</link>
-    <atom:link href="https://fizzics.netlify.app/index.xml" rel="self" type="application/rss+xml"/>
+    <link>https://www.fizzics.ie</link>
+    <atom:link href="https://www.fizzics.ie/index.xml" rel="self" type="application/rss+xml"/>
     <description>Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
 </description>
     <image>
       <title>Euge</title>
-      <url>https://fizzics.netlify.app/images/atlantic.png</url>
-      <link>https://fizzics.netlify.app</link>
+      <url>https://www.fizzics.ie/images/atlantic.png</url>
+      <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
     <lastBuildDate>Tue, 15 Feb 2022 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Primel</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2022-02-14-primel</link>
+      <link>https://www.fizzics.ie/posts/2022-02-14-primel</link>
       <description>Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R.</description>
-      <guid>https://fizzics.netlify.app/posts/2022-02-14-primel</guid>
+      <guid>https://www.fizzics.ie/posts/2022-02-14-primel</guid>
       <pubDate>Tue, 15 Feb 2022 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2022-02-14-primel/images/first-guess.png" medium="image" type="image/png" width="527" height="524"/>
+      <media:content url="https://www.fizzics.ie/posts/2022-02-14-primel/images/first-guess.png" medium="image" type="image/png" width="527" height="524"/>
     </item>
     <item>
       <title>Jupiter Trojans</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-12-27-jupiter-trojans</link>
+      <link>https://www.fizzics.ie/posts/2021-12-27-jupiter-trojans</link>
       <description>NASA's Lucy mission launched earlier this year, setting out to examine the Jupiter Trojans. We'll have a look at them now.</description>
       <category>Physics</category>
       <category>R</category>
-      <guid>https://fizzics.netlify.app/posts/2021-12-27-jupiter-trojans</guid>
+      <guid>https://www.fizzics.ie/posts/2021-12-27-jupiter-trojans</guid>
       <pubDate>Mon, 27 Dec 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-12-27-jupiter-trojans/jupiter-trojans_files/figure-html5/distances-1.png" medium="image" type="image/png" width="1248" height="1536"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-12-27-jupiter-trojans/jupiter-trojans_files/figure-html5/distances-1.png" medium="image" type="image/png" width="1248" height="1536"/>
     </item>
     <item>
       <title>SDSS Data Access</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access</link>
+      <link>https://www.fizzics.ie/posts/2021-12-16-sdss-data-access</link>
       <description>How to get hold of data from the SDSS astronomical catalogue.</description>
       <category>Physics</category>
       <category>R</category>
-      <guid>https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access</guid>
+      <guid>https://www.fizzics.ie/posts/2021-12-16-sdss-data-access</guid>
       <pubDate>Thu, 16 Dec 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-12-16-sdss-data-access/sdss-data-access_files/figure-html5/plot_spectrum-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-12-16-sdss-data-access/sdss-data-access_files/figure-html5/plot_spectrum-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>University Points</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-12-15-university-points</link>
+      <link>https://www.fizzics.ie/posts/2021-12-15-university-points</link>
       <description>How do entry level points vary by university. And a chance to play with geomtextpath.</description>
       <category>Academia</category>
       <category>R</category>
-      <guid>https://fizzics.netlify.app/posts/2021-12-15-university-points</guid>
+      <guid>https://www.fizzics.ie/posts/2021-12-15-university-points</guid>
       <pubDate>Wed, 15 Dec 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-12-15-university-points/university-points_files/figure-html5/figure_out-1.png" medium="image" type="image/png" width="1248" height="1152"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-12-15-university-points/university-points_files/figure-html5/figure_out-1.png" medium="image" type="image/png" width="1248" height="1152"/>
     </item>
     <item>
       <title>University Choices</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-12-06-university-choices</link>
+      <link>https://www.fizzics.ie/posts/2021-12-06-university-choices</link>
       <description>Navigating through the college choice options from the CAO.</description>
       <category>Academia</category>
       <category>R</category>
-      <guid>https://fizzics.netlify.app/posts/2021-12-06-university-choices</guid>
+      <guid>https://www.fizzics.ie/posts/2021-12-06-university-choices</guid>
       <pubDate>Mon, 06 Dec 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-12-06-university-choices/university-choices_files/figure-html5/plot-1.png" medium="image" type="image/png" width="1728" height="1344"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-12-06-university-choices/university-choices_files/figure-html5/plot-1.png" medium="image" type="image/png" width="1728" height="1344"/>
     </item>
     <item>
       <title>Halloween Poster</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-10-27-halloween-poster</link>
+      <link>https://www.fizzics.ie/posts/2021-10-27-halloween-poster</link>
       <description>Giving a COVID poster that halloween vibe.</description>
       <category>Images</category>
       <category>Fun</category>
-      <guid>https://fizzics.netlify.app/posts/2021-10-27-halloween-poster</guid>
+      <guid>https://www.fizzics.ie/posts/2021-10-27-halloween-poster</guid>
       <pubDate>Wed, 27 Oct 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-10-27-halloween-poster/images/covid-header.png" medium="image" type="image/png" width="317" height="127"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-10-27-halloween-poster/images/covid-header.png" medium="image" type="image/png" width="317" height="127"/>
     </item>
     <item>
       <title>Electoral Vote</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-10-10-electoral-vote</link>
+      <link>https://www.fizzics.ie/posts/2021-10-10-electoral-vote</link>
       <description>Tracking US politician's in the news.</description>
       <category>Politics</category>
       <category>Web Scraping</category>
-      <guid>https://fizzics.netlify.app/posts/2021-10-10-electoral-vote</guid>
+      <guid>https://www.fizzics.ie/posts/2021-10-10-electoral-vote</guid>
       <pubDate>Sun, 10 Oct 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-10-10-electoral-vote/electoral-vote_files/figure-html5/plot-1.png" medium="image" type="image/png" width="2304" height="1152"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-10-10-electoral-vote/electoral-vote_files/figure-html5/plot-1.png" medium="image" type="image/png" width="2304" height="1152"/>
     </item>
     <item>
       <title>University Rankings</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-09-24-university-rankings</link>
+      <link>https://www.fizzics.ie/posts/2021-09-24-university-rankings</link>
       <description>Seeing the world through QS university rankings.</description>
       <category>Academia</category>
       <category>R</category>
       <category>Maps</category>
-      <guid>https://fizzics.netlify.app/posts/2021-09-24-university-rankings</guid>
+      <guid>https://www.fizzics.ie/posts/2021-09-24-university-rankings</guid>
       <pubDate>Fri, 24 Sep 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-09-24-university-rankings/university-rankings_files/figure-html5/map-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-09-24-university-rankings/university-rankings_files/figure-html5/map-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Donegal's Architectural Heritage</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-08-29-donegals-architectural-heritage</link>
+      <link>https://www.fizzics.ie/posts/2021-08-29-donegals-architectural-heritage</link>
       <description>Having a look at some of the historical buildings in Donegal, thanks to data from the National Inventory of Architectural Heritage. Also a chance to check out crosstalk and leafpop. Note; images will take a while to appear</description>
       <category>Maps</category>
       <category>Donegal</category>
-      <guid>https://fizzics.netlify.app/posts/2021-08-29-donegals-architectural-heritage</guid>
+      <guid>https://www.fizzics.ie/posts/2021-08-29-donegals-architectural-heritage</guid>
       <pubDate>Sun, 29 Aug 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-08-29-donegals-architectural-heritage/img/oakpark.jpg" medium="image" type="image/jpeg"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-08-29-donegals-architectural-heritage/img/oakpark.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
       <title>Horn Head in 3D</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-08-24-horn-head-in-3d</link>
+      <link>https://www.fizzics.ie/posts/2021-08-24-horn-head-in-3d</link>
       <description>Horn Head gets the Rayshader Treatment.</description>
       <category>Maps</category>
       <category>Donegal</category>
-      <guid>https://fizzics.netlify.app/posts/2021-08-24-horn-head-in-3d</guid>
+      <guid>https://www.fizzics.ie/posts/2021-08-24-horn-head-in-3d</guid>
       <pubDate>Tue, 24 Aug 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-08-24-horn-head-in-3d/img/three-D-model.png" medium="image" type="image/png" width="535" height="360"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-08-24-horn-head-in-3d/img/three-D-model.png" medium="image" type="image/png" width="535" height="360"/>
     </item>
     <item>
       <title>World Ocean Day</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day</link>
+      <link>https://www.fizzics.ie/posts/2021-06-12-world-ocean-day</link>
       <description>A map of the North Atlantic off the Donegal Coast, with pop-ups detailing various species observed at different locations.</description>
       <category>Maps</category>
       <category>Donegal</category>
-      <guid>https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day</guid>
+      <guid>https://www.fizzics.ie/posts/2021-06-12-world-ocean-day</guid>
       <pubDate>Tue, 08 Jun 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-06-12-world-ocean-day/images/sheephaven.png" medium="image" type="image/png" width="1208" height="673"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-06-12-world-ocean-day/images/sheephaven.png" medium="image" type="image/png" width="1208" height="673"/>
     </item>
     <item>
       <title>Solvay Conference</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-05-06-solvay-conference</link>
+      <link>https://www.fizzics.ie/posts/2021-05-06-solvay-conference</link>
       <description>This is what it looks like to change the world.</description>
       <category>Images</category>
       <category>R</category>
-      <guid>https://fizzics.netlify.app/posts/2021-05-06-solvay-conference</guid>
+      <guid>https://www.fizzics.ie/posts/2021-05-06-solvay-conference</guid>
       <pubDate>Thu, 06 May 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-05-06-solvay-conference/solvay-conference_files/figure-html5/boxplot-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-05-06-solvay-conference/solvay-conference_files/figure-html5/boxplot-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Derry Girls</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-05-03-derry-girls</link>
+      <link>https://www.fizzics.ie/posts/2021-05-03-derry-girls</link>
       <description>Using FACE++ to read emotions on images of faces.</description>
       <category>Images</category>
       <category>R</category>
-      <guid>https://fizzics.netlify.app/posts/2021-05-03-derry-girls</guid>
+      <guid>https://www.fizzics.ie/posts/2021-05-03-derry-girls</guid>
       <pubDate>Mon, 03 May 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-05-03-derry-girls/derry-girls_files/figure-html5/emotions-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-05-03-derry-girls/derry-girls_files/figure-html5/emotions-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Schizophrenia Genes</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-05-08-schizophrenia-genes</link>
+      <link>https://www.fizzics.ie/posts/2021-05-08-schizophrenia-genes</link>
       <description>A karyogram of the genes featured in GWAS of schizophrenia.</description>
       <category>Bioinformatics</category>
-      <guid>https://fizzics.netlify.app/posts/2021-05-08-schizophrenia-genes</guid>
+      <guid>https://www.fizzics.ie/posts/2021-05-08-schizophrenia-genes</guid>
       <pubDate>Mon, 26 Apr 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-05-08-schizophrenia-genes/schizophrenia-genes_files/figure-html5/karyogram-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-05-08-schizophrenia-genes/schizophrenia-genes_files/figure-html5/karyogram-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Meteorites....</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-05-08-meteorites</link>
+      <link>https://www.fizzics.ie/posts/2021-05-08-meteorites</link>
       <description>...and where to find them.</description>
       <category>Physics</category>
-      <guid>https://fizzics.netlify.app/posts/2021-05-08-meteorites</guid>
+      <guid>https://www.fizzics.ie/posts/2021-05-08-meteorites</guid>
       <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-05-08-meteorites/meteorites_files/figure-html5/mass_year-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-05-08-meteorites/meteorites_files/figure-html5/mass_year-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Tennis Sets</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/2021-05-08-tennis-sets</link>
+      <link>https://www.fizzics.ie/posts/2021-05-08-tennis-sets</link>
       <description>My tennis coach thinks that tennis matches frequently feature a close first set followed by a blow-out in the second.</description>
       <category>Fun</category>
       <category>Sport</category>
-      <guid>https://fizzics.netlify.app/posts/2021-05-08-tennis-sets</guid>
+      <guid>https://www.fizzics.ie/posts/2021-05-08-tennis-sets</guid>
       <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://fizzics.netlify.app/posts/2021-05-08-tennis-sets/tennis-sets_files/figure-html5/bar_chart-1.png" medium="image" type="image/png" width="1248" height="768"/>
+      <media:content url="https://www.fizzics.ie/posts/2021-05-08-tennis-sets/tennis-sets_files/figure-html5/bar_chart-1.png" medium="image" type="image/png" width="1248" height="768"/>
     </item>
     <item>
       <title>Welcome to Eugene's Blog</title>
       <dc:creator>Eugene</dc:creator>
-      <link>https://fizzics.netlify.app/posts/welcome</link>
+      <link>https://www.fizzics.ie/posts/welcome</link>
       <description>Welcome to our new blog, Eugene's Blog. We hope you enjoy 
 reading what we have to say!</description>
-      <guid>https://fizzics.netlify.app/posts/welcome</guid>
+      <guid>https://www.fizzics.ie/posts/welcome</guid>
       <pubDate>Sun, 25 Apr 2021 00:00:00 +0000</pubDate>
     </item>
   </channel>
