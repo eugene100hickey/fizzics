@@ -6,6 +6,7 @@ author:
   - name: Eugene
     url: https://www.fizzics.ie
 date: 2022-02-16
+categories: [R, Fun]
 output:
   distill::distill_article:
     self_contained: false
