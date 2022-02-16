@@ -5,7 +5,7 @@ description: |
 author:
   - name: Eugene
     url: https://www.fizzics.ie
-date: 2022-02-15
+date: 2022-02-16
 output:
   distill::distill_article:
     self_contained: false
@@ -18,7 +18,7 @@ library(tidyverse)
 library(matlab)
 ```
 
-In our house, we're fans of [wordle](https://www.nytimes.com/games/wordle/index.html), sitting down every evening to keep our streak going. But there is also a number equivalent called [primel](https://converged.yt/primel/), using five digit prime numbers instead of five letter words. This, of course, is therefore prefect territory for some R programming. Let's look at that in this post.  
+In our house, we're fans of [wordle](https://www.nytimes.com/games/wordle/index.html), sitting down every evening to keep our streak going. But there is also a number equivalent called [primel](https://converged.yt/primel/), using five digit prime numbers instead of five letter words. This, of course, is therefore prefect territory for some R programming. Let's look at yesterday's primel challenge in this post.  
 
 Like _wordle_, getting the appropriate initial guess is key. It has to be a prime number, and like in _wordle_, it's good not to repeat digits. The available space of numbers range from 10000 to 99999. Let's make a vector of these and then filter to just have the prime numbers. The `isprime()` function from the `matlab` library is useful here.
 

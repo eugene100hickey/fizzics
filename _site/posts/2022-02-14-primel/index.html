@@ -96,8 +96,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <link rel="icon" type="image/png" href="../../images/atlantic.png"/>
 
 <!--  https://schema.org/Article -->
-<meta property="article:published" itemprop="datePublished" content="2022-02-15"/>
-<meta property="article:created" itemprop="dateCreated" content="2022-02-15"/>
+<meta property="article:published" itemprop="datePublished" content="2022-02-16"/>
+<meta property="article:created" itemprop="dateCreated" content="2022-02-16"/>
 <meta name="article:author" content="Eugene"/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
@@ -125,14 +125,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta name="citation_title" content="Euge: Primel"/>
 <meta name="citation_fulltext_html_url" content="https://www.fizzics.ie/posts/2022-02-14-primel/"/>
 <meta name="citation_fulltext_world_readable" content=""/>
-<meta name="citation_online_date" content="2022/02/15"/>
-<meta name="citation_publication_date" content="2022/02/15"/>
+<meta name="citation_online_date" content="2022/02/16"/>
+<meta name="citation_publication_date" content="2022/02/16"/>
 <meta name="citation_author" content="Eugene"/>
 <!--/radix_placeholder_meta_tags-->
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Primel"]},{"type":"character","attributes":{},"value":["Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Eugene"]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie"]}]}]},{"type":"character","attributes":{},"value":["2022-02-15"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie/posts/2022-02-14-primel/"]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie/posts/2022-02-14-primel/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","output","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Primel"]},{"type":"character","attributes":{},"value":["Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Eugene"]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie"]}]}]},{"type":"character","attributes":{},"value":["2022-02-16"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie/posts/2022-02-14-primel/"]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie/posts/2022-02-14-primel/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2486,7 +2486,7 @@ p a:hover { /* makes links go green on hover */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Primel","description":"Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R.","authors":[{"author":"Eugene","authorURL":"https://www.fizzics.ie","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-02-15T00:00:00.000+00:00","citationText":"Eugene, 2022"}
+{"title":"Primel","description":"Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R.","authors":[{"author":"Eugene","authorURL":"https://www.fizzics.ie","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-02-16T00:00:00.000+00:00","citationText":"Eugene, 2022"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2535,11 +2535,11 @@ p a:hover { /* makes links go green on hover */
 <div class="d-byline">
   Eugene <a href="https://www.fizzics.ie" class="uri">https://www.fizzics.ie</a> 
   
-<br/>2022-02-15
+<br/>2022-02-16
 </div>
 
 <div class="d-article">
-<p>In our house, we’re fans of <a href="https://www.nytimes.com/games/wordle/index.html">wordle</a>, sitting down every evening to keep our streak going. But there is also a number equivalent called <a href="https://converged.yt/primel/">primel</a>, using five digit prime numbers instead of five letter words. This, of course, is therefore prefect territory for some R programming. Let’s look at that in this post.</p>
+<p>In our house, we’re fans of <a href="https://www.nytimes.com/games/wordle/index.html">wordle</a>, sitting down every evening to keep our streak going. But there is also a number equivalent called <a href="https://converged.yt/primel/">primel</a>, using five digit prime numbers instead of five letter words. This, of course, is therefore prefect territory for some R programming. Let’s look at yesterday’s primel challenge in this post.</p>
 <p>Like <em>wordle</em>, getting the appropriate initial guess is key. It has to be a prime number, and like in <em>wordle</em>, it’s good not to repeat digits. The available space of numbers range from 10000 to 99999. Let’s make a vector of these and then filter to just have the prime numbers. The <code>isprime()</code> function from the <code>matlab</code> library is useful here.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
@@ -2681,7 +2681,7 @@ var disqus_config = function () {
   <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/eugene100hickey/fizzics">https://github.com/eugene100hickey/fizzics</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
   <h3 id="citation">Citation</h3>
   <p>For attribution, please cite this work as</p>
-  <pre class="citation-appendix short">Eugene (2022, Feb. 15). Euge: Primel. Retrieved from https://www.fizzics.ie/posts/2022-02-14-primel/</pre>
+  <pre class="citation-appendix short">Eugene (2022, Feb. 16). Euge: Primel. Retrieved from https://www.fizzics.ie/posts/2022-02-14-primel/</pre>
   <p>BibTeX citation</p>
   <pre class="citation-appendix long">@misc{eugene2022primel,
   author = {Eugene, },
