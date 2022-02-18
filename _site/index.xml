@@ -17,7 +17,7 @@
       <title>Primel</title>
       <dc:creator>Eugene</dc:creator>
       <link>https://www.fizzics.ie/posts/2022-02-14-primel</link>
-      <description>Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead if words. This post unpicks this in R.</description>
+      <description>Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead of words. This post unpicks this in R.</description>
       <category>R</category>
       <category>Fun</category>
       <guid>https://www.fizzics.ie/posts/2022-02-14-primel</guid>
