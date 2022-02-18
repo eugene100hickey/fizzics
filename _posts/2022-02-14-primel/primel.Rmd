@@ -62,7 +62,7 @@ numbers[isprime(numbers)==1]
 knitr::include_graphics(path="images/second-guess.png")
 ```
 
-From these results, we see that _3_ and _1_ are indeed the first and last digits, and _0_ must be the middle digit. Let's run this again to see which primes satisfy these conditions.  
+From these results, we see that _3_ and _1_ are indeed the first and last digits, and _0_ must be the middle digit. Let's run this again to see which primes satisfy these conditions. Note, the `numbers%%1000` picks out the last three digits of our numbers, and checking that this is between 0 and 100 means the third last digit must be a 0.     
 
 ```{r third}
 begin <- 30001
@@ -71,7 +71,7 @@ my_step <- 10
 
 numbers <- seq(begin, end, by = my_step)
 
-numbers[isprime(numbers)==1 & numbers%%1000 < 100]
+numbers[isprime(numbers)==1 & between(numbers%%1000, 0, 100)]
 ```
 
 We can exclude numbers with the digits _2_, _4_, _5_, or _8_, and again, we'd like to have a guess with no repeat digits. 37061 looks good, let's try it.  

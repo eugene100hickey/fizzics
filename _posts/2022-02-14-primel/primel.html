@@ -1530,7 +1530,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="images/second-guess.png" width="50%" style="display: block; margin: auto;" /></p>
 </div>
-<p>From these results, we see that <em>3</em> and <em>1</em> are indeed the first and last digits, and <em>0</em> must be the middle digit. Let’s run this again to see which primes satisfy these conditions.</p>
+<p>From these results, we see that <em>3</em> and <em>1</em> are indeed the first and last digits, and <em>0</em> must be the middle digit. Let’s run this again to see which primes satisfy these conditions. Note, the <code>numbers%%1000</code> picks out the last three digits of our numbers, and checking that this is between 0 and 100 means the third last digit must be a 0.</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span class='va'>begin</span> <span class='op'>&lt;-</span> <span class='fl'>30001</span>
@@ -1539,7 +1539,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <span class='va'>numbers</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/seq.html'>seq</a></span><span class='op'>(</span><span class='va'>begin</span>, <span class='va'>end</span>, by <span class='op'>=</span> <span class='va'>my_step</span><span class='op'>)</span>
 
-<span class='va'>numbers</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/pkg/matlab/man/isprime.html'>isprime</a></span><span class='op'>(</span><span class='va'>numbers</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>1</span> <span class='op'>&amp;</span> <span class='va'>numbers</span><span class='op'><a href='https://rdrr.io/r/base/Arithmetic.html'>%%</a></span><span class='fl'>1000</span> <span class='op'>&lt;</span> <span class='fl'>100</span><span class='op'>]</span>
+<span class='va'>numbers</span><span class='op'>[</span><span class='fu'><a href='https://rdrr.io/pkg/matlab/man/isprime.html'>isprime</a></span><span class='op'>(</span><span class='va'>numbers</span><span class='op'>)</span><span class='op'>==</span><span class='fl'>1</span> <span class='op'>&amp;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/between.html'>between</a></span><span class='op'>(</span><span class='va'>numbers</span><span class='op'><a href='https://rdrr.io/r/base/Arithmetic.html'>%%</a></span><span class='fl'>1000</span>, <span class='fl'>0</span>, <span class='fl'>100</span><span class='op'>)</span><span class='op'>]</span>
 </code></pre>
 </div>
 <pre><code> [1] 30011 30071 30091 31051 31081 31091 32051 33071 33091 34031 34061
