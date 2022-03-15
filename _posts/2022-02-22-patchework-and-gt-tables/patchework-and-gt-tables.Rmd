@@ -68,8 +68,6 @@ table3 <- penguins %>%
 table3  
 ```
 
-And there you have it. Of course, this is just a rudimentary layout, we haven't even begun to harness the full repetoire of either `gt` or `patchwork`. But it's a start.
-
 Now for our second hack. We save each table in turn as a tmp file and then read it back in as a .png. This idea is from Johannes Enevoldsen given at https://github.com/rstudio/gt/issues/420. 
 
 ```{r grobs, include=FALSE}
@@ -99,4 +97,6 @@ layout <- c(
 ```
 
 
+
+And there you have it. Of course, this is just a rudimentary layout, we haven't even begun to harness the full repetoire of either `gt` or `patchwork`. But it's a start.
 
