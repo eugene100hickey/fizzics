@@ -1,5 +1,27 @@
 [
   {
+    "path": "teaching/2022-03-09-GRS-DataVis/",
+    "title": "GRS March - Data Visualisation Workshop",
+    "description": "Graduate Research Week in March 2022 featured a workshop on Data Visualisation, really an introduction to ggplot",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://fizzics.ie"
+      }
+    ],
+    "date": "2022-03-03",
+    "categories": [
+      "Academia",
+      "R"
+    ],
+    "contents": "\n\nd-title {\n display:none;\n}\nThe new model for delivering modules to our postgraduate students means block booking three weeks every year when we down our regular research tools and focus on broader research skills together. Data Visualisation was the topic for the 2nd year postgrads for the Wednesday of this week. And this meant ggplot.\nThe day-long workshop was split in to 6 sections, all the way from Why R and ggplot to looking at colours, facets, fonts and themes in the afternoon. It was a lot of fun to deliver, even if I’d have preferred face-to-face (and apparently the next iteration in July will indeed be F2F). We had about 50 students engaged, almost all of whom were successful with the raft of shinyapps exercises we put together using learnr.\nAll the workshop material is available at https://grs-2022.netlify.app/, well except for most of the shinyapps which I’ll take offline at some stage.\n\n\n\n",
+    "preview": "teaching/2022-03-09-GRS-DataVis/img/cover.png",
+    "last_modified": "2022-03-15T14:05:41+00:00",
+    "input_file": "GRS-DataVis.knit.md",
+    "preview_width": 1262,
+    "preview_height": 548
+  },
+  {
     "path": "teaching/2021-09-09-4th-year-projects/",
     "title": "Final Year Projects",
     "description": "I've run a series of final year projects with pharmaceutical science students, this page gives the titles going back over the years.",

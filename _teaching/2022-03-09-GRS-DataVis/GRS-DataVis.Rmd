@@ -1,0 +1,40 @@
+---
+title: "GRS March - Data Visualisation Workshop"
+description: |
+  Graduate Research Week in March 2022 featured a workshop on Data Visualisation, really an introduction to ggplot
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.ie
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 03-03-2022
+preview: img/cover.png
+url: http://fizzics.ie
+base_url: http://fizzics.ie
+twitter:
+  creator: "@eugene100hickey"
+categories: [Academia, R]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+The new model for delivering modules to our postgraduate students means block booking three weeks every year when we down our regular research tools and focus on broader research skills together. Data Visualisation was the topic for the 2nd year postgrads for the Wednesday of this week. And this meant `ggplot`. 
+
+The day-long workshop was split in to 6 sections, all the way from _Why R and ggplot_ to looking at colours, facets, fonts and themes in the afternoon. It was a lot of fun to deliver, even if I'd have preferred face-to-face (and apparently the next iteration in July will indeed be F2F). We had about 50 students engaged, almost all of whom were successful with the raft of shinyapps exercises we put together using `learnr`.
+
+All the workshop material is available at https://grs-2022.netlify.app/, well except for most of the shinyapps which I'll take offline at some stage. 
+
