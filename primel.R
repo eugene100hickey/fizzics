@@ -29,10 +29,10 @@ z <- map(1:length(x), function(n){str_flatten(x[[n]])}) %>%
   unlist() %>% 
   as.numeric()
 
-begin <- 12005
-end <- 13000
-my_step <- 1
+begin <- 19207
+end <- 99999
+my_step <- 10000
 
 numbers <- seq(begin, end, by = my_step)
 
-numbers[isprime(numbers)==1]
+numbers[isprime(numbers)==1 & between(numbers %% 1000, 200, 300)]

@@ -12,7 +12,16 @@
       <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Wed, 16 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 22 Feb 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>patchwork &amp; gt tables</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://www.fizzics.ie/posts/2022-02-22-patchework-and-gt-tables</link>
+      <description>gt makes beautiful tables, and patchwork is a wonderful package for combining plots. This post shows a way to make them work together.</description>
+      <guid>https://www.fizzics.ie/posts/2022-02-22-patchework-and-gt-tables</guid>
+      <pubDate>Tue, 22 Feb 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/posts/2022-02-22-patchework-and-gt-tables/patchework-and-gt-tables_files/figure-html5/patches-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Primel</title>
       <dc:creator>Eugene</dc:creator>
