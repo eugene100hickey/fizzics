@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-3-1.png"]}
+  {"type":"character","attributes":{},"value":["golf-courses-in-donegal-part-ii-analysis_files/anchor-4.2.2/anchor.min.js","golf-courses-in-donegal-part-ii-analysis_files/bowser-1.9.3/bowser.min.js","golf-courses-in-donegal-part-ii-analysis_files/distill-2.2.21/template.v2.js","golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-3-1.png","golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-4-1.png","golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-6-1.png","golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-7-1.png","golf-courses-in-donegal-part-ii-analysis_files/header-attrs-2.13/header-attrs.js","golf-courses-in-donegal-part-ii-analysis_files/jquery-3.6.0/jquery-3.6.0.js","golf-courses-in-donegal-part-ii-analysis_files/jquery-3.6.0/jquery-3.6.0.min.js","golf-courses-in-donegal-part-ii-analysis_files/jquery-3.6.0/jquery-3.6.0.min.map","golf-courses-in-donegal-part-ii-analysis_files/popper-2.6.0/popper.min.js","golf-courses-in-donegal-part-ii-analysis_files/tippy-6.2.7/tippy-bundle.umd.min.js","golf-courses-in-donegal-part-ii-analysis_files/tippy-6.2.7/tippy-light-border.css","golf-courses-in-donegal-part-ii-analysis_files/tippy-6.2.7/tippy.css","golf-courses-in-donegal-part-ii-analysis_files/tippy-6.2.7/tippy.umd.min.js","golf-courses-in-donegal-part-ii-analysis_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1549,6 +1549,138 @@ par-5. On the other hand, there is a lot of overlap between par-4’s and
 par-5’s. A par-4 can be long but relatively open and so feasible in 4
 shots, whereas a par-5 can be shorter but tricky because of doglegs and
 hazards.</p>
+<p>Let’s see how long these courses are:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>label_size</span> <span class='op'>&lt;-</span> <span class='fl'>9</span>
+<span class='va'>course_summary</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_reorder.html'>fct_reorder</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='va'>total_length</span><span class='op'>)</span>,
+         length_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>total_length</span> <span class='op'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/Extremes.html'>max</a></span><span class='op'>(</span><span class='va'>total_length</span><span class='op'>)</span>, 
+                               <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"{total_length |&gt; format(nsmall = 0)} yards: Par = {total_par}"</span><span class='op'>)</span>, 
+                               <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"{total_length |&gt; format(nsmall = 0)}: {total_par}"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='va'>total_length</span>, fill <span class='op'>=</span> <span class='va'>highlight</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_text</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>length_label</span><span class='op'>)</span>, 
+            size <span class='op'>=</span> <span class='va'>label_size</span>, y <span class='op'>=</span> <span class='fl'>2000</span>,
+            family <span class='op'>=</span> <span class='st'>"Fuzzy Bubbles"</span>,
+            fontface <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"yes"</span> <span class='op'>=</span> <span class='st'>"#56B4E9"</span>, 
+                               <span class='st'>"nine"</span> <span class='op'>=</span> <span class='st'>"#E69F00"</span>, 
+                               <span class='st'>"eighteen"</span> <span class='op'>=</span> <span class='st'>"#D55E00"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_clean</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+        axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+        axis.text.y <span class='op'>=</span> <span class='fu'><a href='https://wilkelab.org/ggtext/reference/element_markdown.html'>element_markdown</a></span><span class='op'>(</span><span class='op'>)</span>,
+        <span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-4-1.png" width="960" /></p>
+</div>
+<p>A lot of variation. The nine-hole courses (in lighter orange) tend to
+be shorter. And, of course, the length depends on the par of the course
+with the par-3 course in <em>Foyle</em> being the shortest and Donegal
+being the longest and (almost) the highest par figure.</p>
+<p>Let’s try and normalise this by looking at the length of the par’s 3,
+4, and 5 separately. The code is quite long, so we just show the part
+for the par 5’s. Note how rows have to be added for those three courses
+that don’t have a par 5.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='co'># par 5 average length</span>
+<span class='va'>par_5</span> <span class='op'>&lt;-</span> <span class='va'>donegal_golf</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>par</span> <span class='op'>==</span> <span class='fl'>5</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>course</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>total_length <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/mean.html'>mean</a></span><span class='op'>(</span><span class='va'>yards</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>z5</span> |&gt; <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='va'>highlight</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>length_par <span class='op'>=</span> <span class='va'>total_length</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>,
+         length_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>course</span> <span class='op'>==</span> <span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>z5</span><span class='op'>$</span><span class='va'>course</span><span class='op'>)</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>tail</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>)</span>, 
+                               <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"{length_par |&gt; format(nsmall = 1)} yards"</span><span class='op'>)</span>, 
+                               <span class='va'>length_par</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span>nsmall <span class='op'>=</span> <span class='fl'>1</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span>|&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span><span class='op'>(</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://tibble.tidyverse.org/reference/add_row.html'>add_row</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='st'>"Otway"</span>, 
+          total_length <span class='op'>=</span> <span class='fl'>0</span>, 
+          highlight <span class='op'>=</span> <span class='st'>"nine"</span>, 
+          length_par <span class='op'>=</span> <span class='fl'>0</span>, 
+          length_label <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://tibble.tidyverse.org/reference/add_row.html'>add_row</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='st'>"Cruit Island"</span>, 
+          total_length <span class='op'>=</span> <span class='fl'>0</span>, 
+          highlight <span class='op'>=</span> <span class='st'>"nine"</span>, 
+          length_par <span class='op'>=</span> <span class='fl'>0</span>, 
+          length_label <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://tibble.tidyverse.org/reference/add_row.html'>add_row</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='st'>"Foyle Centre Woodlands"</span>, 
+          total_length <span class='op'>=</span> <span class='fl'>0</span>, 
+          highlight <span class='op'>=</span> <span class='st'>"nine"</span>, 
+          length_par <span class='op'>=</span> <span class='fl'>0</span>, 
+          length_label <span class='op'>=</span> <span class='st'>""</span><span class='op'>)</span> |&gt;
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_relevel.html'>fct_relevel</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='fu'><a href='https://rdrr.io/r/base/levels.html'>levels</a></span><span class='op'>(</span><span class='va'>z5</span><span class='op'>$</span><span class='va'>course</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='va'>length_par</span>, fill <span class='op'>=</span> <span class='va'>highlight</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_text</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>length_label</span><span class='op'>)</span>, 
+            size <span class='op'>=</span> <span class='va'>label_size</span>, y<span class='op'>=</span><span class='fl'>200</span>,
+            family <span class='op'>=</span> <span class='st'>"Fuzzy Bubbles"</span>,
+            fontface <span class='op'>=</span> <span class='st'>"bold"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"yes"</span> <span class='op'>=</span> <span class='st'>"#56B4E9"</span>, 
+                               <span class='st'>"nine"</span> <span class='op'>=</span> <span class='st'>"#E69F00"</span>, 
+                               <span class='st'>"eighteen"</span> <span class='op'>=</span> <span class='st'>"#D55E00"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_flip.html'>coord_flip</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_clean</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span> 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>axis.title <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+        axis.text.x <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+        axis.text.y <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>,
+        panel.grid <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span>
+  <span class='op'>)</span>
+
+<span class='va'>layout</span> <span class='op'>&lt;-</span> <span class='st'>"AABBBCCCC"</span>
+<span class='va'>par_3</span> <span class='op'>+</span> <span class='va'>par_4</span> <span class='op'>+</span> <span class='va'>par_5</span> <span class='op'>+</span> <span class='fu'><a href='https://patchwork.data-imaginist.com/reference/plot_layout.html'>plot_layout</a></span><span class='op'>(</span>design <span class='op'>=</span> <span class='va'>layout</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-6-1.png" width="960" /></p>
+</div>
+<p>It looks like <em>Donegal</em> is just long. but a special mention
+for <em>Portnoo</em>, with variation that combines the shortest par 3’s
+with the longest par 5’s.</p>
+<p>How does the difficulty of each hole depend on its par? To do this we
+use the <em>hole index</em> data for each course. The hole rated
+<em>index 1</em> is considered the most difficult on a course, right
+down to <em>index 18</em> for the easiest. In my experience, the par 3’s
+tend to be considered easy and so have high indices (there’s less chance
+of things going wrong when it’s just one shot to the green), whereas
+long par 4’s usually monopolise the lowest indices. Let’s see.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>donegal_golf</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>index</span>, <span class='va'>par</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>n <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>index</span>, y <span class='op'>=</span> <span class='va'>n</span>, fill <span class='op'>=</span> <span class='va'>par</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_bar.html'>geom_col</a></span><span class='op'>(</span>show.legend <span class='op'>=</span> <span class='cn'>F</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_continuous.html'>scale_x_continuous</a></span><span class='op'>(</span>breaks <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>6</span>, <span class='fl'>9</span>, <span class='fl'>12</span>, <span class='fl'>15</span>, <span class='fl'>18</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/scale_manual.html'>scale_fill_manual</a></span><span class='op'>(</span>values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"#009E73"</span>, <span class='st'>"#D55E00"</span>, <span class='st'>"#0072B2"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>y <span class='op'>=</span> <span class='st'>""</span>,
+       title <span class='op'>=</span> <span class='st'>"Variation in Hole Index for 
+       &lt;strong&gt;&lt;p style = 'color:#009E73'&gt;Par 3's&lt;/p&gt;&lt;/strong&gt;, 
+       &lt;strong&gt;&lt;p style = 'color:#D55E00'&gt;Par 4's&lt;/p&gt;&lt;/strong&gt;, and 
+       &lt;strong&gt;&lt;p style = 'color:#0072B2'&gt;Par 5's&lt;/p&gt;&lt;/strong&gt;"</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>theme_clean</span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span>plot.title <span class='op'>=</span> <span class='fu'><a href='https://wilkelab.org/ggtext/reference/element_markdown.html'>element_markdown</a></span><span class='op'>(</span>size <span class='op'>=</span> <span class='fl'>30</span><span class='op'>)</span>,
+        axis.text.y <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
+<p><img src="golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-7-1.png" width="624" /></p>
+</div>
+<p>Looks like our hunch was good, with par 3’s having an increasing
+presence among the higher index holes, whereas the par 4’s dominate the
+lower indices. Par 5’s, meanwhile, seem to have an even index
+probability once you get beyond index 4 or so.</p>
+<p>This concludes our walk around the courses of Donegal. If you enjoy
+the game, they come highly recommended for their beauty, the varied
+challenges they pose, and from the warm reception afforded to
+visitors.</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
