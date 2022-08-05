@@ -1,0 +1,75 @@
+---
+title: "Golf Courses in Donegal - Part II, analysis"
+description: |
+  A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this second part we'll look at some plots that investigating these numbers.
+author:
+  - name: Eugene
+    url: https://www.fizzics.ie
+date: 2022-08-05
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+
+In a previous post, we looked at the course cards for various golf clubs in Donegal and beyond. In this post, we aim to see what details we can determine from these cards about the length, difficulty and pars on these holes.
+
+These are the libraries we'll need, and also a `ggplot` theme I like to use:
+
+```{r}
+library(tidyverse)
+library(showtext)
+library(ggokabeito)
+library(viridis)
+library(geomtextpath)
+library(ggtext)
+library(patchwork)
+
+font_add_google(name =  "Fuzzy Bubbles", family = "Fuzzy Bubbles")
+showtext_auto()
+theme_clean <- function() {
+  theme_minimal(base_family = "Fuzzy Bubbles") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size = 20, family = "Fuzzy Bubbles"),
+          plot.background = element_rect(fill = "white", color = NA),
+          axis.text = element_text(size = 20),
+          axis.title = element_text(face = "bold", size = 24),
+          strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
+          strip.background = element_rect(fill = "grey80", color = NA),
+          legend.text = element_text(size = 16))
+}
+```
+
+We'll get our data as in the [previous post](https://www.fizzics.ie/posts/2022-08-03-golf-courses-in-donegal/).
+
+```{r echo = FALSE}
+course_summary <- readRDS("../2022-08-03-golf-courses-in-donegal/data/course_summary")
+donegal_golf <- readRDS("../2022-08-03-golf-courses-in-donegal/data/donegal_clean") |> 
+  left_join(course_summary)
+```
+
+Now let's see what this tells us. First off, let's look at the distribution of hole lengths for different pars.
+
+
+```{r}
+donegal_golf |> 
+  ggplot(aes(yards, col = par, group = par)) +
+  geom_textdensity(aes(label = glue::glue("Par\n{par}"), fill = par), stat = "density",
+                size = 12, fontface = 2, hjust = "ymax", vjust = 0.3, gap = T,
+                show.legend = F, linewidth = 2, family = "Fuzzy Bubbles",
+                lineheight = 0.5) +
+  geom_rug(show.legend = F) +
+  coord_cartesian(ylim=c(0, 0.015)) +
+  scale_colour_okabe_ito() +
+  theme_clean() +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_blank())
+```
+
+Note that there's no overlap between par-3's and par-4's, if a hole is less than 250 yards, then it's a par-3, otherwise it's a par-4 or par-5. On the other hand, there is a lot of overlap between par-4's and par-5's. A par-4 can be long but relatively open and so feasible in 4 shots, whereas a par-5 can be shorter but tricky because of doglegs and hazards.
+
+

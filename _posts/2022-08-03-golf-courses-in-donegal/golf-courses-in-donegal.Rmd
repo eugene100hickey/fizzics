@@ -132,51 +132,58 @@ donegal_golf <- data.table::rbindlist(z2) |>
   mutate(par = as.factor(par))
 ```
 
+Finally, we'll do a little cleaning. We know these are all golf courses, so we can skip that part of the name. Also, for nine hole courses, players tend to go around twice, so we'll double up their holes and adjust the hole indices accordingly.
+
+```{r}
+donegal_golf <- donegal_golf |> 
+    mutate(course = course |> str_remove("Golf") |> 
+           str_remove("Links") |>
+           str_remove("Club") |> 
+           str_remove("And") |> 
+           str_remove("Hotel") |> 
+           str_remove("International") |> 
+           str_squish())
+
+course_summary <- donegal_golf |>
+  group_by(course) |> 
+  summarise(total_length = sum(yards),
+            total_par = sum(par |> as.character() |> as.numeric()),
+            highlight = ifelse(n() < 10, "nine", "eighteen")) |> 
+  ungroup() 
+course_summary <- course_summary |> 
+  mutate(highlight = ifelse(course == "Dunfanaghy", "yes", highlight))
+
+nines <- course_summary |> 
+  filter(highlight == "nine")
+
+nine_cards <- donegal_golf |> 
+  filter(course %in% nines$course)
+
+nine_type <- nine_cards |> 
+  group_by(course) |> 
+  summarise(index_type = sum(index)) |> 
+  ungroup()
+
+nine_cards <- nine_cards |> 
+  left_join(nine_type) |> 
+  mutate(index = case_when(index_type == 81 ~ index+1,
+                           index_type == 90 ~ index-1,
+                           index_type == 45 ~ index*2),
+         hole = hole + 9) |> 
+  select(-index_type)
+
+otway_style_indices <- nine_type |> filter(index_type == 45) |> pull(course)
+
+donegal_golf <- donegal_golf |> 
+  mutate(index = ifelse(course %in% otway_style_indices, index*2 - 1, index)) |> 
+  bind_rows(nine_cards)
+```
+
+
 This gives a tibble that looks like this:
 
 ```{r echo = FALSE}
 DT::datatable(donegal_golf |> select(-yards))
 ```
 
-Now let's see what this tells us. First off, let's look at the distribution of hole lengths for different pars.
-
-```{r echo=FALSE}
-library(showtext)
-library(ggokabeito)
-library(viridis)
-library(geomtextpath)
-
-font_add_google(name =  "Fuzzy Bubbles", family = "Fuzzy Bubbles")
-showtext_auto()
-theme_clean <- function() {
-  theme_minimal(base_family = "Fuzzy Bubbles") +
-    theme(panel.grid.minor = element_blank(),
-          text = element_text(size = 20, family = "Fuzzy Bubbles"),
-          plot.background = element_rect(fill = "white", color = NA),
-          axis.text = element_text(size = 20),
-          axis.title = element_text(face = "bold", size = 24),
-          strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
-          strip.background = element_rect(fill = "grey80", color = NA),
-          legend.text = element_text(size = 16))
-}
-```
-
-```{r}
-donegal_golf |> ggplot(aes(length, col = par, group = par)) +
-  geom_density(show.legend = F, size = 2) +
-  geom_textpath(aes(label = glue::glue("Par {par}")), stat = "density",
-                size = 12, fontface = 2, hjust = 0.2, vjust = 0.1, gap = T,
-                show.legend = F, linewidth = 2, family = "Fuzzy Bubbles") +
-  geom_rug(show.legend = F) +
-  labs(x = "Hole Length in Yards") +
-  scale_colour_okabe_ito() +
-  theme_clean() +
-  theme(axis.text.y = element_blank(),
-        axis.title.y = element_blank())
-```
-
-`theme_clean` is a custom `ggplot` set-up that you can see at [my github](https://github.com/eugene100hickey/fizzics/tree/master/_posts).
-
-Note that there's no overlap between par-3's and par-4's, if a hole is less than 250 yards, then it's a par-3, otherwise it's a par-4 or par-5. On the other hand, there is a lot of overlap between par-4's and par-5's. A par-4 can be long but relatively open and so feasible in 4 shots, whereas a par-5 can be shorter but tricky because of doglegs and hazards.
-
-Let's look at the maximum and minimum lengths in each category, just seeing the Donegal courses rather than including ones from Derry and Tyrone.
+Now we have our data the way we want, we can look and see what this tells us. That's for the [next post](https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis/index.html)

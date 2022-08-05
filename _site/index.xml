@@ -12,7 +12,16 @@
       <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 02 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Golf Courses in Donegal - Part II, analysis</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis</link>
+      <description>A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this second part we'll look at some plots that investigating these numbers.</description>
+      <guid>https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis</guid>
+      <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis/golf-courses-in-donegal-part-ii-analysis_files/figure-html5/unnamed-chunk-3-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
     <item>
       <title>Golf Courses in Donegal - Part I, data access</title>
       <dc:creator>Eugene</dc:creator>
