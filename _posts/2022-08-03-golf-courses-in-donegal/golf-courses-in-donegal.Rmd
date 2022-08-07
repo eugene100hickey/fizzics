@@ -9,7 +9,7 @@ date: 2022-08-03
 output:
   distill::distill_article:
     self_contained: false
-categories: [Sport, Donegal]
+categories: [Sport, Donegal, Web Scraping]
 preview: images/dfgc.jpg
 ---
 

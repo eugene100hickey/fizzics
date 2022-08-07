@@ -12,7 +12,7 @@
       <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Thu, 04 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 05 Aug 2022 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Golf Courses in Donegal - Part II, analysis</title>
       <dc:creator>Eugene</dc:creator>
@@ -21,7 +21,7 @@
       <category>Sport</category>
       <category>Donegal</category>
       <guid>https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis</guid>
-      <pubDate>Thu, 04 Aug 2022 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
       <media:content url="https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis/images/donegal.png" medium="image" type="image/png" width="381" height="320"/>
     </item>
     <item>
@@ -31,8 +31,9 @@
       <description>A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this first part we'll look at how to get hold of the data by some web scrapping, a second post will do some analysis of the numbers.</description>
       <category>Sport</category>
       <category>Donegal</category>
+      <category>Web Scraping</category>
       <guid>https://www.fizzics.ie/posts/2022-08-03-golf-courses-in-donegal</guid>
-      <pubDate>Wed, 03 Aug 2022 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 02 Aug 2022 00:00:00 +0000</pubDate>
       <media:content url="https://www.fizzics.ie/posts/2022-08-03-golf-courses-in-donegal/images/dfgc.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
