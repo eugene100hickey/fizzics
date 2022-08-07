@@ -22,7 +22,7 @@ Amongst other things, Donegal is a haven for golfers. And while my favourite kno
 
 Getting the data from each golf club would be laborious, but fortunately the website at [Golfpass](https://www.golfpass.com/) makes this a lot easier. As long as you can find the landing page for the golf courses you're interested in (for Donegal it's [here](https://www.golfpass.com/travel-advisor/course-directory/8812-county-donegal/)) then you can strip out all the links and navigate to the courses, and their scorecards, that way. The libraries we need are `tidyverse` (of course) and `rvest` for the scraping. We end up with a lot of links, but the ones we care about are recognisable for the strings _/courses/_ and _#write-review_
 
-```{r}
+```{r libraries}
 library(tidyverse)
 library(rvest)
 
@@ -38,7 +38,7 @@ scorecard_urls <- html_attr(html_nodes(w, "a"), "href") |>
 
 The first few entries are shown below, there are `r dim(scorecard_urls)[1]` in total.
 
-```{r echo = F}
+```{r urls, echo = F}
 scorecard_urls |> head() |> gt::gt()
 ```
 
@@ -58,7 +58,7 @@ Some things to watch out for:
 
 The function that works course-by-course is shown below.
 
-```{r}
+```{r card-function}
 course_card <- function(url) {
   # use the url to work out the golf club name
   course <- sub(".*courses/\\d+-", "", url) |> 
@@ -116,7 +116,7 @@ course_card <- function(url) {
 }
 ```
 
-```{r echo = FALSE}
+```{r data, echo = FALSE}
 z1 <- readRDS("data/donegal")
 z2 <- map(1:length(z1), function(x) z1[[x]]$result)
 donegal_golf <- data.table::rbindlist(z2) |> 
@@ -125,7 +125,7 @@ donegal_golf <- data.table::rbindlist(z2) |>
 
 And the calls to `map` to create the overall data frame are shown here.
 
-```{r eval=FALSE}
+```{r data-purrr, eval=FALSE}
 z1 <- map(scorecard_urls$value, safely(course_card))
 z2 <- map(1:length(z1), function(x) z1[[x]]$result)
 donegal_golf <- data.table::rbindlist(z2) |> 
@@ -134,7 +134,7 @@ donegal_golf <- data.table::rbindlist(z2) |>
 
 Finally, we'll do a little cleaning. We know these are all golf courses, so we can skip that part of the name. Also, for nine hole courses, players tend to go around twice, so we'll double up their holes and adjust the hole indices accordingly.
 
-```{r}
+```{r cleaning}
 donegal_golf <- donegal_golf |> 
     mutate(course = course |> str_remove("Golf") |> 
            str_remove("Links") |>
@@ -182,7 +182,7 @@ donegal_golf <- donegal_golf |>
 
 This gives a tibble that looks like this:
 
-```{r echo = FALSE}
+```{r table, echo = FALSE}
 DT::datatable(donegal_golf |> select(-yards))
 ```
 

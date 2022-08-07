@@ -9,6 +9,7 @@ date: 2022-08-05
 output:
   distill::distill_article:
     self_contained: false
+preview: images/donegal.png
 ---
 
 ```{r setup, include=FALSE}
@@ -20,7 +21,7 @@ In a previous post, we looked at the course cards for various golf clubs in Done
 
 These are the libraries we'll need, and also a `ggplot` theme I like to use:
 
-```{r}
+```{r libraries}
 library(tidyverse)
 library(showtext)
 library(ggokabeito)
@@ -46,9 +47,19 @@ theme_clean <- function() {
 
 We'll get our data as in the [previous post](https://www.fizzics.ie/posts/2022-08-03-golf-courses-in-donegal/).
 
-```{r echo = FALSE, cache = T}
-course_summary <- readRDS("../2022-08-03-golf-courses-in-donegal/data/course_summary1")
+```{r data, echo = FALSE, cache = T}
+course_summary <- readRDS("../2022-08-03-golf-courses-in-donegal/data/course_summary1") |> 
+  mutate(course = as.character(course),
+         course = ifelse(course == "Dunfanaghy", 
+                         glue::glue("<strong><p style = 'color:#56B4E9'>{course}</p></strong>"), 
+                         course),
+         course = as.factor(course))
 donegal_golf <- readRDS("../2022-08-03-golf-courses-in-donegal/data/donegal_clean") |> 
+  mutate(course = as.character(course),
+         course = ifelse(course == "Dunfanaghy", 
+                         glue::glue("<strong><p style = 'color:#56B4E9'>{course}</p></strong>"), 
+                         course),
+         course = as.factor(course)) |> 
   left_join(course_summary) |> 
   mutate(course = str_remove(course, " Links") |> as.factor())
 z5 <- course_summary |> 
@@ -58,7 +69,7 @@ z5 <- course_summary |>
 Now let's see what this tells us. First off, let's look at the distribution of hole lengths for different pars.
 
 
-```{r}
+```{r density-plot}
 donegal_golf |> 
   ggplot(aes(yards, col = par, group = par)) +
   geom_textdensity(aes(label = glue::glue("Par\n{par}"), fill = par), stat = "density",
@@ -77,7 +88,7 @@ Note that there's no overlap between par-3's and par-4's, if a hole is less than
 
 Let's see how long these courses are:
 
-```{r fig.height=8, fig.width=10}
+```{r course-length, fig.height=8, fig.width=10}
 label_size <- 9
 course_summary |> 
   mutate(course = fct_reorder(course, total_length),
@@ -105,7 +116,7 @@ A lot of variation. The nine-hole courses (in lighter orange) tend to be shorter
 
 Let's try and normalise this by looking at the length of the par's 3, 4, and 5 separately. The code is quite long, so we just show the part for the par 5's. Note how rows have to be added for those three courses that don't have a par 5.
 
-```{r echo = FALSE}
+```{r hole-length, echo = FALSE}
 # par 3 average length
 par_3 <- donegal_golf |>
   filter(par == 3) |> 
@@ -173,7 +184,7 @@ par_4 <- donegal_golf |>
 ```
 
 
-```{r fig.height=8, fig.width=10}
+```{r hole-length-patchwork, fig.height=8, fig.width=10}
 # par 5 average length
 par_5 <- donegal_golf |>
   filter(par == 5) |> 
@@ -228,7 +239,7 @@ It looks like _Donegal_ is just long. but a special mention for _Portnoo_, with 
 
 How does the difficulty of each hole depend on its par? To do this we use the _hole index_ data for each course. The hole rated _index 1_ is considered the most difficult on a course, right down to _index 18_ for the easiest. In my experience, the par 3's tend to be considered easy and so have high indices (there's less chance of things going wrong when it's just one shot to the green), whereas long par 4's usually monopolise the lowest indices. Let's see.
 
-```{r}
+```{r hole-index}
 donegal_golf |> 
   group_by(index, par) |> 
   summarise(n = n()) |> 

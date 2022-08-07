@@ -89,7 +89,7 @@ course_card <- function(url) {
 }
 
 # z1 <- map(z$value, safely(course_card))
-z1 <- readRDS("donegal")
+z1 <- readRDS("_posts/2022-08-03-golf-courses-in-donegal/data/donegal")
 z2 <- map(1:length(z1), function(x) z1[[x]]$result)
 z3 <- data.table::rbindlist(z2) |> 
   mutate(par = as.factor(par))
