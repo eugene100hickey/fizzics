@@ -1,0 +1,62 @@
+---
+title: "Brain Areas"
+description: |
+  Looking at the heirarchy of brain areas in the Allen Brain Atlas
+author:
+  - name: Eugene
+    url: https://www.fizzics.ie
+date: 2022-08-14
+output:
+  distill::distill_article:
+    self_contained: false
+categories: [R, Bioinformatics, Academia]
+preview: images/brain.jpg
+---
+
+We do a lot of work with data from the [Allen Brain Atlas](https://portal.brain-map.org/). Frequently, their data is broken down by brain area, with several hundred parts making up our brains. While a map helps a lot to find out where everything goes, I also like to know which areas are substructures of which other areas. It's always nice to know that the _trigeminal nucleus_ is one part of the _Pons_ for example. So to that end, I built a hierarchy of brain areas in the form of a collapsible tree. I'm still working on preventing overlapping labels, but for the most part is legible, just about, with the right level of zoom.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r libraries}
+library(tidyverse)
+library(collapsibleTree)
+library(ABAEnrichment)
+```
+
+
+```{r data, cache = T}
+z <- readRDS("data/ABA-structures")
+# data("dataset_adult")
+# z <- dataset_adult |> pull(structure) |> table() |> names()
+z1 <- get_name(z)
+z2 <- map(z, get_superstructures)
+n <- max(lengths(z2))
+z3 <- lapply(z2, `length<-`, n)
+z3 <- as.data.frame(z3)
+z3 <- t(z3) |> as.data.frame()
+rownames(z3) <- NULL
+brain_names <- function(x) ifelse(!is.na(x), get_name(x), NA)
+brain_names_list <- function(x) map(z3[, x], brain_names) |> 
+  unlist() |> 
+  str_replace(", Left", " (L)") |> 
+  str_replace(", left", " (L)") |> 
+  str_replace(", Right", " (R)") |> 
+  str_replace(", right", " (R)") |> 
+  str_remove("^.*?_")
+Brain <- data_frame(level_2 = brain_names_list(2),
+                 level_3 = brain_names_list(3),
+                 level_4 = brain_names_list(4),
+                 level_5 = brain_names_list(5),
+                 level_6 = brain_names_list(6),
+                 level_7 = brain_names_list(7),
+                 level_8 = brain_names_list(8),
+                 level_9 = brain_names_list(9))
+```
+
+```{r brain-tree}
+collapsibleTree(Brain, hierarchy = names(Brain), width = 1000)
+```
+
+Next step is to map all these to the beautiful brain atlases produced by [Athanasia Mowinckel](https://drmowinckels.io/) with the [ggseg](https://github.com/ggseg/ggseg) R package.

@@ -12,7 +12,19 @@
       <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Fri, 05 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 13 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Brain Areas</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://www.fizzics.ie/posts/2022-08-14-brain-areas</link>
+      <description>Looking at the heirarchy of brain areas in the Allen Brain Atlas</description>
+      <category>R</category>
+      <category>Bioinformatics</category>
+      <category>Academia</category>
+      <guid>https://www.fizzics.ie/posts/2022-08-14-brain-areas</guid>
+      <pubDate>Sat, 13 Aug 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/posts/2022-08-14-brain-areas/images/brain.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Golf Courses in Donegal - Part II, analysis</title>
       <dc:creator>Eugene</dc:creator>
@@ -33,7 +45,7 @@
       <category>Donegal</category>
       <category>Web Scraping</category>
       <guid>https://www.fizzics.ie/posts/2022-08-03-golf-courses-in-donegal</guid>
-      <pubDate>Tue, 02 Aug 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 03 Aug 2022 00:00:00 +0000</pubDate>
       <media:content url="https://www.fizzics.ie/posts/2022-08-03-golf-courses-in-donegal/images/dfgc.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
