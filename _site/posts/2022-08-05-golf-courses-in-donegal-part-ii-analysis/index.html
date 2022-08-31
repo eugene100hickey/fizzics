@@ -2582,7 +2582,25 @@ theme I like to use:</p>
 href="https://www.fizzics.ie/posts/2022-08-03-golf-courses-in-donegal/">previous
 post</a>.</p>
 <div class="layout-chunk" data-layout="l-body">
-
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span class='va'>course_summary</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"../2022-08-03-golf-courses-in-donegal/data/course_summary1"</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>course</span><span class='op'>)</span>,
+         course <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>course</span> <span class='op'>==</span> <span class='st'>"Dunfanaghy"</span>, 
+                         <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"&lt;strong&gt;&lt;p style = 'color:#56B4E9'&gt;{course}&lt;/p&gt;&lt;/strong&gt;"</span><span class='op'>)</span>, 
+                         <span class='va'>course</span><span class='op'>)</span>,
+         course <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>course</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>donegal_golf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"../2022-08-03-golf-courses-in-donegal/data/donegal_clean"</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>course</span><span class='op'>)</span>,
+         course <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>course</span> <span class='op'>==</span> <span class='st'>"Dunfanaghy"</span>, 
+                         <span class='fu'>glue</span><span class='fu'>::</span><span class='fu'><a href='https://glue.tidyverse.org/reference/glue.html'>glue</a></span><span class='op'>(</span><span class='st'>"&lt;strong&gt;&lt;p style = 'color:#56B4E9'&gt;{course}&lt;/p&gt;&lt;/strong&gt;"</span><span class='op'>)</span>, 
+                         <span class='va'>course</span><span class='op'>)</span>,
+         course <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>course</span><span class='op'>)</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>course_summary</span><span class='op'>)</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_remove.html'>str_remove</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='st'>" Links"</span><span class='op'>)</span> |&gt; <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>z5</span> <span class='op'>&lt;-</span> <span class='va'>course_summary</span> |&gt; 
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='fu'><a href='https://forcats.tidyverse.org/reference/fct_reorder.html'>fct_reorder</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='va'>total_length</span><span class='op'>)</span><span class='op'>)</span>
+</code></pre>
+</div>
 </div>
 <p>Now let’s see what this tells us. First off, let’s look at the
 distribution of hole lengths for different pars.</p>

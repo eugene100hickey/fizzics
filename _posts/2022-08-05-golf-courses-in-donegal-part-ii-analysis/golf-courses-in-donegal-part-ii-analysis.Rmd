@@ -48,7 +48,7 @@ theme_clean <- function() {
 
 We'll get our data as in the [previous post](https://www.fizzics.ie/posts/2022-08-03-golf-courses-in-donegal/).
 
-```{r data, echo = FALSE, cache = T}
+```{r data, echo = TRUE, cache = T}
 course_summary <- readRDS("../2022-08-03-golf-courses-in-donegal/data/course_summary1") |> 
   mutate(course = as.character(course),
          course = ifelse(course == "Dunfanaghy", 
