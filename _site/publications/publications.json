@@ -15,7 +15,7 @@
       "Academia",
       "R"
     ],
-    "contents": "\n\nd-title {\n display:none;\n}\nThis publication details the working of the Locus Algorithm, a method to optimise a telescope pointing for a given stellar target so as to include the maximum number of best reference stars (stars with similar brightness and colour). This improves the quality of differential photometry, a technique that uses these reference stars to account for the effect of teh Earth’s atmosphere on incoming starlight. In this way, it is easier to detect changes in the intrinsic output from the target star. This is useful in, for example, exoplanet detection by the transit method.\nThe publication can be accessed (at least till mid February 2022) from this link.\n\n\n\n",
+    "contents": "\nThis publication details the working of the Locus Algorithm, a method to optimise a telescope pointing for a given stellar target so as to include the maximum number of best reference stars (stars with similar brightness and colour). This improves the quality of differential photometry, a technique that uses these reference stars to account for the effect of teh Earth’s atmosphere on incoming starlight. In this way, it is easier to detect changes in the intrinsic output from the target star. This is useful in, for example, exoplanet detection by the transit method.\nThe publication can be accessed (at least till mid February 2022) from this link.\n\n\n\n",
     "preview": "https://ars.els-cdn.com/content/image/1-s2.0-S2213133721000822-gr5_lrg.jpg",
     "last_modified": "2021-12-30T14:26:33+00:00",
     "input_file": {}
@@ -35,7 +35,7 @@
       "Physics",
       "Academia"
     ],
-    "contents": "\n\nd-title {\n display:none;\n}\nA publication detailing the quasar catalogue of differential photometry pointings. The full publication can be seen here\n\n\n\n",
+    "contents": "\nA publication detailing the quasar catalogue of differential photometry pointings. The full publication can be seen here\n\n\n\n",
     "preview": "publications/2020-11-01-Quasar_Catalogue/img/qso.png",
     "last_modified": "2021-12-30T14:11:50+00:00",
     "input_file": {},
@@ -57,7 +57,7 @@
       "Academia",
       "Physics"
     ],
-    "contents": "\n\nd-title {\n display:none;\n}\n\nOisin was the first PhD candidate I supervised. His mission was to looks for stars that serendipitously had neighbours in the sky with similar brightness and colour. This makes it easier to subtract the effects of the atmosphere on the photometry of these stars and so be able to detect smaller changes in their intrinsic output. So events like exoplanet transits can be more faithfully observed.\nThis was a data intensive project. Downloaded the myriad of files from SDSS, selecting the parameters of interest, and churning through all the star targets. He used Grid computing for this, but made many adaptations to optimise it for file input and output and the extremely parallel nature of the job.\nThe results were:\na routine that takes a given target star and finds the best reference stars for it, in general recommending that the telescope isn’t pointed directly at the target but offset so as to get the best references\na catalogue of high performing stars (ones with lots of good reference stars in their neighbourhood) and the corresponding telescope pointings\na catalogue of quasars and their corresponding pointings.\nThe entire thesis can be seen here\n\n\n\n",
+    "contents": "\n\nOisin was the first PhD candidate I supervised. His mission was to looks for stars that serendipitously had neighbours in the sky with similar brightness and colour. This makes it easier to subtract the effects of the atmosphere on the photometry of these stars and so be able to detect smaller changes in their intrinsic output. So events like exoplanet transits can be more faithfully observed.\nThis was a data intensive project. Downloaded the myriad of files from SDSS, selecting the parameters of interest, and churning through all the star targets. He used Grid computing for this, but made many adaptations to optimise it for file input and output and the extremely parallel nature of the job.\nThe results were:\na routine that takes a given target star and finds the best reference stars for it, in general recommending that the telescope isn’t pointed directly at the target but offset so as to get the best references\na catalogue of high performing stars (ones with lots of good reference stars in their neighbourhood) and the corresponding telescope pointings\na catalogue of quasars and their corresponding pointings.\nThe entire thesis can be seen here\n\n\n\n",
     "preview": "publications/2019-10-02-Data_Mining_Grid/img/front.png",
     "last_modified": "2021-12-30T14:11:08+00:00",
     "input_file": {},

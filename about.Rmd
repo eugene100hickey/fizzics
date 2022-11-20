@@ -1,11 +1,6 @@
 ---
 title: "About"
-description: ""
-#output:
-#  html_document:
-#    css: 
-#      - assets/about.css
-#    template: assets/cv/template.html 
+description: ''
 ---
 
 <style>
@@ -317,6 +312,6 @@ knitr::kable(df, col.names = c("", ""), escape = FALSE)
 
 <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1m4FhES89FKiwadPn0bu8Z2d5F6COe1rU&ehbc=2E312F&zoom=6" width="640" height="480"></iframe>
 
-You can also find me at various conferences and events. I'm a regular at the [NHSr Community Conferences](https://nhsrcommunity.com/), involved with [WhyR!](https://2021.whyr.pl/) and various [meetups in Dublin](https://www.meetup.com) (or other chapters sometimes). 
+You can also find me at various conferences and events. I'm a regular at the [NHSr Community Conferences](https://nhsrcommunity.com/), involved with [WhyR!](https://2021.whyr.pl/) and various [meetups in Dublin](https://www.meetup.com) (or other chapters sometimes). And I'm now using <a rel="me" href="https://mastodon.social/@eugene100hickey">Mastodon</a> quite a bit, rather than the other thing.
 
 </div>
