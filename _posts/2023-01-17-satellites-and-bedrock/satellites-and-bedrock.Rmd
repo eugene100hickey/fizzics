@@ -6,7 +6,10 @@ author:
   - name: Eugene
     url: https://www.fizzics.ie
 date: 2023-01-17
+<<<<<<< HEAD
 categories: [R, Donegal, Maps]
+=======
+>>>>>>> 8e294a0a40a395842167eeb2812cf749c6600a4f
 output:
   distill::distill_article:
     self_contained: false
@@ -21,3 +24,4 @@ knitr::opts_chunk$set(echo = FALSE)
 Geological Survey Ireland is producing wonderful [data resources](https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx), impossible to resist when it comes to doing some analysis. In this post, welook at [bedrock data](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock.... 
 
 I was interested to see how overlying vegetation depends on the bedrock; specifically if the colours from satellite images taken at different times of year could be used to take a guess at what lies beneath. 
+

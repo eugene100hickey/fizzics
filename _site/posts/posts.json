@@ -10,6 +10,7 @@
       }
     ],
     "date": "2023-01-17",
+<<<<<<< HEAD
     "categories": [
       "R",
       "Donegal",
@@ -18,6 +19,12 @@
     "contents": "\r\nGeological Survey Ireland is producing wonderful data resources, impossible to resist when it comes to doing some analysis. In this post, welook at bedrock data, what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock….\r\nI was interested to see how overlying vegetation depends on the bedrock; specifically if the colours from satellite images taken at different times of year could be used to take a guess at what lies beneath.\r\n\r\n\r\n\r\n",
     "preview": {},
     "last_modified": "2023-01-17T15:07:22+00:00",
+=======
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2023-01-17T14:20:32+00:00",
+>>>>>>> 8e294a0a40a395842167eeb2812cf749c6600a4f
     "input_file": "satellites-and-bedrock.knit.md"
   },
   {
