@@ -12,7 +12,15 @@
       <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 14 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 17 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Satellites and Bedrock</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://www.fizzics.ie/posts/2023-01-17-satellites-and-bedrock</link>
+      <description>Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types.</description>
+      <guid>https://www.fizzics.ie/posts/2023-01-17-satellites-and-bedrock</guid>
+      <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Brain Areas</title>
       <dc:creator>Eugene</dc:creator>
@@ -33,7 +41,7 @@
       <category>Sport</category>
       <category>Donegal</category>
       <guid>https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis</guid>
-      <pubDate>Thu, 04 Aug 2022 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Aug 2022 00:00:00 +0000</pubDate>
       <media:content url="https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis/images/donegal.png" medium="image" type="image/png" width="381" height="320"/>
     </item>
     <item>

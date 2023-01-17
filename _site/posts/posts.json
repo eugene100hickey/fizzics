@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2023-01-17-satellites-and-bedrock/",
+    "title": "Satellites and Bedrock",
+    "description": "Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types.",
+    "author": [
+      {
+        "name": "Eugene",
+        "url": "https://www.fizzics.ie"
+      }
+    ],
+    "date": "2023-01-17",
+    "categories": [],
+    "contents": "\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2023-01-17T14:20:32+00:00",
+    "input_file": "satellites-and-bedrock.knit.md"
+  },
+  {
     "path": "posts/2022-08-14-brain-areas/",
     "title": "Brain Areas",
     "description": "Looking at the heirarchy of brain areas in the Allen Brain Atlas",
