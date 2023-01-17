@@ -1,0 +1,23 @@
+---
+title: "Satellites and Bedrock"
+description: |
+  Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types.
+author:
+  - name: Eugene
+    url: https://www.fizzics.ie
+date: 2023-01-17
+categories: [R, Donegal, Maps]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+Geological Survey Ireland is producing wonderful [data resources](https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx), impossible to resist when it comes to doing some analysis. In this post, welook at [bedrock data](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock.... 
+
+I was interested to see how overlying vegetation depends on the bedrock; specifically if the colours from satellite images taken at different times of year could be used to take a guess at what lies beneath. 
