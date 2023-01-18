@@ -55,11 +55,11 @@ theme_clean <- function() {
     theme(panel.grid.minor = element_blank(),
           text = element_text(size = 16, family = "my_font"),
           plot.background = element_rect(fill = "white", color = NA),
-          axis.text = element_text(size = 12),
-          axis.title = element_text(face = "bold", size = 28),
+          axis.text = element_text(size = 16),
+          axis.title = element_text(face = "bold", size = 14),
           strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
           strip.background = element_rect(fill = "grey80", color = NA),
-          legend.text = element_text(size = 16))
+          legend.text = element_text(size = 16, family = "my_font"))
 }
 ```
 
@@ -81,20 +81,40 @@ ref$geometry
 
 And here is a table showing the attributes for a sample of a few fields.
 
-```{r}
-ref |> 
+```{r table, layout="l-screen-inset shaded"}
+ref |>
+  mutate(
+    class = case_when(
+      str_detect(DESCRIPT, "[Gg]ranite") ~ "granite",
+      str_detect(DESCRIPT, "[Qq]uar[tz][tz]") ~ "quartz",
+      str_detect(DESCRIPT, "[Ss]andstone") ~ "sandstone",
+      str_detect(DESCRIPT, "[Ss]chist") ~ "schist",
+      str_detect(DESCRIPT, "[Ll]imestone") ~ "limestone",
+      str_detect(DESCRIPT, "[Ss]hale") ~ "shale",
+      TRUE ~ "other"
+    ),
+  .before = NEWCODE
+  ) |> 
   st_drop_geometry() |> 
   dplyr::select(-c(OBJECTID_2, OBJECTID, SHEETNO, STRATCODE, LITHCODE, SHAPE_LEN)) |> 
   slice_sample(n=10) |> 
   gt::gt() |> 
-    gt::opt_table_font(google_font("Libre Baskerville"), 
-                 # Roboto Condensed - Syne Tactile - Quintessential - Architects Daughter
-                 weight = 200)
+  tab_options(table.font.size = px(16)) |> 
+  fmt_number(columns = SHAPE_AREA,
+             rows = SHAPE_AREA > 1000,
+             scale_by = 1/1000,
+             decimals = 0,
+             pattern = "{x}K") |> 
+  fmt_number(columns = SHAPE_AREA,
+             rows = SHAPE_AREA < 1000,
+             scale_by = 1,
+             decimals = 2,
+             pattern = "{x}")
 ```
 
-```{r bedock-map, out.width="150%"}
-my_extent <- c(xmin=540000, xmax=565000, ymin=6050000, ymax=6090000)
-my_extent <- c(xmin=510000, xmax=570000, ymin=6030000, ymax=6150000)
+```{r bedock-map}
+my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
+my_extent <- c(xmin=510000, xmax=635000, ymin=6030000, ymax=6150000)
 
 # ref <- st_transform(ref, crs = st_crs(s1))
 ref1 <- ref |> 
@@ -108,16 +128,19 @@ ref1 <- ref |>
       str_detect(DESCRIPT, "[Ll]imestone") ~ "limestone",
       str_detect(DESCRIPT, "[Ss]hale") ~ "shale",
       TRUE ~ "other"
-    )
-  ) |> 
+    ),
+  .before = NEWCODE) |> 
   filter(class != "other")
 ```
 
-```{r}
+```{r map, layout="l-screen-inset shaded"}
 ref1 |> 
   ggplot(aes(fill = class)) +
   geom_sf() + 
-  theme_clean()
+  guides(fill=guide_legend(nrow=1,byrow=TRUE)) +
+  theme_clean() + 
+  theme(legend.position = "bottom",
+        legend.title = element_blank())
 ```
 
 
