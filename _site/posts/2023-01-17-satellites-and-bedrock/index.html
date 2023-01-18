@@ -2578,6 +2578,7 @@ p a:hover { /* makes links go green on hover */
 <p>Geological Survey Ireland is producing wonderful <a href="https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx">data resources</a>, impossible to resist when it comes to doing some analysis. In this post, welook at <a href="https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k">bedrock data</a>, what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock….</p>
 <p>I was interested to see how overlying vegetation depends on the bedrock; specifically if the colours from satellite images taken at different times of year could be used to take a guess at what lies beneath.</p>
 <p>This requires two suites of information, the bedrock data from GSI and the satellite data from <a href="https://scihub.copernicus.eu/">Copernicus-Sentinel</a>. The first we’ll download directly and store locally from <a href="https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k">this resource</a>, the second we’ll access using the R package, <a href="https://github.com/ranghetti/sen2r">sen2r</a> (but we’ll also end up downloading and storing image files locally, but <code>sen2R</code> will help scope them out).</p>
+<p>The bedrock file arrives in the form of a shapefile. It contains bunch of attributes: location, decription, area, as well as the polygon shapes themselves. And some fields I’m at a loss to understand (M, Y, K, C anyone?).</p>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
@@ -2598,7 +2599,545 @@ Projected CRS: IRENET95 / Irish Transverse Mercator</code></pre>
 <span><span class='va'>ref</span> <span class='op'>&lt;-</span> <span class='fu'>st_transform</span><span class='op'>(</span><span class='va'>ref</span>, crs <span class='op'>=</span> <span class='va'>my_proj</span><span class='op'>)</span></span></code></pre>
 </div>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="layout-chunk" data-layout="l-body">
+<pre><code>Geometry set for 25958 features 
+Geometry type: MULTIPOLYGON
+Dimension:     XY
+Bounding box:  xmin: 384779.9 ymin: 5696646 xmax: 701597.5 ymax: 6145919
+CRS:           +proj=utm +zone=29 +datum=WGS84 +units=m +no_defs
+First 5 geometries:</code></pre>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<div id="brzxtklxya" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#brzxtklxya .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#brzxtklxya .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#brzxtklxya .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#brzxtklxya .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#brzxtklxya .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#brzxtklxya .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#brzxtklxya .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#brzxtklxya .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#brzxtklxya .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#brzxtklxya .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#brzxtklxya .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#brzxtklxya .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#brzxtklxya .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#brzxtklxya .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#brzxtklxya .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#brzxtklxya .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#brzxtklxya .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#brzxtklxya .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#brzxtklxya .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#brzxtklxya .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#brzxtklxya .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#brzxtklxya .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#brzxtklxya .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#brzxtklxya .gt_left {
+  text-align: left;
+}
+
+#brzxtklxya .gt_center {
+  text-align: center;
+}
+
+#brzxtklxya .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#brzxtklxya .gt_font_normal {
+  font-weight: normal;
+}
+
+#brzxtklxya .gt_font_bold {
+  font-weight: bold;
+}
+
+#brzxtklxya .gt_font_italic {
+  font-style: italic;
+}
+
+#brzxtklxya .gt_super {
+  font-size: 65%;
+}
+
+#brzxtklxya .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#brzxtklxya .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#brzxtklxya .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#brzxtklxya .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#brzxtklxya .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#brzxtklxya .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#brzxtklxya .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="OBJECTID_2">OBJECTID_2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="OBJECTID">OBJECTID</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="NEWCODE">NEWCODE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SHEETNO">SHEETNO</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="STRATCODE">STRATCODE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="LITHCODE">LITHCODE</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="DESCRIPT">DESCRIPT</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="UNIT_NAME">UNIT_NAME</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="M">M</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Y">Y</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="K">K</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="C">C</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="LABEL">LABEL</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SHAPE_AREA">SHAPE_AREA</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="SHAPE_LEN">SHAPE_LEN</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="OBJECTID_2" class="gt_row gt_right">390</td>
+<td headers="OBJECTID" class="gt_row gt_right">391</td>
+<td headers="NEWCODE" class="gt_row gt_left">CDKINS3</td>
+<td headers="SHEETNO" class="gt_row gt_right">25</td>
+<td headers="STRATCODE" class="gt_row gt_left">KNnc</td>
+<td headers="LITHCODE" class="gt_row gt_left">NA</td>
+<td headers="DESCRIPT" class="gt_row gt_left">Flaser-bedded sandstone &amp; mudstone</td>
+<td headers="UNIT_NAME" class="gt_row gt_left">Narrow Cove Member</td>
+<td headers="M" class="gt_row gt_right">10</td>
+<td headers="Y" class="gt_row gt_right">25</td>
+<td headers="K" class="gt_row gt_right">0</td>
+<td headers="C" class="gt_row gt_right">25</td>
+<td headers="LABEL" class="gt_row gt_left">KNnc</td>
+<td headers="SHAPE_AREA" class="gt_row gt_right">72743.28</td>
+<td headers="SHAPE_LEN" class="gt_row gt_right">1967.694</td></tr>
+    <tr><td headers="OBJECTID_2" class="gt_row gt_right">391</td>
+<td headers="OBJECTID" class="gt_row gt_right">392</td>
+<td headers="NEWCODE" class="gt_row gt_left">DUOHSF</td>
+<td headers="SHEETNO" class="gt_row gt_right">24</td>
+<td headers="STRATCODE" class="gt_row gt_left">OH</td>
+<td headers="LITHCODE" class="gt_row gt_left">NA</td>
+<td headers="DESCRIPT" class="gt_row gt_left">Flaser-bedded sandstone &amp; minor mudstone</td>
+<td headers="UNIT_NAME" class="gt_row gt_left">Old Head Sandstone Formation</td>
+<td headers="M" class="gt_row gt_right">0</td>
+<td headers="Y" class="gt_row gt_right">50</td>
+<td headers="K" class="gt_row gt_right">0</td>
+<td headers="C" class="gt_row gt_right">0</td>
+<td headers="LABEL" class="gt_row gt_left">OH</td>
+<td headers="SHAPE_AREA" class="gt_row gt_right">221887.69</td>
+<td headers="SHAPE_LEN" class="gt_row gt_right">3301.745</td></tr>
+    <tr><td headers="OBJECTID_2" class="gt_row gt_right">392</td>
+<td headers="OBJECTID" class="gt_row gt_right">393</td>
+<td headers="NEWCODE" class="gt_row gt_left">CDKINS4</td>
+<td headers="SHEETNO" class="gt_row gt_right">24</td>
+<td headers="STRATCODE" class="gt_row gt_left">KNpc</td>
+<td headers="LITHCODE" class="gt_row gt_left">NA</td>
+<td headers="DESCRIPT" class="gt_row gt_left">Sand-lensed mudstone</td>
+<td headers="UNIT_NAME" class="gt_row gt_left">Pigs Cove Member</td>
+<td headers="M" class="gt_row gt_right">0</td>
+<td headers="Y" class="gt_row gt_right">20</td>
+<td headers="K" class="gt_row gt_right">0</td>
+<td headers="C" class="gt_row gt_right">40</td>
+<td headers="LABEL" class="gt_row gt_left">KNpc</td>
+<td headers="SHAPE_AREA" class="gt_row gt_right">574941.28</td>
+<td headers="SHAPE_LEN" class="gt_row gt_right">3319.798</td></tr>
+    <tr><td headers="OBJECTID_2" class="gt_row gt_right">393</td>
+<td headers="OBJECTID" class="gt_row gt_right">394</td>
+<td headers="NEWCODE" class="gt_row gt_left">DUOHSF</td>
+<td headers="SHEETNO" class="gt_row gt_right">24</td>
+<td headers="STRATCODE" class="gt_row gt_left">OH</td>
+<td headers="LITHCODE" class="gt_row gt_left">NA</td>
+<td headers="DESCRIPT" class="gt_row gt_left">Flaser-bedded sandstone &amp; minor mudstone</td>
+<td headers="UNIT_NAME" class="gt_row gt_left">Old Head Sandstone Formation</td>
+<td headers="M" class="gt_row gt_right">0</td>
+<td headers="Y" class="gt_row gt_right">50</td>
+<td headers="K" class="gt_row gt_right">0</td>
+<td headers="C" class="gt_row gt_right">0</td>
+<td headers="LABEL" class="gt_row gt_left">OH</td>
+<td headers="SHAPE_AREA" class="gt_row gt_right">201685.55</td>
+<td headers="SHAPE_LEN" class="gt_row gt_right">1882.082</td></tr>
+    <tr><td headers="OBJECTID_2" class="gt_row gt_right">394</td>
+<td headers="OBJECTID" class="gt_row gt_right">395</td>
+<td headers="NEWCODE" class="gt_row gt_left">DUTOEH</td>
+<td headers="SHEETNO" class="gt_row gt_right">24</td>
+<td headers="STRATCODE" class="gt_row gt_left">TH</td>
+<td headers="LITHCODE" class="gt_row gt_left">NA</td>
+<td headers="DESCRIPT" class="gt_row gt_left">Cross-bedded sandstone &amp; minor mudstone</td>
+<td headers="UNIT_NAME" class="gt_row gt_left">Toe Head Formation</td>
+<td headers="M" class="gt_row gt_right">15</td>
+<td headers="Y" class="gt_row gt_right">25</td>
+<td headers="K" class="gt_row gt_right">0</td>
+<td headers="C" class="gt_row gt_right">10</td>
+<td headers="LABEL" class="gt_row gt_left">TH</td>
+<td headers="SHAPE_AREA" class="gt_row gt_right">296927.64</td>
+<td headers="SHAPE_LEN" class="gt_row gt_right">2844.940</td></tr>
+    <tr><td headers="OBJECTID_2" class="gt_row gt_right">395</td>
+<td headers="OBJECTID" class="gt_row gt_right">396</td>
+<td headers="NEWCODE" class="gt_row gt_left">CDKINS3</td>
+<td headers="SHEETNO" class="gt_row gt_right">24</td>
+<td headers="STRATCODE" class="gt_row gt_left">KNnc</td>
+<td headers="LITHCODE" class="gt_row gt_left">NA</td>
+<td headers="DESCRIPT" class="gt_row gt_left">Flaser-bedded sandstone &amp; mudstone</td>
+<td headers="UNIT_NAME" class="gt_row gt_left">Narrow Cove Member</td>
+<td headers="M" class="gt_row gt_right">10</td>
+<td headers="Y" class="gt_row gt_right">25</td>
+<td headers="K" class="gt_row gt_right">0</td>
+<td headers="C" class="gt_row gt_right">25</td>
+<td headers="LABEL" class="gt_row gt_left">KNnc</td>
+<td headers="SHAPE_AREA" class="gt_row gt_right">202215.40</td>
+<td headers="SHAPE_LEN" class="gt_row gt_right">3368.536</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">
   <p class="social_footer">
