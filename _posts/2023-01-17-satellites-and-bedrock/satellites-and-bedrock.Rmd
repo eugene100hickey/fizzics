@@ -79,7 +79,7 @@ Below we show the geometry for this shapefile:
 ref$geometry
 ```
 
-And here is a table showing the attributes for a sample of a few fields.
+And here is a table showing the attributes for a sample of a few fields. Note, we've done a wee text-trawl through the description attribute to try and categorise the rocks in to a manageable number of types (quartz, sandstone, limestone, schist, shale, granite, or other).
 
 ```{r table, layout="l-screen-inset shaded"}
 ref |>
@@ -132,6 +132,8 @@ ref1 <- ref |>
   .before = NEWCODE) |> 
   filter(class != "other")
 ```
+
+Plotting this, and just looking at the NorthWest, we get:
 
 ```{r map, layout="l-screen-inset shaded"}
 ref1 |> 
