@@ -12,6 +12,12 @@ output:
     self_contained: false
 ---
 
+```{css, echo=FALSE}
+img {
+  max-width:150%;
+  height: auto;
+}
+```
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
@@ -86,8 +92,9 @@ ref |>
                  weight = 200)
 ```
 
-```{r}
+```{r bedock-map, out.width="150%"}
 my_extent <- c(xmin=540000, xmax=565000, ymin=6050000, ymax=6090000)
+my_extent <- c(xmin=510000, xmax=570000, ymin=6030000, ymax=6150000)
 
 # ref <- st_transform(ref, crs = st_crs(s1))
 ref1 <- ref |> 

@@ -1524,6 +1524,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
+<div class="layout-chunk" data-layout="l-body">
+<style type="text/css">
+img {
+  max-width:150%;
+  height: auto;
+}
+</style>
+</div>
 <p>Geological Survey Ireland is producing wonderful <a href="https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx">data resources</a>, impossible to resist when it comes to doing some analysis. In this post, welook at <a href="https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k">bedrock data</a>, what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock….</p>
 <p>I was interested to see how overlying vegetation depends on the bedrock; specifically if the colours from satellite images taken at different times of year could be used to take a guess at what lies beneath.</p>
 <p>This requires two suites of information, the bedrock data from GSI and the satellite data from <a href="https://scihub.copernicus.eu/">Copernicus-Sentinel</a>. The first we’ll download directly and store locally from <a href="https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k">this resource</a>, the second we’ll access using the R package, <a href="https://github.com/ranghetti/sen2r">sen2r</a> (but we’ll also end up downloading and storing image files locally, but <code>sen2R</code> will help scope them out).</p>
