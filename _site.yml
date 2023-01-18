@@ -51,7 +51,7 @@ collections:
 navbar:
   logo:
     image: images/atlantic.png
-    href: https://fizzics.netlify.app/
+    href: https://www.fizzics.ie/
   left:
     - text: "Home"
       href: index.html
