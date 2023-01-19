@@ -33,6 +33,7 @@ This was originally written as one post, but then it got so long I decided to sp
 library(tidyverse)
 library(sf)
 library(sen2r)
+library(getSpatialData)
 library(raster)
 library(RStoolbox)
 library(exactextractr)
@@ -57,4 +58,42 @@ theme_clean <- function() {
 
 This post is largely inspired by the work of [Ewa Grabska](https://github.com/WhyR2020/workshops/blob/master/satellite/whyr_satellite.R) and a [WhyR presentation she made in 2020](https://www.youtube.com/watch?v=k1K6nqgtRL8). She has a much clearer and in-depth view of the topic than I do.
 
-Getting access to [Sentinel satellite](https://scihub.copernicus.eu/) data requires making an account at [scihub](https://scihub.copernicus.eu/dhus/#/self-registration). It's free and open access. And once you have your login details you can do most of the leg work without leaving rstudio thanks to the `sen2r` package. As we'll see, the only time we'll leave rstudio is to unzip a downloaded file.
+Getting access to [Sentinel satellite](https://scihub.copernicus.eu/) data requires making an account at [scihub](https://scihub.copernicus.eu/dhus/#/self-registration). It's free and open access. And once you have your login details you can do most of the leg work without leaving rstudio thanks to the `sen2r` and `getSpatialData` packages. As we'll see, the only time we'll leave rstudio is to unzip a downloaded file.
+
+The first thing to do is to set an area of  interest (aoi) using the `set_aoi()` function from `getSpatialData`. This pulls up a map of  the globe in the rstudio viewer panel that can be zomed and panned to the geographical area of interest. When you're there, click on the area select tool (black box on the left), place that on the map, and then click _Done_. This is shown below:
+
+```{r aoi-picture, fig.align='center'}
+knitr::include_graphics("images/aoi.png")
+```
+
+
+You can check that all has worked well using the `getSpatialData::get_aoi()` and the `getSpatialData::view_aoi()` functions.
+
+Next, we set the time frame of interest (early Summer is shown below), and the satellite platform de choix (Sentinel-2). And then we log in to Copernicus; a dialogue box will pop up asking you for your password.
+
+```{r aoi, eval=FALSE, echo = TRUE}
+time_range =  c("2022-05-03", "2022-07-28") #set time range
+platform = "Sentinel-2" #choose platform
+login_CopHub("eugene100hickey")
+```
+
+```{r aoi-2}
+aoi <- readRDS("data/aoi")
+query <- readRDS("data/query")
+```
+
+Now it's time to see what Sentinel kows about this patch of Earth in this time period. The `getSpatialData::getSentinelRecords()` function is our friend here.
+
+```{r aoi-3, eval=FALSE, echo=TRUE}
+query <- getSentinel_records(time_range, "Sentinel-2")
+```
+
+This `query` is an `sf` object and is work looking at in detail. It could contains hundreds of individual records from Sentinel. It tells us about the size of each of the image file collections, what instrument on board the satellite was used, the precise time of measurement (always around mid-day, of  course) as well as estimates of water coverage, snow and ice, and, importantly for images of Ireland, the amount of cloud cover. 
+
+We'll filter on this last one, clouds may be beautiful, but they're of no scientific interest here. In our case, this reduces the number of Sentinel fields from the hundreds down to a few tens.
+
+```{r cloud-filter, echo=TRUE}
+query5 <- query |> filter(cloudcov < 5)
+```
+
+
