@@ -135,7 +135,7 @@ view_previews(records)
 
 This gives a mosaic of Sentinel captures, something like as seen below:
 
-```{r preview-picture, fig.align='center'}
+```{r preview-picture, fig.align='center', preview=TRUE}
 knitr::include_graphics("images/previews.png")
 ```
 
