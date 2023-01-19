@@ -12,7 +12,15 @@
       <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 17 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 19 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Satellites and Bedrock - Part II</title>
+      <dc:creator>Eugene</dc:creator>
+      <link>https://www.fizzics.ie/posts/2023-01-19-satellites-and-bedrock-part-ii</link>
+      <description>Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types. In this second of a three part series, we look at ways of accessing satellite data from the Sentilel satellites.</description>
+      <guid>https://www.fizzics.ie/posts/2023-01-19-satellites-and-bedrock-part-ii</guid>
+      <pubDate>Thu, 19 Jan 2023 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Satellites and Bedrock - Part I</title>
       <dc:creator>Eugene</dc:creator>

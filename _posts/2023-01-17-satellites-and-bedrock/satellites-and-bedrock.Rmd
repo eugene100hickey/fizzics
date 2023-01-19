@@ -32,7 +32,7 @@ This requires two suites of information, the bedrock data from GSI and the satel
 
 This was originally written as one post, but then it got so long I decided to split it into three parts:
 
-- Part I: getting the bedrock data from GSI  
+- **Part I: getting the bedrock data from GSI  **
 - Part II: getting the satellite data from Sentinel  
 - Part III: putting the first two together  
 
@@ -70,7 +70,7 @@ my_proj <- "+proj=utm +zone=29 +datum=WGS84 +units=m +no_defs"
 ref <- st_transform(ref, crs = my_proj)
 ```
 
-The bedrock file arrives in the form of a shapefile. It contains bunch of attributes: location, decription, area, as well as the polygon shapes themselves. And some attributes I'm at a loss to understand (M, Y, K, C anyone?). We end up with a total of `r dim(ref)[1]` fields covering the Republic of Ireland. 
+The bedrock file arrives in the form of a shapefile. It contains bunch of attributes: location, decription, area, as well as the polygon shapes themselves. And some attributes I'm at a loss to understand (M, Y, K, C anyone?). We end up with a total of `r dim(ref)[1] |> format(big.mark=",")` fields covering the Republic of Ireland. 
 
 Below we show the geometry for this shapefile:
 

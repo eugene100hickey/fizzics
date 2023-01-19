@@ -1,0 +1,60 @@
+---
+title: "Satellites and Bedrock - Part II"
+description: |
+  Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types. In this second of a three part series, we look at ways of accessing satellite data from the Sentinel satellites.
+author:
+  - name: Eugene
+    url: https://www.fizzics.ie
+date: 2023-01-19
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+Geological Survey Ireland is producing wonderful [data resources](https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx), impossible to resist when it comes to doing some analysis. In this post, welook at [bedrock data](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock.... 
+
+I was interested to see how overlying vegetation depends on the bedrock; specifically if the colours from satellite images taken at different times of year could be used to take a guess at what lies beneath. 
+
+This requires two suites of information, the bedrock data from GSI and the satellite data from [Copernicus-Sentinel](https://scihub.copernicus.eu/). The first we'll download directly and store locally from [this resource](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), the second we'll access using the R package, [sen2r](https://github.com/ranghetti/sen2r) (but we'll also end up downloading and storing image files locally, but `sen2R` will help scope them out).
+
+This was originally written as one post, but then it got so long I decided to split it into three parts:
+
+- [Part I: getting the bedrock data from GSI](https://www.fizzics.ie/posts/2023-01-17-satellites-and-bedrock/)  
+- **Part II: getting the satellite data from Sentinel  **
+- Part III: putting the first two together  
+
+
+```{r libraries-theme}
+library(tidyverse)
+library(sf)
+library(sen2r)
+library(raster)
+library(RStoolbox)
+library(exactextractr)
+# library(terra)
+library(showtext)
+library(gt)
+
+font_add_google(name = "Gloria Hallelujah", family = "my_font")
+showtext_auto()
+theme_clean <- function() {
+  theme_minimal(base_family = "my_font") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size = 16, family = "my_font"),
+          plot.background = element_rect(fill = "white", color = NA),
+          axis.text = element_text(size = 16),
+          axis.title = element_text(face = "bold", size = 14),
+          strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
+          strip.background = element_rect(fill = "grey80", color = NA),
+          legend.text = element_text(size = 16, family = "my_font"))
+}
+```
+
+This post is largely inspired by the work of [Ewa Grabska](https://github.com/WhyR2020/workshops/blob/master/satellite/whyr_satellite.R) and a [WhyR presentation she made in 2020](https://www.youtube.com/watch?v=k1K6nqgtRL8). She has a much clearer and in-depth view of the topic than I do.
+
+Getting access to [Sentinel satellite](https://scihub.copernicus.eu/) data requires making an account at [scihub](https://scihub.copernicus.eu/dhus/#/self-registration). It's free and open access. And once you have your login details you can do most of the leg work without leaving rstudio thanks to the `sen2r` package. As we'll see, the only time we'll leave rstudio is to unzip a downloaded file.
