@@ -6,6 +6,7 @@ author:
   - name: Eugene
     url: https://www.fizzics.ie
 date: 2023-01-19
+categories: [R, Donegal, Maps]
 output:
   distill::distill_article:
     self_contained: false
@@ -96,4 +97,35 @@ We'll filter on this last one, clouds may be beautiful, but they're of no scient
 query5 <- query |> filter(cloudcov < 5)
 ```
 
+<input type=button class=hideshow>
+
+```{r cloud-query}
+query5 |> 
+  sf::st_drop_geometry() |> 
+  dplyr::select(platform_serial, start_time, size, cloudcov, water) |> 
+  dplyr::group_by(start_time) |> 
+  filter(row_number() == 1) |> 
+  ungroup() |> 
+  gt::gt()
+```
+
+</input>
+
+<script>
+$( "input.hideshow" ).each( function ( index, button ) {
+  button.value = 'Hide Output';
+  $( button ).click( function () {
+    var target = this.nextSibling ? this : this.parentNode;
+    target = target.nextSibling.nextSibling.nextSibling;
+    if ( target.style.display == 'block' || target.style.display == '' ) {
+      target.style.display = 'none';
+      this.value = 'Show Output';
+    } else {
+      target.style.display = 'block';
+      this.value = 'Hide Output';
+    }
+  } );
+} );
+$("input.hideshow").click()
+</script>
 
