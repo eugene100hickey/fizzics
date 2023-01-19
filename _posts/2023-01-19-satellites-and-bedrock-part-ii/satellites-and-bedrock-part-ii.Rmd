@@ -106,8 +106,52 @@ query5 |>
   dplyr::group_by(start_time) |> 
   filter(row_number() == 1) |> 
   ungroup() |> 
-  gt::gt()
+  gt::gt() |> 
+  cols_label(
+    platform_serial = md("Satellite"),
+    start_time = md("Date & Time"),
+    size = md("File Size"),
+    cloudcov = md("Cloud Cover (%)"),
+    water = md("Water (%)")
+  ) |> 
+  fmt_number(
+    columns = c(cloudcov, water),
+    decimals = 1
+  ) |> 
+  cols_align(
+    columns = size,
+    align = "right"
+  )
 ```
+
+
+Before downloading all this data, it's good to have a sneak preview as to what they look like. To that end, we'll use the `getSpatialData::get_previews()` function and then take a look with the `getSpatialData::view_previews()` function. 
+
+```{r previews, echo=TRUE, eval=FALSE}
+records <- get_previews(query, dir_out = "/home/some-directory/")
+view_previews(records)
+# you can also see an individual record with, e.g. view_previews(records[1,])
+```
+
+This gives a mosaic of Sentinel captures, something like as seen below:
+
+```{r preview-picture, fig.align='center'}
+knitr::include_graphics("images/previews.png")
+```
+
+We then go and fetch the actual records (in this case the 10<sup>th</sup> one) we need with:
+```{r archive, eval=FALSE, echo=TRUE}
+set_archive("/home/some-directory/my-archive")
+getSentinel_data(records[10,])
+```
+
+This gives a zipped file. We unpack this where we want it to live. Later on, the files we care about will end up in a subfolder called `GRANULE/Some-Sentinel-ID/IMG-DATA`, where `Some-Sentinel-ID` is a long string made from a combination of image time, instrument, date.... This leads to a bunch of (mostly) `jp2` files corresponding to different wavelength bands from blue to far infrared. 
+
+```{r files, fig.align='center'}
+knitr::include_graphics("images/files.png")
+```
+
+From these image files, the only ones we'll use will be the `******_B02.jp2` (red band), `******_B03.jp2` (green band), `******_B04.jp2` (blue band), and `******_B08.jp2` (IR band). We'll see in  the next installment how to stack these in to one image, and how to connect the colours back to our bedrock data.
 
 </input>
 
