@@ -64,6 +64,42 @@ my_proj <- "+proj=utm +zone=29 +datum=WGS84 +units=m +no_defs"
 ref <- st_transform(ref, crs = my_proj)
 ```
 
+```{r bedock-map}
+my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
+my_extent <- c(xmin=510000, xmax=635000, ymin=6030000, ymax=6150000)
+
+# ref <- st_transform(ref, crs = st_crs(s1))
+ref1 <- ref |> 
+  st_crop(extent(my_extent)) |> 
+  mutate(
+    class = case_when(
+      str_detect(DESCRIPT, "[Gg]ranite") ~ "granite",
+      str_detect(DESCRIPT, "[Qq]uar[tz][tz]") ~ "quartz",
+      str_detect(DESCRIPT, "[Ss]andstone") ~ "sandstone",
+      str_detect(DESCRIPT, "[Ss]chist") ~ "schist",
+      str_detect(DESCRIPT, "[Ll]imestone") ~ "limestone",
+      str_detect(DESCRIPT, "[Ss]hale") ~ "shale",
+      TRUE ~ "other"
+    ),
+  .before = NEWCODE) |> 
+  filter(class != "other")
+```
+
+Plotting this, and just looking at the NorthWest, we get:
+
+```{r map, layout="l-screen-inset shaded"}
+ref1 |> 
+  ggplot(aes(fill = class)) +
+  geom_sf() + 
+  guides(fill=guide_legend(nrow=1,byrow=TRUE)) +
+  scale_fill_okabe_ito() +
+  theme_clean() + 
+  theme(legend.position = "bottom",
+        legend.title = element_blank())
+```
+
+
+
 
 ```{r}
 prefix <- "../../../"
