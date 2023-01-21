@@ -41,6 +41,7 @@ library(exactextractr)
 # library(terra)
 library(showtext)
 library(gt)
+library(ggokabeito)
 
 font_add_google(name = "Gloria Hallelujah", family = "my_font")
 showtext_auto()

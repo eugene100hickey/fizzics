@@ -47,6 +47,7 @@ library(exactextractr)
 # library(terra)
 library(showtext)
 library(gt)
+library(ggokabeito)
 
 font_add_google(name = "Gloria Hallelujah", family = "my_font")
 showtext_auto()
@@ -140,6 +141,7 @@ ref1 |>
   ggplot(aes(fill = class)) +
   geom_sf() + 
   guides(fill=guide_legend(nrow=1,byrow=TRUE)) +
+  scale_fill_okabe_ito() +
   theme_clean() + 
   theme(legend.position = "bottom",
         legend.title = element_blank())
