@@ -56,3 +56,31 @@ theme_clean <- function() {
           legend.text = element_text(size = 16, family = "my_font"))
 }
 ```
+
+```{r bedrock}
+ref <- st_read("../2023-01-17-satellites-and-bedrock/data/Shapefiles/Bedrock_Polygons_ITM_2018.shp",
+               quiet = TRUE)
+my_proj <- "+proj=utm +zone=29 +datum=WGS84 +units=m +no_defs"
+ref <- st_transform(ref, crs = my_proj)
+```
+
+
+```{r}
+prefix <- "../../../"
+
+my_file_red_june <- glue::glue("{prefix}data/spring-2022/T29UNA_20220604T114401_B02.jp2")
+my_file_green_june <- glue::glue("{prefix}data/spring-2022/T29UNA_20220604T114401_B03.jp2")
+my_file_blue_june <- glue::glue("{prefix}data/spring-2022/T29UNA_20220604T114401_B04.jp2")
+my_file_nir_june <- glue::glue("{prefix}data/spring-2022/T29UNA_20220604T114401_B08.jp2")
+
+my_file_red_aug <- glue::glue("{prefix}data/summer-2022/T29UNA_20220811T115409_B02.jp2")
+my_file_green_aug <- glue::glue("{prefix}data/summer-2022/T29UNA_20220811T115409_B03.jp2")
+my_file_blue_aug <- glue::glue("{prefix}data/summer-2022/T29UNA_20220811T115409_B04.jp2")
+my_file_nir_aug <- glue::glue("{prefix}data/summer-2022/T29UNA_20220811T115409_B08.jp2")
+
+my_file_red_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B02.jp2")
+my_file_green_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B03.jp2")
+my_file_blue_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B04.jp2")
+my_file_nir_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B08.jp2")
+```
+
