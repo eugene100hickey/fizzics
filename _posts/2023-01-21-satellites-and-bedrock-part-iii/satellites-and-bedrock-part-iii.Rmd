@@ -81,8 +81,9 @@ ref1 <- ref |>
       str_detect(DESCRIPT, "[Ss]hale") ~ "shale",
       TRUE ~ "other"
     ),
-  .before = NEWCODE) |> 
-  filter(class != "other")
+  .before = NEWCODE)
+
+# |> filter(class != "other")
 ```
 
 Plotting this, and just looking at the NorthWest, we get:

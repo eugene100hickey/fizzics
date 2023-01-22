@@ -117,6 +117,7 @@ ref |>
 my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
 my_extent <- c(xmin=510000, xmax=635000, ymin=6030000, ymax=6150000)
 
+
 # ref <- st_transform(ref, crs = st_crs(s1))
 ref1 <- ref |> 
   st_crop(extent(my_extent)) |> 
@@ -130,8 +131,8 @@ ref1 <- ref |>
       str_detect(DESCRIPT, "[Ss]hale") ~ "shale",
       TRUE ~ "other"
     ),
-  .before = NEWCODE) |> 
-  filter(class != "other")
+  .before = NEWCODE)
+#  |> filter(class != "other")
 ```
 
 Plotting this, and just looking at the NorthWest, we get:
@@ -145,6 +146,7 @@ ref1 |>
   theme_clean() + 
   theme(legend.position = "bottom",
         legend.title = element_blank())
+
 ```
 
 
