@@ -41,6 +41,7 @@ library(exactextractr)
 library(showtext)
 library(gt)
 library(ggokabeito)
+library(patchwork)
 
 font_add_google(name = "Gloria Hallelujah", family = "my_font")
 showtext_auto()
@@ -86,7 +87,7 @@ ref1 <- ref |>
 # |> filter(class != "other")
 ```
 
-Plotting this, and just looking at the NorthWest, we get:
+A reminder, this is the map of bedrock data we had from part I.
 
 ```{r map, layout="l-screen-inset shaded"}
 ref1 |> 
@@ -98,8 +99,6 @@ ref1 |>
   theme(legend.position = "bottom",
         legend.title = element_blank())
 ```
-
-
 
 
 ```{r}
@@ -119,5 +118,44 @@ my_file_red_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451
 my_file_green_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B03.jp2")
 my_file_blue_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B04.jp2")
 my_file_nir_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B08.jp2")
+```
+
+From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Our next task is to stack these together into a raster stack object.
+
+```{r stack}
+s1 = stack(my_file_red_june,
+           my_file_green_june,
+           my_file_blue_june,
+           my_file_nir_june,
+           my_file_red_aug,
+           my_file_green_aug,
+           my_file_blue_aug,
+           my_file_nir_aug,
+           my_file_red_dec,
+           my_file_green_dec,
+           my_file_blue_dec,
+           my_file_nir_dec) 
+names(s1) <- c("red_june", "green_june", "blue_june", "nir_june",
+               "red_aug", "green_aug", "blue_aug", "nir_aug", 
+               "red_dec", "green_dec", "blue_dec", "nir_dec")
+```
+
+```{r curtail-stack}
+my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
+s2 <- s1 |> crop(my_extent)
+s2_plot <- plotRGB(s2, r = 4, g= 8, b = 12, stretch = "hist")
+```
+
+```{r}
+bedrock_plot <- ref1 |> 
+  st_crop(extent(my_extent)) |> 
+  ggplot(aes(fill = class)) +
+  geom_sf(show.legend = F) + 
+  scale_fill_okabe_ito() +
+  theme_void()
+```
+
+```{r}
+
 ```
 
