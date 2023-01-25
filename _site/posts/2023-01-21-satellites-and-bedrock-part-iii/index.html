@@ -106,7 +106,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types. In this third of a three part series, we look at ways of stacking the satellite data and then squaring that off with what we&#39;ve seen from bedrock."/>
 <meta property="og:url" content="https://www.fizzics.ie/posts/2023-01-21-satellites-and-bedrock-part-iii/"/>
-<meta property="og:image" content="https://www.fizzics.ie/posts/2023-01-21-satellites-and-bedrock-part-iii/satellites-and-bedrock-part-iii_files/figure-html5/map-1.png"/>
+<meta property="og:image" content="https://www.fizzics.ie/posts/2023-01-21-satellites-and-bedrock-part-iii/satellites-and-bedrock-part-iii_files/figure-html5/patchwork-maps-1.png"/>
 <meta property="og:image:width" content="1248"/>
 <meta property="og:image:height" content="768"/>
 <meta property="og:locale" content="en_US"/>
@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="twitter:title" content="Euge: Satellites and Bedrock - Part III"/>
 <meta property="twitter:description" content="Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types. In this third of a three part series, we look at ways of stacking the satellite data and then squaring that off with what we&#39;ve seen from bedrock."/>
 <meta property="twitter:url" content="https://www.fizzics.ie/posts/2023-01-21-satellites-and-bedrock-part-iii/"/>
-<meta property="twitter:image" content="https://www.fizzics.ie/posts/2023-01-21-satellites-and-bedrock-part-iii/satellites-and-bedrock-part-iii_files/figure-html5/map-1.png"/>
+<meta property="twitter:image" content="https://www.fizzics.ie/posts/2023-01-21-satellites-and-bedrock-part-iii/satellites-and-bedrock-part-iii_files/figure-html5/patchwork-maps-1.png"/>
 <meta property="twitter:image:width" content="1248"/>
 <meta property="twitter:image:height" content="768"/>
 <meta property="twitter:site" content="@eugene100hickey"/>
@@ -138,7 +138,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["satellites-and-bedrock-part-iii_files/anchor-4.2.2/anchor.min.js","satellites-and-bedrock-part-iii_files/bowser-1.9.3/bowser.min.js","satellites-and-bedrock-part-iii_files/distill-2.2.21/template.v2.js","satellites-and-bedrock-part-iii_files/figure-html5/map-1.png","satellites-and-bedrock-part-iii_files/header-attrs-2.19/header-attrs.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.min.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.min.map","satellites-and-bedrock-part-iii_files/popper-2.6.0/popper.min.js","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy-bundle.umd.min.js","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy-light-border.css","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy.css","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy.umd.min.js","satellites-and-bedrock-part-iii_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["satellites-and-bedrock-part-iii_files/anchor-4.2.2/anchor.min.js","satellites-and-bedrock-part-iii_files/bowser-1.9.3/bowser.min.js","satellites-and-bedrock-part-iii_files/distill-2.2.21/template.v2.js","satellites-and-bedrock-part-iii_files/figure-html5/map-1.png","satellites-and-bedrock-part-iii_files/figure-html5/patchwork-maps-1.png","satellites-and-bedrock-part-iii_files/header-attrs-2.19/header-attrs.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.min.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.min.map","satellites-and-bedrock-part-iii_files/popper-2.6.0/popper.min.js","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy-bundle.umd.min.js","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy-light-border.css","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy.css","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy.umd.min.js","satellites-and-bedrock-part-iii_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2595,14 +2595,21 @@ p a:hover { /* makes links go green on hover */
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>A reminder, this is the map of bedrock data we had from part I.</p>
+<p>A reminder, from part I, we accessed a map of bedrock data from GSI. From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Stacking these together, and ploting beside the bedrock data gives us this:</p>
 <div class="layout-chunk" data-layout="l-screen-inset shaded">
-<p><img src="satellites-and-bedrock-part-iii_files/figure-html5/map-1.png" width="624" /></p>
+
 </div>
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Ournext task is to stack these together into a raster stack object.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="satellites-and-bedrock-part-iii_files/figure-html5/patchwork-maps-1.png" width="624" /></p>
+</div>
+<p>The RGB colours from the raster image (on the right above) come from setting <em>R</em> to the NIR channel from June, <em>G</em> to the NIR channel of August, and <em>B</em> to the NIR channel of December. The red flecks over Donegal Bay correspond to clouds in the June image, the bue flecks to clouds in December (this is Ireland afterall)</p>
+<p>It looks like there is some correspondence here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <div class="article-footer">

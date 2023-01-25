@@ -13,7 +13,7 @@ output:
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
 ```
 
 Geological Survey Ireland is producing wonderful [data resources](https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx), impossible to resist when it comes to doing some analysis. In this post, welook at [bedrock data](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock.... 
@@ -68,6 +68,7 @@ ref <- st_transform(ref, crs = my_proj)
 ```{r bedock-map}
 my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
 my_extent <- c(xmin=510000, xmax=635000, ymin=6030000, ymax=6150000)
+my_extent <- c(xmin=510000, xmax=610000, ymin=6030000, ymax=6100000)
 
 # ref <- st_transform(ref, crs = st_crs(s1))
 ref1 <- ref |> 
@@ -87,17 +88,15 @@ ref1 <- ref |>
 # |> filter(class != "other")
 ```
 
-A reminder, this is the map of bedrock data we had from part I.
+A reminder, from part I, we accessed a map of bedrock data from GSI. From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Stacking these together, and ploting beside the bedrock data gives us this:
 
-```{r map, layout="l-screen-inset shaded"}
-ref1 |> 
+```{r bedrock-map, layout="l-screen-inset shaded"}
+bedrock_plot <- ref1 |> 
   ggplot(aes(fill = class)) +
-  geom_sf() + 
-  guides(fill=guide_legend(nrow=1,byrow=TRUE)) +
+  geom_sf(show.legend = FALSE) + 
   scale_fill_okabe_ito() +
-  theme_clean() + 
-  theme(legend.position = "bottom",
-        legend.title = element_blank())
+  theme_void()
+
 ```
 
 
@@ -118,11 +117,7 @@ my_file_red_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451
 my_file_green_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B03.jp2")
 my_file_blue_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B04.jp2")
 my_file_nir_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B08.jp2")
-```
 
-From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Our next task is to stack these together into a raster stack object.
-
-```{r stack}
 s1 = stack(my_file_red_june,
            my_file_green_june,
            my_file_blue_june,
@@ -141,21 +136,14 @@ names(s1) <- c("red_june", "green_june", "blue_june", "nir_june",
 ```
 
 ```{r curtail-stack}
-my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
 s2 <- s1 |> crop(my_extent)
-s2_plot <- plotRGB(s2, r = 4, g= 8, b = 12, stretch = "hist")
+s2_plot <- ggRGB(s2, r = 4, g= 8, b = 12, stretch = "hist") + theme_void()
 ```
 
-```{r}
-bedrock_plot <- ref1 |> 
-  st_crop(extent(my_extent)) |> 
-  ggplot(aes(fill = class)) +
-  geom_sf(show.legend = F) + 
-  scale_fill_okabe_ito() +
-  theme_void()
+```{r patchwork-maps}
+bedrock_plot + s2_plot
 ```
 
-```{r}
+The RGB colours from the raster image (on the right above) come from setting _R_ to the NIR channel from June, _G_ to the NIR channel of August, and _B_ to the NIR channel of December. The red flecks over Donegal Bay correspond to clouds in the June image, the bue flecks to clouds in December (this is Ireland afterall)
 
-```
-
+It looks like there is some correspondence here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs.
