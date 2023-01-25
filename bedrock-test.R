@@ -87,14 +87,29 @@ ref1 <- ref |>
 # |> 
 #   filter(class != "other")
 
-ref1 |> 
+bedrock_plot <- ref1 |> 
   ggplot(aes(fill = class)) +
-  geom_sf(show.legend = FALSE) + 
+  geom_sf(show.legend = TRUE) + 
   guides(fill=guide_legend(nrow=1,byrow=TRUE)) +
   scale_fill_okabe_ito() +
   theme_void() + 
   theme(legend.position = "bottom",
         legend.title = element_blank())
+s2_plot <- ggRGB(s2, r = 4, g = 3, b = 2) + 
+  theme_void()
+
+layout <- "
+AAAABBBB
+AAAABBBB
+AAAABBBB
+AAAABBBB
+AAAABBBB
+AAAABBBB
+AAAABBBB
+AAAABBBBhttp://127.0.0.1:47131/graphics/f4d13cbb-89a5-42c2-af18-2d2ef91dc08d.png
+CCCCCCCC"
+
+bedrock_plot + s2_plot + plot_layout(design = layout, guides = "collect") + guide_area()
 
 z <- ref |> 
   st_drop_geometry() |> 
