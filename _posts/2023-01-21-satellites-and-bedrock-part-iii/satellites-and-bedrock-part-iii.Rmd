@@ -6,6 +6,7 @@ author:
   - name: Eugene
     url: https://www.fizzics.ie
 date: 2023-01-21
+categories: [R, Donegal, Maps]
 output:
   distill::distill_article:
     self_contained: false
@@ -146,4 +147,4 @@ bedrock_plot + s2_plot
 
 The RGB colours from the raster image (on the right above) come from setting _R_ to the NIR channel from June, _G_ to the NIR channel of August, and _B_ to the NIR channel of December. The red flecks over Donegal Bay correspond to clouds in the June image, the bue flecks to clouds in December (this is Ireland afterall)
 
-It looks like there is some correspondence here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs.
+It looks like there is some correspondence here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs. None of this is too surprising; vegetation and growth on mountains will be different to that on plains. But it leads us on to our next step, can we determine the rock types based on what the satellite images are telling us? And using the red, green, blue bands as well as the near infra-red? Let's see.

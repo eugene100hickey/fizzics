@@ -50,24 +50,25 @@ s1 = stack(my_file_red_june,
            my_file_green_june,
            my_file_blue_june,
            my_file_nir_june,
-           my_file_red_aug,
-           my_file_green_aug,
-           my_file_blue_aug,
-           my_file_nir_aug,
-           my_file_red_dec,
-           my_file_green_dec,
-           my_file_blue_dec,
-           # my_file_swir1,
-           # my_file_swir2,
+           # my_file_red_aug,
+           # my_file_green_aug,
+           # my_file_blue_aug,
+           # my_file_nir_aug,
+           # my_file_red_dec,
+           # my_file_green_dec,
+           # my_file_blue_dec,
+           # # my_file_swir1,
+           # # my_file_swir2,
            my_file_nir_dec) 
 names(s1) <- c("red_june", "green_june", "blue_june", "nir_june",
-               "red_aug", "green_aug", "blue_aug", "nir_aug", 
-               "red_dec", "green_dec", "blue_dec", "nir_dec")
+               #"red_aug", "green_aug", "blue_aug", "nir_aug", 
+              # "red_dec", "green_dec", "blue_dec", 
+               "nir_dec")
 
 
 # ref <- st_transform(ref, crs = st_crs(s1))
 my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
-my_extent <- c(xmin=510000, xmax=635000, ymin=6030000, ymax=6150000)
+my_extent <- c(xmin=510000, xmax=610000, ymin=6030000, ymax=6100000)
 
 # ref <- st_transform(ref, crs = st_crs(s1))
 ref1 <- ref |> 
@@ -83,15 +84,15 @@ ref1 <- ref |>
       TRUE ~ "other"
     ),
     .before = NEWCODE) 
-|> 
-  filter(class != "other")
+# |> 
+#   filter(class != "other")
 
 ref1 |> 
   ggplot(aes(fill = class)) +
-  geom_sf() + 
+  geom_sf(show.legend = FALSE) + 
   guides(fill=guide_legend(nrow=1,byrow=TRUE)) +
   scale_fill_okabe_ito() +
-  theme_clean() + 
+  theme_void() + 
   theme(legend.position = "bottom",
         legend.title = element_blank())
 
@@ -116,7 +117,8 @@ ref1 <- ref1 |>
   filter(class != "other")
 table(ref1$class)
 s2 <- s1 |> crop(my_extent)
-plotRGB(s2, r = 4, g= 8, b = 12, stretch = "hist")
+plotRGB(s2, r = 4, g= 2, b = 1, stretch = "hist")
+
 pairs(s2, maxpixels = 200)
 
 ref1 |> 
