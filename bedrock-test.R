@@ -50,19 +50,19 @@ s1 = stack(my_file_red_june,
            my_file_green_june,
            my_file_blue_june,
            my_file_nir_june,
-           # my_file_red_aug,
-           # my_file_green_aug,
-           # my_file_blue_aug,
-           # my_file_nir_aug,
-           # my_file_red_dec,
-           # my_file_green_dec,
-           # my_file_blue_dec,
-           # # my_file_swir1,
-           # # my_file_swir2,
+           my_file_red_aug,
+           my_file_green_aug,
+           my_file_blue_aug,
+           my_file_nir_aug,
+           my_file_red_dec,
+           my_file_green_dec,
+           my_file_blue_dec,
+           # my_file_swir1,
+           # my_file_swir2,
            my_file_nir_dec) 
 names(s1) <- c("red_june", "green_june", "blue_june", "nir_june",
-               #"red_aug", "green_aug", "blue_aug", "nir_aug", 
-              # "red_dec", "green_dec", "blue_dec", 
+              "red_aug", "green_aug", "blue_aug", "nir_aug",
+              "red_dec", "green_dec", "blue_dec",
                "nir_dec")
 
 
@@ -95,21 +95,6 @@ bedrock_plot <- ref1 |>
   theme_void() + 
   theme(legend.position = "bottom",
         legend.title = element_blank())
-s2_plot <- ggRGB(s2, r = 4, g = 3, b = 2) + 
-  theme_void()
-
-layout <- "
-AAAABBBB
-AAAABBBB
-AAAABBBB
-AAAABBBB
-AAAABBBB
-AAAABBBB
-AAAABBBB
-AAAABBBBhttp://127.0.0.1:47131/graphics/f4d13cbb-89a5-42c2-af18-2d2ef91dc08d.png
-CCCCCCCC"
-
-bedrock_plot + s2_plot + plot_layout(design = layout, guides = "collect") + guide_area()
 
 z <- ref |> 
   st_drop_geometry() |> 
@@ -132,15 +117,20 @@ ref1 <- ref1 |>
   filter(class != "other")
 table(ref1$class)
 s2 <- s1 |> crop(my_extent)
-plotRGB(s2, r = 4, g= 2, b = 1, stretch = "hist")
-
-pairs(s2, maxpixels = 200)
-
-ref1 |> 
-  ggplot(aes(fill = class)) +
-  geom_sf(show.legend = F) + 
+s2_plot <- ggRGB(s2, r = 4, g = 3, b = 2) + 
   theme_void()
 
+ndvi_aug <- (s2[["nir_aug"]] - s2[["red_aug"]]) / (s2[["nir_aug"]] + s2[["red_aug"]])
+ndvi_aug_small <- ndvi_aug |> terra::aggregate(10)
+ndvi_aug_small |> 
+  as.data.frame(xy = TRUE) |> 
+  mutate(layer = ifelse(layer < 0, 0, layer)) |> 
+  ggplot(aes(x=x, y=y, fill=layer^1.5)) +
+  geom_raster(show.legend = F) +
+  scale_fill_gradient(low = "#FFFFFF", high = "darkgreen") +
+  theme_void()
+
+pairs(s2, maxpixels = 200)
 
 ref_values <- exact_extract(s2, ref1, fun = "mean") |> as.data.frame()
 ref_values$class <- ref1$class #add class attribute to a dataframe
@@ -148,12 +138,16 @@ names(ref_values) <- c("red_june", "green_june", "blue_june", "nir_june",
                        "red_aug", "green_aug", "blue_aug", "nir_aug", 
                        "red_dec", "green_dec", "blue_dec", "nir_dec", 
                        "class")
+ref_values <- ref_values |> 
+  mutate(ndvi_june = (nir_june - red_june)/(nir_june+red_june),
+         ndvi_aug = (nir_aug - red_aug)/(nir_aug+red_aug),
+         ndvi_dec = (nir_dec - red_dec)/(nir_dec+red_dec))
 
 #some visualization with ggplot2 package - scatterplots:
-ggplot(ref_values, aes(nir_june, blue_june, color = class))+
-  geom_point(size = 2) +
-  scale_y_log10() +
-  stat_ellipse() +
+ggplot(ref_values, aes(ndvi_dec, y = -(ndvi_dec-ndvi_june), color = class))+
+  geom_point(size = 1) +
+#  scale_y_log10() +
+  stat_ellipse(size = 3) +
   theme_clean()
 
 mean_spectra <- group_by(ref_values, class) |> #we group ref_values by class

@@ -89,7 +89,7 @@ ref1 <- ref |>
 # |> filter(class != "other")
 ```
 
-A reminder, from part I, we accessed a map of bedrock data from GSI. From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Stacking these together, and ploting beside the bedrock data gives us this:
+A reminder, from part I, we accessed a map of bedrock data from GSI, this is ploted on the left below. From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Stacking these together gives us the middle plot. In addition, the right hand plot shows the August vegetation index [NDVI](https://gisgeography.com/ndvi-normalized-difference-vegetation-index/), areas of darker green have more plant life.
 
 ```{r bedrock-map, layout="l-screen-inset shaded"}
 bedrock_plot <- ref1 |> 
@@ -141,10 +141,50 @@ s2 <- s1 |> crop(my_extent)
 s2_plot <- ggRGB(s2, r = 4, g= 8, b = 12, stretch = "hist") + theme_void()
 ```
 
-```{r patchwork-maps}
-bedrock_plot + s2_plot
+```{r ndvi-plot}
+ndvi_aug <- readRDS("data/ndvi-aug")
+ndvi_aug_small <- ndvi_aug |> terra::aggregate(10)
+ndvi_plot <- ndvi_aug_small |>
+  as.data.frame(xy = TRUE) |>
+  mutate(layer = ifelse(layer < 0, 0, layer)) |>
+  ggplot(aes(x=x, y=y, fill=layer^1.5)) +
+  geom_raster(show.legend = F) +
+  scale_fill_gradient(low = "#FFFFFF", high = "darkgreen") +
+  theme_void()
 ```
 
-The RGB colours from the raster image (on the right above) come from setting _R_ to the NIR channel from June, _G_ to the NIR channel of August, and _B_ to the NIR channel of December. The red flecks over Donegal Bay correspond to clouds in the June image, the bue flecks to clouds in December (this is Ireland afterall)
+```{r patchwork-maps}
+bedrock_plot + s2_plot + ndvi_plot
+```
 
-It looks like there is some correspondence here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs. None of this is too surprising; vegetation and growth on mountains will be different to that on plains. But it leads us on to our next step, can we determine the rock types based on what the satellite images are telling us? And using the red, green, blue bands as well as the near infra-red? Let's see.
+The RGB colours from the raster image (in the center above) come from setting _R_ to the NIR channel from June, _G_ to the NIR channel of August, and _B_ to the NIR channel of December. The red flecks over Donegal Bay correspond to clouds in the June image, the bue flecks to clouds in December (this is Ireland afterall)
+
+It looks like there is some correspondence between bedrock and satellite here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs. None of this is too surprising; vegetation and growth on mountains will be different to that on plains. But it leads us on to our next step, can we determine the rock types based on what the satellite images are telling us? And using the red, green, blue bands as well as the near infra-red?
+
+```{r ref-values}
+# ref_values <- exact_extract(s2, ref1, fun = "mean") |> as_tibble()
+# ref_values$class <- ref1$class #add class attribute to a dataframe
+# names(ref_values) <- c("red_june", "green_june", "blue_june", "nir_june",
+#                        "red_aug", "green_aug", "blue_aug", "nir_aug", 
+#                        "red_dec", "green_dec", "blue_dec", "nir_dec", 
+#                        "class")
+ref_values <- readRDS("data/ref_values")
+# ref_values <- ref_values |> 
+#   mutate(ndvi_june = (nir_june - red_june)/(nir_june+red_june),
+#          ndvi_aug = (nir_aug - red_aug)/(nir_aug+red_aug),
+#          ndvi_dec = (nir_dec - red_dec)/(nir_dec+red_dec))
+```
+
+Next we take the polygons defining areas in the bedrock map and use the `exactextractr` package to calculate the mean values of the satellite images in these areas. We then plot the NDVI values for these areas, colouring and circling them by rock type. 
+
+```{r ref-value-plot, preview = TRUE}
+#some visualization with ggplot2 package - scatterplots:
+ggplot(ref_values, aes(ndvi_aug, y = ndvi_dec, color = class)) +
+  geom_point(size = 1) +
+  labs(x = "NDVI August", y = "NDVI December") +
+#  scale_y_log10() +
+  stat_ellipse(size = 2) +
+  theme_clean()
+```
+
+

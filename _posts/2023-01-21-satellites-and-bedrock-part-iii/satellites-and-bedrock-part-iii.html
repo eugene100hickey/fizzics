@@ -118,7 +118,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["satellites-and-bedrock-part-iii_files/anchor-4.2.2/anchor.min.js","satellites-and-bedrock-part-iii_files/bowser-1.9.3/bowser.min.js","satellites-and-bedrock-part-iii_files/distill-2.2.21/template.v2.js","satellites-and-bedrock-part-iii_files/figure-html5/map-1.png","satellites-and-bedrock-part-iii_files/figure-html5/patchwork-maps-1.png","satellites-and-bedrock-part-iii_files/header-attrs-2.19/header-attrs.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.min.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.min.map","satellites-and-bedrock-part-iii_files/popper-2.6.0/popper.min.js","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy-bundle.umd.min.js","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy-light-border.css","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy.css","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy.umd.min.js","satellites-and-bedrock-part-iii_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["data/ndvi-aug","data/ref_values","data/s2","satellites-and-bedrock-part-iii_files/anchor-4.2.2/anchor.min.js","satellites-and-bedrock-part-iii_files/bowser-1.9.3/bowser.min.js","satellites-and-bedrock-part-iii_files/distill-2.2.21/template.v2.js","satellites-and-bedrock-part-iii_files/figure-html5/map-1.png","satellites-and-bedrock-part-iii_files/figure-html5/patchwork-maps-1.png","satellites-and-bedrock-part-iii_files/figure-html5/ref-value-plot-1.png","satellites-and-bedrock-part-iii_files/header-attrs-2.19/header-attrs.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.min.js","satellites-and-bedrock-part-iii_files/jquery-3.6.0/jquery-3.6.0.min.map","satellites-and-bedrock-part-iii_files/popper-2.6.0/popper.min.js","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy-bundle.umd.min.js","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy-light-border.css","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy.css","satellites-and-bedrock-part-iii_files/tippy-6.2.7/tippy.umd.min.js","satellites-and-bedrock-part-iii_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1543,8 +1543,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 
 </div>
-<p>A reminder, from part I, we accessed a map of bedrock data from GSI. From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Stacking these together, and ploting beside the bedrock data gives us this:</p>
+<p>A reminder, from part I, we accessed a map of bedrock data from GSI, this is ploted on the left below. From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Stacking these together gives us the middle plot. In addition, the right hand plot shows the August vegetation index <a href="https://gisgeography.com/ndvi-normalized-difference-vegetation-index/">NDVI</a>, areas of darker green have more plant life.</p>
 <div class="layout-chunk" data-layout="l-screen-inset shaded">
+
+</div>
+<div class="layout-chunk" data-layout="l-body">
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
@@ -1556,8 +1559,15 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <div class="layout-chunk" data-layout="l-body">
 <p><img src="satellites-and-bedrock-part-iii_files/figure-html5/patchwork-maps-1.png" width="624" /></p>
 </div>
-<p>The RGB colours from the raster image (on the right above) come from setting <em>R</em> to the NIR channel from June, <em>G</em> to the NIR channel of August, and <em>B</em> to the NIR channel of December. The red flecks over Donegal Bay correspond to clouds in the June image, the bue flecks to clouds in December (this is Ireland afterall)</p>
-<p>It looks like there is some correspondence here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs. None of this is too surprising; vegetation and growth on mountains will be different to that on plains. But it leads us on to our next step, can we determine the rock types based on what the satellite images are telling us? And using the red, green, blue bands as well as the near infra-red? Let’s see.</p>
+<p>The RGB colours from the raster image (in the center above) come from setting <em>R</em> to the NIR channel from June, <em>G</em> to the NIR channel of August, and <em>B</em> to the NIR channel of December. The red flecks over Donegal Bay correspond to clouds in the June image, the bue flecks to clouds in December (this is Ireland afterall)</p>
+<p>It looks like there is some correspondence between bedrock and satellite here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs. None of this is too surprising; vegetation and growth on mountains will be different to that on plains. But it leads us on to our next step, can we determine the rock types based on what the satellite images are telling us? And using the red, green, blue bands as well as the near infra-red?</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>Next we take the polygons defining areas in the bedrock map and use the <code>exactextractr</code> package to calculate the mean values of the satellite images in these areas. We then plot the NDVI values for these areas, colouring and circling them by rock type.</p>
+<div class="layout-chunk" data-layout="l-body">
+<p><img src="satellites-and-bedrock-part-iii_files/figure-html5/ref-value-plot-1.png" width="624" data-distill-preview=1 /></p>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
