@@ -10,7 +10,7 @@ library(exactextractr)
 library(showtext)
 library(ggokabeito)
 
-font_add_google(name = "Gloria Hallelujah", family = "my_font")
+font_add(family = "my_font", regular = "fonts/AnnieUseYourTelescope-Regular.ttf")
 showtext_auto()
 theme_clean <- function() {
   theme_minimal(base_family = "my_font") +
@@ -144,7 +144,7 @@ ref_values <- ref_values |>
          ndvi_dec = (nir_dec - red_dec)/(nir_dec+red_dec))
 
 #some visualization with ggplot2 package - scatterplots:
-ggplot(ref_values, aes(ndvi_dec, y = -(ndvi_dec-ndvi_june), color = class))+
+ggplot(ref_values, aes(ndvi_aug, y = ndvi_dec, color = class))+
   geom_point(size = 1) +
 #  scale_y_log10() +
   stat_ellipse(size = 3) +
@@ -175,12 +175,15 @@ classification_rf = superClass(s2, ref2, set.seed(42), trainPartition = 0.7, res
                                model = "rf", mode = "classification", tuneLength = 5, kfold = 10)
 Sys.time()
 classification_rf
+
 plot(classification_rf$map)
+Sys.time()
 classification_svm = superClass(s2, ref2, set.seed(42), trainPartition = 0.7, responseCol = "class", #random forest classification
                                 model = "svmLinear", mode = "classification", tuneLength = 5, kfold = 10)
+Sys.time()
 classification_svm
 
-varImp_rf = varImp(classification_rf$model)
+varImp_rf = caret::varImp(classification_rf$model)
 
 plot(varImp_rf)
 varImp_rf

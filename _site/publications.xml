@@ -12,7 +12,19 @@
       <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 01 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>2023-01-08</lastBuildDate>
+    <item>
+      <title>Using machine learning to predict the correlation of spectra using SDSS magnitudes as an improvement to the Locus Algorithm</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/publications/2023-01-08-Locus_ML</link>
+      <description>Differential Photometry works best when the target and reference star have similar spectra. But in vast majority of cases, spectra won't be available. We look at machine learning techniques to see ways inwhich stellar magnitudes can be used as proxies to predict how well spectra wil correlate.</description>
+      <category>Physics</category>
+      <category>Academia</category>
+      <category>R</category>
+      <guid>https://www.fizzics.ie/publications/2023-01-08-Locus_ML</guid>
+      <pubDate>2023-01-08</pubDate>
+      <media:content url="https://ars.els-cdn.com/content/image/1-s2.0-S1384107623000386-gr7_lrg.jpg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>The Locus Algorithm: A novel technique for identifying optimised pointings for differential photometry</title>
       <dc:creator>Eugene Hickey</dc:creator>
@@ -22,7 +34,7 @@
       <category>Academia</category>
       <category>R</category>
       <guid>https://www.fizzics.ie/publications/2021-12-15-Locus_Algorithm</guid>
-      <pubDate>Sat, 01 Jan 2022 00:00:00 +0000</pubDate>
+      <pubDate>2022-01-01</pubDate>
       <media:content url="https://ars.els-cdn.com/content/image/1-s2.0-S2213133721000822-gr5_lrg.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
@@ -33,7 +45,7 @@
       <category>Physics</category>
       <category>Academia</category>
       <guid>https://www.fizzics.ie/publications/2020-11-01-Quasar_Catalogue</guid>
-      <pubDate>Mon, 10 Aug 2020 00:00:00 +0000</pubDate>
+      <pubDate>2020-08-10</pubDate>
       <media:content url="https://www.fizzics.ie/publications/2020-11-01-Quasar_Catalogue/img/qso.png" medium="image" type="image/png" width="542" height="356"/>
     </item>
     <item>
@@ -44,7 +56,7 @@
       <category>Academia</category>
       <category>Physics</category>
       <guid>https://www.fizzics.ie/publications/2019-10-02-Data_Mining_Grid</guid>
-      <pubDate>Wed, 02 Oct 2019 00:00:00 +0000</pubDate>
+      <pubDate>2019-10-02</pubDate>
       <media:content url="https://www.fizzics.ie/publications/2019-10-02-Data_Mining_Grid/img/front.png" medium="image" type="image/png" width="585" height="582"/>
     </item>
   </channel>

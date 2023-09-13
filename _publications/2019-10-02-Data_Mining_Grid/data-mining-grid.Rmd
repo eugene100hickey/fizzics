@@ -4,13 +4,13 @@ description: |
   Oisin Creaner's Thesis. Using the SDSS catalogue to refine the process of Differential Photometry.
 author:
   - name: Eugene Hickey
-    url: https://fizzics.netlify.app
+    url: https://www.fizzics.ie
     affiliation: Technological University Dublin
     affiliation_url: https://www.tudublin.ie
 date: 10-02-2019
 preview: img/front.png
 url: https://arrow.tudublin.ie/ittthedoc/1/
-base_url: http://fizzics.netlify.app
+base_url: http://www.fizzics.ie
 twitter:
   creator: "@eugene100hickey"
 categories: [Academia, Physics]

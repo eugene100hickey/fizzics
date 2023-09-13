@@ -1,7 +1,7 @@
 ---
 title: "Primel"
 description: |
-  Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead of words. This post unpicks this in R.
+  Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead of words. This post un-picks this in R.
 author:
   - name: Eugene
     url: https://www.fizzics.ie

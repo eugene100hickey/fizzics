@@ -4,13 +4,13 @@ description: |
   The publication detailing the workings of the Locus Algorithm, a technique to identify the best reference stars for a given target star and to calculate the corresponding telescope pointing to capture them all in the telescope field of view.
 author:
   - name: Eugene Hickey
-    url: https://fizzics.netlify.app
+    url: https://www.fizzics.ie
     affiliation: Technological University Dublin
     affiliation_url: https://www.tudublin.ie
 date: 01-01-2022
 preview: https://ars.els-cdn.com/content/image/1-s2.0-S2213133721000822-gr5_lrg.jpg
 url: https://www.sciencedirect.com/science/article/pii/S2213133721000822?dgcid=author
-base_url: http://fizzics.netlify.app
+base_url: http://www.fizzics.ie
 twitter:
   creator: "@eugene100hickey"
 categories: [Physics, Academia, R]
