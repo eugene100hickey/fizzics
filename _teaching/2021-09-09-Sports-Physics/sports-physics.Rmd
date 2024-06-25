@@ -1,0 +1,39 @@
+---
+title: "Principles of Physics for Sports Science"
+description: |
+  I teach physics to first year sports science.
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.netlify.app
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 09-09-2021
+preview: img/sports.png
+url: http://fizzics.netlify.app
+base_url: http://fizzics.netlify.app
+twitter:
+  creator: "@eugene100hickey"
+categories: [Academia, Physics]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+I teach physics to 1st Year Sports Science students. This is primarily biomechanics; kicking-off with linear motion, then progressing to circular motion, before finishing with a section on vectors.  
+
+During COVID19 lockdown we put together a series of online experiments for the students. These can be seen [here](physics-labs/lab-list.html). They use simulations from [PHET Colorado](https://phet.colorado.edu/)
+
+

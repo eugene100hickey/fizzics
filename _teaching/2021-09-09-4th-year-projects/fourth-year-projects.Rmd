@@ -1,0 +1,63 @@
+---
+title: "Final Year Projects"
+description: |
+  I've run a series of final year projects with pharmaceutical science students, this page gives the titles going back over the years.
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.netlify.app
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 09-09-2021
+preview: img/daria.png
+url: http://fizzics.netlify.app
+base_url: http://fizzics.netlify.app
+twitter:
+  creator: "@eugene100hickey"
+categories: [R, Academia, Bioinformatics]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+<br>
+<br>
+
+
+I'm also involved in final year projects with the pharmaceutical science students. These have been:
+
+- **2021**  
+  - The Wider Impact of COVID19 on Public Health in Ireland  
+  - The Genomics of SARS-coranavirus-2  
+  - The Association of Telomere Length and Schizophrenia Related SNP's  
+- **2020**  
+  - Investigation of Breast Cancer Pharmacogenomics Data using the PharmcoGx Bioconductor Package  
+  - Single Cell RNASeq Analysis of Transciptomic Data using the scrattch Package  
+- **2019**  
+  - Association of Tuberculosis and HIV in Africa  
+- **2018**    
+  - Investigation of Breast Cancer Pharmacogenomics Data using the PharmcoGx Bioconductor Package  
+  - Investigation of Autism Genes by Examining Gene Expression across Different Areas of Healthy Brains  
+  - Predict whether a Cancer is Benign or Malignant using the Wisconsin Breast Cancer Diagnostic Dataset  
+- **2018**    
+  - Investigation of Schizophrenia Genes by Examining Gene Expression across Different Areas of Healthy Brains  
+  - Classification of Acute Lymphocytic Leukemia using R Programming Techniques 
+- **2017**    
+  - Asthma Clinical Trial Machine Learning using the CAMP Dataset  
+- **2016**    
+  - T-Cell Acute Lymphocytic Leukemia Microarray Sample Classification using R Programming Techniques  
+  - Computer Simulation of Heat Integration of Process Streams in the Styrene Process using UniSim430 
+  - Computer Simulation of Heat Integration of Process Streams in the Propylene Glycol Process using UniSim430  

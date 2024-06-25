@@ -1,0 +1,68 @@
+[
+  {
+    "path": "projects/2021-09-04-THE/",
+    "title": "University Rankings",
+    "description": "Looking at the status of TU Dublin within the university rankings world",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://fizzics.netlify.app"
+      }
+    ],
+    "date": "2021-09-04",
+    "categories": [
+      "R",
+      "Academia"
+    ],
+    "contents": "\r\n\r\n\r\n\r\nUniversity Rankings\r\nI’m part of team looking at the status of TU Dublin within the university rankings world. This group is being led by Ayesha O’Reilly, Ailbhe Roche, Phil Mulvaney, and Mark Russell. We look at rankings from Times Higher Education, Quacquarelli Symonds, and U-Multirank, as well as keeping tabs on CAO points for our university.\r\nI put together presentations for the 17 Sustainability Development Goals that are part of the THE submission. Here is the one for SDG7 - Energy. Note that the data for this is confidential so the data you see above are randomly shuffled.\r\n\r\n\r\n\r\n",
+    "preview": "projects/2021-09-04-THE/SDG7/img/rankings-map.png",
+    "last_modified": "2023-01-17T14:13:36+00:00",
+    "input_file": {},
+    "preview_width": 710,
+    "preview_height": 613
+  },
+  {
+    "path": "projects/2021-04-04-DifTU/",
+    "title": "Data Insights for TU Dublin (DifTU)",
+    "description": "Looking at how the COVID pandemic has impacted the use of digital technologies in TU Dublin",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://fizzics.netlify.app"
+      }
+    ],
+    "date": "2021-04-04",
+    "categories": [
+      "R",
+      "Academia"
+    ],
+    "contents": "\r\n\r\n\r\n\r\nData Insights for TU Dublin (DifTU)\r\nThis project incorporated a survey carried out in our university at a time of severe lock-down. We asked students and staff about their digital experiences with the college, and we found some interesting results. We compared our responses to those for a similar survey from 2019, i.e. pre-COVID, called INDEx.\r\nFrom the responses to the question below, we can the impact of restrictions on new ways of course delivery, note the overall increase in all things digital from INDEx to DifTU.\r\n\r\n\r\n\r\nWe see an even more stark example of this in the nest question, see the dramatic rise of Recorded Lectures.\r\n\r\n\r\n\r\nAnd finally, it seems as the students are maxing-out on digital learning, see the responses to the questions below where there is a marked decrease from INDEx to DifTU.\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "projects/2021-04-04-DifTU/img/Q24.png",
+    "last_modified": "2023-01-17T14:13:35+00:00",
+    "input_file": {},
+    "preview_width": 1160,
+    "preview_height": 592
+  },
+  {
+    "path": "projects/2020-03-20-RExams/",
+    "title": "R/Exams",
+    "description": "Using R to improve the quality of online assessments",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://fizzics.netlify.app"
+      }
+    ],
+    "date": "2020-03-25",
+    "categories": [
+      "R",
+      "Academia"
+    ],
+    "contents": "\r\n\r\n\r\nI do a lot of work using online assessments, using the moodle learning platform. At the start of COVID lock-down, I figured I better up my game and so started extensively using the R/Exams package maintained by Achim Zeileis. I liked the results, and the way we could use R code giving some neat graphics, and random numbers so every student gets a different question. I’ve become a resource in the university, developing quiz questions for other lecturers, often in different disciplines, which is quite rewarding. Below are some screengrabs of questions from a chemical-engineering-esque course. The rnarkdown code for these is here.\r\nThis one is about material balances around a distillation column network.\r\n\r\n\r\n\r\nThis one is about analysis of a heat exchanger\r\n\r\n\r\n\r\nAnd this one is about x-ray diffraction patterns\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
+    "preview": "projects/2020-03-20-RExams/img/hex.png",
+    "last_modified": "2023-01-17T14:13:35+00:00",
+    "input_file": {},
+    "preview_width": 914,
+    "preview_height": 458
+  }
+]

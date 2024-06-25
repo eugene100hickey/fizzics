@@ -1,0 +1,43 @@
+---
+title: "University Rankings"
+description: |
+  Looking at the status of TU Dublin within the university rankings world
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.netlify.app
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 09-04-2021
+preview: SDG7/img/rankings-map.png
+url: http://fizzics.netlify.app
+base_url: http://fizzics.netlify.app
+twitter:
+  creator: "@eugene100hickey"
+categories: [R, Academia]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%",
+                      out.extra="style='border:1px solid black;'")
+```
+
+
+
+```{css, echo = FALSE}
+.thumbnail {
+  border: 1px solid black;
+}
+```
+
+<br>
+<br>
+
+### University Rankings  
+
+I'm part of team looking at the status of TU Dublin within the university rankings world. This group is being led by [Ayesha O'Reilly](ayesha.oreilly@tudublin.ie), [Ailbhe Roche](ailbhe.roche@tudublin.ie), [Phil Mulvaney](phil.mulvaney@tudublin.ie), and [Mark Russell](mark.russell@tudublin.ie). We look at rankings from [Times Higher Education](https://www.timeshighereducation.com/datapoints), [Quacquarelli Symonds](https://www.topuniversities.com/university-rankings), and [U-Multirank](https://www.umultirank.org/), as well as keeping tabs on CAO points for our university.  
+
+I put together presentations for the 17 Sustainability Development Goals that are part of the THE submission. [Here](SDG7/energy.html) is the one for SDG7 - Energy. Note that the data for this is confidential so the data you see above are randomly shuffled.  

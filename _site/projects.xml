@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Euge</title>
+    <link>https://www.fizzics.ie</link>
+    <atom:link href="https://www.fizzics.ie/projects.xml" rel="self" type="application/rss+xml"/>
+    <description>Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
+</description>
+    <image>
+      <title>Euge</title>
+      <url>https://www.fizzics.ie/images/atlantic.png</url>
+      <link>https://www.fizzics.ie</link>
+    </image>
+    <generator>Distill</generator>
+    <lastBuildDate>Sat, 04 Sep 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>University Rankings</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/projects/2021-09-04-THE</link>
+      <description>Looking at the status of TU Dublin within the university rankings world</description>
+      <category>R</category>
+      <category>Academia</category>
+      <guid>https://www.fizzics.ie/projects/2021-09-04-THE</guid>
+      <pubDate>Sat, 04 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/projects/2021-09-04-THE/SDG7/img/rankings-map.png" medium="image" type="image/png" width="710" height="613"/>
+    </item>
+    <item>
+      <title>Data Insights for TU Dublin (DifTU)</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/projects/2021-04-04-DifTU</link>
+      <description>Looking at how the COVID pandemic has impacted the use of digital technologies in TU Dublin</description>
+      <category>R</category>
+      <category>Academia</category>
+      <guid>https://www.fizzics.ie/projects/2021-04-04-DifTU</guid>
+      <pubDate>Sun, 04 Apr 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/projects/2021-04-04-DifTU/img/Q24.png" medium="image" type="image/png" width="1160" height="592"/>
+    </item>
+    <item>
+      <title>R/Exams</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/projects/2020-03-20-RExams</link>
+      <description>Using R to improve the quality of online assessments</description>
+      <category>R</category>
+      <category>Academia</category>
+      <guid>https://www.fizzics.ie/projects/2020-03-20-RExams</guid>
+      <pubDate>Wed, 25 Mar 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/projects/2020-03-20-RExams/img/hex.png" medium="image" type="image/png" width="914" height="458"/>
+    </item>
+  </channel>
+</rss>

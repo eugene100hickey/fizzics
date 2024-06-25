@@ -1,0 +1,37 @@
+---
+title: "The Locus Algorithm: A novel technique for identifying optimised pointings for differential photometry"
+description: |
+  The publication detailing the workings of the Locus Algorithm, a technique to identify the best reference stars for a given target star and to calculate the corresponding telescope pointing to capture them all in the telescope field of view.
+author:
+  - name: Eugene Hickey
+    url: https://www.fizzics.ie
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 01-01-2022
+preview: https://ars.els-cdn.com/content/image/1-s2.0-S2213133721000822-gr5_lrg.jpg
+url: https://www.sciencedirect.com/science/article/pii/S2213133721000822?dgcid=author
+base_url: http://www.fizzics.ie
+twitter:
+  creator: "@eugene100hickey"
+categories: [Physics, Academia, R]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+This publication details the working of the Locus Algorithm, a method to optimise a telescope pointing for a given stellar target so as to include the maximum number of best reference stars (stars with similar brightness and colour). This improves the quality of differential photometry, a technique that uses these reference stars to account for the effect of teh Earth's atmosphere on incoming starlight. In this way, it is easier to detect changes in the intrinsic output from the target star. This is useful in, for example, exoplanet detection by the transit method.  
+
+The publication can be accessed (at least till mid February 2022) from [this link](https://www.sciencedirect.com/science/article/pii/S2213133721000822?dgcid=author).

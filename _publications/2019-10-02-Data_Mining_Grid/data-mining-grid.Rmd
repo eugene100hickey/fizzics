@@ -1,0 +1,51 @@
+---
+title: "Data Mining by Grid Computing in the Search for Extrasolar Planets"
+description: |
+  Oisin Creaner's Thesis. Using the SDSS catalogue to refine the process of Differential Photometry.
+author:
+  - name: Eugene Hickey
+    url: https://www.fizzics.ie
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 10-02-2019
+preview: img/front.png
+url: https://arrow.tudublin.ie/ittthedoc/1/
+base_url: http://www.fizzics.ie
+twitter:
+  creator: "@eugene100hickey"
+categories: [Academia, Physics]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+<br>
+<br>
+
+Oisin was the first PhD candidate I supervised. His mission was to looks for stars that serendipitously had neighbours in the sky with similar brightness and colour. This makes it easier to subtract the effects of the atmosphere on the photometry of these stars and so be able to detect smaller changes in their intrinsic output. So events like exoplanet transits can be more faithfully observed.  
+
+This was a data intensive project. Downloaded the myriad of files from SDSS, selecting the parameters of interest, and churning through all the star targets. He used Grid computing for this, but made many adaptations to optimise it for file input and output and the extremely parallel nature of the job.  
+<br>
+
+The results were:
+
+- a routine that takes a given target star and finds the best reference stars for it, in general recommending that the telescope isn't pointed directly at the target but offset so as to get the best references  
+
+- a catalogue of high performing stars (ones with lots of good reference stars in their neighbourhood) and the corresponding telescope pointings  
+
+- a catalogue of quasars and their corresponding pointings.
+
+The entire thesis can be seen [here](https://arrow.tudublin.ie/ittthedoc/1/)

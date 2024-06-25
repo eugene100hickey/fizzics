@@ -1,0 +1,181 @@
+---
+title: "University Choices"
+description: |
+  Navigating through the college choice options from the CAO.
+author:
+  - name: Eugene
+    url: https://fizzics.netliffy.app
+date: 2021-12-06
+categories: [Academia, R]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = F, message = F)
+```
+
+I have a daughter finishing up school and so looking at her university options for next year. In Ireland, there is a central clearing house (called the CAO) that takes care of university admission based on performance in an end-of-school exam. This exam gives you a certain number of points, with a maximum of 625.
+
+The preference (at the moment, it changes frequently) is for something featuring _Environmental Science_. To that end, we looked around at the different options available at Irish universities and colleges. There are about 10 Irish universities, an amazing number for a small country, but then we have a strong academic ethos here. There are also a similar number of smaller colleges. Looking through the various offerings, there are North of 1000 different courses available for students wishing to undertake a four year degree. Quite the range of choices.
+
+Next question is, which ones feature _Environmental Science_? To find out, we went to the [CAO website](http://www2.cao.ie). There you can track down and access a bunch of pdf's and excel spreadsheets that detail the various courses, as well as the points required for entry. And it gives this information going back several years. A data treasure trove.
+
+Of course, pdf's and excel spreadsheet are not usually designed for easy access for data mining. The `pdftools` package helps a lot, but there is still plenty of data wrangling to do to get things in to middling half decent shape
+
+```{r libraries}
+# http://www2.cao.ie/points/deg03.htm#trd
+
+library(tidyverse)
+library(pdftools)
+library(ggokabeito)   # Colorblind-friendly color palette
+library(showtext)
+library(ggrepel)
+```
+
+
+```{r graphics}
+font_add("Fuzzy Bubbles", regular = "fonts/FuzzyBubbles-Regular.ttf")
+showtext_auto()
+
+theme_clean <- function() {
+  theme_minimal(base_family = "Fuzzy Bubbles") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size = 28, family = "Fuzzy Bubbles"),
+          plot.background = element_rect(fill = "white", color = NA),
+          axis.text = element_text(size = 32),
+          axis.title = element_text(face = "bold", size = 36),
+          strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
+          strip.background = element_rect(fill = "grey80", color = NA),
+          legend.text = element_text(size = 24))
+}
+```
+
+
+```{r data_access, cache = T, echo = T}
+years <- c("07", "08", "09", "10", "13", 14:19 )
+cao_points_year <- function(year) {
+  cao_pdf <- glue::glue("http://www2.cao.ie/points/lvl8_{year}.pdf")
+  z <- pdf_text(cao_pdf) %>% 
+    str_split("\n") %>% 
+    unlist()
+  z <- z[!str_detect(z, "^ ") & z != "" & !str_detect(z, "Course Code") & str_count(z, "  +") == 3] %>% # gets rid of non-data rows
+    str_split("  +") %>% # splits rows based on runs of several spaces
+    unlist() %>% 
+    str_remove("#") %>% 
+    str_remove("\\*") # deletes some annoying characters
+  z <- tibble(year = glue::glue("20{year}"), 
+              code = z[c(T, F, F, F)], 
+              course = z[c(F, T, F, F)], 
+              final = z[c(F, F, T, F)], 
+              medium = z[c(F, F, F, T)]) 
+  # original list made bunches of four elements that together described a course. This tibble winds them up to one row
+  z
+}
+
+z <- map_df(years, cao_points_year) %>% 
+  mutate(year = as.numeric(year))
+```
+
+
+That took care of the pdf's. But the last two years (2020, 2021) data was stored in excel files. It turned out to be simpler to download these from [here](http://www2.cao.ie/points/CAOPointsCharts2020.xlsx) and [here](http://www2.cao.ie/points/CAOPointsCharts2021.xlsx) and then whip them into the same shape as our pdf data.
+
+```{r data_access_xl, cache = T, echo = T}
+z21 <- readxl::read_excel("data/CAOPointsCharts2021.xlsx", 
+                        sheet = "EOS_2021", skip = 10) %>% 
+  janitor::clean_names() %>% 
+  filter(course_level == 8) %>% 
+  mutate(year = 2021) %>% 
+  select(year,
+         code = course_code, 
+         course = course_title,
+         final = eos_points,
+         medium = eos_midpoints) %>% 
+  mutate(year = 2021,
+         medium = as.character(medium))
+z20 <- readxl::read_excel("data/CAOPointsCharts2020.xlsx", 
+                        sheet = "PointsCharts2020_V2", skip = 9) %>% 
+  janitor::clean_names() %>% 
+  filter(level == 8) %>% 
+  mutate(year = 2020) %>%  
+  select(year,
+         code = course_code2, 
+         course = course_title,
+         final = eos,
+         medium = eos_mid_point) %>% 
+  mutate(year = 2020)
+```
+
+And finally, we put all three together
+
+```{r data_access_combo, cache = T, echo = T}
+z <- bind_rows(z, z20, z21)
+```
+
+
+```{r data_munging, cache = T}
+z1 <- z %>%
+  select(code, course) %>% 
+  group_by(code) %>%
+  mutate(last_name = if_else(row_number() == n(), 1 ,0)) %>% 
+  filter(last_name == 1) %>% 
+  select(code, last_name = course)
+
+z <- z %>% 
+  left_join(z1) %>% 
+  mutate(final = as.numeric(final),
+         medium = as.numeric(medium),
+         label = if_else(year == max(year), 
+                         as.character(code), NA_character_)) 
+
+
+courses <- z1 %>% filter(str_detect(last_name, "Environmental Science"),
+                         !str_detect(last_name, "Agri")) %>% 
+  pull(code)
+courses <- courses[1:9]
+
+max_years <- z %>%  filter(code %in% courses[1:9]) %>%  
+  group_by(code) %>% 
+  summarize(year_max = max(year))
+```
+
+Now we take this data (all `r dim(z)[1]` rows of it), pick out the courses with an _Environmental Science_ -like hue, and create a plot showing how the entry points have changed over the years. The results is shown below. The labels on the graph give the course code, which also points toward the host university. So `r max_years$code[9]` will indicate a course in Trinity College Dublin, `r max_years$code[6]` a course in Galway University. The actual names of the courses can be pretty verbose and have been abbreviated in the legend. It's still possible, just about, to guess what they are, _Blgcl,ErthandEnvSc,s_ for example, would be _Biological, Earth and Environmental Sciences_. 
+
+
+```{r plot, fig.width=9, fig.height=7}
+z %>%  filter(code %in% courses) %>%  
+  left_join(max_years) %>% 
+  mutate(last_name = str_replace(last_name, "Environmental Science", "EnvSci.")) %>% 
+  mutate(label = ifelse(year == year_max, code, "")) %>% 
+  mutate(code = glue::glue("{code}: {abbreviate(last_name, 20)}")) %>% 
+  ggplot(aes(year, final, colour = code, group = code)) +
+  geom_line(size = 2) +
+  geom_point(size = 5) +
+  geom_label_repel(aes(label = label),
+                   nudge_x = 0.2,
+                   size = 12,
+                   na.rm = TRUE,
+                   show.legend = F) +
+  scale_color_okabe_ito() +
+  scale_y_continuous(breaks = seq(100, 700, by = 50)) +
+  labs(y = "Final Points", x = "") +
+  theme_clean() +
+  theme(legend.position = "bottom", legend.title = element_blank()) +
+  guides(col=guide_legend(nrow=3))
+```
+
+I'm not sure if we're any closer to pinpointing a course, but at least with this analysis it'll be a lot easier to investigate next weeks favourites.
+
+The code for the plot is given below:
+
+```{r appendix, ref.label="plot", echo=TRUE, eval=FALSE}
+```
+
+And the libraries used are:
+
+```{r appendix2, ref.label="libraries", echo=TRUE, eval=FALSE}
+```
+
+Full code can be seen on [github](https://github.com/eugene100hickey/fizzics/blob/master/_posts/2021-12-06-university-choices/university-choices.Rmd).

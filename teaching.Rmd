@@ -1,0 +1,21 @@
+---
+title: ""
+description: |
+  This section contains the list of my workshops and teaching.
+listing: teaching
+---
+
+```{css, echo = FALSE}
+.thumbnail {
+  border: 1px solid black;
+}
+```
+<br>
+<br>
+
+I currently teach on the following courses
+
+  * [**Data Visualisation with ggplot2 to Postgraduate Students**](https://www.tudublin.ie/study/postgraduate/courses/data-science/) (100%)
+  * [**Manufacturing Technology to 4th Year Pharmaceutical Science**](https://www.tudublin.ie/study/undergraduate/courses/pharmaceutical-science-tu876/) (50%)
+  * [**Computer Measurement Systems to 2nd Year Bioanalysis**](https://www.tudublin.ie/study/undergraduate/courses/bioanalysis-tu760/) (33%)
+  * [**Principles of Physics to 1st Year Sports Science**](https://www.tudublin.ie/study/undergraduate/courses/sports-science-and-health-tu936/) (100%)

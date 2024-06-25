@@ -1,0 +1,139 @@
+---
+title: "Halloween Poster"
+description: |
+  Giving a COVID poster that halloween vibe.
+author:
+  - name: Eugene
+    url: https://fizzics.netlify.app
+date: 10-27-2021
+categories: [Images, Fun]
+output:
+  distill::distill_article:
+    self_contained: false
+preview: images/covid-header.png
+---
+
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, cache = FALSE)
+```
+
+```{r libraries_real, cache=FALSE, echo = F}
+library(tidyverse)
+library(magick)
+library(showtext)
+library(emojifont)
+library(here)
+```
+
+```{r fonts_real, echo = F}
+font_add("Ghastly Panic", "/home/eugene/.fonts/Font1/Ghastly Panic.ttf")
+font_add("Gypsy Curse", "/home/eugene/.fonts/Font2/Gypsy Curse.ttf")
+font_add("Fiendish", "/home/eugene/.fonts/Font3/Fiendish.ttf")
+```
+
+Covid-19 is a lethal pandemic, and our thoughts go out to those who have lost loved-ones or livelihoods to the disease.  
+That said, this is a special time of year, so we felt appropriate to give coronavirus a halloweenesque (halloweenable, halloweenish?) treatment. We're going to make a Halloween poster featuring the virus, and we're going to do it with `magick`. Of course.
+
+## Materials and Methods
+**Fonts**: the run-of-the-mill fonts just don't quite do it for halloween. So we turned to [fonts4free](https://www.fonts4free.net/fonts-by-sinister-fonts.html) and their line-up of sinister fonts. _Ghastly Panic_ and _Gypsy Curse_, and  _Fiendish_ looked about right, with an honourable mention to _October Crow_. The _extrafont_ package is pretty good at handling the installation of new fonts, but for these three I just downloaded the .ttf files and put them in my _fonts_ directory.  
+**Background**: There are lots corona posters out there. We chose one from the [Health Service Executive](http://www.hse.ie) here in Ireland. We downloaded it and put it in a local directory.
+
+
+## The Code
+First we put in place the libraries we'll need:
+
+```{r libraries, eval=FALSE, echo=TRUE}
+library(tidyverse)
+library(magick)
+library(showtext)
+library(emojifont)
+library(here)
+```
+
+`tidyverse` is an ever present, `magick` does the heavy lifting, `showtext` to access the new fonts, `emojifont` to get some Halloween icons, and `here` because it is so useful.  
+Next we'll load up those fonts.
+
+```{r fonts, eval=F, echo=TRUE, }
+font_add("Ghastly Panic", "fonts/Font1/Ghastly Panic.ttf")
+font_add("Gypsy Curse", "fonts/Font2/Gypsy Curse.ttf")
+font_add("Fiendish", "fonts/Font3/Fiendish.ttf")
+```
+
+Now we can start to build our poster. We use `magick` to read in the hse image file. It initially has a white border that is then cropped out. On top on this we place a yellow block and a white block to cover existing _Coronavirus_ and _Covid-19_ text (we had discerned the exact shade of yellow beforehand, thank you `colorfindr`), and a white block to cover other text further down the poster. Then we replace these with the same text in our Halloween fonts.
+
+```{r background_image}
+corona <- image_read("images/covid.jpg") %>% 
+  image_crop("625x900+185+50") %>% 
+  image_draw()
+# get rid of existing text by putting colour blocks over them
+rect(xleft = 0, ybottom = 150, xright = 400, ytop = 0, border = NA, col = "#FFEE00")
+rect(xleft = 80, ybottom = 850, xright = 545, ytop = 680, border = NA, col = "#FFFFFF")
+# add new text in appropriate fonts
+text(x = 200, y = 100, family = "Gypsy Curse", cex = 8,
+     label = "Coronavirus")
+text(x = 130, y = 200, family = "Ghastly Panic", cex = 6, 
+     label = "Covid-19")
+text(x = 312, y = 825, adj = c(0.5, 0), family = "Fiendish", cex = 2,
+     label = "Remember\n\nTo keep 2m apart\n\nin the seating area")
+```
+
+Next up we use `emojifont` to make some extra graphics featuring halloween stuff. In this case _spiders_, _bats_, and _skulls_, but `emojifont::search_emoji(str = "")` shows that are far more available. The original graphics had an annoying border top and left, `image_crop()` was used to erase these.
+
+```{r extra_icons}
+spider <- image_graph(width = 300, height = 400, res = 50)
+ggplot() + 
+  geom_emoji("spider", color='black') + 
+  theme_void() + 
+  theme(panel.background = element_rect(fill = "#FFEE00"))
+spider <- image_crop(spider, "299x399+1+1") %>% 
+  image_scale(50)
+
+bat <- image_graph(width = 300, height = 400, res = 50)
+ggplot() + 
+  geom_emoji("bat", color='black') + 
+  theme_void() + 
+  theme(panel.background = element_rect(fill = "#FFEE00"))
+bat <- image_crop(bat, "299x399+1+1") %>% 
+  image_scale(50)
+
+scream <- image_graph(width = 300, height = 400, res = 50)
+ggplot() + 
+  geom_emoji("scream", color='black') + 
+  theme_void() + 
+  theme(panel.background = element_rect(fill = "#FFEE00"))
+scream <- image_crop(scream, "319x349+1+1") %>% 
+  image_scale(80) %>% 
+  image_rotate(270)
+
+skull <- image_graph(width = 300, height = 400, res = 50)
+ggplot() + 
+  geom_emoji("skull", color='black') + 
+  theme_void() + 
+  theme(panel.background = element_rect(fill = "#FFFFFF")) 
+skull <- image_crop(skull, "299x329+1+1") %>% 
+  image_scale(60)
+
+head_bandage <- image_graph(width = 300, height = 400, res = 50)
+ggplot() + 
+  geom_emoji("face_with_head_bandage", color='black') + 
+  theme_void() + 
+  theme(panel.background = element_rect(fill = "#FFFFFF")) 
+head_bandage <- image_crop(head_bandage, "299x309+1+1") %>% 
+  image_scale(60)
+```
+
+And finally to the complete poster, adding in our `emojifont` graphics. The exact position took a bit of trial and error.
+
+```{r poster, fig.align="center"}
+corona %>% image_composite(spider) %>% 
+  image_composite(bat, offset = "+200") %>% 
+  image_composite(skull, offset = "+148+272") %>% 
+  image_composite(head_bandage, offset = "+420+275") %>% 
+  image_composite(scream, offset = "+535+550") %>%
+  image_resize("2000x1500")
+
+```
+
+Hope you like it.  
+Happy Halloween everyone, and stay safe.

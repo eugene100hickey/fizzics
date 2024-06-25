@@ -1,0 +1,63 @@
+---
+title: "Resources"
+description: |
+  This section contains some resources that are perhaps useful for others.
+---
+
+<style>
+d-title {
+ display:none;
+}
+d-article li, d-article ul {
+  margin-bottom: 0em;
+}
+.small {
+  font-size: 0.8rem;
+}
+</style>
+
+<br>
+<br>
+
+# Resources
+
+
+## Genomics
+
+* The laboratory of Rafael Irizarry [<i class="fa fa-flask" aria-hidden="true"></i>](https://rafalab.github.io/){target="_blank"}
+* Book by Avril Coghlan [<i class="fas fa-book-open"></i>](https://a-little-book-of-r-for-bioinformatics.readthedocs.io/en/latest/index.html){target="_blank"}
+* Book by Cristianini and Hahn [<i class="fas fa-book-open"></i>](https://computationalgenomics.blogs.bristol.ac.uk/){target="_blank"}
+* Bioconductor conferences [<i class="fa fa-users" aria-hidden="true"></i>](https://bioc2021.bioconductor.org/conferences/){target="_blank"}
+
+## Maps Stuff 
+
+
+* R and GIS [<i class="fa fa-compass" aria-hidden="true"></i>](https://datascienceplus.com/r-as-gis-part-1-vector/){target="_blank"}
+* Book by Lovelace and Nowosad [<i class="fas fa-book-open"></i>](https://geocompr.robinlovelace.net/){target="_blank"}
+* Course from Antonio Paez [<i class="fas fa-chalkboard-teacher"></i>](https://paezha.github.io/spatial-analysis-r/){target="_blank"}
+* Copernicus (Sentinel etc) satellite data [<i class="fa fa-globe" aria-hidden="true"></i>](https://scihub.copernicus.eu/){target="_blank"}
+
+## Learning R 
+
+* Dublin R Meetup [<i class="fab fa-meetup"></i>](https://www.meetup.com/DublinR/){target="_blank"} [<i class="fab fa-twitter"></i>](https://twitter.com/DublinR){target="_blank"}
+* R for data science community [<i class="fas fa-globe"></i>](https://www.rfordatasci.com/){target="_blank"} [<i class="fab fa-slack"></i>](https://rfordatascience.slack.com/join/shared_invite/zt-n46lijeb-2RRzQ70U34eH530~PyZsmg#/shared-invite/email){target="_blank"}
+* [Tidy Tuesday](https://github.com/rfordatascience/tidytuesday){target="_blank"}
+* Big Book of R [<i class="fab fa-r-project"></i>](https://www.bigbookofr.com/){target="_blank"}
+
+
+## Data Visualisation
+
+* Excellent course from Cédric Scherer [<i class="fas fa-chalkboard-teacher"></i>](https://z3tt.github.io/hands-on-ggplot2/){target="_blank"}
+* Book by Claus Wilkie [<i class="fas fa-book-open"></i>](https://clauswilke.com/dataviz/){target="_blank"}
+* Book by Kieran Healy [<i class="fas fa-book-open"></i>](https://socviz.co/index.html){target="_blank"}
+* Cheatsheet from Zev Ross [<i class="fas fa-info-circle"></i>](http://zevross.com/blog/2014/08/04/beautiful-plotting-in-r-a-ggplot2-cheatsheet-3/){target="_blank"}
+
+## Blogs I like
+
+* Shannon Pileggi at Piping Hot Data [<i class="fa fa-rss-square" aria-hidden="true"></i>](https://www.pipinghotdata.com/){target="_blank"}
+* Shirin Elsinghorst on all things R [<i class="fab fa-r-project"></i>](https://shirinsplayground.netlify.app/page/about/){target="_blank"}
+* Garrick Aden-Buie, he of xaringanExtra etc [<i class="fa fa-rss-square" aria-hidden="true"></i>](https://www.garrickadenbuie.com/){target="_blank"}
+* Will Chase and the Glamour of Graphics [<i class="fas fa-pencil-alt"></i>](https://www.williamrchase.com/){target="_blank"}
+* And Maëlle Salmon for R coding [<i class="fab fa-r-project"></i>](https://masalmon.eu/){target="_blank"}
+* And Emi Tanaka who largely inspired the layout of these pages [<i class="fa fa-rss-square" aria-hidden="true"></i>](https://emitanaka.org/){target="_blank"}
+* And Silvia Canelon for some great examples of using xaringan [<i class="fa fa-rss-square" aria-hidden="true"></i>](https://emitanaka.org/){target="_blank"}

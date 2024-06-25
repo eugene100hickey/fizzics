@@ -1,0 +1,71 @@
+---
+title: "Schizophrenia Genes"
+description: |
+  A karyogram of the genes featured in GWAS of schizophrenia.
+author:
+  - name: Eugene
+    url: https://fizzics.netlify.app
+date: 04-26-2021
+categories: [Bioinformatics]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+We've been working with the genetics of schizophrenia, looking at how the expression of genes that play a role in the condition vary across brain regions and neurodevelopment stages. Now, call me old-fashioned, but I like to know how things are laid out, so in this case where these genes are situated. Time for a plot.
+
+The genes in question come from a [GWAS study of the PGC](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5918692/). The images are build based on the [ggbio](https://www.bioconductor.org/packages/release/bioc/html/ggbio.html) and [karyoploteR](http://bioconductor.org/packages/release/bioc/html/karyoploteR.html) packages from bioconductor.
+
+First, let's load up the required packages:
+
+```{r libraries}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+
+if (!require("pacman")) install.packages("pacman")
+
+pacman::p_load(annotables, tidyverse, ggbio,
+               httr, readxl, ABAData, 
+               GenomicRanges, karyoploteR, genes)
+
+```
+
+Next, we get a list of the genes from the PGC. These are taken from one of the supplementary tables from the [2018 paper](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5918692/) mentioned above. We only care about the ones that also feature in the [Allen Brain Atlas](https://portal.brain-map.org/), so we filter for those.
+
+```{r gene_list, cache = T}
+genes <- genes::pardinas() %>% 
+  filter(genes %in% abagenes$hgnc_symbol) %>% 
+  pull(genes)
+```
+
+From our gene list we build a data frame of gene information using Human build 38 (grch38 from the [annotables package](https://www.rdocumentation.org/packages/annotables/versions/0.1.1)). And then turn his into an appropriate GRanges object (thank you [GenomicRanges](https://bioconductor.org/packages/release/bioc/html/GenomicRanges.html)).
+
+```{r GRanges, cache  = T}
+gene_table <- grch38 %>% 
+  dplyr::filter(symbol %in% genes) %>% 
+  dplyr::filter(chr %in% c(1:22, "X", "Y")) %>% 
+  dplyr::mutate(strand = ifelse(strand == 1, "+", "-"))
+
+gene_ranges <- makeGRangesFromDataFrame(gene_table, keep.extra.columns = T)
+seqlevelsStyle(gene_ranges) <- "UCSC"
+```
+
+Now for the plot. The `plotKaryotype()` function does a lqyout of 24 chromosomes with their cytobands, the `kpPlotMarkers()` adds in the gene labels. The label colours depend on strand; red for *+* and green for *-*. I wasn't too successful avoiding label overlaps, sorry about that. 
+
+```{r karyogram}
+kp <- plotKaryotype(genome="hg38")
+kpPlotMarkers(kp, 
+              data=gene_ranges, 
+              labels=gene_ranges$symbol, 
+              label.color = ifelse(gene_table$strand == "+", "darkred", "olivedrab4"),
+              text.orientation = "horizontal",
+              label.dist = 0.0001,
+              r1=0.5, cex=0.6, adjust.label.position = T)
+```
+
+Our genes are pretty spread out, with no particular pattern of course. But I just feel I know them a little better now.

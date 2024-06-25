@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Euge</title>
+    <link>https://www.fizzics.ie</link>
+    <atom:link href="https://www.fizzics.ie/teaching.xml" rel="self" type="application/rss+xml"/>
+    <description>Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
+</description>
+    <image>
+      <title>Euge</title>
+      <url>https://www.fizzics.ie/images/atlantic.png</url>
+      <link>https://www.fizzics.ie</link>
+    </image>
+    <generator>Distill</generator>
+    <lastBuildDate>Thu, 03 Mar 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>GRS March - Data Visualisation Workshop</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/teaching/2022-03-09-GRS-DataVis</link>
+      <description>Graduate Research Week in March 2022 featured a workshop on Data Visualisation, really an introduction to ggplot</description>
+      <category>Academia</category>
+      <category>R</category>
+      <guid>https://www.fizzics.ie/teaching/2022-03-09-GRS-DataVis</guid>
+      <pubDate>Thu, 03 Mar 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/teaching/2022-03-09-GRS-DataVis/img/cover.png" medium="image" type="image/png" width="1262" height="548"/>
+    </item>
+    <item>
+      <title>Final Year Projects</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/teaching/2021-09-09-4th-year-projects</link>
+      <description>I've run a series of final year projects with pharmaceutical science students, this page gives the titles going back over the years.</description>
+      <category>R</category>
+      <category>Academia</category>
+      <category>Bioinformatics</category>
+      <guid>https://www.fizzics.ie/teaching/2021-09-09-4th-year-projects</guid>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/teaching/2021-09-09-4th-year-projects/img/daria.png" medium="image" type="image/png" width="621" height="358"/>
+    </item>
+    <item>
+      <title>Computer Measurement Systems</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/teaching/2021-09-09-CMS-Labs</link>
+      <description>I teach computer instrumentation to 2nd year bioanalysis students</description>
+      <category>Academia</category>
+      <category>LabVIEW</category>
+      <guid>https://www.fizzics.ie/teaching/2021-09-09-CMS-Labs</guid>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/teaching/2021-09-09-CMS-Labs/img/LabVIEW.png" medium="image" type="image/png" width="789" height="372"/>
+    </item>
+    <item>
+      <title>Manufacturing Technology</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/teaching/2021-09-09-ManTech-Labs</link>
+      <description>The chemical engineering element of pharmaceutical science.</description>
+      <category>Academia</category>
+      <category>UniSim</category>
+      <guid>https://www.fizzics.ie/teaching/2021-09-09-ManTech-Labs</guid>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/teaching/2021-09-09-ManTech-Labs/img/unisim.png" medium="image" type="image/png" width="715" height="286"/>
+    </item>
+    <item>
+      <title>Principles of Physics for Sports Science</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/teaching/2021-09-09-Sports-Physics</link>
+      <description>I teach physics to first year sports science.</description>
+      <category>Academia</category>
+      <category>Physics</category>
+      <guid>https://www.fizzics.ie/teaching/2021-09-09-Sports-Physics</guid>
+      <pubDate>Thu, 09 Sep 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/teaching/2021-09-09-Sports-Physics/img/sports.png" medium="image" type="image/png" width="658" height="475"/>
+    </item>
+    <item>
+      <title>NHSr Workshop - Introduction to ggplot</title>
+      <dc:creator>Eugene Hickey</dc:creator>
+      <link>https://www.fizzics.ie/teaching/2021-01-20-NHSr-DataVis</link>
+      <description>A one day workshop on data visualisation delivered to the NHSr Community</description>
+      <category>R</category>
+      <category>Academia</category>
+      <category>Data Visualisation</category>
+      <guid>https://www.fizzics.ie/teaching/2021-01-20-NHSr-DataVis</guid>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://www.fizzics.ie/teaching/2021-01-20-NHSr-DataVis/img/ggplot.png" medium="image" type="image/png" width="713" height="405"/>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,15 @@
+---
+title: ""
+description: |
+  This section contains the list of my publications.
+listing: publications
+---
+
+```{css, echo = FALSE}
+.thumbnail {
+  border: 1px solid black;
+}
+```
+<br>
+<br>
+

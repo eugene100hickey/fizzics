@@ -1,0 +1,199 @@
+---
+title: "Tennis Sets"
+description: |
+  My tennis coach thinks that tennis matches frequently feature a close first set followed by a blow-out in the second.
+author:
+  - name: Eugene
+    url: https://fizzics.netlify.app
+date: 04-25-2021
+categories: [Fun, Sport]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+library(tidyverse)
+library(lubridate)
+library(httr)
+library(ggtext)
+
+theme_set(theme_minimal())
+```
+
+## The Concept
+
+Our tennis coach has a theory. As well as being a teacher and player he's also an avid follower of the game. And he reckons that an inordinate amount of competitive, two-set tennis matches finish with a closely matched first set followed by a relative blow out in the second. 7-5, 6-2 just about covers it.
+
+Jimmy's thinking is that a player who loses the first set, however close it was, will try to change things up to rescue the match. Every now and again this tactic works, and a player wins when they were otherwise destined to lose. However, mostly it just makes things worse and leads to the kind of scores that Jimmy predicts. But what odds, losing 7-5 6-2 is no different than losing 7-5 7-5. 
+Is he right, or is this another example of confirmation bias rearing his ugly head? Let's see what the data says.
+
+## The Data
+There is a raft of tennis statistics out there, we referred to the excellent repo of Jeff Sackmann which you can clone [here](https://github.com/JeffSackmann/tennis_atp). It features a series of csv files with scores and figures from the ATP tour going back into the 60's. It has over 50 columns, suggesting perhaps a whole series of tennis related data blogs.....
+We focused on data just from 1990 on, after all tennis has changed dramatically over the years and we don't want to confound our problem.
+
+```{r data_input, message=F, warning=F, cache=FALSE}
+#load in atp files
+atp <- read_csv("data/atp_matches_all.csv") %>%
+  as_tibble()
+```
+
+The data needs a little work before we get going on analysis. We replace tie-break games, which normally include the score in the tie-break, with a clean 7-6 or 6-7. The original data-set has the overall score in a single column, we split that into separate columns, one for each set, and we add a column for year. Also, we only care about two set games (after all, this is the basis of Jimmy's Theorem) and we need to get rid of games where one player retired injured, we do this by weeding out uncommon scorelines.
+
+```{r munging, echo=TRUE, message=FALSE, warning=FALSE}
+#reformat tie-break set scores from 7-6(4) to just 7-6
+atp$score <- gsub('\\(..\\)|\\(.\\)','', atp$score)
+
+#split the overall score into three set scores
+atp <- atp %>% 
+  separate(score, into = c("Set1", "Set2", "Set3"), sep=" ", fill="right")
+
+#adding a year column to the dataframe
+atp <- atp %>%
+  mutate(year = lubridate::year(ymd(tourney_date)))
+
+#pick out just the 2 set games
+two_sets = atp %>% 
+  filter(is.na(Set3)) 
+
+#weed out matches with retirements
+scores <-  names(table(two_sets$Set1)[table(two_sets$Set1)/length(two_sets$Set1)>0.005])
+two_sets <- two_sets %>% 
+  filter(Set1 %in% scores, Set2 %in% scores)
+
+#show a little table to see what the frame looks like
+two_sets
+
+#finally, reduce the number of columns in the dataset
+two_sets <- two_sets %>% 
+  select(Set1, Set2, year)
+```
+
+
+We end up with about `r plyr::round_any(dim(two_sets)[1], 1000)/1000` thousand scores covering `r length(unique(two_sets$year))` years.
+
+
+## Investigation
+
+First up, let's examine the frequency of scores across the two sets to see if there is anything of note. 
+
+```{r bar_chart, message=F, warning=F}
+#bar chart of most likely single set scores
+histogram_tally <- gather(two_sets, 'Set1', 'Set2', key=Set, value="scores") %>%
+  group_by(Set, scores) %>%
+  summarize(Occurence = n(), min=n()-sqrt(n()), max=n()+ sqrt(n()))
+
+histogram_title <- "Frequency of Scores in <b style = color:'#9999FF'>Set One</b> and <b style = color:'#FF9999'>Set Two</b> of\nTwo Set Tennis Matches on the ATP Tour since 1990"
+ggplot(data=histogram_tally, 
+       aes(scores, y=Occurence, ymin=min, ymax=max, fill = Set)) +
+  geom_bar(stat = "identity", 
+           position = position_dodge(),
+           show.legend = F) +
+  annotate("text", x='7-5', y=8000, 
+           label = "the player that\nloses the 1st set\nprobably serves first\nin the 2nd",
+           col = "#661111",
+           hjust = "center",
+           vjust = "bottom",
+           fontface = 2,
+           family = "Ink Free") + 
+    annotate("curve", x='7-5', xend = '6-4',
+             y = 7500, yend = 6000,
+             col = "#661111", 
+             curvature = -0.5,
+             arrow = arrow()) +
+  scale_fill_manual(values = c('#9999FF', '#FF9999')) +
+  labs(title = histogram_title) +
+  theme(plot.title = element_markdown())
+```
+
+It seems there is a definite difference here. Set Two had significantly higher numbers of unbalanced sets (6-0, 6-1, 6-2) while Set One has more competitive scores. Maybe Jimmy is on to something.
+
+Out of curiosity, note the large number of 6-4 scores in set 2. This is because, if you loose the first set, there's a strong chance you serve first in the second. In that case a single break of serve in the body of the set will lead to a score of 6-4.
+
+How about score combinations, the real reason we're here. The figure below presents these in a tiled format, the deeper the green the more often we see this match result. By Jimmy's hypothesis, we should be seeing darker greens in the bottom right corner. These are the matches where set one was close and set two more one-sided.
+
+
+```{r tiling, message=FALSE, warning=FALSE}
+#count set score combinations
+tally <-  two_sets %>% 
+  group_by(Set1, Set2, year) %>% 
+  summarize(count=n()) %>% 
+  ungroup() %>% 
+  group_by(year) %>% 
+  mutate(new_count = count/sum(count))
+
+#produces tile of overall set scores
+ggplot(data = tally, aes(x=Set1, y=Set2, fill = new_count)) +
+  geom_tile() +
+  scale_fill_gradient2(high = "darkgreen", low = "white",
+                       labels = scales::percent_format()) +
+  labs(title = "Set Score Combinations") +
+  theme_minimal()
+
+```
+
+Hmm. There doesn't seem to be much here. The bottom right corner and top left look pretty comparable. Unsurprisingly, the centre of the diagram is where all the action is, and 6-4 6-4 is the most popular score.
+
+To unpick this and see if there are any subtle effects, anything I can tell Jimmy, it's time to call on a $\chi^2$ test. 
+
+```{r chisquared, message=F, warning=F}
+
+#have a look at what chi-squared says about the set scores
+chiSquared <- two_sets[,1:2] %>% table() %>% chisq.test()
+```
+
+Not surprisingly, the $\chi^2$ statistic is highly significant and the scores from set one and set two are not independent. These are after all, the same two players facing off. We finish with a $\chi^2$ p-value of `r signif(chiSquared$p.value, 1)`. 
+
+The real story might be in the residuals. These are shown in the tiled plot below. Red squares indicate score combinations that are unusually frequent. Blue squares, scores that we don't see as often as we'd expect.
+
+```{r chisquared_plot, message=FALSE, warning=FALSE}
+residuals = chiSquared$residuals
+ggplot(as.data.frame(residuals), aes(x=Set1, y = Set2, fill=Freq)) + 
+  geom_tile(stat="identity") +
+  scale_fill_gradient2(high = "darkred", low = "darkblue", 
+                       labels = scales::percent_format()) +
+  labs(title = "Residuals from a Chi-Squared Test of Set Scores") + 
+  theme_minimal()
+```
+
+The most striking feature is the bright red square in the top right corner. There are more matches with two 7-6 tie-breaks than we have a right to expect. My guess is that these matches involve at least one player who relies heavily on his service. These matches tend to have few service breaks and so sets progress unerringly towards deciding tie-breaks. 
+
+Notice, also, the horizontal band of banal colours when Set2 is 7-5. There are two reasons for this; this is an unusual set score so there are few occurrences in this band, and also 7-5 seems to be the "neutral" second set score that tells us little about what happened in the first set.
+
+But again, we see nothing untoward happening in the bottom right corner. It looks like our theory doesn't bear scrutiny after all.
+
+One last thing to look at is the evolution of set scores over the years. This is really just because we have the data in front of us rather than because it pertains to the specific question at hand. The graph is shown in the figure below. Most set scores seem pretty steady over time. The one exception appears to be the gradual rise in the number of tie-breaks. Maybe this is indicative of more of those heavy servers that we talked about above.
+
+
+```{r time_series, message=F, warning=F}
+#set scores through the years
+yearly_tally <- two_sets %>% 
+  gather('Set1', 'Set2', key=Set, value="scores") %>% 
+  group_by(year, scores) %>% 
+  summarize(count = n()) %>% 
+  mutate(scores = reorder(scores, -count)) %>% 
+  group_by(year) %>% 
+  mutate(normal_count = count/sum(count)*100)
+
+yearly_tally = as.data.frame(yearly_tally)
+yearly_tally$year = as.numeric(yearly_tally$year)
+ggplot(yearly_tally, aes(x=year, y=normal_count, color=scores)) +
+    geom_line() + 
+  labs(y = "Percentage Occurence of Score") + 
+  scale_colour_discrete(name  ="Set Score", 
+                        breaks=c("6-4", "6-3", "7-6", "6-2", "7-5", "6-1", "6-0")) + theme_minimal()
+```
+
+
+## Conclusions
+It looks like I'll be having a difficult conversation with our tennis coach next time I see him. We found no evidence for the Jimmy Effect, despite a convincing rationale why it should be there from a man who knows what he's talking about. He's fond of this theory and I'm loathe to tell him that the data doesn't seem to back it up.
+
+Of course, we could broaden this investigation, look at games from the woman's tour and also doubles games. We'd have to factor in a Bonferroni correction to any statistical tests. But we might find that tactics play a greater role in these games and that could be crucial in bringing in to play the effect we've been looking for. 
+
+Some footnotes here. First of all, this account bears more than a passing resemblance to the post [Super Bowl Squares](http://varianceexplained.org/r/super-bowl-squares/) from David Robinson. If you haven't read it already, it's well presented and a worthy source of inspiration. Secondly, I'm a big fan of criticism. Anything short of blatant denigration is welcome. I'm especially conscious of one part of the code where I hardwired a sequence rather than let the analysis discover it for itself.
+
+Thank you for reading, and thank you in advance for comments and suggestions.
