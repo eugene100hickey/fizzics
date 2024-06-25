@@ -73,5 +73,5 @@ shinyApp(ui, server)
 ```
 
 
-
+At the moment, shinyapps.io is having trouble working with `arcgisgeocoder`, otherwise I'd link to a web version of this app. I'll work on this.
 
