@@ -1,11 +1,13 @@
 ---
 title: "Finding Postcodes using `arcgisgeocode`"
 description: |
-  A short description of the post.
+  Using the package arcgisgeocoder, along with a shiny app and leaflet to smooth ways of finding postal codes.
 author:
   - name: Eugene
     url: https://www.fizzics.ie
 date: 2024-06-25
+preview: images/sheephaven.png
+categories: [Fun, R]
 output:
   distill::distill_article:
     self_contained: false

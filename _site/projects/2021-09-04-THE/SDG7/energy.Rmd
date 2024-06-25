@@ -19,7 +19,7 @@ background-size: contain
 ```{r setup, include=FALSE, echo=FALSE, message=F, warning=F}
 options(htmltools.dir.version = FALSE, echo = F, message = F, warning = F)
 # http://stla.github.io/stlapblog/posts/Numextract.html
-
+options("ggrepel.max.overlaps" = 40)
 library(tidyverse)
 library(tm)
 library(ggrepel)
@@ -33,6 +33,7 @@ library(kableExtra)
 library(patchwork)
 library(Rtsne)
 library(ggtext)
+library(here)
 
 my_font <- "Josefin Slab"
 my_font <- "Indie Flower"
@@ -87,9 +88,11 @@ z6 <- tibble(x = z5$Y[,1],
        cohort = z1$cohort)
 tud_x <- z6[z6$label == 'Technological University Dublin','x']
 tud_y <- z6[z6$label == 'Technological University Dublin','y']
-z6 <- z6 %>% 
-  mutate(close = between(x, tud_x-8, tud_x+8) & between(y, tud_y-5, tud_y+5))
-  
+
+
+z6 <- z6 %>%
+  mutate(close = between(x, tud_x$x-8, tud_x$x+8) & between(y, tud_y$y-5, tud_y$y+5))
+
 
 SDG7 <- function(df = z1, my_university = irish_universities, metric = "Research on clean energy") {
   variables <- SDG7_Energy_metrics %>% 
@@ -119,8 +122,7 @@ SDG7 <- function(df = z1, my_university = irish_universities, metric = "Research
                     family = my_font,
                     show.legend = F,
                     size = 6,
-                    fontface = "bold",
-                    max.overlaps = 20) +
+                    fontface = "bold") +
     geom_text_repel(data = z2 %>% 
                       filter(university == "Technological University Dublin") %>% 
                       left_join(my_university), 
@@ -129,8 +131,7 @@ SDG7 <- function(df = z1, my_university = irish_universities, metric = "Research
                     family = my_font,
                     show.legend = F,
                     size = 10,
-                    fontface = "bold",
-                    max.overlaps = 20) +
+                    fontface = "bold") +
     geom_point(data = z2 %>% 
                  filter(university  == "Technological University Dublin") %>% 
                  left_join(my_university), 
@@ -403,7 +404,7 @@ z2 %>% ggplot(aes(name %>% fct_rev(), score)) +
                   show.legend = F,
                   size = 6,
                   fontface = "bold",
-                  max.overlaps = 20) +
+                  max.overlaps = 40) +
   geom_text_repel(data = z2 %>% 
                     filter(university == "Technological University Dublin") %>% 
                     left_join(irish_universities), 
@@ -413,7 +414,7 @@ z2 %>% ggplot(aes(name %>% fct_rev(), score)) +
                   show.legend = F,
                   size = 10,
                   fontface = "bold",
-                  max.overlaps = 20) +
+                  max.overlaps = 40) +
   geom_point(data = z2 %>% 
                filter(university  == "Technological University Dublin") %>% 
                left_join(irish_universities), 
@@ -456,7 +457,7 @@ z2 %>% ggplot(aes(name %>% fct_rev(), score)) +
                   show.legend = F,
                   size = 6,
                   fontface = "bold",
-                  max.overlaps = 20) +
+                  max.overlaps = 400) +
   geom_text_repel(data = z2 %>% 
                     filter(university == "Technological University Dublin") %>% 
                     left_join(cohort_universities), 
@@ -466,7 +467,7 @@ z2 %>% ggplot(aes(name %>% fct_rev(), score)) +
                   show.legend = F,
                   size = 10,
                   fontface = "bold",
-                  max.overlaps = 20) +
+                  max.overlaps = 4) +
   geom_point(data = z2 %>% 
                filter(university  == "Technological University Dublin") %>% 
                left_join(cohort_universities), 
@@ -589,11 +590,15 @@ SDG7(my_university = cohort_universities, metric = "Energy and the community")
 Is the _Energy Use Density_ measured differently in Ireland / UK?
 
 ```{r energy_use_density_comparison, echo=FALSE, message=F, warning=F, fig.width=10, fig.height=6}
+my_colours = c("#074004", "#995d53")
+
 z1 %>% 
-  ggplot(aes(`Energy use density`, fill = irish_uk)) +
+  ggplot(aes(`Energy use density`, fill = irish_uk, col = irish_uk)) +
+  scale_color_manual(values = my_colours) +
+  scale_fill_manual(values = my_colours) + 
   geom_density(alpha = 0.4, show.legend = F) +
   geom_rug(aes(col = irish_uk), show.legend = F) +
-  labs(title = "Energy Use Density for <i style = 'color:blue;'>Irish-Uk</i> and <i style = 'color:red;'>Rest of World</i> Universities") +
+  labs(title = "Energy Use Density for <i style = 'color:#04590e;'>Irish-Uk</i> and <i style = 'color:#995d53;'>Rest of World</i> Universities") +
   theme(plot.title = element_markdown(size = 18),
         plot.title.position = "plot")
 ```

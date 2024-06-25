@@ -4,13 +4,13 @@ description: |
   Looking at the status of TU Dublin within the university rankings world
 author:
   - name: Eugene Hickey
-    url: https://fizzics.netlify.app
+    url: https://fizzics.ie
     affiliation: Technological University Dublin
     affiliation_url: https://www.tudublin.ie
 date: 09-04-2021
 preview: SDG7/img/rankings-map.png
-url: http://fizzics.netlify.app
-base_url: http://fizzics.netlify.app
+url: http://fizzics.ie
+base_url: http://fizzics.ie
 twitter:
   creator: "@eugene100hickey"
 categories: [R, Academia]
