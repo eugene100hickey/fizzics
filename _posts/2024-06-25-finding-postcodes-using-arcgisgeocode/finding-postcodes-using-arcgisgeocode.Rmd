@@ -75,5 +75,9 @@ shinyApp(ui, server)
 ```
 
 
-At the moment, shinyapps.io is having trouble working with `arcgisgeocoder`, otherwise I'd link to a web version of this app. I'll work on this.
+At the moment, shinyapps.io is having trouble working with `arcgisgeocoder`, otherwise I'd link to a web version of this app. I'll work on this. For the moment, here is  aversion based on `tidygeocoder` that doesn't quite work as well.
+
+```{r palette-quiz, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "https://eugene-hickey.shinyapps.io/postal-codes/", ratio = "16:9")
+```
 
