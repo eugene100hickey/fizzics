@@ -1,0 +1,100 @@
+---
+title: "Primel"
+description: |
+  Primel is the numeric equivalent of wordle, using 5 digit prime numbers instead of words. This post un-picks this in R.
+author:
+  - name: Eugene
+    url: https://www.fizzics.ie
+date: 2022-02-16
+categories: [R, Fun]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+library(tidyverse)
+library(matlab)
+```
+
+In our house, we're fans of [wordle](https://www.nytimes.com/games/wordle/index.html), sitting down every evening to keep our streak going. But there is also a number equivalent called [primel](https://converged.yt/primel/), using five digit prime numbers instead of five letter words. This, of course, is therefore prefect territory for some R programming. Let's look at yesterday's primel challenge in this post.  
+
+Like _wordle_, getting the appropriate initial guess is key. It has to be a prime number, and like in _wordle_, it's good not to repeat digits. The available space of numbers range from 10000 to 99999. Let's make a vector of these and then filter to just have the prime numbers. The `isprime()` function from the `matlab` library is useful here.
+
+```{r data, cache=TRUE}
+numbers <- tibble(x = 10000:99999) %>% 
+  filter(matlab::isprime(x) == TRUE)
+```
+
+This leaves us with `r length(numbers$x)` prime numbers.  
+
+Now we want to get rid of numbers that repeat a digit. `r numbers$x[117]` wouldn't be a great initial guess as it contains four 1's. To do this, we'll split the numbers down to their individual digits, make a table of each one, and discard numbers which have a table entry greater than 1.
+
+```{r triage, cache = T}
+numbers <- numbers %>% 
+  mutate(x_split = str_split(x, ""))
+indices_no_repeats <- map(numbers$x_split, function(x){table(x) %>% max() == 1}) %>% unlist()
+numbers <- numbers[indices_no_repeats,]
+head(numbers$x)
+```
+
+We end up with `r length(numbers$x)` prime numbers with unique digits. The first one of these is `r numbers$x[1]`. So let's plug that in to today's primel.
+
+```{r, fig.align='center', out.width="50%", echo=FALSE}
+knitr::include_graphics(path="images/first-guess.png")
+```
+
+_1_, _0_, and _3_ came up as correct digits, but in each case in the wrong place. So let's try primes that start with _3_, and finish with _01_. To do this, we set up a vector of numbers from 30001 to 40000, with a step size of 100. Then we check which ones are primes. We end up with 17 possibilities. After our initial guess, we can exclude ones that include the digits _2_ and _4_, and again we'd prefer ones with no repeat digits. 35801 is the first in our list to satisfy these criteria. Let's try it.  
+
+```{r second}
+begin <- 30001
+end <- 40000
+my_step <- 100
+
+numbers <- seq(begin, end, by = my_step)
+
+numbers[isprime(numbers)==1]
+```
+
+```{r, fig.align='center', out.width="50%", echo=FALSE}
+knitr::include_graphics(path="images/second-guess.png")
+```
+
+From these results, we see that _3_ and _1_ are indeed the first and last digits, and _0_ must be the middle digit. Let's run this again to see which primes satisfy these conditions. Note, the `numbers%%1000` picks out the last three digits of our numbers, and checking that this is between 0 and 100 means the third last digit must be a 0.     
+
+```{r third}
+begin <- 30001
+end <- 40000
+my_step <- 10
+
+numbers <- seq(begin, end, by = my_step)
+
+numbers[isprime(numbers)==1 & between(numbers%%1000, 0, 100)]
+```
+
+We can exclude numbers with the digits _2_, _4_, _5_, or _8_, and again, we'd like to have a guess with no repeat digits. 37061 looks good, let's try it.  
+
+```{r, fig.align='center', out.width="50%", echo=FALSE}
+knitr::include_graphics(path="images/third-guess.png")
+```
+
+Now we know that the first three digits must be _360_, and the last digit must be _1_. Let's generate those primes.  
+
+
+```{r fourth}
+begin <- 36001
+end <- 36100
+my_step <- 10
+
+numbers <- seq(begin, end, by = my_step)
+
+numbers[isprime(numbers)==1]
+```
+
+This gives us just two possibilities, but we've already ruled out _6_ in the fourth position from guess three, so our answer must be 36011. And sure enough.
+
+```{r, fig.align='center', out.width="50%", echo=FALSE}
+knitr::include_graphics(path="images/fourth-guess.png")
+```

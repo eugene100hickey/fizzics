@@ -1,0 +1,37 @@
+---
+title: "Using machine learning to predict the correlation of spectra using SDSS magnitudes as an improvement to the Locus Algorithm"
+description: |
+  [Differential Photometry](https://en.wikipedia.org/wiki/Photometry_(astronomy)#Differential_photometry)
+author:
+  - name: Eugene Hickey
+    url: https://www.fizzics.ie
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 01-08-2023
+preview: https://ars.els-cdn.com/content/image/1-s2.0-S1384107623000386-gr7_lrg.jpg
+url: https://www.sciencedirect.com/science/article/abs/pii/S1384107623000386#:~:text=The%20Locus%20Algorithm%20is%20a,those%20of%20the%20target%20star.
+base_url: http://www.fizzics.ie
+twitter:
+  creator: "@eugene100hickey"
+categories: [Physics, Academia, R]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+We look at the spectra of pairs of stars and how the correlation between them can be predicted based on their SDSS magnitude values. This is important for differential photometry, where we try and account for the effects of the atmosphere on stellar lightcurves by examining the optical behaviour of neighbouring stars. The benefit here is that atmospheric effects are wavelength dependent and choosing star pairs of similar spectra gives better results. Seeing as we only have spectra for a limited number of stars, using photometric magnitude values is important. This publication makes the bridge from these magnitudes to predicting the spectral matches.
+
+The publication can be accessed from [this link](https://www.sciencedirect.com/science/article/abs/pii/S1384107623000386#:~:text=The%20Locus%20Algorithm%20is%20a,those%20of%20the%20target%20star.).

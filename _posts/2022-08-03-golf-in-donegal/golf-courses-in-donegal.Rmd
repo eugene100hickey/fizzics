@@ -1,0 +1,189 @@
+---
+title: "Golf Courses in Donegal - Part I, data access"
+description: |
+  A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this first part we'll look at how to get hold of the data by some web scrapping, a second post will do some analysis of the numbers.
+author:
+  - name: Eugene
+    url: https://www.fizzics.ie
+date: 2022-08-03
+output:
+  distill::distill_article:
+    self_contained: false
+categories: [Sport, Donegal, Web Scraping]
+preview: images/dfgc.jpg
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+Amongst other things, Donegal is a haven for golfers. And while my favourite knock is around the home course in Dunfanaghy, I thought it worthwhile to explore the course cards for the different clubs in the county.
+
+Getting the data from each golf club would be laborious, but fortunately the website at [Golfpass](https://www.golfpass.com/) makes this a lot easier. As long as you can find the landing page for the golf courses you're interested in (for Donegal it's [here](https://www.golfpass.com/travel-advisor/course-directory/8812-county-donegal/)) then you can strip out all the links and navigate to the courses, and their scorecards, that way. The libraries we need are `tidyverse` (of course) and `rvest` for the scraping. We end up with a lot of links, but the ones we care about are recognisable for the strings _/courses/_ and _#write-review_
+
+```{r libraries}
+library(tidyverse)
+library(rvest)
+
+url_donegal <- "https://www.golfpass.com/travel-advisor/course-directory/8812-county-donegal/"
+
+w <- read_html(url_donegal)
+scorecard_urls <- html_attr(html_nodes(w, "a"), "href") |> 
+  as_tibble() |> 
+  filter(str_detect(value, "/courses/"),
+         !str_detect(value, "#write-review")) |> 
+  distinct()
+```
+
+The first few entries are shown below, there are `r dim(scorecard_urls)[1]` in total.
+
+```{r urls, echo = F}
+scorecard_urls |> head() |> gt::gt()
+```
+
+Navigating through this list of url's and stripping out the details for each hole on each course is a job for `purrr`. I wrote a function that works for one course at a time and then ran it through `map`. Twice. Then I put all the courses together using `data.table::rbindlist`. 
+
+Some things to watch out for:
+
+- some courses had an entry in [Golfpass](https://www.golfpass.com/) but no scorecard. Hence the use of `safely` so that they didn't crash the first call to `map`.  
+
+- the `regex` set-up in the function is fundamentally geared for 18 hole courses but then needed to be adapted to cater for their 9 hole brethren. Dropping NA's and then checking the length of each tibble in the list did this.  
+
+- having distances measured in either meters or yards was a real pain. Especially for courses that gave an overall length in yards but then each hole in meters. Or vice-versa. Summing up the lengths of the holes and then comparing to the total course length was my best work-around for this.  
+
+- some of the figures from [Golfpass](https://www.golfpass.com/) were patently wrong. The par-5 11$^{th}$ hole in Derry, for example, is obviously longer than 311 yards. I didn't try and correct for these.  
+
+- courses have different tee-boxes, _championship_, _society_, _ladies_, and _juniors_ for example. I just took the _championship_ figures, in general the longest distance tee-box for each hole.
+
+The function that works course-by-course is shown below.
+
+```{r card-function}
+course_card <- function(url) {
+  # use the url to work out the golf club name
+  course <- sub(".*courses/\\d+-", "", url) |> 
+    str_replace_all("-", " ") |> 
+    str_to_title()
+  
+  # get raw data from the url using rvest
+  w <- read_html(url)
+  pathway_data_html <- html_nodes(w, "td")
+  card <- html_text(pathway_data_html)
+  
+  # get distance units (m or yds) for the total length, and the total length itself
+  unit <- card[3] |> str_extract("[a-z]+")
+  total_length <- card[3] |> str_extract("\\d+") |> as.numeric()
+  
+  # work out the lengths for each hole
+  lengths <- card[(which(card |> str_detect(": \\d\\d\\.\\d"))[1]+1):(which(card |> str_detect(": \\d\\d\\.\\d"))[1]+20)]
+  # work out the handicap indices for each hole
+  indexs <- card[(which(card |> str_detect("Handicap$"))+1):(which(card |> str_detect("Handicap$"))+20)]
+  # work out the pars (3, 4, or 5) for each hole
+  par <- card[(which(card |> str_detect("Par"))+1):(which(card |> str_detect("Par"))+20)]
+  
+  # put all this together into a tibble
+  my_card <- tibble(course = rep(course, 18),
+                        hole = 1:18,
+                        par = c(par[1:9], par[11:19]) |> as.numeric(),
+                        length = c(lengths[1:9], lengths[11:19]) |> as.numeric(),
+                        index = c(indexs[1:9], indexs[11:19]) |> as.numeric()
+                    )
+  # correct for 9 hole courses
+  my_card <- my_card |> drop_na()
+  if(dim(my_card)[1] < 18) {
+    my_card = filter(my_card, hole<=9)
+  } 
+  hole_lengths <- sum(my_card$length)
+  if(dim(my_card)[1] == 9) {
+    hole_lengths = 2 * hole_lengths
+  }
+  
+  # total length given in yards but holes in meters
+  if(total_length > hole_lengths * 1.05){
+    my_card <- my_card |> 
+      mutate(unit = "meters",
+             yards = length * 1.09361)
+  }
+  
+  # total length given in meters but holes in yards
+  if(total_length < hole_lengths * 1.05){
+    my_card <- my_card |> 
+      mutate(unit = "yards",
+             yards = length)
+  }
+
+  my_card |> select(course, hole, par, length, unit, index, yards)
+}
+```
+
+```{r data, echo = FALSE}
+z1 <- readRDS("data/donegal")
+z2 <- map(1:length(z1), function(x) z1[[x]]$result)
+donegal_golf <- data.table::rbindlist(z2) |> 
+  mutate(par = as.factor(par))
+```
+
+And the calls to `map` to create the overall data frame are shown here.
+
+```{r data-purrr, eval=FALSE}
+z1 <- map(scorecard_urls$value, safely(course_card))
+z2 <- map(1:length(z1), function(x) z1[[x]]$result)
+donegal_golf <- data.table::rbindlist(z2) |> 
+  mutate(par = as.factor(par))
+```
+
+Finally, we'll do a little cleaning. We know these are all golf courses, so we can skip that part of the name. Also, for nine hole courses, players tend to go around twice, so we'll double up their holes and adjust the hole indices accordingly.
+
+```{r cleaning}
+donegal_golf <- donegal_golf |> 
+    mutate(course = course |> str_remove("Golf") |> 
+           str_remove("Links") |>
+           str_remove("Club") |> 
+           str_remove("And") |> 
+           str_remove("Hotel") |> 
+           str_remove("International") |> 
+           str_squish())
+
+course_summary <- donegal_golf |>
+  group_by(course) |> 
+  summarise(total_length = sum(yards),
+            total_par = sum(par |> as.character() |> as.numeric()),
+            highlight = ifelse(n() < 10, "nine", "eighteen")) |> 
+  ungroup() 
+course_summary <- course_summary |> 
+  mutate(highlight = ifelse(course == "Dunfanaghy", "yes", highlight))
+
+nines <- course_summary |> 
+  filter(highlight == "nine")
+
+nine_cards <- donegal_golf |> 
+  filter(course %in% nines$course)
+
+nine_type <- nine_cards |> 
+  group_by(course) |> 
+  summarise(index_type = sum(index)) |> 
+  ungroup()
+
+nine_cards <- nine_cards |> 
+  left_join(nine_type) |> 
+  mutate(index = case_when(index_type == 81 ~ index+1,
+                           index_type == 90 ~ index-1,
+                           index_type == 45 ~ index*2),
+         hole = hole + 9) |> 
+  select(-index_type)
+
+otway_style_indices <- nine_type |> filter(index_type == 45) |> pull(course)
+
+donegal_golf <- donegal_golf |> 
+  mutate(index = ifelse(course %in% otway_style_indices, index*2 - 1, index)) |> 
+  bind_rows(nine_cards)
+```
+
+
+This gives a tibble that looks like this:
+
+```{r table, echo = FALSE}
+DT::datatable(donegal_golf |> select(-yards))
+```
+
+Now we have our data the way we want, we can look and see what this tells us. That's for the [next post](https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis/index.html)

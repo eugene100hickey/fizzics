@@ -1,0 +1,147 @@
+---
+title: "Derry Girls"
+description: |
+  Using FACE++ to read emotions on images of faces.
+author:
+  - name: Eugene
+    url: https://fizzics.netlify.app
+date: 05-03-2021
+categories: [Images, R]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(data.table)
+library(jsonlite)
+library(httr)
+library(tidyverse)
+library(showtext)
+library(magick)
+library(gt)
+library(ggpubr)
+
+font_add_google("Amiri", "Amiri")
+
+showtext_auto()
+```
+
+Theresa Kuentzler wrote a nice [post](https://www.mzes.uni-mannheim.de/socialsciencedatalab/article/extracting-emotions), linking R to the [Face++ API](https://www.faceplusplus.com/). So I thought I'd give it a go too.
+
+First, we need to choose an image with faces, and for this crucial decision we formed a focus group in the family here. The basic FACE++ limits us to five faces per image so this ruled out _Modern Family_, _Friends_, and _Oceans 8_. Images from _Poirot_, _Stargate_, and _Line of Duty_ featured faces that were pretty stoic so not too interesting emotion-wise. But then we looked at the magnificent [Derry Girls](https://en.wikipedia.org/wiki/Derry_Girls) television series and knew we had found our mark. It tells the story of a bunch of schoolchildren in 1990's Derry, set against the back-drop of the Troubles and the Peace Process, with a great sound track and an irreverent sense of humour.
+
+The image chosen looks like this:
+
+```{r image, echo = T}
+mypaths <- "images/derry-girls.jpg"
+derry_girls <- magick::image_read(mypaths)
+plot(derry_girls)
+```
+
+```{r image_dimensions}
+image_dims <- magick::image_info(derry_girls)
+width <- image_dims$width[1]
+height <- image_dims$height[1]
+centre <- c(width/2, height/2)
+```
+
+Face++ needs registration and authorisation keys, the post from Theresa mentioned above discusses how to do this. I wasn't keen to have my key on github, so it's created here from a file outside the repo.
+
+```{r faceplusplus-authorisation, echo = T}
+myauth <- readRDS("../../../myauth_faceplusplus")
+```
+
+The function below is the workhorse of this post, again largely created based on the code of Theresa. Note the block of `fromJSON()` statements in the middle; one of [Hadley's Rules of Programming](https://r4ds.had.co.nz/functions.html) is that if you repeat code more that twice it should become its own function but in this case it seemed to be clearer to let these statements stand on their own.
+
+```{r faceplusplus-function, echo = T}
+face_plus_plus <- function(fullpath) {
+  face <- httr::RETRY("POST", "https://api-us.faceplusplus.com/facepp/v3/detect",
+                      body = list(api_key  = myauth$api_key,
+                                  api_secret = myauth$api_secret,
+                                  image_file = upload_file(fullpath),
+                                  return_landmark = 0,
+                                  return_attributes = "emotion,gender"),
+                      times = 2, 
+                      encode = "multipart") %>% 
+    as.character
+  
+  anger <- fromJSON(face)$faces$attributes$emotion$anger
+  disgust <- fromJSON(face)$faces$attributes$emotion$disgust
+  fear <- fromJSON(face)$faces$attributes$emotion$fear
+  happiness <- fromJSON(face)$faces$attributes$emotion$happiness
+  neutral <- fromJSON(face)$faces$attributes$emotion$neutral
+  sadness <- fromJSON(face)$faces$attributes$emotion$sadness
+  surprise <- fromJSON(face)$faces$attributes$emotion$surprise
+  gender <- fromJSON(face)$faces$attributes$gender
+  top <- fromJSON(face)$faces$face_rectangle$top
+  left <- fromJSON(face)$faces$face_rectangle$left
+  tibble(anger, disgust, fear, happiness, neutral,
+         sadness, surprise, top, left, 
+         gender = gender$value, image = fullpath)
+}
+```
+
+And now we can run our function. We have to manually code the character names, and I decided to recode the position so that the origin was in the bottom left corner to make it synchronise better with the plot to come.
+
+```{r face-run, echo = T}
+derry <- map_df(mypaths, face_plus_plus) %>% 
+  arrange(left) %>% 
+  mutate(name = c("Michelle", "James", "Erin", "Orla", "Claire"),
+         x = left,
+         y = height - top) %>% 
+  select(-c(image, top, left))
+
+derry %>% gt()
+```
+
+Next up, we made a separate data table to generate labels for our plot below. It discarded emotions that are less than 10% for each character, and it builds in some html to format the labels. The font, [Amiri](https://fonts.google.com/specimen/Amiri?query=amiri) was the best match I could find to the text in the school logo, the colour, _#004400_, lines up with the uniform colour.
+
+```{r emotion-labels, echo = T}
+emotions <- derry %>% 
+  select(-c(gender, x, y)) %>% 
+  pivot_longer(cols = -c(name), 
+               names_to = "emotion", 
+               values_to = "percentage") %>% 
+  dplyr::filter(percentage > 10) %>% 
+  mutate(percentage = round(percentage, 1)) %>% 
+  unite("emotion", emotion:percentage, sep = ": ") %>% 
+  mutate(emotion = glue::glue("{emotion}%")) %>% 
+  group_by(name) %>% 
+  summarise(emotion = paste(emotion, collapse = "<br>")) %>% 
+  ungroup() %>% 
+  mutate(name1 = glue::glue("<b>{name}</b>")) %>% 
+  unite("emotion", name1:emotion, sep = "<br>") %>% 
+  mutate(emotion = glue::glue("<p style = 'color:#004400; font-size:28px;  font-family:Amiri';>{emotion}</p>"))
+```
+
+Putting this together, using `ggplot()` with `background_image()` from the _ggpubr_ package gives:
+
+```{r emotions, echo  = T, preview = T}
+derry %>% 
+  left_join(emotions) %>% 
+  ggplot(aes(x, y)) +
+  coord_cartesian(xlim = c(0, width), 
+                  ylim = c(0, height)) +
+  background_image(derry_girls) +
+  ggtext::geom_richtext(aes(x = x + ifelse(x > 100, 
+                                           sign(x-centre[1])*50 + 50, 
+                                           sign(x-centre[1])*50 + 10),
+                            y = y + ifelse(x>400, 
+                                           sign(y-centre[2])*65,
+                                           sign(y-centre[2])*(-120)),
+                            label = emotion)) +
+  theme_void()
+```
+
+The label positions were a bit hit-and-miss, but I wanted to use the face positions as discovered by FACE++ rather than manually code the positions.  
+
+Seems like FACE++ captured the emotions expressed on these faces pretty well, now if only it could produce a script as sharp as that of Lisa McGee....
+
+
+
+
+

@@ -1,0 +1,38 @@
+---
+title: "Manufacturing Technology"
+description: |
+  The chemical engineering element of pharmaceutical science.
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.netlify.app
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 09-09-2021
+preview: img/unisim.png
+url: http://fizzics.netlify.app
+base_url: http://fizzics.netlify.app
+twitter:
+  creator: "@eugene100hickey"
+categories: [Academia, UniSim]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+I teach Manufacturing Technology to 4th Year Pharmaceutical Science students. This involves lots of chemical engineering, and my favourite part which is crystallography. The chemical engineering part looks at _material balances_, _heat exchangers_, and _distillation columns_. In crystallography, we go the way from _Bravais Lattices_, to _Miller Indices_, _Space Groups_, and _X-ray Diffraction_. 
+
+The laboratory component of this module uses a Process Simulator programme [UniSim490 from Honeywell](https://www.honeywellprocess.com/en-US/explore/products/advanced-applications/unisim/Pages/default.aspx). We use this to set up virtual processes and compare their operation to theory. Examples of the labs from 2019 are given [here](ManTech_Lab_Manual_2019.pdf). 
+

@@ -1,0 +1,69 @@
+---
+title: "University Rankings"
+description: |
+  Seeing the world through QS university rankings.
+author:
+  - name: Eugene
+    url: https://fizzics.netlify.app
+date: 09-24-2021
+categories: [Academia, R, Maps]
+output:
+  distill::distill_article:    
+    # includes:
+    #   in_header: ../../favicon.html
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = F, warning = F)
+```
+
+[Quacquarelli Symonds](https://www.topuniversities.com/) produces a list of the top ranked international universities every year. I thought it'd be interesting to see how this looks across the globe, not so much with a map, but with a silhouette showing the positions of the top colleges.
+
+QS publish their data, but it's a little awkward to scrape them, so I referred to [this](https://www.kaggle.com/divyansh22/qs-world-university-rankings) kaggle dataset with the figures for 2020.
+
+```{r libraries}
+library(tidyverse)
+library(ggmap)
+library(tidygeocoder)
+```
+
+```{r data, echo=TRUE}
+kaggle_dataset <- read_csv("data/2020-QS-World-University-Rankings.csv",
+              skip = 1,
+              locale = readr::locale(encoding = "latin1"))
+
+university_rankings <- tibble(university = kaggle_dataset$...3, 
+                              rank = 1:nrow(kaggle_dataset))
+```
+
+Note that we had to change the encoding for the csv file (`readr::locale(encoding = "latin1")`) to capture international lettering.
+
+Next, to find out where these universties are. I used both [ggmap](http://journal.r-project.org/archive/2013-1/kahle-wickham.pdf) and [tidygeocoder](https://CRAN.R-project.org/package=tidygeocoder), finding an address isn't so easy when all you have is the universities name, and then combined the two to fill out missed values. Only 6 of 1024 universities went unlocated.
+
+```{r geocoding, echo=TRUE}
+# geos0 <- tidygeocoder::geo(address = z$university, method = "osm")
+# geos1 <- ggmap::geocode(location = z$university, output = "latlona")
+# geos2 <- bind_cols(geos0, geos1)
+# geos <- geos2 %>%
+#   mutate(lat = ifelse(is.na(lat...2), lat...5, lat...2),
+#          long = ifelse(is.na(long), lon, long)) %>%
+#   select(university = address...1, address = address...6, long, lat)
+
+geos <- readRDS("data/geos")
+university_rankings <- university_rankings %>% left_join(geos)
+```
+
+And now the map. No fancy _simple features_ or projections, just locations specified by longitude and latitude. But that's enough to see the outline of the world's landmasses. 
+
+Lot's of universities in Europe, East Coast America, and across the South and East of Asia. Also, note the crescent of colleges following the Southern outline of the Himalayas. And the near total absence of most of Africa.
+
+I'd hope this picture will look very different in years to come, with a much wider spread of colleges across the globe.
+
+```{r map}
+university_rankings %>% 
+  ggplot(aes(x= long, y = lat, colour = -rank)) + 
+  geom_point(show.legend = F, size = 2.5, alpha = 0.5) + 
+  theme_void()
+```

@@ -1,0 +1,13 @@
+---
+title: "Projects"
+description: |
+  Some of other stuff I'm working on right now, or in the recent past
+listing: projects
+---
+
+```{css, echo = FALSE}
+.thumbnail {
+  border: 1px solid black;
+}
+```
+

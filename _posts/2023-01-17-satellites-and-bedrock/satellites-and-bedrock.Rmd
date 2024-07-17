@@ -1,0 +1,153 @@
+---
+title: "Satellites and Bedrock - Part I"
+description: |
+  Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types. In this first of a three part series, we look at ways of accessing bedrock data from GSI.
+author:
+  - name: Eugene
+    url: https://www.fizzics.ie
+date: 2023-01-18
+categories: [R, Donegal, Maps]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{css, echo=FALSE}
+img {
+  max-width:150%;
+  height: auto;
+}
+```
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
+```
+
+
+Geological Survey Ireland is producing wonderful [data resources](https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx), impossible to resist when it comes to doing some analysis. In this post, welook at [bedrock data](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock.... 
+
+I was interested to see how overlying vegetation depends on the bedrock; specifically if the colours from satellite images taken at different times of year could be used to take a guess at what lies beneath. 
+
+This requires two suites of information, the bedrock data from GSI and the satellite data from [Copernicus-Sentinel](https://scihub.copernicus.eu/). The first we'll download directly and store locally from [this resource](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), the second we'll access using the R package, [sen2r](https://github.com/ranghetti/sen2r) (but we'll also end up downloading and storing image files locally, but `sen2R` will help scope them out).
+
+This was originally written as one post, but then it got so long I decided to split it into three parts:
+
+- **Part I: getting the bedrock data from GSI  **
+- Part II: getting the satellite data from Sentinel  
+- Part III: putting the first two together  
+
+
+```{r libraries-theme}
+library(tidyverse)
+library(sf)
+library(sen2r)
+library(raster)
+library(RStoolbox)
+library(exactextractr)
+# library(terra)
+library(showtext)
+library(gt)
+library(ggokabeito)
+
+font_add_google(name = "Gloria Hallelujah", family = "my_font")
+showtext_auto()
+theme_clean <- function() {
+  theme_minimal(base_family = "my_font") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size = 16, family = "my_font"),
+          plot.background = element_rect(fill = "white", color = NA),
+          axis.text = element_text(size = 16),
+          axis.title = element_text(face = "bold", size = 14),
+          strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
+          strip.background = element_rect(fill = "grey80", color = NA),
+          legend.text = element_text(size = 16, family = "my_font"))
+}
+```
+
+
+```{r bedrock, echo=TRUE}
+ref <- st_read("data/Shapefiles/Bedrock_Polygons_ITM_2018.shp", quiet = TRUE)
+my_proj <- "+proj=utm +zone=29 +datum=WGS84 +units=m +no_defs"
+ref <- st_transform(ref, crs = my_proj)
+```
+
+The bedrock file arrives in the form of a shapefile. It contains bunch of attributes: location, decription, area, as well as the polygon shapes themselves. And some attributes I'm at a loss to understand (M, Y, K, C anyone?). We end up with a total of `r dim(ref)[1] |> format(big.mark=",")` fields covering the Republic of Ireland. 
+
+Below we show the geometry for this shapefile:
+
+
+```{r}
+ref$geometry
+```
+
+And here is a table showing the attributes for a sample of a few fields. Note, we've done a wee text-trawl through the description attribute to try and categorise the rocks in to a manageable number of types (quartz, sandstone, limestone, schist, shale, granite, or other).
+
+```{r table, layout="l-screen-inset shaded"}
+ref |>
+  mutate(
+    class = case_when(
+      str_detect(DESCRIPT, "[Gg]ranite") ~ "granite",
+      str_detect(DESCRIPT, "[Qq]uar[tz][tz]") ~ "quartz",
+      str_detect(DESCRIPT, "[Ss]andstone") ~ "sandstone",
+      str_detect(DESCRIPT, "[Ss]chist") ~ "schist",
+      str_detect(DESCRIPT, "[Ll]imestone") ~ "limestone",
+      str_detect(DESCRIPT, "[Ss]hale") ~ "shale",
+      TRUE ~ "other"
+    ),
+  .before = NEWCODE
+  ) |> 
+  st_drop_geometry() |> 
+  dplyr::select(-c(OBJECTID_2, OBJECTID, SHEETNO, STRATCODE, LITHCODE, SHAPE_LEN)) |> 
+  slice_sample(n=10) |> 
+  gt::gt() |> 
+  tab_options(table.font.size = px(16)) |> 
+  fmt_number(columns = SHAPE_AREA,
+             rows = SHAPE_AREA > 1000,
+             scale_by = 1/1000,
+             decimals = 0,
+             pattern = "{x}K") |> 
+  fmt_number(columns = SHAPE_AREA,
+             rows = SHAPE_AREA < 1000,
+             scale_by = 1,
+             decimals = 2,
+             pattern = "{x}")
+```
+
+```{r bedock-map}
+my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
+my_extent <- c(xmin=510000, xmax=635000, ymin=6030000, ymax=6150000)
+
+
+# ref <- st_transform(ref, crs = st_crs(s1))
+ref1 <- ref |> 
+  st_crop(extent(my_extent)) |> 
+  mutate(
+    class = case_when(
+      str_detect(DESCRIPT, "[Gg]ranite") ~ "granite",
+      str_detect(DESCRIPT, "[Qq]uar[tz][tz]") ~ "quartz",
+      str_detect(DESCRIPT, "[Ss]andstone") ~ "sandstone",
+      str_detect(DESCRIPT, "[Ss]chist") ~ "schist",
+      str_detect(DESCRIPT, "[Ll]imestone") ~ "limestone",
+      str_detect(DESCRIPT, "[Ss]hale") ~ "shale",
+      TRUE ~ "other"
+    ),
+  .before = NEWCODE)
+#  |> filter(class != "other")
+```
+
+Plotting this, and just looking at the NorthWest, we get:
+
+```{r map, layout="l-screen-inset shaded"}
+ref1 |> 
+  ggplot(aes(fill = class)) +
+  geom_sf() + 
+  guides(fill=guide_legend(nrow=1,byrow=TRUE)) +
+  scale_fill_okabe_ito() +
+  theme_clean() + 
+  theme(legend.position = "bottom",
+        legend.title = element_blank())
+
+```
+
+
+

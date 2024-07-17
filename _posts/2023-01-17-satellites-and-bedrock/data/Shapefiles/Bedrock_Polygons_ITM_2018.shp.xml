@@ -1,0 +1,1101 @@
+<metadata xml:lang="en">
+	<Esri>
+		<CreaDate>20181009</CreaDate>
+		<CreaTime>16103600</CreaTime>
+		<SyncOnce>FALSE</SyncOnce>
+		<SyncDate>20181025</SyncDate>
+		<SyncTime>15544100</SyncTime>
+		<ModDate>20181025</ModDate>
+		<ModTime>15544100</ModTime>
+		<DataProperties>
+			<itemProps>
+				<itemLocation>
+					<linkage Sync="TRUE">file://\\SGSIHSM01\General_access\Cathal\SILVIA_100K v2\NEW\Data_Download\Download\Individual_Files\Bedrock_Polygons_ITM_2018.shp</linkage>
+					<protocol Sync="TRUE">Local Area Network</protocol>
+				</itemLocation>
+				<itemName Sync="TRUE">Bedrock_Polygons_ITM_2018</itemName>
+				<imsContentType Sync="TRUE" export="False">002</imsContentType>
+				<itemSize Sync="TRUE">0.000</itemSize>
+				<nativeExtBox>
+					<westBL Sync="TRUE">416216.399000</westBL>
+					<eastBL Sync="TRUE">734481.069000</eastBL>
+					<southBL Sync="TRUE">519663.704100</southBL>
+					<northBL Sync="TRUE">966936.905000</northBL>
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+				</nativeExtBox>
+				<relatedItems>
+					<item>
+						<itemName Sync="TRUE">BEDROCK.Bedrock_Polygons</itemName>
+						<itemType Sync="TRUE">Relationship</itemType>
+					</item>
+					<item>
+						<itemName Sync="TRUE">BEDROCK.Bedrock_Polygons_2018</itemName>
+						<itemType Sync="TRUE">Relationship</itemType>
+					</item>
+				</relatedItems>
+			</itemProps>
+			<copyHistory>
+				<copy source="T:\Bedrock Data\Bed100_50kupdates2013\transfer50to100k\Final100kunionDUGA2" dest="\\sgsihsm01\Images\Bedrock Data\Bed100_50kupdates2013\transfer50to100k\finalDUGA\Final100kunionDUGA2" date="20130808" time="12321700"/>
+			</copyHistory>
+			<coordRef>
+				<type Sync="TRUE">Projected</type>
+				<geogcsn Sync="TRUE">GCS_IRENET95</geogcsn>
+				<csUnits Sync="TRUE">Linear Unit: Meter (1.000000)</csUnits>
+				<projcsn Sync="TRUE">IRENET95_Irish_Transverse_Mercator</projcsn>
+				<peXml Sync="TRUE">&lt;ProjectedCoordinateSystem xsi:type='typens:ProjectedCoordinateSystem' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:typens='http://www.esri.com/schemas/ArcGIS/10.3'&gt;&lt;WKT&gt;PROJCS[&amp;quot;IRENET95_Irish_Transverse_Mercator&amp;quot;,GEOGCS[&amp;quot;GCS_IRENET95&amp;quot;,DATUM[&amp;quot;D_IRENET95&amp;quot;,SPHEROID[&amp;quot;GRS_1980&amp;quot;,6378137.0,298.257222101]],PRIMEM[&amp;quot;Greenwich&amp;quot;,0.0],UNIT[&amp;quot;Degree&amp;quot;,0.0174532925199433]],PROJECTION[&amp;quot;Transverse_Mercator&amp;quot;],PARAMETER[&amp;quot;False_Easting&amp;quot;,600000.0],PARAMETER[&amp;quot;False_Northing&amp;quot;,750000.0],PARAMETER[&amp;quot;Central_Meridian&amp;quot;,-8.0],PARAMETER[&amp;quot;Scale_Factor&amp;quot;,0.99982],PARAMETER[&amp;quot;Latitude_Of_Origin&amp;quot;,53.5],UNIT[&amp;quot;Meter&amp;quot;,1.0],AUTHORITY[&amp;quot;EPSG&amp;quot;,2157]]&lt;/WKT&gt;&lt;XOrigin&gt;-5022200&lt;/XOrigin&gt;&lt;YOrigin&gt;-15179500&lt;/YOrigin&gt;&lt;XYScale&gt;450346452.34347922&lt;/XYScale&gt;&lt;ZOrigin&gt;-100000&lt;/ZOrigin&gt;&lt;ZScale&gt;10000&lt;/ZScale&gt;&lt;MOrigin&gt;-100000&lt;/MOrigin&gt;&lt;MScale&gt;10000&lt;/MScale&gt;&lt;XYTolerance&gt;0.001&lt;/XYTolerance&gt;&lt;ZTolerance&gt;0.001&lt;/ZTolerance&gt;&lt;MTolerance&gt;0.001&lt;/MTolerance&gt;&lt;HighPrecision&gt;true&lt;/HighPrecision&gt;&lt;WKID&gt;2157&lt;/WKID&gt;&lt;LatestWKID&gt;2157&lt;/LatestWKID&gt;&lt;/ProjectedCoordinateSystem&gt;</peXml>
+			</coordRef>
+			<lineage><Process ToolSource="c:\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\RepairGeometry" Date="20220616" Time="153250">RepairGeometry X:\Cathal\Bedrock_Download_Metadata_Update\02_WORKING\QGIS_June_2022_B\GSI_Bedrock_100k\Shapefiles\Bedrock_Polygons_ITM_2018.shp DELETE_NULL OGC</Process></lineage></DataProperties>
+		<ArcGISFormat>1.0</ArcGISFormat>
+		<scaleRange>
+			<minScale>150000000</minScale>
+			<maxScale>5000</maxScale>
+		</scaleRange>
+		<ArcGISProfile>INSPIRE</ArcGISProfile>
+		<ArcGISstyle>ISO 19139 Metadata Implementation Specification</ArcGISstyle>
+	</Esri>
+	<idinfo>
+		<citation>
+			<citeinfo>
+				<onlink Sync="TRUE">\\sgsifs01\users\brian.mcconnell\natmap\dublin_geourban\dublin_geourban_bedrock</onlink>
+				<origin>REQUIRED: The name of an organization or individual that developed the data set.</origin>
+				<pubdate>REQUIRED: The date when the data set is published or otherwise made available for release.</pubdate>
+				<title Sync="TRUE">sh43_south_edited</title>
+				<ftname Sync="TRUE">sh43_south_edited</ftname>
+				<geoform Sync="TRUE">vector digital data</geoform>
+			</citeinfo>
+		</citation>
+		<native Sync="TRUE">Microsoft Windows XP Version 5.1 (Build 2600) Service Pack 3; ESRI ArcCatalog 9.3.1.3500</native>
+		<descript>
+			<langdata Sync="TRUE">en</langdata>
+			<abstract>REQUIRED: A brief narrative summary of the data set.</abstract>
+			<purpose>REQUIRED: A summary of the intentions with which the data set was developed.</purpose>
+		</descript>
+		<timeperd>
+			<current>REQUIRED: The basis on which the time period of content information is determined.</current>
+			<timeinfo>
+				<sngdate>
+					<caldate>REQUIRED: The year (and optionally month, or month and day) for which the data set corresponds to the ground.</caldate>
+				</sngdate>
+			</timeinfo>
+		</timeperd>
+		<status>
+			<progress>REQUIRED: The state of the data set.</progress>
+			<update>REQUIRED: The frequency with which changes and additions are made to the data set after the initial data set is completed.</update>
+		</status>
+		<spdom>
+			<bounding>
+				<westbc Sync="TRUE">-10.875678</westbc>
+				<eastbc Sync="TRUE">-5.874678</eastbc>
+				<northbc Sync="TRUE">55.451954</northbc>
+				<southbc Sync="TRUE">51.370743</southbc>
+			</bounding>
+			<lboundng>
+				<leftbc Sync="TRUE">17937.271188</leftbc>
+				<rightbc Sync="TRUE">334513.688250</rightbc>
+				<bottombc Sync="TRUE">16333.179178</bottombc>
+				<topbc Sync="TRUE">467259.922126</topbc>
+			</lboundng>
+		</spdom>
+		<keywords>
+			<theme>
+				<themekt>REQUIRED: Reference to a formally registered thesaurus or a similar authoritative source of theme keywords.</themekt>
+				<themekey>REQUIRED: Common-use word or phrase used to describe the subject of the data set.</themekey>
+			</theme>
+		</keywords>
+		<accconst>REQUIRED: Restrictions and legal prerequisites for accessing the data set.</accconst>
+		<useconst>REQUIRED: Restrictions and legal prerequisites for using the data set after access is granted.</useconst>
+		<natvform Sync="TRUE">Shapefile</natvform>
+	</idinfo>
+	<distInfo>
+		<distributor>
+			<distorTran>
+				<onLineSrc>
+					<orDesc>001</orDesc>
+					<linkage>http://www.gsi.ie</linkage>
+					<protocol Sync="TRUE">Local Area Network</protocol>
+					<orFunct>
+						<OnFunctCd value="002"/>
+					</orFunct>
+				</onLineSrc>
+				<transSize Sync="TRUE">0.000</transSize>
+				<offLineMed>
+					<medName>
+						<MedNameCd value="001"/>
+					</medName>
+				</offLineMed>
+			</distorTran>
+			<distorFormat>
+				<formatName Sync="TRUE">Shapefile</formatName>
+				<formatVer>ArcGIS 10.3.1.</formatVer>
+			</distorFormat>
+			<distorOrdPrc>
+				<ordInstr>Contact : Mr. Koen Verbruggen
+ Information Management Programme, GSI. (01-6782864)</ordInstr>
+			</distorOrdPrc>
+			<distorCont>
+				<rpIndName>Information Management</rpIndName>
+				<rpOrgName>Geological Survey Ireland</rpOrgName>
+				<rpPosName>Head of Information Management</rpPosName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum tddtty="">+353-1-6782896</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="both">
+						<delPoint>Block 1, Booterstown Hall, Booterstown Avenue, Booterstown, Blackrock</delPoint>
+						<city>Dublin</city>
+						<postCode>A94 N2R6</postCode>
+						<country>IE</country>
+						<eMailAdd>support@geodata.gov.ie</eMailAdd>
+					</cntAddress>
+					<cntOnlineRes>
+						<linkage>https://www.gsi.ie</linkage>
+						<protocol>text/html</protocol>
+						<orName>GSI Website</orName>
+						<orDesc>GSI Website</orDesc>
+						<orFunct>
+							<OnFunctCd value="002"/>
+						</orFunct>
+					</cntOnlineRes>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="010"/>
+				</role>
+			</distorCont>
+		</distributor>
+		<distFormat>
+			<formatName Sync="TRUE">Shapefile</formatName>
+			<formatVer>v2</formatVer>
+			<fileDecmTech>Data is downloadable as a ZIP file  from https://www.gsi.ie/Mapping.htm on ZIP file format. Any use of this data should acknoledge The Geological Survey of Ireland. Cite as â€œÂ©Geological Survey of Ireland 2016â€ on a map or â€œgeological map is copyright of the Geological Survey of Ireland.</fileDecmTech>
+		</distFormat>
+		<distTranOps>
+			<transSize Sync="TRUE">0.000</transSize>
+		</distTranOps>
+	</distInfo>
+	<dataqual>
+		<lineage>
+			<procstep>
+				<procdesc Sync="TRUE">Dataset copied.</procdesc>
+				<srcused Sync="TRUE">D:\WorkSpace\Sheet6\Win2000folder\Union6_22</srcused>
+				<date Sync="TRUE">20030827</date>
+				<time Sync="TRUE">14152900</time>
+			</procstep>
+			<procstep>
+				<procdesc Sync="TRUE">Dataset copied.</procdesc>
+				<srcused Sync="TRUE">D:\WorkSpace\Sheet6\Win2000folder\Final100kunion</srcused>
+				<date Sync="TRUE">20030922</date>
+				<time Sync="TRUE">10361700</time>
+			</procstep>
+			<procstep>
+				<procdesc Sync="TRUE">Dataset copied.</procdesc>
+				<srcused Sync="TRUE"/>
+				<date Sync="TRUE">20050415</date>
+				<time Sync="TRUE">14044700</time>
+			</procstep>
+			<procstep>
+				<procdesc Sync="TRUE">Dataset copied.</procdesc>
+				<srcused Sync="TRUE">H:\natmap\Andy's sh50\dublin_geourban_bedrock</srcused>
+				<procdate Sync="TRUE">20110517</procdate>
+				<proctime Sync="TRUE">13574000</proctime>
+			</procstep>
+		</lineage>
+	</dataqual>
+	<dataIdInfo>
+		<envirDesc Sync="TRUE">Microsoft Windows 7 Version 6.1 (Build 7601) Service Pack 1; Esri ArcGIS 10.3.1.4959</envirDesc>
+		<dataLang>
+			<languageCode Sync="TRUE" value="eng"/>
+			<countryCode value="IRL" Sync="TRUE"/>
+		</dataLang>
+		<idCitation>
+			<resTitle>Bedrock Geology of Ireland 2018</resTitle>
+			<presForm>
+				<PresFormCd Sync="TRUE" value="005"/>
+				<fgdcGeoform>map</fgdcGeoform>
+			</presForm>
+			<resEd>v2</resEd>
+			<resRefDate>
+				<refDate>20030909</refDate>
+				<refDateType>
+					<DateTypCd value="001"/>
+				</refDateType>
+			</resRefDate>
+			<citRespParty>
+				<rpIndName>Geological Mapping</rpIndName>
+				<rpOrgName>Geological Survey Ireland</rpOrgName>
+				<rpPosName>Head of Geological Mapping</rpPosName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum tddtty="">+353-1-6782896</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="both">
+						<delPoint>Block 1, Booterstown Hall, Booterstown Avenue, Booterstown, Blackrock</delPoint>
+						<city>Dublin</city>
+						<postCode>A94 N2R6</postCode>
+						<country>IE</country>
+						<eMailAdd>support@geodata.gov.ie</eMailAdd>
+					</cntAddress>
+					<cntOnlineRes>
+						<linkage>https://www.gsi.ie</linkage>
+						<protocol>text/html</protocol>
+						<orName>GSI Website</orName>
+						<orDesc>GSI Website</orDesc>
+						<orFunct>
+							<OnFunctCd value="002"/>
+						</orFunct>
+					</cntOnlineRes>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="007"/>
+				</role>
+			</citRespParty>
+			<resRefDate>
+				<refDate>200404</refDate>
+				<refDateType>
+					<DateTypCd value="003"/>
+				</refDateType>
+			</resRefDate>
+			<resAltTitle>Bedrock 1:100,000 scale digital geological map 2018</resAltTitle>
+			<citRespParty>
+				<rpIndName>Geological Mapping</rpIndName>
+				<rpOrgName>Geological Survey Ireland</rpOrgName>
+				<rpPosName>Head of Geological Mapping</rpPosName>
+				<rpCntInfo>
+					<cntPhone>
+						<voiceNum tddtty="">+353-1-6782896</voiceNum>
+					</cntPhone>
+					<cntAddress addressType="both">
+						<delPoint>Block 1, Booterstown Hall, Booterstown Avenue, Booterstown, Blackrock</delPoint>
+						<city>Dublin</city>
+						<postCode>A94 N2R6</postCode>
+						<country>IE</country>
+						<eMailAdd>support@geodata.gov.ie</eMailAdd>
+					</cntAddress>
+					<cntOnlineRes>
+						<linkage>https://www.gsi.ie</linkage>
+						<protocol>text/html</protocol>
+						<orName>GSI Website</orName>
+						<orDesc>GSI Website</orDesc>
+						<orFunct>
+							<OnFunctCd value="002"/>
+						</orFunct>
+					</cntOnlineRes>
+				</rpCntInfo>
+				<role>
+					<RoleCd value="007"/>
+				</role>
+			</citRespParty>
+			<date>
+				<createDate>2016-08-12T00:00:00</createDate>
+				<pubDate>2018-07-31T00:00:00</pubDate>
+			</date>
+			<otherCitDet>Geological map is copyright of the Geological Survey of Ireland; Â©Geological Survey of Ireland 2018</otherCitDet>
+			<resEdDate>20180802</resEdDate>
+		</idCitation>
+		<spatRpType>
+			<SpatRepTypCd Sync="TRUE" value="001"/>
+		</spatRpType>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox esriExtentType="native">
+					<westBL Sync="TRUE">17937.271188</westBL>
+					<eastBL Sync="TRUE">334513.68825</eastBL>
+					<northBL Sync="TRUE">467259.922126</northBL>
+					<southBL Sync="TRUE">16333.179178</southBL>
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+				</GeoBndBox>
+			</geoEle>
+		</dataExt>
+		<geoBox esriExtentType="decdegrees">
+			<westBL Sync="TRUE">-10.875678</westBL>
+			<eastBL Sync="TRUE">-5.874678</eastBL>
+			<northBL Sync="TRUE">55.451954</northBL>
+			<southBL Sync="TRUE">51.370743</southBL>
+			<exTypeCode Sync="TRUE">1</exTypeCode>
+		</geoBox>
+		<resMaint>
+			<maintFreq>
+				<MaintFreqCd value="009"/>
+			</maintFreq>
+		</resMaint>
+		<resConst>
+			<Consts>
+				<useLimit>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;&lt;SPAN&gt;The geological dataset is under copyright of the Geological Survey of Ireland. This Map is purely representational and is designed for general information and strategic planning use only. Boundaries are interpolated on the basis of data available to the GSI at the time of compilation, from a variety of sources, and local details have been generalised to fit the map scale. The accurracy of data used or interpolations made, is neither stated nor implied. Evaluation of specific sites will normally require further &lt;/SPAN&gt;&lt;SPAN&gt;a&lt;/SPAN&gt;&lt;SPAN&gt;nd more detailed assessments, and will frequently require site investigations. The OS 1:100,000 scale base maps are not seamless and are under copyright by Ordnance Survey of Ireland.&lt;/SPAN&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</useLimit>
+			</Consts>
+			<LegConsts>
+				<accessConsts>
+					<RestrictCd value="001"/>
+				</accessConsts>
+				<accessConsts>
+					<RestrictCd value="005"/>
+				</accessConsts>
+				<useConsts>
+					<RestrictCd value="001"/>
+				</useConsts>
+				<useConsts>
+					<RestrictCd value="005"/>
+				</useConsts>
+				<othConsts>Geological Survey of Ireland is under copyright agreement to Ordnance Survey of Ireland for the use of OSi base data.</othConsts>
+				<othConsts>GSI pay  royalty fee to OSi under copyright agreement and are not permitted to supply OSi data with GSI data to third party clients</othConsts>
+				<othConsts>Data produced by GSI is under copyright protection and license agreement by GSI</othConsts>
+				<accessConsts>
+					<RestrictCd value="008"/>
+				</accessConsts>
+				<useConsts>
+					<RestrictCd value="008"/>
+				</useConsts>
+			</LegConsts>
+		</resConst>
+		<dataScale>
+			<equScale>
+				<rfDenom>100,000</rfDenom>
+			</equScale>
+		</dataScale>
+		<idPoC>
+			<rpIndName>Geological Mapping</rpIndName>
+			<rpOrgName>Geological Survey Ireland</rpOrgName>
+			<rpPosName>Head of Geological Mapping</rpPosName>
+			<rpCntInfo>
+				<cntPhone>
+					<voiceNum tddtty="">+353-1-6782896</voiceNum>
+				</cntPhone>
+				<cntAddress addressType="both">
+					<delPoint>Block 1, Booterstown Hall, Booterstown Avenue, Booterstown, Blackrock</delPoint>
+					<city>Dublin</city>
+					<postCode>A94 N2R6</postCode>
+					<country>IE</country>
+					<eMailAdd>support@geodata.gov.ie</eMailAdd>
+				</cntAddress>
+				<cntOnlineRes>
+					<linkage>https://www.gsi.ie</linkage>
+					<protocol>text/html</protocol>
+					<orName>GSI Website</orName>
+					<orDesc>GSI Website</orDesc>
+					<orFunct>
+						<OnFunctCd value="002"/>
+					</orFunct>
+				</cntOnlineRes>
+			</rpCntInfo>
+			<role>
+				<RoleCd value="007"/>
+			</role>
+		</idPoC>
+		<dataExt>
+			<geoEle>
+				<GeoBndBox esriExtentType="search">
+					<exTypeCode Sync="TRUE">1</exTypeCode>
+					<westBL Sync="TRUE">-10.902858</westBL>
+					<eastBL Sync="TRUE">-5.875165</eastBL>
+					<northBL Sync="TRUE">55.449228</northBL>
+					<southBL Sync="TRUE">51.399901</southBL>
+				</GeoBndBox>
+			</geoEle>
+		</dataExt>
+		<idAbs>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P STYLE="margin:0 0 0 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;These data represent the latest version of the bedrock geological dataset for Ireland at 1:100,000 scale, including recent 1:50k mapping . The dataset comprises 4 key shape files: &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 0 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;1) Bedrock Polygons_ITM_2018.shp: &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;SPAN&gt;A polygon shapefile that contains bedrock geological information on Stratigraphy, Igneous units, Lithology and Diagenetic codes, linked to a stratigraphic lexicon. &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 0 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;2) Structural Symbols_100K_ITM_2018: A &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;SPAN&gt;point shapefile that contains structural symbols and dip labels.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 0 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;3) &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;SPAN&gt;Geological Linework_100k_ITM_2018: &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;SPAN&gt;A line shapefile that contains structural geological line work codes, stratigraphic geological line codes and descriptions and map sheet cross sections as per paper printed maps. This dataset also contains Lexicon information.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 0 0;"&gt;&lt;SPAN&gt;&lt;SPAN&gt;4) Bedrock outcrops_ITM_2018: &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN&gt;&lt;SPAN&gt;A polygon shapefile that contains unattributed bedrock outcrops.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P STYLE="margin:0 0 14 0;"&gt;&lt;SPAN /&gt;&lt;/P&gt;&lt;P /&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</idAbs>
+		<idPurp>Bedrock 1:100,000 digital geological map 2018. This polygon shapefile contains the latest version of   the bedrock stratigraphy of the 1:100,000 seamless dataset for the Rep of Ireland at the 1:100,000  scale. Information at the 1:50,000 scale is also included from sheets 24, 26, 27.1,28.1 32, 33, 34, 35, 39 and 40.
+
+</idPurp>
+		<themeKeys>
+			<keyword>Bedrock, geology, geoscience, bedrock aquifers, geological map</keyword>
+		</themeKeys>
+		<dataChar>
+			<CharSetCd value="004"/>
+		</dataChar>
+		<idPoC>
+			<rpIndName>Geological Mapping</rpIndName>
+			<rpOrgName>Geological Survey Ireland</rpOrgName>
+			<rpPosName>Head of Geological Mapping</rpPosName>
+			<rpCntInfo>
+				<cntPhone>
+					<voiceNum tddtty="">+353-1-6782896</voiceNum>
+				</cntPhone>
+				<cntAddress addressType="both">
+					<delPoint>Block 1, Booterstown Hall, Booterstown Avenue, Booterstown, Blackrock</delPoint>
+					<city>Dublin</city>
+					<postCode>A94 N2R6</postCode>
+					<country>IE</country>
+					<eMailAdd>support@geodata.gov.ie</eMailAdd>
+				</cntAddress>
+				<cntOnlineRes>
+					<linkage>https://www.gsi.ie</linkage>
+					<protocol>text/html</protocol>
+					<orName>GSI Website</orName>
+					<orDesc>GSI Website</orDesc>
+					<orFunct>
+						<OnFunctCd value="002"/>
+					</orFunct>
+				</cntOnlineRes>
+			</rpCntInfo>
+			<role>
+				<RoleCd value="007"/>
+			</role>
+		</idPoC>
+		<searchKeys>
+			<keyword>Bedrock</keyword>
+			<keyword>Geology</keyword>
+			<keyword>Seamless</keyword>
+		</searchKeys>
+		<idCredit>CC-BY 4.0 Geological Survey Ireland</idCredit>
+		<tpCat>
+			<TopicCatCd value="008"/>
+		</tpCat>
+		<tpCat>
+			<TopicCatCd value="007"/>
+		</tpCat>
+	</dataIdInfo>
+	<metainfo>
+		<langmeta Sync="TRUE">en</langmeta>
+		<metstdn Sync="TRUE">FGDC Content Standards for Digital Geospatial Metadata</metstdn>
+		<metstdv Sync="TRUE">FGDC-STD-001-1998</metstdv>
+		<mettc Sync="TRUE">local time</mettc>
+		<metc>
+			<cntinfo>
+				<cntorgp>
+					<cntper>REQUIRED: The person responsible for the metadata information.</cntper>
+					<cntorg>REQUIRED: The organization responsible for the metadata information.</cntorg>
+				</cntorgp>
+				<cntaddr>
+					<addrtype>REQUIRED: The mailing and/or physical address for the organization or individual.</addrtype>
+					<city>REQUIRED: The city of the address.</city>
+					<state>REQUIRED: The state or province of the address.</state>
+					<postal>REQUIRED: The ZIP or other postal code of the address.</postal>
+				</cntaddr>
+				<cntvoice>REQUIRED: The telephone number by which individuals can speak to the organization or individual.</cntvoice>
+			</cntinfo>
+		</metc>
+		<metd Sync="TRUE">20110415</metd>
+	</metainfo>
+	<mdLang>
+		<languageCode Sync="TRUE" value="eng"/>
+		<countryCode value="IRL" Sync="TRUE"/>
+	</mdLang>
+	<mdStanName Sync="TRUE">ISO 19115 Geographic Information - Metadata</mdStanName>
+	<mdStanVer Sync="TRUE">DIS_ESRI1.0</mdStanVer>
+	<mdChar>
+		<CharSetCd Sync="TRUE" value="004"/>
+	</mdChar>
+	<mdHrLv>
+		<ScopeCd Sync="TRUE" value="005"/>
+	</mdHrLv>
+	<mdHrLvName Sync="TRUE">dataset</mdHrLvName>
+	<distinfo>
+		<resdesc Sync="TRUE">Downloadable Data</resdesc>
+		<stdorder>
+			<digform>
+				<digtinfo>
+					<transize Sync="TRUE">0.000</transize>
+					<dssize Sync="TRUE">0.000</dssize>
+				</digtinfo>
+			</digform>
+		</stdorder>
+	</distinfo>
+	<spdoinfo>
+		<direct Sync="TRUE">Vector</direct>
+		<ptvctinf>
+			<esriterm Name="Bedrock_Polygons_ITM_2018">
+				<efeatyp Sync="TRUE">Simple</efeatyp>
+				<efeageom code="4" Sync="TRUE"/>
+				<esritopo Sync="TRUE">FALSE</esritopo>
+				<efeacnt Sync="TRUE">0</efeacnt>
+				<spindex Sync="TRUE">FALSE</spindex>
+				<linrefer Sync="TRUE">FALSE</linrefer>
+			</esriterm>
+		</ptvctinf>
+	</spdoinfo>
+	<spref>
+		<horizsys>
+			<cordsysn>
+				<geogcsn Sync="TRUE">GCS_TM65</geogcsn>
+				<projcsn Sync="TRUE">TM65_Irish_Grid</projcsn>
+			</cordsysn>
+			<geodetic>
+				<horizdn Sync="TRUE">D_TM65</horizdn>
+				<ellips Sync="TRUE">Airy_Modified</ellips>
+				<semiaxis Sync="TRUE">6377340.189000</semiaxis>
+				<denflat Sync="TRUE">299.324965</denflat>
+			</geodetic>
+			<planar>
+				<planci>
+					<plance Sync="TRUE">coordinate pair</plance>
+					<plandu Sync="TRUE">meters</plandu>
+					<coordrep>
+						<absres Sync="TRUE">0.000000</absres>
+						<ordres Sync="TRUE">0.000000</ordres>
+					</coordrep>
+				</planci>
+			</planar>
+		</horizsys>
+		<vertdef>
+			<altsys>
+				<altenc Sync="TRUE">Explicit elevation coordinate included with horizontal coordinates</altenc>
+				<altres Sync="TRUE">0.000003</altres>
+			</altsys>
+		</vertdef>
+	</spref>
+	<refSysInfo>
+		<RefSystem dimension="">
+			<refSysID>
+				<identCode Sync="TRUE" code="2157">TM65_Irish_Grid</identCode>
+				<idCodeSpace Sync="TRUE">EPSG</idCodeSpace>
+				<idVersion Sync="TRUE">8.6.2</idVersion>
+			</refSysID>
+		</RefSystem>
+	</refSysInfo>
+	<spatRepInfo>
+		<VectSpatRep>
+			<geometObjs Name="Bedrock_Polygons_ITM_2018">
+				<geoObjTyp>
+					<GeoObjTypCd value="002" Sync="TRUE"/>
+				</geoObjTyp>
+				<geoObjCnt Sync="TRUE">0</geoObjCnt>
+			</geometObjs>
+			<topLvl>
+				<TopoLevCd value="001" Sync="TRUE"/>
+			</topLvl>
+		</VectSpatRep>
+	</spatRepInfo>
+	<eainfo>
+		<detailed Name="Bedrock_Polygons_ITM_2018">
+			<enttyp>
+				<enttypl Sync="TRUE">Bedrock_Polygons_ITM_2018</enttypl>
+				<enttypt Sync="TRUE">Feature Class</enttypt>
+				<enttypc Sync="TRUE">0</enttypc>
+			</enttyp>
+			<attr>
+				<attrlabl Sync="TRUE">FID</attrlabl>
+				<attalias Sync="TRUE">FID</attalias>
+				<attrtype Sync="TRUE">OID</attrtype>
+				<attwidth Sync="TRUE">4</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef Sync="TRUE">Internal feature number.</attrdef>
+				<attrdefs Sync="TRUE">Esri</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">Shape</attrlabl>
+				<attalias Sync="TRUE">Shape</attalias>
+				<attrtype Sync="TRUE">Geometry</attrtype>
+				<attwidth Sync="TRUE">0</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef Sync="TRUE">Feature geometry.</attrdef>
+				<attrdefs Sync="TRUE">ESRI</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Coordinates defining the features.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OBJECTID_2</attrlabl>
+				<attalias Sync="TRUE">OBJECTID_2</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">10</attwidth>
+				<atprecis Sync="TRUE">10</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">OBJECTID</attrlabl>
+				<attalias Sync="TRUE">OBJECTID</attalias>
+				<attrtype Sync="TRUE">Integer</attrtype>
+				<attwidth Sync="TRUE">10</attwidth>
+				<atprecis Sync="TRUE">10</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef Sync="TRUE">Internal feature number.</attrdef>
+				<attrdefs Sync="TRUE">Esri</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Sequential unique whole numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">NewCode</attrlabl>
+				<attalias Sync="TRUE">NEWCODE</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">12</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef>Use this field code to colour the map by applying the Bedrock_master100k_2016_v1.style. Labels can also be added from Unit names.</attrdef>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">SheetNo</attrlabl>
+				<attalias Sync="FALSE">Sheet Number</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">19</attwidth>
+				<atprecis Sync="TRUE">18</atprecis>
+				<attscale Sync="TRUE">8</attscale>
+				<attrdef>This field provides and index for 100k  and 50k sheets.</attrdef>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">StratCode</attrlabl>
+				<attalias Sync="FALSE">Stratigraphical Code</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">8</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef>Stratigraphical Code provides stratigraphic description</attrdef>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">LithCode</attrlabl>
+				<attalias Sync="FALSE">Lithological Code</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">8</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef>Lithological description</attrdef>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">Descript</attrlabl>
+				<attalias Sync="FALSE">Description</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">50</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef>Unit name/formation description</attrdef>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">Unit_Name</attrlabl>
+				<attalias Sync="TRUE">UNIT_NAME</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">100</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef>Descriptions of geological formations</attrdef>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">M</attrlabl>
+				<attalias Sync="TRUE">M</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">19</attwidth>
+				<atprecis Sync="TRUE">18</atprecis>
+				<attscale Sync="TRUE">8</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">Y</attrlabl>
+				<attalias Sync="TRUE">Y</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">19</attwidth>
+				<atprecis Sync="TRUE">18</atprecis>
+				<attscale Sync="TRUE">8</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">K</attrlabl>
+				<attalias Sync="TRUE">K</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">19</attwidth>
+				<atprecis Sync="TRUE">18</atprecis>
+				<attscale Sync="TRUE">8</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">C</attrlabl>
+				<attalias Sync="TRUE">C</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">19</attwidth>
+				<atprecis Sync="TRUE">18</atprecis>
+				<attscale Sync="TRUE">8</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">Label</attrlabl>
+				<attalias Sync="TRUE">LABEL</attalias>
+				<attrtype Sync="TRUE">String</attrtype>
+				<attwidth Sync="TRUE">30</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">SHAPE_AREA</attrlabl>
+				<attalias Sync="TRUE">SHAPE_AREA</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">19</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+				<attrdef Sync="TRUE">Area of feature in internal units squared.</attrdef>
+				<attrdefs Sync="TRUE">Esri</attrdefs>
+				<attrdomv>
+					<udom Sync="TRUE">Positive real numbers that are automatically generated.</udom>
+				</attrdomv>
+			</attr>
+			<attr>
+				<attrlabl Sync="TRUE">SHAPE_LEN</attrlabl>
+				<attalias Sync="TRUE">SHAPE_LEN</attalias>
+				<attrtype Sync="TRUE">Double</attrtype>
+				<attwidth Sync="TRUE">19</attwidth>
+				<atprecis Sync="TRUE">0</atprecis>
+				<attscale Sync="TRUE">0</attscale>
+			</attr>
+		</detailed>
+		<overview>
+			<eaover>Fields:
+AREA: Area of the polygon in square metres. Field type: Double.
+PERIMETER: Perimeter of polygons in metres: Field type: Double.
+NEWCODE: unique identifier for every formation or member. This field is used to color the map applying the 'Bedrock_master100k_2016_v1.style'. Labels on unit_names can be simultaneously added from symbology. Field type: String.
+SHEETNO: 100k sheets from which they originated before creating the seamless version. Field type: Double.
+STRATCODE: Stratigraphic code for unit, as labeled on printed maps and their legends. Field type: String.
+LITHCODE: Lithological code. Field type: String.
+DESCRIPT: Brief description of the dominant rock types. Field type: String.
+C,M,Y,K:  cyan, magenta, yellow and black percentage. Field types: Double.
+UNITNAME: Name of the geological formation or member. Field Type: String.
+RU_GPR: Rock unit category. Field type: String
+AQCAT: Aquifer category. Field type: String
+AQtype: Aquifer type. Field type: String
+AQDESC: Description of the aquifer. Field type: String
+CKcomments: Aquifer comments. Field type: String
+AqCatOrig: comments on previous classification of the aquifer. Field type: String
+Label: Formation label. Field type: String
+</eaover>
+		</overview>
+	</eainfo>
+	<mdDateSt Sync="TRUE">20181025</mdDateSt>
+	<dqInfo>
+		<dataLineage>
+			<statement>The lineage of this version involved several phases
+Initially, three phases were necessary to create a seamless dataset.
+
+Phase 1:
+
+Data capture &amp; compilation  was performed by Bedrock Section.
+Data was collected both internally by GSI and also from external data sources.
+
+Digital data capture methods were a combination of manual and heads up digitising using OS 1:10,560  map scale in AutoCAD 12.0. Generated CAD compilation  layers were then referenced to OS digital raster 1:100, 000 scale base.
+
+Base Map
+The base maps were supplied by OSi. The OS 1:100,000 scale raster base originated from from OSi 1/2'' 1:126.720. They were scanned from photographic enlargements of the 1/2'' map scale and suppplied in TIFF format with world files. GSI has since converted TIFF  to GeoTIFF format.
+
+Copyright
+GSI is under a copyright agreement with OSi and pay a annual royalty to OSi 
+for the use of their  base data. GSI under copyright are not permitted to supply OSi base data as part of GSI datasets to interested third party groups.
+
+Bedrock Section utilised a vector cookie cutter with the OS raster basemap
+@ 1:100,000 scale  that established geology to coastline high water mark and exclusion around digitised water bodies.  1:50,000 scale was not available
+for entire country at commencement of this project.
+
+Phase 2:
+
+Cartography Section introduced ArcInfo GIS on UNIX in 1994 and commenced implementation of  1:100, 000 scale Bedrock digital mapping programme, (21 map sheets total coverage). The map series encompassed the bedrock geology of the Republic of Ireland with some geology overlapping  of Northern Ireland.
+
+Map sheet No.'s 1&amp;2, 3&amp;4 and 8&amp;9 are single digital map sheets that also share part of the territory  of Northern Ireland.
+
+Bedrock AutoCAD layers were converted to .dxf format and  imported into ArcInfo 7.x. For each map sheet ArcInfo aml, filtered out relevant Bedrock AutoCad layers to generate new ArcInfo coverages. Coverage creation were  also registered to cookie cutter and 1:100, 000 monochrome raster basemap used by Bedrock Section.
+
+A bedrock database file in ascii format accompanied CAD file
+
+Each map sheet commenced in ArcInfo generated new geological coverages representing Stratigraphy, Lithology, Igneous, Diagenetic, Dynamic, Thermal, Geological Linework and Point symbol data.
+
+Bedrock Database was imported for each map sheet into ArcInfo LU tables in ASCII format to permit population of geological codes in coverages and geological legend  generation . New coverages were then created, coded and edited. 
+
+Each set of map sheet coverages were combined with OS 1:100,000 digital base to create geological maps with full marginalia.
+
+All map sheets are available in paper copy accompanied by geological report. 
+
+In excess of 200 ArcInfo coverages were created on completion of the map series in 2003.
+
+All  ArcInfo coverages were converted to shapfile format.
+
+Phase 3:  
+
+2002, Cartography introduced ArcGIS 8.x to undertake necessary seamless geoprocessing exercise on map sheet by sheet basis. 
+The following layers were utilisd from original ArcInfo coverage map  layers.
+
+Stratigraphy
+Igneous
+Lithology 
+Diagenetic
+Geological Linework
+
+The geological linework was divided into two separate shape files.
+
+Structural units
+Stratigraphic units
+
+The original ArcInfo coverages had a limited number of fields and did not possess unique code identifier. A new coding system was introduced to establish unique code field called  'NEWCODE'.
+
+All Bedrock section's data from their main database at this time (Dataflex) was converted to Microsoft Access. A procedure was then used to join and populate additional records as map sheets were been added and merged.
+
+Sheet joins and editing then commenced and quality control checks were introduced at interval and final stages.
+
+All relevant symbology was created and customised  in ArcGIS.
+The relevant customised symbol library style file is called 'gis100k.style'
+
+Phase 4: Bedrock 1:100,000 scale digital geological map 
+This data represents a seamless bedrock geological dataset encompassing Rep of Ireland and parts of Northern Ireland. The seamless geological dataset was created from Bedrock 1:100,000 scale digital geological map series. The dataset comprises 6 key shape files. 1) Final100kunion.shp - A polygon shapefile that contains bedrock geological information on Stratigraphy, Igneous, Lithology and Diagentic codes, their unitnames and descriptions, 2) Index100Map.shp - An overlay polygon index of 1:100,000 scale map sheets to permit sheet number identification at 100,000 scale. 3) Final100kstruc.shp (Structural Linework) - A linework shapefile that contains structural geological linework codes and descriptions 4) Final100kstra.shp (Stratigraphic Linework) - A linework shapefile that contains stratigraphic geological line codes and descriptions. 5) Cross100ksection (Crosss section) - A linework shapefile that contains map sheet cross sections as per paper printed maps and dynamic links to map sheet cross sections in bitmap image format. 6) Final100kmin.shp - A point shapefile contains selected mineral and quarry descriptions from Bedrock 1:100,000 map series. The original map series and seamless dataset is based on Â© Ordnance Survey topological map base at 1:100,000 scale. The topological base maps are not seamless and are represented as 1 bit monochrome .tif image format.
+
+Phase 5: Bedrock 1:100,000 scale digital geological map 2016
+This data represents the latest version of the bedrock geological dataset for the Rep of Ireland at the 1:100,000 scale digital geological map series. Some information at the 1:50,000 scale from sheets 28A, 77 and parts of Dublin and Galway is also included. The dataset comprises 6 key shape files. 1) Bedrock100k_ITM_2016_V1.shp - A polygon shapefile that contains bedrock geological information on Stratigraphy, Igneous, Lithology and Digenetic codes, their unit names and descriptions. It also contains Bedrock aquifer categories2) Index100k_50k_ITM_v1.shp - An overlay polygon index of 1:100,000 and 1:50,000 scale map sheets to permit sheet number identification at 100,000 and 50, 000 scale. 3) Strat_Struct_lines_ITM_2016_v1.shp.- A line work shapefile that contains structural geological line work codes, stratigraphic geological line codes and descriptions and map sheet cross sections as per paper printed maps. 4) Min100k_ITM_2016.shp - A point shapefile contains selected mineral and quarry descriptions from Bedrock 1:100,000 map series. 5) Symbols_labels_ITM_2016_v1.shp a line work shapefile that contains all symbols and dip labels. 6) Coastline_2013.shp is the most updated coastline (ITM) provided by OSi (2013).
+The rationale for creating this version was: to migrate from bedrock map in Irish National Grid (IG) to Irish transverse Mercator (ITM) projection; adding a new irish coastline (ITM); filling geology in water bodies; locating and amending discrepancies between paper maps and digital version; modifying and incorporating new geology at the 50k scale; adding bedrock aquifer categories; creating and updating a unified master stylefile; clean data topologically. Data processing steps below.
+
+Phase 6:  Release of the second version on the Bedrock 1:100,000 scale digital geological map 2018. New information from 50k sheets were added (24, 26, 27.1,28.1 32, 33, 34, 35, 39 and 40,  corresponding to the counties of Sligo, Mayo, Roscommon, Galway, Leitrim, Cavan, Louth, Meath, Monaghanand Longford). Next four new files were created.
+1) Bedrock Polygons_v2_2018.shp.- A polygon shapefile that contains bedrock geological information on Stratigraphy, Igneous, Lithology and Diagentic codes, their unitnames and descriptions. It also contains Bedrock aquifer categories. This dataset also contains Lexicon_Polygons.
+2) Geological_Linework_v22018.shp.- A linework shapefile that contains structural geological linework codes,stratigraphic geological line codes and descriptionsand map sheet cross sections as per paper printed maps. This dataset also contains Lexicon_Linework.
+3) Structural_Symbols_v22018.shp a point shapefile that contains all symbols and dip labels
+4) Min_100k_v22018.shp contains mineral and quarry descriptions from Bedrock 1:100,000 map series. This is a subset of the MINLOCS database held by Minerals Section in the GSI. </statement>
+			<prcStep>
+				<stepDesc>1. Conversion from Irish National Grid (TM65) to  IRENET95 Irish Transversal Mercator
+Final100kunion.shp, Index100Map.shp,  Final100kstruc.shp (Structural Linework), Final100kstra.shp (Stratigraphic Linework), Cross100ksection.shp (cross section) and Final100kmin.shp (mine localities) were converted into ITM (Europe&gt; IRENET95 Irish Transversal) using ArcEditor&gt;Arctoolbox&gt; projection and Transformations. Transformation equation is TM65_To_ETRS_1989_ntV2+IRENET95_to_ERTS_1989.</stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>2. New information at the 50k scale for Dublin (part of sheets 43 and 50), Galway (part of sheets 45, 46, 51 and 52), sheet 28A and 77 was added to Final100kunion.shp using Arctoolbox&gt;Analysis tools&gt;overlay&gt; Union to create a  new polygon map called 'Final100kunionDUGA28A_Union2.shp'.</stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>3. Map to be topologically clean
+A new file geodatabase called '100_50GEO.gdb' was created that included new bedrock file, new coastline and also struct and strat linework. Then a topology (GEO_topology) that stated three restrictions: 'polygons should not overlap', file ' polygons should not have gaps' and two files 'must cover each other', was generated creating  over 41473 errors.  After adding a new coastline and new 50k geological information 43,300 topo errors reamined to be fixed. Using the topological tool errors gaps, slievers, overlaps were first fixed around the coast.Once all coastline slivers were fixed (deleted or added), 37.000 new polygons needed to be accommodated into the map.Therefore new  blank polygons were splitted or merged, and finally incorporated into the map. Topology was validated again to ensure to errors disappeared.</stepDesc>
+				<stepRat>Map to be topologically clean</stepRat>
+			</prcStep>
+			<prcStep>
+				<stepDesc>4. Water bodies (lakes and rivers) were infilled with geology using geological interpreation.</stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>5. Differences in geological units classification, stratigraphy or structural lines were compared with paper sheets. Errors were amended in the digital version. Consequently  Stratcode, lithcodes, Unitnames, Newcode, SheetNo and M,Y,K,C fields changed.</stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>6.Stratigraphy or structural linework shapfiles were doubled check  against new 50k information and attribute tables were cleaned and fields reorganised. Errors were amended for Lithocode, Stratcode, dykelabel and sheet fields. New fields 'categories, and 'subcategories' were added for detailed/symplified classification, and also STYLE and labelstyle to color  map and label respectively were introduced in Final100kstra.shp. Similarly New fields 'STYLE' and 'labelstyle' were added to Final100kstru.shp and Sect100k.shp files. </stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>7. Stratigraphic and structural lines together with cross-sections were merge into a single shapefile called 'Linework_new6', after called Strat_Struct_lines_ITM_2016_v1.shp </stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>8. Symbols100k.shp containing structural symbology and Labels100k.shp with dip information, were joint into a table Symbols_labels2016. Finally called Symbols_labels_ITM_2016_v1.shp </stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>9. A new index file containing 100k and 50k sheet information was created 'Index100k_50k_v2_ITM.shp'. This dataset includes a field called 'style' to colour future point based style files. 'Label' field contains dip data.</stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>10. New master style file ('100kBed-Sil20152.style') was initially created to colour polygons (using Fill symbols), linework and min locations (using Line symbols), and symbols (using Marker symbols). Style was amended to accomodate discrepancies between paper maps and digital version and also to include future 50k information. Final stylefile was called 'Bedrock_master100k_2016_v1'.</stepDesc>
+				<stepRat>A unified master style file to colour all files included into 100k and 50k dataset was needed.</stepRat>
+			</prcStep>
+			<prcStep>
+				<stepDesc>11. Aquifer categories were incorporated into the new Bedrock 1:100,000 scale digital geological map 2016. 
+-New fields were added â€˜RU_GRP', 'AQCAT', 'AQDESC', 'AQTYPE', 'CKComments' and 'AqCatorigin'.
+-The Rockunit (descriptions for 27 rock unit groups) were assigned based on the 'NEWCODE' field by using selection by attribute/location tools and different combination of NEWCODE/ROCKUNIT using latest aquifer map (Aquifer_final_May29_2012_itm.shp) as a base map and overlapping and selecting same polygons from Final100kUnion.shp so 'RU_GRP', 'AQCAT', 'AQDESC', 'AQTYPE', 'CKComments' and 'AqCatorigin' could be populated. New version of the bedrock geological map contained at this stage new geological unit_names/NEWCODEâ€™s and therefore  aquifer description needed to be amended accordingly and as new version did not coincide with old geological layout outlined from Aquifer map. Consequently new aquifer categories were modified and new entered, in many cases populated manually.
+-New Aquifer cat were double check against new geology.
+</stepDesc>
+				<stepRat>Geological map has been evolving through the years and now greatly differs from original geological information included in former National bedrock Aquifer map (Aquifer_final_May29_2012_itm.shp). Most of changes came from latest work on creating the new version of the geological map (ie: new coastline (including new islands) and geology in GW bodies was reinterpreted, mismatches, topological errors). Other errors were carried over from former versions of the geological map. Therefore Aquifer rock units and categories needed an update.
+
+</stepRat>
+			</prcStep>
+			<prcStep>
+				<stepDesc>12. New attributes from the LEXICON tables were incorporated through the NEWCODE (Rock type, age,comments, reference, etc)</stepDesc>
+			</prcStep>
+			<prcStep>
+				<stepDesc>Process step 13:
+-New 50k information was added.
+-Geology was adjusted across the border.
+-Errors spotted from external enquires were amended.
+-New topology was run. 
+-Missalignment of structural linework with new polygons was amended.
+-Aquifers categories were assigned.
+-Master Style file was updated.
+</stepDesc>
+			</prcStep>
+		</dataLineage>
+		<dqScope>
+			<scpLvl>
+				<ScopeCd value="005"/>
+			</scpLvl>
+		</dqScope>
+	</dqInfo>
+	<mdFileID Sync="TRUE">{0BF80481-73B3-4C17-9A20-E389FCF662E3}</mdFileID>
+	<Binary>
+		<Thumbnail>
+			<Data EsriPropertyType="PictureX">/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsK
+CwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQU
+FBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCACFAMgDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9U6KK
+KACiiigAooooAKKKKACiiigAooooAKKx/FfiO08LaPJfXl9bWEasMSXR+VsZZkHI+YqrAc9ccHof
+JPHH7WHh/wAO3V9Y6NYTeINRtp1i2JIIopFMe4ujYYkKflPy+/TmgD2HXvEmmeGbP7Vql7FZQ9A0
+h5b2AHJ/CpNH1uy1+z+1WE3nw52k7WUg4BwQwBB5HBFfKfxH+NNz460/RZrZIQbVxfx+XbYKMkPz
+sZGJ2gs5XaORhTnaQT7v8IdY8T6lodnHrkCzW8dsqpqLHEkzLtALfMd5YZbcvy9OWJOOZVb1OX9B
+20PQ6KKK6RBRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRXC/GDxR4i8K+F2u
+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
+2Q==</Data>
+		</Thumbnail>
+	</Binary>
+	<mdConst>
+		<Consts>
+			<useLimit>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;P&gt;&lt;SPAN&gt;&lt;SPAN&gt;Data is downloadable from https://www.gsi.ie/Mapping.htm. Any use of this data should acknoledge The Geological Survey of Ireland. Cite as &lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN&gt;â€œÂ©Geological Survey of Ireland 201&lt;/SPAN&gt;&lt;SPAN&gt;8&lt;/SPAN&gt;&lt;SPAN&gt;â€ on a map or â€œ&lt;/SPAN&gt;&lt;SPAN&gt;&lt;SPAN&gt;geological map is copyright of the Geological Survey of Ireland.&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN /&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</useLimit>
+		</Consts>
+	</mdConst>
+	<mdConst>
+		<Consts>
+			<useLimit>&lt;DIV STYLE="text-align:Left;"&gt;&lt;DIV&gt;&lt;DIV&gt;&lt;DIV STYLE="font-size:12pt"&gt;&lt;P&gt;&lt;SPAN&gt;Data is downloadable from https://www.gsi.ie/en-ie/data-and-maps&lt;/SPAN&gt;&lt;SPAN&gt;. &lt;/SPAN&gt;&lt;SPAN&gt;Any use of this data should acknowledge The Geological Survey of Ireland. Cite as &lt;/SPAN&gt;&lt;SPAN&gt;â€œÂ©Geological Survey of Ireland 201&lt;/SPAN&gt;&lt;SPAN&gt;8&lt;/SPAN&gt;&lt;SPAN&gt;â€ and â€œ&lt;/SPAN&gt;&lt;SPAN&gt;&lt;SPAN&gt;geological map is copyright of the Geological Survey of Ireland&lt;/SPAN&gt;&lt;/SPAN&gt;&lt;SPAN&gt;on a map. &lt;/SPAN&gt;&lt;/P&gt;&lt;P&gt;&lt;SPAN /&gt;&lt;/P&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;&lt;/DIV&gt;</useLimit>
+		</Consts>
+	</mdConst>
+	<mdContact>
+		<rpIndName>Information Management</rpIndName>
+		<rpOrgName>Geological Survey Ireland</rpOrgName>
+		<rpPosName>Head of Information Management</rpPosName>
+		<rpCntInfo>
+			<cntPhone>
+				<voiceNum tddtty="">+353-1-6782896</voiceNum>
+			</cntPhone>
+			<cntAddress addressType="both">
+				<delPoint>Block 1, Booterstown Hall, Booterstown Avenue, Booterstown, Blackrock</delPoint>
+				<city>Dublin</city>
+				<postCode>A94 N2R6</postCode>
+				<country>IE</country>
+				<eMailAdd>support@geodata.gov.ie</eMailAdd>
+			</cntAddress>
+			<cntOnlineRes>
+				<linkage>https://www.gsi.ie</linkage>
+				<protocol>text/html</protocol>
+				<orName>GSI Website</orName>
+				<orDesc>GSI Website</orDesc>
+				<orFunct>
+					<OnFunctCd value="002"/>
+				</orFunct>
+			</cntOnlineRes>
+		</rpCntInfo>
+		<role>
+			<RoleCd value="007"/>
+		</role>
+	</mdContact>
+	<mdContact>
+		<rpIndName>Information Management</rpIndName>
+		<rpOrgName>Geological Survey Ireland</rpOrgName>
+		<rpPosName>Head of Information Management</rpPosName>
+		<rpCntInfo>
+			<cntPhone>
+				<voiceNum tddtty="">+353-1-6782896</voiceNum>
+			</cntPhone>
+			<cntAddress addressType="both">
+				<delPoint>Block 1, Booterstown Hall, Booterstown Avenue, Booterstown, Blackrock</delPoint>
+				<city>Dublin</city>
+				<postCode>A94 N2R6</postCode>
+				<country>IE</country>
+				<eMailAdd>support@geodata.gov.ie</eMailAdd>
+			</cntAddress>
+			<cntOnlineRes>
+				<linkage>https://www.gsi.ie</linkage>
+				<protocol>text/html</protocol>
+				<orName>GSI Website</orName>
+				<orDesc>GSI Website</orDesc>
+				<orFunct>
+					<OnFunctCd value="002"/>
+				</orFunct>
+			</cntOnlineRes>
+		</rpCntInfo>
+		<role>
+			<RoleCd value="007"/>
+		</role>
+	</mdContact>
+	<mdConst>
+		<LegConsts>
+			<accessConsts>
+				<RestrictCd value="001"/>
+			</accessConsts>
+			<useConsts>
+				<RestrictCd value="001"/>
+			</useConsts>
+			<othConsts>Copyright, license, other restrictions.
+Geological map is copyright of the Geological Survey of Ireland; Â©Geological Survey of Ireland 2018</othConsts>
+		</LegConsts>
+	</mdConst>
+	<mdConst>
+		<LegConsts>
+			<accessConsts>
+				<RestrictCd value="001"/>
+			</accessConsts>
+			<useConsts>
+				<RestrictCd value="001"/>
+			</useConsts>
+			<othConsts>Geological Survey of Ireland is under copyright agreement to Ordnance Survey of Ireland for the use of OSi base data. GSI pays royalty fee to OSi under copyright agreement and are not permitted to supply OSi data with GSI data to third party clients. Data produced by GSI is under copyright protection and license agreement by GSI</othConsts>
+		</LegConsts>
+	</mdConst>
+	<mdMaint>
+		<maintFreq>
+			<MaintFreqCd value="009"/>
+		</maintFreq>
+		<usrDefFreq>
+			<duration>1-2 years</duration>
+		</usrDefFreq>
+	</mdMaint>
+</metadata>

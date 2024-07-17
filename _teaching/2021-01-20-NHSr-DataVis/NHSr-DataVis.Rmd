@@ -1,0 +1,41 @@
+---
+title: "NHSr Workshop - Introduction to ggplot"
+description: |
+  A one day workshop on data visualisation delivered to the NHSr Community
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.netlify.app
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 01-21-2021
+preview: img/ggplot.png
+url: http://fizzics.netlify.app
+base_url: http://fizzics.netlify.app
+twitter:
+  creator: "@eugene100hickey"
+categories: [R, Academia, Data Visualisation]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+This is a one day workshop delivered to NHSr in January 2021. We covered the basics of ggplot, different geoms for distributions and relationships, colours, fonts, facets, and some special examples like networks and maps.  
+
+The slides are available [here](https://intro-ggplot-nhs.netlify.app/) and the video is available [here](https://www.youtube.com/watch?v=VLuzpaWt0ZE&t=3s). The format was inspired by a course on xaringan [xaringan, basics and beyond](https://silvia.rbind.io/talk/2020-11-03-xaringan-basics-and-beyond/) given by Silvia Canelon.  
+
+I find that the NHSr have a veritable trove of material; their youtube channel is at [NHSr Community Videos](https://www.youtube.com/c/NHSRCommunity/featured), and their sie is at [NHSr Commnuity](https://nhsrcommunity.com/).
+
+

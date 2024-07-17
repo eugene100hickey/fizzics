@@ -1,0 +1,620 @@
+---
+title: "Meteorites...."
+description: |
+  ...and where to find them.
+author:
+  - name: Eugene
+    url: https://fizzics.netlify.app
+date: 04-25-2021
+categories: [Physics]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+
+<style>
+body, h1, h2, h3, h4 {
+    font-family: "California FB", serif;
+}
+
+body {
+    color: #00004b;
+}
+a, a:hover {
+    color: #8b1a1a;
+}
+p, pre {
+    font-size: 16px;
+}
+</style>
+
+```{r libraries, echo=F, warning=F, message=F, cache=F}
+
+library(tidyverse)
+library(leaflet)
+library(sp)
+library(rworldmap)
+library(lubridate)
+library(showtext)
+library(knitr)
+library(broom)
+
+font_add_google(name = "Handlee", family = "Handlee")
+showtext_auto()
+
+ggplot2::theme_set(ggplot2::theme_minimal())
+theme_update(text = element_text(size = 28, family = "Handlee"))
+
+cbPalette <- c("#111151", "#CCCCCC", "#4379ac","#FFFF00", 
+               "#FF0000", "#00FF00", "#00ffff")
+```
+
+
+
+This analysis was inspired by a set of talks by Mike Brown of Caltech on small bodies in the Solar System (these are available as part of his course on [_The Science of the Solar System_](https://www.coursera.org/learn/solar-system/home/welcome) on Coursera). He speaks with passion about these fascinating objects and how they tell an intriguing story about the formation of our Solar System. Most of the science you'll meet within this blog comes either from this course or else an excellent book, [_Physics and Chemistry of the Solar System_](https://www.amazon.co.uk/Physics-Chemistry-Solar-System-Lewis/dp/0124467415/ref=sr_1_1?ie=UTF8&qid=1527782751&sr=8-1&keywords=physics+and+chemistry+of+the+solar+system+lewis) by John Lewis.
+
+```{r coords2continent, echo=F, warning=F, message=F, cache=T}
+# The single argument to this function, points, is a data.frame in which:
+#   - column 1 contains the longitude in degrees
+#   - column 2 contains the latitude in degrees
+coords2continent = function(points)
+{  
+  countriesSP <- getMap(resolution='low')
+  #countriesSP <- getMap(resolution='high') #you could use high res map from rworldxtra if you were concerned about detail
+  
+  # converting points to a SpatialPoints object
+  # setting CRS directly to that from rworldmap
+  pointsSP = SpatialPoints(points, proj4string=CRS(proj4string(countriesSP)))  
+  
+  
+  # use 'over' to get indices of the Polygons object containing each point 
+  indices = over(pointsSP, countriesSP)
+  
+  #indices$continent   # returns the continent (6 continent model)
+  indices$REGION   # returns the continent (7 continent model)
+  #indices$ADMIN  #returns country name
+  #indices$ISO3 # returns the ISO3 code 
+}
+```
+
+
+
+```{r data, echo=F, warning=F, message=F, cache=T}
+meteors <- read_csv("data/Meteorite_Landings.csv")
+meteors <- meteors %>% select(-GeoLocation)
+names(meteors)[5] <- "mass_g"
+
+meteors[grepl(x=meteors$name, pattern="Larkman Nunatak*"),]$reclat <- -85.7667
+meteors[grepl(x=meteors$name, pattern="Larkman Nunatak*"),]$reclong<- 179.3833
+meteors[grepl(x=meteors$name, pattern="Graves Nunatak*"),]$reclat <- -86.7167
+meteors[grepl(x=meteors$name, pattern="Graves Nunatak*"),]$reclong<- 141.5
+meteors[grepl(x=meteors$name, pattern="Yamato*") & is.na(meteors$reclong),]$reclat <- -71.5
+meteors[grepl(x=meteors$name, pattern="Yamato*") & is.na(meteors$reclong),]$reclong<- 35.66667
+
+# img <- png::readPNG("Bovedy800.png")
+# g_pic <- rasterGrob(img, interpolate=TRUE)
+
+empties <- sum(!complete.cases(meteors))
+
+meteors <- meteors %>% 
+  mutate(year=lubridate::year(dmy_hms(year))) %>% 
+  mutate(kg=mass_g/1000) %>% 
+  na.omit %>% 
+  filter(kg!=0) %>% 
+  mutate(continent=coords2continent(data.frame(reclong, reclat)))
+
+meteors$year[24390] <- 2001
+
+meteors$category <- meteors$recclass
+meteors$category <- gsub("OC", "chondrite", meteors$category)
+meteors$category <- gsub("C.*", "carbonaceous", meteors$category)
+meteors$category <- gsub("Diogenite.*", "diogenite", meteors$category)
+meteors$category <- gsub("Eucrite.*", "eucrite", meteors$category)
+meteors$category <- gsub("Iron.*", "irons", meteors$category)
+meteors$category <- gsub("LL.*", "chondrite vlow iron", meteors$category)
+meteors$category <- gsub("Lunar.*", "lunar", meteors$category)
+meteors$category <- gsub("EL.*", "enstatite", meteors$category)
+meteors$category <- gsub("L.*", "chondrite low iron", meteors$category)
+meteors$category <- gsub("En.*", "enstatite", meteors$category)
+meteors$category <- gsub("EH.*", "enstatite", meteors$category)
+meteors$category <- gsub("E-.*", "enstatite", meteors$category)
+meteors$category <- gsub("E3.*", "enstatite", meteors$category)
+meteors$category <- gsub("E4.*", "enstatite", meteors$category)
+meteors$category <- gsub("E5.*", "enstatite", meteors$category)
+meteors$category <- gsub("E6.*", "enstatite", meteors$category)
+meteors$category <- gsub("Howardite.*", "howardite", meteors$category)
+meteors$category <- gsub("H.*", "chondrite high iron", meteors$category)
+meteors$category <- gsub("Martian.*", "martian", meteors$category)
+meteors$category <- gsub("Mesosiderite.*", "mesosiderite", meteors$category)
+meteors$category <- gsub("Pallasite.*", "pallasite", meteors$category)
+meteors$category <- gsub("Relict.*", "relict", meteors$category)
+meteors$category <- gsub("R.*", "rumuruti", meteors$category)
+meteors$category <- gsub("Ureilite.*", "ureilite", meteors$category)
+meteors$category <- gsub("E", "enstatite", meteors$category)
+
+meteors$chond <- meteors$category
+meteors$chond <- gsub("Achondrite.*", "achondrite", meteors$chond)
+meteors$chond <- gsub("Chondrite.*", "chondrite", meteors$chond)
+#meteors$chond <- gsub("Irons.*", "Irons", meteors$chond)
+meteors$chond <- gsub("rumuruti", "chondrite", meteors$chond)
+meteors$chond <- gsub("enstatite", "chondrite", meteors$chond)
+meteors$chond <- gsub("mesosiderite", "Stony_Iron", meteors$chond)
+meteors$chond <- gsub("pallasite", "Stony_Iron", meteors$chond)
+meteors$chond <- gsub("ureilite", "Stony_Iron", meteors$chond)
+meteors$chond <- gsub("eucrite", "achondrite", meteors$chond)
+meteors$chond <- gsub("howardite", "achondrite", meteors$chond)
+meteors$chond <- gsub("Aubrite.*", "achondrite", meteors$chond)
+meteors$chond <- gsub("Acapulcoite.*", "achondrite", meteors$chond)
+meteors$chond <- gsub("Angrite.*", "achondrite", meteors$chond)
+meteors$chond <- gsub("Brachinite", "achondrite", meteors$chond)
+meteors$chond <- gsub("diogenite", "achondrite", meteors$chond)
+meteors$chond <- gsub("Stone.*", "achondrite", meteors$chond)
+meteors$chond <- gsub("carbonaceous", "chondrite", meteors$chond)
+meteors$chond <- gsub("OChondrite", "chondrite", meteors$chond)
+meteors$chond <- gsub("E3.*", "chondrite", meteors$chond)
+meteors$chond <- gsub("Winonaite", "achondrite", meteors$chond)
+meteors$chond <- gsub("Achondrite-.*", "achondrite", meteors$chond)
+meteors$chond <- gsub("Chondrite.*", "chondrite", meteors$chond)
+
+
+
+meteors <- meteors %>% 
+  filter(chond %in% c("chondrite", "chondrite high iron", 
+                     "chondrite low iron","chondrite vlow iron",
+                      "irons", "Stony_Iron","achondrite")) %>% 
+  mutate(chond = factor(chond, levels=c("chondrite", 
+                                        "chondrite high iron",
+                                        "chondrite low iron",
+                                        "chondrite vlow iron", 
+                                        "irons",
+                                        "Stony_Iron",
+                                        "achondrite"
+                                        )))
+```
+
+The data come from [NASA](https://data.nasa.gov/Space-Science/Meteorite-Landings/gh4g-9sfh) (where else) and contains information on over 35,000 meteorites up to end 2015. In terms of munging, the data is:
+
+* rescaled for meteorite mass in kilogrammes
+
+* locations (in longitude/latitude) are attributed to their continents (using a function from [Andy South](https://stackoverflow.com/questions/21708488/get-country-and-continent-from-longitude-and-latitude-point-in-r))
+
+* some meteors were missing geographical coordinates, an attempt was made to find these and fill them in. This worked for the Nunatak and Yamato fields, both in Antarctica
+
+* cleaned to remove remaining incomplete records (`r empties` of them)
+
+* meteorite classes are grouped together. For example, _Iron IIIAB_, _Iron IAB_, _Iron IC_, .... are all just called _Irons_.
+
+* meteorites are further grouped into Chondrite, Achondrites, and Irons (with some subclasses of achondrite based on metal content as there are so many achondrites)
+
+* we delete meteorites with a mass of 0kg. There are a handful of these and they mess up our analysis somewhat and are obviously physically impossible
+
+* there are a large number (`r meteors %>% filter(reclat == 0, reclat == 0) %>% summarise(n())`) where the (longitude, latitude) is given as (0$^{\circ}$, 0$^{\circ}$). [These get dumped in the Atlantic Ocean, just off the coast of Ghana](https://www.youtube.com/watch?v=bjvIpI-1w84) (see the bright red dot in the middle of the map). The name of the meteorite should help locate them, at some point I'll do something about that. Lots of them are in Antarctica.
+
+
+## Geographical Spread
+First, let's look at where meteorites have been found. The map below shows our meteors. The circle sizes correspond to meteor mass (though you have to zoom in a bit to appreciate the different sizes), the colour indicates the year of discovery. You can click on circles to get these details, as well as the meteor name. To avoid map navigation being tediously slow, only the heaviest meteorites are initially shown, but by clicking the top right legend you can include more.
+
+```{r decade_plot, echo=F, warning=F, message=F, cache=F}
+pal <- colorNumeric("Reds", 
+                    domain=(meteors %>% 
+                              filter(year>1780))$year)
+
+meteors_mass1 <- meteors %>% 
+  filter((meteors$kg) < 0.01)
+meteors_mass2 <- meteors %>% 
+  filter(between((meteors$kg), 0.01, 0.03))
+meteors_mass3 <- meteors %>% 
+  filter(between((meteors$kg), 0.03, 0.2))
+meteors_mass4 <- meteors %>% 
+  filter(between((meteors$kg), 0.2, 10))
+meteors_mass5 <- meteors %>% 
+  filter((meteors$kg) > 10)
+
+magnification <- 10000
+
+map <- meteors %>% 
+  filter(year > 1800) %>% 
+  leaflet() %>% 
+  addProviderTiles(provider = "Esri") %>% 
+  setView(lng=-5, lat=50, zoom=2) 
+
+map %>% 
+  addCircles(data=meteors_mass1, 
+                   lat=~reclat,
+                   lng=~reclong,
+                   popup = ~paste(name,"<br>",  
+                                  "Mass", kg, "kg", "<br>",
+                                  "Year", year),
+                   color = ~pal(year),
+                   radius=~(((kg)^0.25)*magnification),
+                   group = "Mass under 0.01kg") %>% 
+  addCircles(data=meteors_mass2, 
+                   lat=~reclat,
+                   lng=~reclong,
+                   popup = ~paste(name,"<br>",  
+                                  "Mass", kg, "kg", "<br>",
+                                  "Year", year),
+                   color = ~pal(year),
+                   radius=~(((kg)^0.25)*magnification),
+                   group = "Mass: 0.01kg - 0.03kg") %>% 
+  addCircles(data=meteors_mass3, 
+                   lat=~reclat,
+                   lng=~reclong,
+                   popup = ~paste(name,"<br>",  
+                                  "Mass", kg, "kg", "<br>",
+                                  "Year", year),
+                   color = ~pal(year),
+                   radius=~(((kg)^0.25)*magnification),
+                   group = "Mass: 0.03kg - 0.2kg") %>% 
+  addCircles(data=meteors_mass4, 
+                   lat=~reclat,
+                   lng=~reclong,
+                   popup = ~paste(name,"<br>",  
+                                  "Mass", kg, "kg", "<br>",
+                                  "Year", year),
+                   color = ~pal(year),
+                   radius=~(((kg)^0.25)*magnification),
+                   group = "Mass: 0.2kg - 10kg") %>% 
+  addCircles(data=meteors_mass5, 
+             lat=~reclat,
+             lng=~reclong,
+             popup = ~paste(name,"<br>",  
+                            "Mass", kg, "kg", "<br>",
+                            "Year", year),
+             color = ~pal(year),
+             radius=~(((kg)^0.25)*magnification),
+             group = "Mass over 10kg") %>% 
+  addLegend("bottomright", pal = pal, 
+            values = ~year,
+            title = "Year",
+            labFormat =  labelFormat(big.mark = ""),
+            opacity = 1) %>% 
+  addLayersControl(overlayGroups = c("Mass under 0.01kg", 
+                                     "Mass: 0.01kg - 0.03kg", 
+                                     "Mass: 0.03kg - 0.2kg", 
+                                     "Mass: 0.2kg - 10kg",
+                                     "Mass over 10kg"),
+                   options=layersControlOptions(collapsed = F)) %>% 
+  hideGroup(c("Mass under 0.01kg", "Mass: 0.01kg - 0.03kg", 
+              "Mass: 0.03kg - 0.2kg", "Mass: 0.2kg - 10kg"))
+
+```
+
+### Map Analysis
+
+The most striking feature of the map is the range in sizes of meteorites, from ones like the giant Hoba weighing in at tens of tonnes to more common, gram-sized meteorites.
+
+Next, we see areas with lots of red, where meteorites have been found more recently: throughout the Sahara, in Antarctica, and across the South central plain of Australia. These are locations in which bizarre looking rocks really stand out in places where they have no right to be. Antarctica has the further advantage that meteorite finds will gather at the foot of glaciers. Surprisingly, there isn't that much in Greenland, maybe an untapped resource here.
+
+Zooming in on North America, we notice the abundance of kilogramme-sized meteorites discovered in the mid-West throughout the 20th century.
+
+For older meteorite discoveries, we look to Western Europe, the Eastern seaboard of the United States, the Indian subcontinent, and Japan.
+
+In short, meteorites have been found where, a) there are lots of people, or b) they stand out.
+
+## Mass Distribution
+Below we show a portion of a histogram of meteorite masses. It shows a predictable ~exponential decline. Note also, anomolously large numbers of meteorites with masses of exactly 1kg, 2kg....(indicated by ticks). My guess is that these were older samples with less rigorous mass measurements.
+
+```{r first_histogram, echo=F, warning=F, message=F, cache=F}
+
+arrows <- data.frame(x=c(1, 2, 2.5, 3, 4, 5, 6, 7), xend=c(1, 2, 2.5, 3, 4, 5, 6, 7), y=c(150, 80, 80, 80, 80, 80, 80, 80), yend=c(140, 70,70,70,70,70,70,70))
+meteors %>% ggplot(aes(x=kg)) +
+  geom_histogram(bins=250, col="firebrick2", fill="firebrick2") +
+  xlim(0, 8) + 
+  ylim(0, 200) +
+  ggtitle("Histogram of Masses for all Meteorites") +
+  xlab("Mass (kg)") +
+  ylab("Frequency") +
+  scale_y_log10() +
+  geom_segment(data=arrows, aes(x=x, xend=xend, y=y, yend=yend), col="firebrick4", size=0.5, arrow=arrow(type="open", angle=10))
+```
+
+## By Continent
+
+Let's look at the spread of meteorite mass across different continents. This is shown in the figure below.
+
+```{r by_continent, echo=F, warning=F, message=F, cache=F}
+meteors %>% 
+  ggplot(aes(x=kg, col=continent)) + 
+  geom_freqpoly(show.legend = T, bins=10) +  
+  xlab("mass (kg)") +
+  scale_y_log10() +
+  xlim(0, 25) +
+  scale_colour_brewer(palette="Set1") +
+  theme(legend.title = element_blank())
+```
+
+Not much to see here. North America is the place to go for larger meteorites, but note the plethora of small meteorites from Antarctica. In fact, by far the greatest number of meteorites come from Antarctica (`r meteors %>% filter(continent=="Antarctica") %>% summarise(n())` of them out of a total number of `r meteors %>% summarise(n())`), something that's hard to appreciate from the map above because they are frequently ascribed the same latitude, longitude and so their pointers sit on top of each other.
+
+## Falls versus Finds
+
+There are two categories of meteorites; those that we happen to come across by chance (finds), and those meteors that we see in descent, track, and discover based on their trajectory (falls). Is there a difference in mass? Let's see.
+
+```{r falls_finds, echo=F, warning=F, message=F, cache=F}
+meteors %>% 
+  ggplot(aes(x=kg, col=fall)) + 
+  geom_freqpoly(show.legend = T) +  
+  xlab("mass (kg)") +
+  theme_minimal() + 
+  scale_y_log10() +
+  xlim(0, 25) +
+  scale_colour_brewer(palette="Set1")
+```
+
+What we observe is that smaller meteorites tend to be finds. It's difficult to track meteors, especially in the final, dark, part of their descent when the meteor velocity drops below 3m/s and the visible trail disappears. Unless they are large enough, or unless the terrain is suitable, they won't be uncovered.
+
+## Are We Running Out of Meteorites to Find?
+
+If so we should see a drop off in meteorite mass over time. So let's plot meteorite mass as a function of year of discovery. It's shown below (in the plot we also distinguish between different types of meteorite by colour, more on that later):
+
+```{r mass_year, echo=F, warning=F, message=F, cache=F, preview=TRUE}
+arrows <- data.frame(x=c(1979, 1988, 1997, 1999), 
+                     xend=c(1979, 1988, 1997, 1999), 
+                     y=c(70, 70, 10, 10), 
+                     yend=c(5, 5, 1, 1))
+arrows1 <- data.frame(x=c(2002, 2004), 
+                     xend=c(2003.5, 2005.5), 
+                     y=c(1e4, 1e4), 
+                     yend=c(4e3, 4e3))
+
+meteors %>% 
+  # filter(chond %in% levels(chond)) %>% 
+  # mutate(chond = factor(chond, levels = levels(chond))) %>% 
+  ggplot(aes(x=year, y=kg, col=chond)) + 
+  geom_jitter(aes(), alpha=0.2, size=ifelse(meteors$kg > 2000 & meteors$year > 2000, 4, 0.5)) +  
+  theme(legend.position = "none") +
+  scale_y_log10(labels=scales::comma, name="Mass (kg)") + 
+  xlim(1950, 2010) +
+  guides(colour = guide_legend(override.aes = list(size=2, alpha=1))) +
+  scale_colour_manual(values=cbPalette) +
+  geom_segment(data=arrows, aes(x=x, xend=xend, y=y, yend=yend), 
+               col="firebrick4", size=0.5, 
+               arrow=arrow(type="open", angle=10, length = unit(0.15, "inches"))) +
+  geom_segment(data=arrows1, aes(x=x, xend=xend, y=y, yend=yend), 
+               col="black", size=0.5, 
+               arrow=arrow(type="open", angle=10, length = unit(0.15, "inches"))) +
+  annotate(geom="text", x=1999, y=1.5e4, label="Xifu", col="black", cex=6) + 
+  annotate(geom="text", x=2007, y=4e4, label="Al Haggounia", col="black", cex=6) +
+  annotate(geom="text", x=1979, y=140, label="Yamato", col="firebrick4", cex=6) + 
+  annotate(geom="text", x=1988, y=140, label="Asuka", col="firebrick4", cex=6) +
+  annotate(geom="text", x=1998, y=200, label="Queen\nAlexandra\nRange ", col="firebrick4", cex=6) +
+  labs(x = "")
+
+
+```
+
+There appears to be lots of structure in the plot. First off, something dramatic happened from the mid 1970's on. We begin to see years with enormous numbers of small meteorite discovery. On investigation, these are due to years in which there are meteorite campaigns in Antarctica. Most notable is the Yamato campaign of 1979 that yielded `r meteors %>% filter(grepl("Yamato", name), year==1979) %>% summarise(n())`  meteorites with a combined mass of `r round(meteors %>% filter(grepl("Yamato", name), year==1979) %>% summarise(sum(kg)), 2)` kg. Then there was the Asuka campaign of 1988 with `r meteors %>% filter(grepl("Asuka", name), year==1988) %>% summarise(n())`  meteorites with a combined mass of `r round(meteors %>% filter(grepl("Asuka", name), year==1988) %>% summarise(sum(kg)), 2)` kg.
+
+We also see some horizontal stripping in this plot. This is due to rounding off measurements of meteorite mass as mentioned above.
+
+The colours in the plot describe the nature of the meteorite (see below for details). Note the yellow stripes corresponding to very low iron chondrites in 1997 and 1999. These are from the Queen Alexandra Range in Antarctica campaigns. Most of these are very low or low iron condrites, suggesting that they come from the same proginator meteoroid (though [_Queen Alexandra Range 94281_](https://onlinelibrary.wiley.com/doi/pdf/10.1111/j.1945-5100.1999.tb01747.x) is a fascinating Lunar basaltic rock).
+
+As to the original question, have we found all the big ones? It would appear not. Witness, for the example the 3 tonne Al Haggounia meteorite discovered in 2006 in Western Sahara or the equally massive Xifu meteorite from 2004 in China.
+
+## Types of Meteorite
+
+At a very hand-waving level, meteorites can be divided into three types:
+
+1. Chondrites. These are moderate sized lumps of rock that were formed in the early days of the Solar System and have remained pretty much as-is until their encounter with the Earth. They would have spent most of their lives in the asteroid belt, a disturbance sending them into an Earth crossing orbit. The _Chrondrite_ name refers to the Chondrules that make them up. These are millimetre sized silicate spheres embedded in a carbon matrix. 
+
+2. Irons. These come from the core of a small planetoid that formed early on in the history of the Solar System. It was hot, and large, enough to melt and differentiate, with the metals being dragged into the core. It then got whacked by something that made it disintegrate. The resulting fragments drifted through space until they fell to Earth. Because they are so easy to find, these are common meteorites, and the heaviest. Their structure and composition tell us a great deal about their parent body. Typically these were 20km to 500km in radius (think Vesta).
+
+3. Achondrites. The fragmented bodies that gave us irons from their core also give us rocks from their mantle. Because they melted they no longer have the millimetre-sized stone beads, so we call them achondrites.
+
+
+Let's see how common the different types are, and how their masses stack up.
+
+```{r type_dist, echo=F, warning=F, message=F, cache=F}
+meteors %>% 
+  ggplot(aes(x=chond, y=kg, col=chond)) + 
+  geom_jitter(size=1, alpha=0.2) + 
+  scale_y_log10(labels=scales::comma, name="Mass (kg)") +
+  theme(legend.position = "none") + 
+  xlab("Meteor Type") +
+  theme(axis.text.x = element_text()) +
+  scale_colour_manual(values = cbPalette) +
+  coord_flip() +
+  labs(x = "")
+
+non_iron_meteors <- meteors %>% 
+  filter(chond != "irons" & chond != "Stony_Iron" & chond != "achondrite")
+
+res_aov <- aov(kg~chond, data = non_iron_meteors)
+
+```
+
+The four classes of chondrite seem to have similar mass distributions, something that can be investigated by an ANOVA test. The result is a p-value of `r signif(unlist(summary(res_aov))[9], 2)`. Looks like all the chondrites do indeed have similar masses. To have a closer look, a Tukey Test comes up with the following table
+
+```{r tukey, echo=F, warning=F, message=F, cache=F} 
+z <- tidy(TukeyHSD(res_aov))
+z[,-c(1:2)] =sapply(z[,-c(1:2)], round, digits=2)
+kable(z[,-1])
+
+```
+
+From this we see that all types of chondrites have pretty similar masses.
+
+Now let's see how they spread out across the globe. This is shown in the map below. There are lots of low iron (`r meteors %>% filter(chond == "chondrite low iron") %>% count()`) and high iron (`r meteors %>% filter(chond == "chondrite high iron") %>% count()`) chondrites, so the map will be slow to update and navigate when these are selected. The distribution of most types look similar, with the exception of the irons. My guess is that this is a finding bias, there are terrains like the American mid-West which favour finding a lump of iron but where non-iron meteorites won't stand out so much. And it just goes to show that there must be umpteen meteorites out there waiting to be picked up.
+
+```{r type_map, echo=F, warning=F, message=F, cache=F}
+factor_pal <- colorFactor(
+  palette = c("#00ffff", "#111151", "#FFFFFF", "#00aba6", 
+              "#FFFF00", "#FF0000", "#00FF00"),
+  domain = levels(meteors$chond))
+
+meteors_chond1 <- meteors %>% 
+  filter(chond == "chondrite low iron")
+meteors_chond2 <- meteors %>% 
+  filter(chond == "chondrite high iron")
+meteors_chond3 <- meteors %>% 
+  filter(chond == "chondrite")
+meteors_chond4 <- meteors %>% 
+  filter(chond == "achondrite")
+meteors_chond5 <- meteors %>% 
+  filter(chond == "chondrite vlow iron")
+meteors_chond6 <- meteors %>% 
+  filter(chond == "irons")
+meteors_chond7 <- meteors %>% 
+  filter(chond == "Stony_Iron")
+
+
+map %>% 
+  addCircles(data=meteors_chond1, 
+             lat=~reclat,
+             lng=~reclong,
+             popup = ~paste("<b>",name,"</b>","<br>",  
+                            "Mass", kg, "kg", "<br>",
+                            "Year", year, "<br>",
+                            "Type", recclass),
+             color= ~factor_pal(chond),
+             radius=100,
+             group = "chondrite low iron") %>% 
+  addCircles(data=meteors_chond2, 
+             lat=~reclat,
+             lng=~reclong,
+             popup = ~paste("<b>",name,"</b>","<br>",  
+                            "Mass", kg, "kg", "<br>",
+                            "Year", year, "<br>",
+                            "Type", recclass),
+             color= ~factor_pal(chond),
+             radius=100,
+             group = "chondrite high iron") %>% 
+  addCircles(data=meteors_chond3, 
+             lat=~reclat,
+             lng=~reclong,
+             popup = ~paste("<b>",name,"</b>","<br>",  
+                            "Mass", kg, "kg", "<br>",
+                            "Year", year, "<br>",
+                            "Type", recclass),
+             color= ~factor_pal(chond),
+             radius=100,
+             group = "chondrite") %>% 
+  addCircles(data=meteors_chond4, 
+             lat=~reclat,
+             lng=~reclong,
+             popup = ~paste("<b>",name,"</b>","<br>",  
+                            "Mass", kg, "kg", "<br>",
+                            "Year", year, "<br>",
+                            "Type", recclass),
+             color= ~factor_pal(chond),
+             radius=100,
+             group = "achondrite") %>% 
+  addCircles(data=meteors_chond5, 
+             lat=~reclat,
+             lng=~reclong,
+             popup = ~paste("<b>",name,"</b>","<br>",  
+                            "Mass", kg, "kg", "<br>",
+                            "Year", year, "<br>",
+                            "Type", recclass),
+             color= ~factor_pal(chond),
+             radius=100,
+             group = "chondrite vlow iron") %>% 
+  addCircles(data=meteors_chond6, 
+             lat=~reclat,
+             lng=~reclong,
+             popup = ~paste("<b>",name,"</b>","<br>",  
+                            "Mass", kg, "kg", "<br>",
+                            "Year", year, "<br>",
+                            "Type", recclass),
+             color= ~factor_pal(chond),
+             radius=100,
+             group = "irons") %>% 
+  addCircles(data=meteors_chond7, 
+             lat=~reclat,
+             lng=~reclong,
+             popup = ~paste("<b>",name,"</b>","<br>",  
+                            "Mass", kg, "kg", "<br>",
+                            "Year", year, "<br>",
+                            "Type", recclass),
+             color= ~factor_pal(chond),
+             radius=100,
+             group = "Stony_Iron") %>% 
+  addLegend("bottomright", pal = factor_pal, 
+            values = ~chond,
+            title = "Type",
+            labFormat =  labelFormat(big.mark = ""),
+            opacity = 1
+  ) %>% 
+  addLayersControl(overlayGroups = c("chondrite", 
+                                     "chondrite high iron",
+                                     "chondrite low iron", 
+                                     "chondrite vlow iron",                                   
+                                     "irons",
+                                     "Stony_Iron",
+                                     "achondrite"),
+                   options=layersControlOptions(collapsed = F)) %>% 
+  hideGroup(group = c("chondrite low iron", 
+                      "chondrite high iron", 
+                      "chondrite", 
+                      "achondrite",
+                      "chondrite vlow iron",
+                      "Stony_Iron"))
+```
+
+## Finally, Back to those Yamato Meteorites
+
+Did they all come from the same source? Was it one incoming meteoroid that shattered into thousands of peices? If so, they should all have similar compositions. We looked at this, taking the proportional representation of each class in the Yamato field and compared to the overall meteorite population. For good measure, we did this for the Asuka field as well. The results are shown in the table below for the most common classes in the yamato field:
+
+```{r Yamato_prop, echo=F, warning=F, message=F, cache=F}
+all_proportions <- meteors %>% 
+  group_by(recclass) %>% 
+  summarise(count=n()) %>%
+  mutate(all = round(count/sum(count), 3)) %>% 
+  arrange(desc(all))%>% 
+  select(-count)
+
+Asuka_proportions <- meteors %>% 
+  filter(grepl("Asuka", name)) %>% 
+  group_by(recclass) %>% 
+  summarise(count=n()) %>%
+  mutate(Asuka = round(count/sum(count), 3)) %>% 
+  arrange(desc(Asuka))%>% 
+  select(-count)
+
+QAR_proportions <- meteors %>% 
+  filter(grepl("Queen Alexandra Range", name)) %>% 
+  group_by(recclass) %>% 
+  summarise(count=n()) %>%
+  mutate(QAR = round(count/sum(count), 3)) %>% 
+  arrange(desc(QAR))%>% 
+  select(-count)
+
+Yamato_proportions <- meteors %>% 
+       filter(grepl("Yamato", name)) %>% 
+       group_by(recclass) %>% 
+       summarise(count=n()) %>%
+       mutate(Yamato = round(count/sum(count), 3)) %>% 
+       arrange(desc(Yamato)) %>% 
+       select(-count)
+
+Yamato_table <- left_join(Yamato_proportions, all_proportions) %>% 
+  left_join(., Asuka_proportions) %>% 
+  left_join(., QAR_proportions)
+
+names(Yamato_table)[1] <- "Meteorite Category"
+
+kable(head(Yamato_table, 20))
+```
+
+Yamato and Asuka seem to track each other pretty closely. They do differ significantly from the overall population of meteorites, especially for [H4](https://www.lpi.usra.edu/meteor/metbullclass.php?sea=H4), a high iron chondrite with abundant chondrules. Our guess is that this is simply a collection bias. H4's are tough to distinguish from regular rocks, but on the Antarctic ice sheet that's not a big problem.
+
+On the other hand, the Queen Alexandra Range (QAR) meteorites show a significant departure from both the overall meteorite population and also their Antarctic brethren. They have considerably more low iron chondrites ([L5](https://www.lpi.usra.edu/meteor/metbullclass.php?sea=L5) and [LL5](https://www.lpi.usra.edu/meteor/metbullclass.php?sea=LL5)). Maybe in this case, they are fragments from the same progenitor meteoroid.
+
+## To Wrap Up
+
+This is a cursory look at the locations and natures of meteorites. They are fascinating. One thing not discussed is the science that unfolds from meteorite examination. The ability to collect samples from the early Solar System, from diverse sectors of our Solar System, and study them in laboratories here on Earth has revealed rich information about the formation and inner workings of our home. It is an active and fruitful area of research. The staggering number of meteorites being uncovered  nowadays mean new insights are inevitable.
+
+Finally. The best place to find meteorites; Antarctica. Barring that, the Sahara. But meteorites are ubiquitous, the best way to find them is to know what you're looking for by checking out some pictures or by visiting your local museum of natural history. 
+
+```{r info, echo=F, warning=F, message=F}
+# sessionInfo()
+```
+
+

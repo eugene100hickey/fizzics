@@ -1,0 +1,190 @@
+---
+title: "Satellites and Bedrock - Part III"
+description: |
+    Looking at the ways in which satellite images from Sentinel could be used to examine underlying bedrock types. In this third of a three part series, we look at ways of stacking the satellite data and then squaring that off with what we've seen from bedrock.
+author:
+  - name: Eugene
+    url: https://www.fizzics.ie
+date: 2023-01-21
+categories: [R, Donegal, Maps]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE, cache = TRUE)
+```
+
+Geological Survey Ireland is producing wonderful [data resources](https://www.gsi.ie/en-ie/data-and-maps/Pages/default.aspx), impossible to resist when it comes to doing some analysis. In this post, welook at [bedrock data](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), what you would see after sweeping away all the soil and loose covering from the ground. Bedrock is stuff like sandstone, limestone, igneous rock.... 
+
+I was interested to see how overlying vegetation depends on the bedrock; specifically if the colours from satellite images taken at different times of year could be used to take a guess at what lies beneath. 
+
+This requires two suites of information, the bedrock data from GSI and the satellite data from [Copernicus-Sentinel](https://scihub.copernicus.eu/). The first we'll download directly and store locally from [this resource](https://www.gsi.ie/en-ie/data-and-maps/Pages/Bedrock.aspx#100k), the second we'll access using the R package, [sen2r](https://github.com/ranghetti/sen2r) (but we'll also end up downloading and storing image files locally, but `sen2R` will help scope them out).
+
+This was originally written as one post, but then it got so long I decided to split it into three parts:
+
+- [Part I: getting the bedrock data from GSI](https://www.fizzics.ie/posts/2023-01-17-satellites-and-bedrock/)  
+- [Part II: getting the satellite data from Sentinel](https://www.fizzics.ie/posts/2023-01-19-satellites-and-bedrock-part-ii/)
+- **Part III: putting the first two together  **
+
+
+```{r libraries-theme}
+library(tidyverse)
+library(sf)
+library(sen2r)
+library(getSpatialData)
+library(raster)
+library(RStoolbox)
+library(exactextractr)
+# library(terra)
+library(showtext)
+library(gt)
+library(ggokabeito)
+library(patchwork)
+
+font_add_google(name = "Gloria Hallelujah", family = "my_font")
+showtext_auto()
+theme_clean <- function() {
+  theme_minimal(base_family = "my_font") +
+    theme(panel.grid.minor = element_blank(),
+          text = element_text(size = 16, family = "my_font"),
+          plot.background = element_rect(fill = "white", color = NA),
+          axis.text = element_text(size = 16),
+          axis.title = element_text(face = "bold", size = 14),
+          strip.text = element_text(face = "bold", size = rel(0.8), hjust = 0),
+          strip.background = element_rect(fill = "grey80", color = NA),
+          legend.text = element_text(size = 16, family = "my_font"))
+}
+```
+
+```{r bedrock}
+ref <- st_read("../2023-01-17-satellites-and-bedrock/data/Shapefiles/Bedrock_Polygons_ITM_2018.shp",
+               quiet = TRUE)
+my_proj <- "+proj=utm +zone=29 +datum=WGS84 +units=m +no_defs"
+ref <- st_transform(ref, crs = my_proj)
+```
+
+```{r bedock-map}
+my_extent <- c(xmin=540000, xmax=585000, ymin=6050000, ymax=6090000)
+my_extent <- c(xmin=510000, xmax=635000, ymin=6030000, ymax=6150000)
+my_extent <- c(xmin=510000, xmax=610000, ymin=6030000, ymax=6100000)
+
+# ref <- st_transform(ref, crs = st_crs(s1))
+ref1 <- ref |> 
+  st_crop(extent(my_extent)) |> 
+  mutate(
+    class = case_when(
+      str_detect(DESCRIPT, "[Gg]ranite") ~ "granite",
+      str_detect(DESCRIPT, "[Qq]uar[tz][tz]") ~ "quartz",
+      str_detect(DESCRIPT, "[Ss]andstone") ~ "sandstone",
+      str_detect(DESCRIPT, "[Ss]chist") ~ "schist",
+      str_detect(DESCRIPT, "[Ll]imestone") ~ "limestone",
+      str_detect(DESCRIPT, "[Ss]hale") ~ "shale",
+      TRUE ~ "other"
+    ),
+  .before = NEWCODE)
+
+# |> filter(class != "other")
+```
+
+A reminder, from part I, we accessed a map of bedrock data from GSI, this is ploted on the left below. From part II, we recruited three sets of satelllite images from Sentinel; one from June, one end-August, and the last from December 2022. Stacking these together gives us the middle plot. In addition, the right hand plot shows the August vegetation index [NDVI](https://gisgeography.com/ndvi-normalized-difference-vegetation-index/), areas of darker green have more plant life.
+
+```{r bedrock-map, layout="l-screen-inset shaded"}
+bedrock_plot <- ref1 |> 
+  ggplot(aes(fill = class)) +
+  geom_sf(show.legend = FALSE) + 
+  scale_fill_okabe_ito() +
+  theme_void()
+
+```
+
+
+```{r}
+prefix <- "../../../"
+
+my_file_red_june <- glue::glue("{prefix}data/spring-2022/T29UNA_20220604T114401_B02.jp2")
+my_file_green_june <- glue::glue("{prefix}data/spring-2022/T29UNA_20220604T114401_B03.jp2")
+my_file_blue_june <- glue::glue("{prefix}data/spring-2022/T29UNA_20220604T114401_B04.jp2")
+my_file_nir_june <- glue::glue("{prefix}data/spring-2022/T29UNA_20220604T114401_B08.jp2")
+
+my_file_red_aug <- glue::glue("{prefix}data/summer-2022/T29UNA_20220811T115409_B02.jp2")
+my_file_green_aug <- glue::glue("{prefix}data/summer-2022/T29UNA_20220811T115409_B03.jp2")
+my_file_blue_aug <- glue::glue("{prefix}data/summer-2022/T29UNA_20220811T115409_B04.jp2")
+my_file_nir_aug <- glue::glue("{prefix}data/summer-2022/T29UNA_20220811T115409_B08.jp2")
+
+my_file_red_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B02.jp2")
+my_file_green_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B03.jp2")
+my_file_blue_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B04.jp2")
+my_file_nir_dec <- glue::glue("{prefix}data/december-2022/T29UNA_20221204T115451_B08.jp2")
+
+s1 = stack(my_file_red_june,
+           my_file_green_june,
+           my_file_blue_june,
+           my_file_nir_june,
+           my_file_red_aug,
+           my_file_green_aug,
+           my_file_blue_aug,
+           my_file_nir_aug,
+           my_file_red_dec,
+           my_file_green_dec,
+           my_file_blue_dec,
+           my_file_nir_dec) 
+names(s1) <- c("red_june", "green_june", "blue_june", "nir_june",
+               "red_aug", "green_aug", "blue_aug", "nir_aug", 
+               "red_dec", "green_dec", "blue_dec", "nir_dec")
+```
+
+```{r curtail-stack}
+s2 <- s1 |> crop(my_extent)
+s2_plot <- ggRGB(s2, r = 4, g= 8, b = 12, stretch = "hist") + theme_void()
+```
+
+```{r ndvi-plot}
+ndvi_aug <- readRDS("data/ndvi-aug")
+ndvi_aug_small <- ndvi_aug |> terra::aggregate(10)
+ndvi_plot <- ndvi_aug_small |>
+  as.data.frame(xy = TRUE) |>
+  mutate(layer = ifelse(layer < 0, 0, layer)) |>
+  ggplot(aes(x=x, y=y, fill=layer^1.5)) +
+  geom_raster(show.legend = F) +
+  scale_fill_gradient(low = "#FFFFFF", high = "darkgreen") +
+  theme_void()
+```
+
+```{r patchwork-maps}
+bedrock_plot + s2_plot + ndvi_plot
+```
+
+The RGB colours from the raster image (in the center above) come from setting _R_ to the NIR channel from June, _G_ to the NIR channel of August, and _B_ to the NIR channel of December. The red flecks over Donegal Bay correspond to clouds in the June image, the bue flecks to clouds in December (this is Ireland afterall)
+
+It looks like there is some correspondence between bedrock and satellite here. The orange granite in the NorthWest quarter mapping to purple colours from the satellite stack, schist (brown) being lighter, and the arc of blue sandstone and limestone around Donegal Bay also apparent in the satellite photographs. None of this is too surprising; vegetation and growth on mountains will be different to that on plains. But it leads us on to our next step, can we determine the rock types based on what the satellite images are telling us? And using the red, green, blue bands as well as the near infra-red?
+
+```{r ref-values}
+# ref_values <- exact_extract(s2, ref1, fun = "mean") |> as_tibble()
+# ref_values$class <- ref1$class #add class attribute to a dataframe
+# names(ref_values) <- c("red_june", "green_june", "blue_june", "nir_june",
+#                        "red_aug", "green_aug", "blue_aug", "nir_aug", 
+#                        "red_dec", "green_dec", "blue_dec", "nir_dec", 
+#                        "class")
+ref_values <- readRDS("data/ref_values")
+# ref_values <- ref_values |> 
+#   mutate(ndvi_june = (nir_june - red_june)/(nir_june+red_june),
+#          ndvi_aug = (nir_aug - red_aug)/(nir_aug+red_aug),
+#          ndvi_dec = (nir_dec - red_dec)/(nir_dec+red_dec))
+```
+
+Next we take the polygons defining areas in the bedrock map and use the `exactextractr` package to calculate the mean values of the satellite images in these areas. We then plot the NDVI values for these areas, colouring and circling them by rock type. 
+
+```{r ref-value-plot, preview = TRUE}
+#some visualization with ggplot2 package - scatterplots:
+ggplot(ref_values, aes(ndvi_aug, y = ndvi_dec, color = class)) +
+  geom_point(size = 1) +
+  labs(x = "NDVI August", y = "NDVI December") +
+#  scale_y_log10() +
+  stat_ellipse(size = 2) +
+  theme_clean()
+```
+
+

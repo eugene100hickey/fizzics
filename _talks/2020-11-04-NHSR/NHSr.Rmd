@@ -1,0 +1,38 @@
+---
+title: "The Power of Data Visualisations"
+description: |
+  A presentation at the 2020 NHSr Community Conference. 
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.netlify.app
+    affiliation: Technological University Dublin
+    affiliation_url: https://tudublin.ie
+date: 11-10-2020
+preview: preview.png
+url: https://www.youtube.com/watch?v=0UyIEYdGx_g
+base_url: http://fizzics.netlify.app
+twitter:
+  creator: "@eugene100hickey"
+categories: [R, Data Visualisation]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%",
+                      out.extra="style='border:1px solid black;'")
+```
+
+
+*Click below for the video.*
+
+<a href="`r rmarkdown::metadata$url`">
+```{r}
+knitr::include_graphics("cover.png")
+```
+</a>
+
+The slides are [here](NHS_2020_Nov_10.html)
+

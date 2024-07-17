@@ -1,0 +1,2202 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="distill" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  { color: #00769e; background-color: #f1f3f5; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span { color: #00769e; } /* Normal */
+code span.al { color: #ad0000; } /* Alert */
+code span.an { color: #5e5e5e; } /* Annotation */
+code span.at { color: #657422; } /* Attribute */
+code span.bn { color: #ad0000; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #00769e; } /* ControlFlow */
+code span.ch { color: #20794d; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #5e5e5e; } /* Comment */
+code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+code span.dt { color: #ad0000; } /* DataType */
+code span.dv { color: #ad0000; } /* DecVal */
+code span.er { color: #ad0000; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #ad0000; } /* Float */
+code span.fu { color: #4758ab; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #5e5e5e; } /* Information */
+code span.kw { color: #00769e; } /* Keyword */
+code span.op { color: #5e5e5e; } /* Operator */
+code span.ot { color: #00769e; } /* Other */
+code span.pp { color: #ad0000; } /* Preprocessor */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
+code span.ss { color: #20794d; } /* SpecialString */
+code span.st { color: #20794d; } /* String */
+code span.va { color: #111111; } /* Variable */
+code span.vs { color: #20794d; } /* VerbatimString */
+code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+</style>
+
+
+  <!--radix_placeholder_meta_tags-->
+  <title>Golf Courses in Donegal - Part I, data access</title>
+
+  <meta property="description" itemprop="description" content="A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this first part we&#39;ll look at how to get hold of the data by some web scrapping, a second post will do some analysis of the numbers."/>
+
+
+  <!--  https://schema.org/Article -->
+  <meta property="article:published" itemprop="datePublished" content="2022-08-03"/>
+  <meta property="article:created" itemprop="dateCreated" content="2022-08-03"/>
+  <meta name="article:author" content="Eugene"/>
+
+  <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+  <meta property="og:title" content="Golf Courses in Donegal - Part I, data access"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this first part we&#39;ll look at how to get hold of the data by some web scrapping, a second post will do some analysis of the numbers."/>
+  <meta property="og:locale" content="en_US"/>
+
+  <!--  https://dev.twitter.com/cards/types/summary -->
+  <meta property="twitter:card" content="summary"/>
+  <meta property="twitter:title" content="Golf Courses in Donegal - Part I, data access"/>
+  <meta property="twitter:description" content="A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this first part we&#39;ll look at how to get hold of the data by some web scrapping, a second post will do some analysis of the numbers."/>
+
+  <!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+  <script type="text/json" id="radix-rmarkdown-metadata">
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","preview"]}},"value":[{"type":"character","attributes":{},"value":["Golf Courses in Donegal - Part I, data access"]},{"type":"character","attributes":{},"value":["A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this first part we'll look at how to get hold of the data by some web scrapping, a second post will do some analysis of the numbers.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Eugene"]},{"type":"character","attributes":{},"value":["https://www.fizzics.ie"]}]}]},{"type":"character","attributes":{},"value":["2022-08-03"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Sport","Donegal","Web Scraping"]},{"type":"character","attributes":{},"value":["images/dfgc.jpg"]}]}
+  </script>
+  <!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/course_summary","data/course_summary1","data/donegal","data/donegal_clean","fonts/FuzzyBubbles-Bold.ttf","fonts/FuzzyBubbles-Regular.ttf","fonts/OFL.txt","golf-courses-in-donegal_files/anchor-4.2.2/anchor.min.js","golf-courses-in-donegal_files/bowser-1.9.3/bowser.min.js","golf-courses-in-donegal_files/crosstalk-1.2.0/css/crosstalk.min.css","golf-courses-in-donegal_files/crosstalk-1.2.0/js/crosstalk.js","golf-courses-in-donegal_files/crosstalk-1.2.0/js/crosstalk.js.map","golf-courses-in-donegal_files/crosstalk-1.2.0/js/crosstalk.min.js","golf-courses-in-donegal_files/crosstalk-1.2.0/js/crosstalk.min.js.map","golf-courses-in-donegal_files/crosstalk-1.2.0/scss/crosstalk.scss","golf-courses-in-donegal_files/datatables-binding-0.22/datatables.js","golf-courses-in-donegal_files/datatables-css-0.0.0/datatables-crosstalk.css","golf-courses-in-donegal_files/distill-2.2.21/template.v2.js","golf-courses-in-donegal_files/dt-core-1.11.3/css/jquery.dataTables.extra.css","golf-courses-in-donegal_files/dt-core-1.11.3/css/jquery.dataTables.min.css","golf-courses-in-donegal_files/dt-core-1.11.3/js/jquery.dataTables.min.js","golf-courses-in-donegal_files/figure-html5/unnamed-chunk-8-1.png","golf-courses-in-donegal_files/figure-html5/unnamed-chunk-9-1.png","golf-courses-in-donegal_files/header-attrs-2.13/header-attrs.js","golf-courses-in-donegal_files/htmlwidgets-1.5.4/htmlwidgets.js","golf-courses-in-donegal_files/jquery-3.6.0/jquery-3.6.0.js","golf-courses-in-donegal_files/jquery-3.6.0/jquery-3.6.0.min.js","golf-courses-in-donegal_files/jquery-3.6.0/jquery-3.6.0.min.map","golf-courses-in-donegal_files/popper-2.6.0/popper.min.js","golf-courses-in-donegal_files/tippy-6.2.7/tippy-bundle.umd.min.js","golf-courses-in-donegal_files/tippy-6.2.7/tippy-light-border.css","golf-courses-in-donegal_files/tippy-6.2.7/tippy.css","golf-courses-in-donegal_files/tippy-6.2.7/tippy.umd.min.js","golf-courses-in-donegal_files/webcomponents-2.0.0/webcomponents.js","images/dfgc.jpg"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+  <!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+  <style type="text/css">
+
+  body {
+    background-color: white;
+  }
+
+  .pandoc-table {
+    width: 100%;
+  }
+
+  .pandoc-table>caption {
+    margin-bottom: 10px;
+  }
+
+  .pandoc-table th:not([align]) {
+    text-align: left;
+  }
+
+  .pagedtable-footer {
+    font-size: 15px;
+  }
+
+  d-byline .byline {
+    grid-template-columns: 2fr 2fr;
+  }
+
+  d-byline .byline h3 {
+    margin-block-start: 1.5em;
+  }
+
+  d-byline .byline .authors-affiliations h3 {
+    margin-block-start: 0.5em;
+  }
+
+  .authors-affiliations .orcid-id {
+    width: 16px;
+    height:16px;
+    margin-left: 4px;
+    margin-right: 4px;
+    vertical-align: middle;
+    padding-bottom: 2px;
+  }
+
+  d-title .dt-tags {
+    margin-top: 1em;
+    grid-column: text;
+  }
+
+  .dt-tags .dt-tag {
+    text-decoration: none;
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0em 0.4em;
+    margin-right: 0.5em;
+    margin-bottom: 0.4em;
+    font-size: 70%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  d-article table.gt_table td,
+  d-article table.gt_table th {
+    border-bottom: none;
+    font-size: 100%;
+  }
+
+  .html-widget {
+    margin-bottom: 2.0em;
+  }
+
+  .l-screen-inset {
+    padding-right: 16px;
+  }
+
+  .l-screen .caption {
+    margin-left: 10px;
+  }
+
+  .shaded {
+    background: rgb(247, 247, 247);
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .html-widget {
+    margin-bottom: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .shaded .shaded-content {
+    background: white;
+  }
+
+  .text-output {
+    margin-top: 0;
+    line-height: 1.5em;
+  }
+
+  .hidden {
+    display: none !important;
+  }
+
+  hr.section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 0px;
+  }
+
+
+  d-byline {
+    border-top: none;
+  }
+
+  d-article {
+    padding-top: 2.5rem;
+    padding-bottom: 30px;
+    border-top: none;
+  }
+
+  d-appendix {
+    padding-top: 30px;
+  }
+
+  d-article>p>img {
+    width: 100%;
+  }
+
+  d-article h2 {
+    margin: 1rem 0 1.5rem 0;
+  }
+
+  d-article h3 {
+    margin-top: 1.5rem;
+  }
+
+  d-article iframe {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 2.0em;
+    width: 100%;
+  }
+
+  /* Tweak code blocks */
+
+  d-article div.sourceCode code,
+  d-article pre code {
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  }
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: auto;
+  }
+
+  d-article div.sourceCode {
+    background-color: white;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 10px;
+    font-size: 12px;
+    border-left: 2px solid rgba(0,0,0,0.1);
+  }
+
+  d-article pre {
+    font-size: 12px;
+    color: black;
+    background: none;
+    margin-top: 0;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  d-article pre a {
+    border-bottom: none;
+  }
+
+  d-article pre a:hover {
+    border-bottom: none;
+    text-decoration: underline;
+  }
+
+  d-article details {
+    grid-column: text;
+    margin-bottom: 0.8em;
+  }
+
+  @media(min-width: 768px) {
+
+  d-article pre,
+  d-article div.sourceCode,
+  d-article div.sourceCode pre {
+    overflow: visible !important;
+  }
+
+  d-article div.sourceCode pre {
+    padding-left: 18px;
+    font-size: 14px;
+  }
+
+  /* tweak for Pandoc numbered line within distill */
+  d-article pre.numberSource code > span {
+      left: -2em;
+  }
+
+  d-article pre {
+    font-size: 14px;
+  }
+
+  }
+
+  figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  /* CSS for d-contents */
+
+  .d-contents {
+    grid-column: text;
+    color: rgba(0,0,0,0.8);
+    font-size: 0.9em;
+    padding-bottom: 1em;
+    margin-bottom: 1em;
+    padding-bottom: 0.5em;
+    margin-bottom: 1em;
+    padding-left: 0.25em;
+    justify-self: start;
+  }
+
+  @media(min-width: 1000px) {
+    .d-contents.d-contents-float {
+      height: 0;
+      grid-column-start: 1;
+      grid-column-end: 4;
+      justify-self: center;
+      padding-right: 3em;
+      padding-left: 2em;
+    }
+  }
+
+  .d-contents nav h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 1em;
+  }
+
+  .d-contents li {
+    list-style-type: none
+  }
+
+  .d-contents nav > ul {
+    padding-left: 0;
+  }
+
+  .d-contents ul {
+    padding-left: 1em
+  }
+
+  .d-contents nav ul li {
+    margin-top: 0.6em;
+    margin-bottom: 0.2em;
+  }
+
+  .d-contents nav a {
+    font-size: 13px;
+    border-bottom: none;
+    text-decoration: none
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  .d-contents nav a:hover {
+    text-decoration: underline solid rgba(0, 0, 0, 0.6)
+  }
+
+  .d-contents nav > ul > li > a {
+    font-weight: 600;
+  }
+
+  .d-contents nav > ul > li > ul {
+    font-weight: inherit;
+  }
+
+  .d-contents nav > ul > li > ul > li {
+    margin-top: 0.2em;
+  }
+
+
+  .d-contents nav ul {
+    margin-top: 0;
+    margin-bottom: 0.25em;
+  }
+
+  .d-article-with-toc h2:nth-child(2) {
+    margin-top: 0;
+  }
+
+
+  /* Figure */
+
+  .figure {
+    position: relative;
+    margin-bottom: 2.5em;
+    margin-top: 1.5em;
+  }
+
+  .figure .caption {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    line-height: 1.5em;
+  }
+
+  .figure img.external {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .figure .caption a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .figure .caption b,
+  .figure .caption strong, {
+    font-weight: 600;
+    color: rgba(0, 0, 0, 1.0);
+  }
+
+  /* Citations */
+
+  d-article .citation {
+    color: inherit;
+    cursor: inherit;
+  }
+
+  div.hanging-indent{
+    margin-left: 1em; text-indent: -1em;
+  }
+
+  /* Citation hover box */
+
+  .tippy-box[data-theme~=light-border] {
+    background-color: rgba(250, 250, 250, 0.95);
+  }
+
+  .tippy-content > p {
+    margin-bottom: 0;
+    padding: 2px;
+  }
+
+
+  /* Tweak 1000px media break to show more text */
+
+  @media(min-width: 1000px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 16px;
+    }
+
+    .grid {
+      grid-column-gap: 16px;
+    }
+
+    d-article {
+      font-size: 1.06rem;
+      line-height: 1.7em;
+    }
+    figure .caption, .figure .caption, figure figcaption {
+      font-size: 13px;
+    }
+  }
+
+  @media(min-width: 1180px) {
+    .base-grid,
+    distill-header,
+    d-title,
+    d-abstract,
+    d-article,
+    d-appendix,
+    distill-appendix,
+    d-byline,
+    d-footnote-list,
+    d-citation-list,
+    distill-footer {
+      grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+      grid-column-gap: 32px;
+    }
+
+    .grid {
+      grid-column-gap: 32px;
+    }
+  }
+
+
+  /* Get the citation styles for the appendix (not auto-injected on render since
+     we do our own rendering of the citation appendix) */
+
+  d-appendix .citation-appendix,
+  .d-appendix .citation-appendix {
+    font-size: 11px;
+    line-height: 15px;
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    padding-left: 18px;
+    border: 1px solid rgba(0,0,0,0.1);
+    background: rgba(0, 0, 0, 0.02);
+    padding: 10px 18px;
+    border-radius: 3px;
+    color: rgba(150, 150, 150, 1);
+    overflow: hidden;
+    margin-top: -12px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  /* Include appendix styles here so they can be overridden */
+
+  d-appendix {
+    contain: layout style;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-top: 60px;
+    margin-bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    color: rgba(0,0,0,0.5);
+    padding-top: 60px;
+    padding-bottom: 48px;
+  }
+
+  d-appendix h3 {
+    grid-column: page-start / text-start;
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 1em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.65);
+  }
+
+  d-appendix h3 + * {
+    margin-top: 1em;
+  }
+
+  d-appendix ol {
+    padding: 0 0 0 15px;
+  }
+
+  @media (min-width: 768px) {
+    d-appendix ol {
+      padding: 0 0 0 30px;
+      margin-left: -30px;
+    }
+  }
+
+  d-appendix li {
+    margin-bottom: 1em;
+  }
+
+  d-appendix a {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  d-appendix > * {
+    grid-column: text;
+  }
+
+  d-appendix > d-footnote-list,
+  d-appendix > d-citation-list,
+  d-appendix > distill-appendix {
+    grid-column: screen;
+  }
+
+  /* Include footnote styles here so they can be overridden */
+
+  d-footnote-list {
+    contain: layout style;
+  }
+
+  d-footnote-list > * {
+    grid-column: text;
+  }
+
+  d-footnote-list a.footnote-backlink {
+    color: rgba(0,0,0,0.3);
+    padding-left: 0.5em;
+  }
+
+
+
+  /* Anchor.js */
+
+  .anchorjs-link {
+    /*transition: all .25s linear; */
+    text-decoration: none;
+    border-bottom: none;
+  }
+  *:hover > .anchorjs-link {
+    margin-left: -1.125em !important;
+    text-decoration: none;
+    border-bottom: none;
+  }
+
+  /* Social footer */
+
+  .social_footer {
+    margin-top: 30px;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.67);
+  }
+
+  .disqus-comments {
+    margin-right: 30px;
+  }
+
+  .disqus-comment-count {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+  }
+
+  #disqus_thread {
+    margin-top: 30px;
+  }
+
+  .article-sharing a {
+    border-bottom: none;
+    margin-right: 8px;
+  }
+
+  .article-sharing a:hover {
+    border-bottom: none;
+  }
+
+  .sidebar-section.subscribe {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .subscribe p {
+    margin-bottom: 0.5em;
+  }
+
+
+  .article-footer .subscribe {
+    font-size: 15px;
+    margin-top: 45px;
+  }
+
+
+  .sidebar-section.custom {
+    font-size: 12px;
+    line-height: 1.6em;
+  }
+
+  .custom p {
+    margin-bottom: 0.5em;
+  }
+
+  /* Styles for listing layout (hide title) */
+  .layout-listing d-title, .layout-listing .d-title {
+    display: none;
+  }
+
+  /* Styles for posts lists (not auto-injected) */
+
+
+  .posts-with-sidebar {
+    padding-left: 45px;
+    padding-right: 45px;
+  }
+
+  .posts-list .description h2,
+  .posts-list .description p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .posts-list .description h2 {
+    font-weight: 700;
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .posts-list h2.post-tag {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding-bottom: 12px;
+  }
+  .posts-list {
+    margin-top: 60px;
+    margin-bottom: 24px;
+  }
+
+  .posts-list .post-preview {
+    text-decoration: none;
+    overflow: hidden;
+    display: block;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 0;
+  }
+
+  .post-preview-last {
+    border-bottom: none !important;
+  }
+
+  .posts-list .posts-list-caption {
+    grid-column: screen;
+    font-weight: 400;
+  }
+
+  .posts-list .post-preview h2 {
+    margin: 0 0 6px 0;
+    line-height: 1.2em;
+    font-style: normal;
+    font-size: 24px;
+  }
+
+  .posts-list .post-preview p {
+    margin: 0 0 12px 0;
+    line-height: 1.4em;
+    font-size: 16px;
+  }
+
+  .posts-list .post-preview .thumbnail {
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    position: relative;
+    max-width: 500px;
+  }
+  .posts-list .post-preview img {
+    width: 100%;
+    display: block;
+  }
+
+  .posts-list .metadata {
+    font-size: 12px;
+    line-height: 1.4em;
+    margin-bottom: 18px;
+  }
+
+  .posts-list .metadata > * {
+    display: inline-block;
+  }
+
+  .posts-list .metadata .publishedDate {
+    margin-right: 2em;
+  }
+
+  .posts-list .metadata .dt-authors {
+    display: block;
+    margin-top: 0.3em;
+    margin-right: 2em;
+  }
+
+  .posts-list .dt-tags {
+    display: block;
+    line-height: 1em;
+  }
+
+  .posts-list .dt-tags .dt-tag {
+    display: inline-block;
+    color: rgba(0,0,0,0.6);
+    padding: 0.3em 0.4em;
+    margin-right: 0.2em;
+    margin-bottom: 0.4em;
+    font-size: 60%;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .posts-list img {
+    opacity: 1;
+  }
+
+  .posts-list img[data-src] {
+    opacity: 0;
+  }
+
+  .posts-more {
+    clear: both;
+  }
+
+
+  .posts-sidebar {
+    font-size: 16px;
+  }
+
+  .posts-sidebar h3 {
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+
+  .sidebar-section {
+    margin-bottom: 30px;
+  }
+
+  .categories ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .categories li {
+    color: rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+  }
+
+  .categories li>a {
+    border-bottom: none;
+  }
+
+  .categories li>a:hover {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  .categories .active {
+    font-weight: 600;
+  }
+
+  .categories .category-count {
+    color: rgba(0, 0, 0, 0.4);
+  }
+
+
+  @media(min-width: 768px) {
+    .posts-list .post-preview h2 {
+      font-size: 26px;
+    }
+    .posts-list .post-preview .thumbnail {
+      float: right;
+      width: 30%;
+      margin-bottom: 0;
+    }
+    .posts-list .post-preview .description {
+      float: left;
+      width: 45%;
+    }
+    .posts-list .post-preview .metadata {
+      float: left;
+      width: 20%;
+      margin-top: 8px;
+    }
+    .posts-list .post-preview p {
+      margin: 0 0 12px 0;
+      line-height: 1.5em;
+      font-size: 16px;
+    }
+    .posts-with-sidebar .posts-list {
+      float: left;
+      width: 75%;
+    }
+    .posts-with-sidebar .posts-sidebar {
+      float: right;
+      width: 20%;
+      margin-top: 60px;
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+  }
+
+
+  /* Improve display for browsers without grid (IE/Edge <= 15) */
+
+  .downlevel {
+    line-height: 1.6em;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+  }
+
+  .downlevel .d-title {
+    padding-top: 6rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .downlevel .d-title h1 {
+    font-size: 50px;
+    font-weight: 700;
+    line-height: 1.1em;
+    margin: 0 0 0.5rem;
+  }
+
+  .downlevel .d-title p {
+    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.55em;
+    margin-top: 0;
+  }
+
+  .downlevel .d-byline {
+    padding-top: 0.8em;
+    padding-bottom: 0.8em;
+    font-size: 0.8rem;
+    line-height: 1.8em;
+  }
+
+  .downlevel .section-separator {
+    border: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .downlevel .d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+  }
+
+
+  .downlevel .d-appendix {
+    padding-left: 0;
+    padding-right: 0;
+    max-width: none;
+    font-size: 0.8em;
+    line-height: 1.7em;
+    margin-bottom: 0;
+    color: rgba(0,0,0,0.5);
+    padding-top: 40px;
+    padding-bottom: 48px;
+  }
+
+  .downlevel .footnotes ol {
+    padding-left: 13px;
+  }
+
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media(min-width: 768px) {
+    .downlevel .base-grid,
+    .downlevel .distill-header,
+    .downlevel .d-title,
+    .downlevel .d-abstract,
+    .downlevel .d-article,
+    .downlevel .d-appendix,
+    .downlevel .distill-appendix,
+    .downlevel .d-byline,
+    .downlevel .d-footnote-list,
+    .downlevel .d-citation-list,
+    .downlevel .distill-footer,
+    .downlevel .appendix-bottom,
+    .downlevel .posts-container {
+    padding-left: 150px;
+    padding-right: 150px;
+    max-width: 900px;
+  }
+  }
+
+  .downlevel pre code {
+    display: block;
+    border-left: 2px solid rgba(0, 0, 0, .1);
+    padding: 0 0 0 20px;
+    font-size: 14px;
+  }
+
+  .downlevel code, .downlevel pre {
+    color: black;
+    background: none;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+  }
+
+  .downlevel .posts-list .post-preview {
+    color: inherit;
+  }
+
+
+
+  </style>
+
+  <script type="application/javascript">
+
+  function is_downlevel_browser() {
+    if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                   window.navigator.userAgent)) {
+      return true;
+    } else {
+      return window.load_distill_framework === undefined;
+    }
+  }
+
+  // show body when load is complete
+  function on_load_complete() {
+
+    // add anchors
+    if (window.anchors) {
+      window.anchors.options.placement = 'left';
+      window.anchors.add('d-article > h2, d-article > h3, d-article > h4, d-article > h5');
+    }
+
+
+    // set body to visible
+    document.body.style.visibility = 'visible';
+
+    // force redraw for leaflet widgets
+    if (window.HTMLWidgets) {
+      var maps = window.HTMLWidgets.findAll(".leaflet");
+      $.each(maps, function(i, el) {
+        var map = this.getMap();
+        map.invalidateSize();
+        map.eachLayer(function(layer) {
+          if (layer instanceof L.TileLayer)
+            layer.redraw();
+        });
+      });
+    }
+
+    // trigger 'shown' so htmlwidgets resize
+    $('d-article').trigger('shown');
+  }
+
+  function init_distill() {
+
+    init_common();
+
+    // create front matter
+    var front_matter = $('<d-front-matter></d-front-matter>');
+    $('#distill-front-matter').wrap(front_matter);
+
+    // create d-title
+    $('.d-title').changeElementType('d-title');
+
+    // separator
+    var separator = '<hr class="section-separator" style="clear: both"/>';
+    // prepend separator above appendix
+    $('.d-byline').before(separator);
+    $('.d-article').before(separator);
+
+    // create d-byline
+    var byline = $('<d-byline></d-byline>');
+    $('.d-byline').replaceWith(byline);
+
+    // create d-article
+    var article = $('<d-article></d-article>');
+    $('.d-article').wrap(article).children().unwrap();
+
+    // move posts container into article
+    $('.posts-container').appendTo($('d-article'));
+
+    // create d-appendix
+    $('.d-appendix').changeElementType('d-appendix');
+
+    // flag indicating that we have appendix items
+    var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+    // replace footnotes with <d-footnote>
+    $('.footnote-ref').each(function(i, val) {
+      appendix = true;
+      var href = $(this).attr('href');
+      var id = href.replace('#', '');
+      var fn = $('#' + id);
+      var fn_p = $('#' + id + '>p');
+      fn_p.find('.footnote-back').remove();
+      var text = fn_p.html();
+      var dtfn = $('<d-footnote></d-footnote>');
+      dtfn.html(text);
+      $(this).replaceWith(dtfn);
+    });
+    // remove footnotes
+    $('.footnotes').remove();
+
+    // move refs into #references-listing
+    $('#references-listing').replaceWith($('#refs'));
+
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      var id = $(this).attr('id');
+      $('.d-contents a[href="#' + id + '"]').parent().remove();
+      appendix = true;
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+    });
+
+    // show d-appendix if we have appendix content
+    $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+    // localize layout chunks to just output
+    $('.layout-chunk').each(function(i, val) {
+
+      // capture layout
+      var layout = $(this).attr('data-layout');
+
+      // apply layout to markdown level block elements
+      var elements = $(this).children().not('details, div.sourceCode, pre, script');
+      elements.each(function(i, el) {
+        var layout_div = $('<div class="' + layout + '"></div>');
+        if (layout_div.hasClass('shaded')) {
+          var shaded_content = $('<div class="shaded-content"></div>');
+          $(this).wrap(shaded_content);
+          $(this).parent().wrap(layout_div);
+        } else {
+          $(this).wrap(layout_div);
+        }
+      });
+
+
+      // unwrap the layout-chunk div
+      $(this).children().unwrap();
+    });
+
+    // remove code block used to force  highlighting css
+    $('.distill-force-highlighting-css').parent().remove();
+
+    // remove empty line numbers inserted by pandoc when using a
+    // custom syntax highlighting theme, except when numbering line
+    // in code chunk
+    $('pre:not(.numberLines) code.sourceCode a:empty').remove();
+
+    // load distill framework
+    load_distill_framework();
+
+    // wait for window.distillRunlevel == 4 to do post processing
+    function distill_post_process() {
+
+      if (!window.distillRunlevel || window.distillRunlevel < 4)
+        return;
+
+      // hide author/affiliations entirely if we have no authors
+      var front_matter = JSON.parse($("#distill-front-matter").html());
+      var have_authors = front_matter.authors && front_matter.authors.length > 0;
+      if (!have_authors)
+        $('d-byline').addClass('hidden');
+
+      // article with toc class
+      $('.d-contents').parent().addClass('d-article-with-toc');
+
+      // strip links that point to #
+      $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+      // add orcid ids
+      $('.authors-affiliations').find('.author').each(function(i, el) {
+        var orcid_id = front_matter.authors[i].orcidID;
+        var author_name = front_matter.authors[i].author
+        if (orcid_id) {
+          var a = $('<a></a>');
+          a.attr('href', 'https://orcid.org/' + orcid_id);
+          var img = $('<img></img>');
+          img.addClass('orcid-id');
+          img.attr('alt', author_name ? 'ORCID ID for ' + author_name : 'ORCID ID');
+          img.attr('src','data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg==');
+          a.append(img);
+          $(this).append(a);
+        }
+      });
+
+      // hide elements of author/affiliations grid that have no value
+      function hide_byline_column(caption) {
+        $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+      }
+
+      // affiliations
+      var have_affiliations = false;
+      for (var i = 0; i<front_matter.authors.length; ++i) {
+        var author = front_matter.authors[i];
+        if (author.affiliation !== "&nbsp;") {
+          have_affiliations = true;
+          break;
+        }
+      }
+      if (!have_affiliations)
+        $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+      // published date
+      if (!front_matter.publishedDate)
+        hide_byline_column("Published");
+
+      // document object identifier
+      var doi = $('d-byline').find('h3:contains("DOI")');
+      var doi_p = doi.next().empty();
+      if (!front_matter.doi) {
+        // if we have a citation and valid citationText then link to that
+        if ($('#citation').length > 0 && front_matter.citationText) {
+          doi.html('Citation');
+          $('<a href="#citation"></a>')
+            .text(front_matter.citationText)
+            .appendTo(doi_p);
+        } else {
+          hide_byline_column("DOI");
+        }
+      } else {
+        $('<a></a>')
+           .attr('href', "https://doi.org/" + front_matter.doi)
+           .html(front_matter.doi)
+           .appendTo(doi_p);
+      }
+
+       // change plural form of authors/affiliations
+      if (front_matter.authors.length === 1) {
+        var grid = $('.authors-affiliations');
+        grid.children('h3:contains("Authors")').text('Author');
+        grid.children('h3:contains("Affiliations")').text('Affiliation');
+      }
+
+      // remove d-appendix and d-footnote-list local styles
+      $('d-appendix > style:first-child').remove();
+      $('d-footnote-list > style:first-child').remove();
+
+      // move appendix-bottom entries to the bottom
+      $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+      $('.appendix-bottom').remove();
+
+      // hoverable references
+      $('span.citation[data-cites]').each(function() {
+        const citeChild = $(this).children()[0]
+        // Do not process if @xyz has been used without escaping and without bibliography activated
+        // https://github.com/rstudio/distill/issues/466
+        if (citeChild === undefined) return true
+
+        if (citeChild.nodeName == "D-FOOTNOTE") {
+          var fn = citeChild
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          // Could use CSS.escape too here, we insure backward compatibility in navigator
+          return "<p>" + $('div[id="ref-' + ref + '"]').html() + "</p>";
+        }).join("\n");
+        window.tippy(this, {
+          allowHTML: true,
+          content: refHtml,
+          maxWidth: 500,
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start'
+        });
+      });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
+
+      // clear polling timer
+      clearInterval(tid);
+
+      // show body now that everything is ready
+      on_load_complete();
+    }
+
+    var tid = setInterval(distill_post_process, 50);
+    distill_post_process();
+
+  }
+
+  function init_downlevel() {
+
+    init_common();
+
+     // insert hr after d-title
+    $('.d-title').after($('<hr class="section-separator"/>'));
+
+    // check if we have authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+    // manage byline/border
+    if (!have_authors)
+      $('.d-byline').remove();
+    $('.d-byline').after($('<hr class="section-separator"/>'));
+    $('.d-byline a').remove();
+
+    // remove toc
+    $('.d-contents').remove();
+
+    // move appendix elements
+    $('h1.appendix, h2.appendix').each(function(i, val) {
+      $(this).changeElementType('h3');
+    });
+    $('h3.appendix').each(function(i, val) {
+      $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+    });
+
+
+    // inject headers into references and footnotes
+    var refs_header = $('<h3></h3>');
+    refs_header.text('References');
+    $('#refs').prepend(refs_header);
+
+    var footnotes_header = $('<h3></h3');
+    footnotes_header.text('Footnotes');
+    $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // remove appendix if it's empty
+    if ($('.d-appendix').children().length === 0)
+      $('.d-appendix').remove();
+
+    // prepend separator above appendix
+    $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+    // trim code
+    $('pre>code').each(function(i, val) {
+      $(this).html($.trim($(this).html()));
+    });
+
+    // move posts-container right before article
+    $('.posts-container').insertBefore($('.d-article'));
+
+    $('body').addClass('downlevel');
+
+    on_load_complete();
+  }
+
+
+  function init_common() {
+
+    // jquery plugin to change element types
+    (function($) {
+      $.fn.changeElementType = function(newType) {
+        var attrs = {};
+
+        $.each(this[0].attributes, function(idx, attr) {
+          attrs[attr.nodeName] = attr.nodeValue;
+        });
+
+        this.replaceWith(function() {
+          return $("<" + newType + "/>", attrs).append($(this).contents());
+        });
+      };
+    })(jQuery);
+
+    // prevent underline for linked images
+    $('a > img').parent().css({'border-bottom' : 'none'});
+
+    // mark non-body figures created by knitr chunks as 100% width
+    $('.layout-chunk').each(function(i, val) {
+      var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
+      if ($(this).attr('data-layout') !== "l-body") {
+        figures.css('width', '100%');
+      } else {
+        figures.css('max-width', '100%');
+        figures.filter("[width]").each(function(i, val) {
+          var fig = $(this);
+          fig.css('width', fig.attr('width') + 'px');
+        });
+
+      }
+    });
+
+    // auto-append index.html to post-preview links in file: protocol
+    // and in rstudio ide preview
+    $('.post-preview').each(function(i, val) {
+      if (window.location.protocol === "file:")
+        $(this).attr('href', $(this).attr('href') + "index.html");
+    });
+
+    // get rid of index.html references in header
+    if (window.location.protocol !== "file:") {
+      $('.distill-site-header a[href]').each(function(i,val) {
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
+      });
+    }
+
+    // add class to pandoc style tables
+    $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+    $('.kable-table').children('table').addClass('pandoc-table');
+
+    // add figcaption style to table captions
+    $('caption').parent('table').addClass("figcaption");
+
+    // initialize posts list
+    if (window.init_posts_list)
+      window.init_posts_list();
+
+    // implmement disqus comment link
+    $('.disqus-comment-count').click(function() {
+      window.headroom_prevent_pin = true;
+      $('#disqus_thread').toggleClass('hidden');
+      if (!$('#disqus_thread').hasClass('hidden')) {
+        var offset = $(this).offset();
+        $(window).resize();
+        $('html, body').animate({
+          scrollTop: offset.top - 35
+        });
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if (is_downlevel_browser())
+      init_downlevel();
+    else
+      window.addEventListener('WebComponentsReady', init_distill);
+  });
+
+  </script>
+
+  <!--/radix_placeholder_distill-->
+  <script src="golf-courses-in-donegal_files/header-attrs-2.27/header-attrs.js"></script>
+  <link href="golf-courses-in-donegal_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+  <script src="golf-courses-in-donegal_files/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+  <link href="golf-courses-in-donegal_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+  <script src="golf-courses-in-donegal_files/datatables-binding-0.33/datatables.js"></script>
+  <script src="golf-courses-in-donegal_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="golf-courses-in-donegal_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="golf-courses-in-donegal_files/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+  <script src="golf-courses-in-donegal_files/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+  <link href="golf-courses-in-donegal_files/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+  <script src="golf-courses-in-donegal_files/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+  <script src="golf-courses-in-donegal_files/popper-2.6.0/popper.min.js"></script>
+  <link href="golf-courses-in-donegal_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
+  <link href="golf-courses-in-donegal_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
+  <script src="golf-courses-in-donegal_files/tippy-6.2.7/tippy.umd.min.js"></script>
+  <script src="golf-courses-in-donegal_files/anchor-4.2.2/anchor.min.js"></script>
+  <script src="golf-courses-in-donegal_files/bowser-1.9.3/bowser.min.js"></script>
+  <script src="golf-courses-in-donegal_files/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="golf-courses-in-donegal_files/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+  <!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Golf Courses in Donegal - Part I, data access","description":"A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this first part we'll look at how to get hold of the data by some web scrapping, a second post will do some analysis of the numbers.","authors":[{"author":"Eugene","authorURL":"https://www.fizzics.ie","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2022-08-03T00:00:00.000+02:00","citationText":"Eugene, 2022"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Golf Courses in Donegal - Part I, data access</h1>
+
+<!--radix_placeholder_categories-->
+<div class="dt-tags">
+<div class="dt-tag">Sport</div>
+<div class="dt-tag">Donegal</div>
+<div class="dt-tag">Web Scraping</div>
+</div>
+<!--/radix_placeholder_categories-->
+<p><p>A quick look at the pars, lengths, and handicap indices of golf courses in Donegal and surrounds. In this first part we’ll look at how to get hold of the data by some web scrapping, a second post will do some analysis of the numbers.</p></p>
+</div>
+
+<div class="d-byline">
+  Eugene <a href="https://www.fizzics.ie" class="uri">https://www.fizzics.ie</a> 
+  
+<br/>2022-08-03
+</div>
+
+<div class="d-article">
+<p>Amongst other things, Donegal is a haven for golfers. And while my favourite knock is around the home course in Dunfanaghy, I thought it worthwhile to explore the course cards for the different clubs in the county.</p>
+<p>Getting the data from each golf club would be laborious, but fortunately the website at <a href="https://www.golfpass.com/">Golfpass</a> makes this a lot easier. As long as you can find the landing page for the golf courses you’re interested in (for Donegal it’s <a href="https://www.golfpass.com/travel-advisor/course-directory/8812-county-donegal/">here</a>) then you can strip out all the links and navigate to the courses, and their scorecards, that way. The libraries we need are <code>tidyverse</code> (of course) and <code>rvest</code> for the scraping. We end up with a lot of links, but the ones we care about are recognisable for the strings <em>/courses/</em> and <em>#write-review</em></p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://rvest.tidyverse.org/'>rvest</a></span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>url_donegal</span> <span class='op'>&lt;-</span> <span class='st'>"https://www.golfpass.com/travel-advisor/course-directory/8812-county-donegal/"</span></span>
+<span></span>
+<span><span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'><a href='http://xml2.r-lib.org/reference/read_xml.html'>read_html</a></span><span class='op'>(</span><span class='va'>url_donegal</span><span class='op'>)</span></span>
+<span><span class='va'>scorecard_urls</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rvest.tidyverse.org/reference/html_attr.html'>html_attr</a></span><span class='op'>(</span><span class='fu'><a href='https://rvest.tidyverse.org/reference/rename.html'>html_nodes</a></span><span class='op'>(</span><span class='va'>w</span>, <span class='st'>"a"</span><span class='op'>)</span>, <span class='st'>"href"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://tibble.tidyverse.org/reference/as_tibble.html'>as_tibble</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>value</span>, <span class='st'>"/courses/"</span><span class='op'>)</span>,</span>
+<span>         <span class='op'>!</span><span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='va'>value</span>, <span class='st'>"#write-review"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/distinct.html'>distinct</a></span><span class='op'>(</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>The first few entries are shown below, there are 27 in total.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div id="evjmpuhmmq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#evjmpuhmmq table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#evjmpuhmmq thead, #evjmpuhmmq tbody, #evjmpuhmmq tfoot, #evjmpuhmmq tr, #evjmpuhmmq td, #evjmpuhmmq th {
+  border-style: none;
+}
+
+#evjmpuhmmq p {
+  margin: 0;
+  padding: 0;
+}
+
+#evjmpuhmmq .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#evjmpuhmmq .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#evjmpuhmmq .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#evjmpuhmmq .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#evjmpuhmmq .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#evjmpuhmmq .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#evjmpuhmmq .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#evjmpuhmmq .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#evjmpuhmmq .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#evjmpuhmmq .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#evjmpuhmmq .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#evjmpuhmmq .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#evjmpuhmmq .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#evjmpuhmmq .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#evjmpuhmmq .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evjmpuhmmq .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#evjmpuhmmq .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#evjmpuhmmq .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#evjmpuhmmq .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evjmpuhmmq .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#evjmpuhmmq .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evjmpuhmmq .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#evjmpuhmmq .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evjmpuhmmq .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#evjmpuhmmq .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#evjmpuhmmq .gt_left {
+  text-align: left;
+}
+
+#evjmpuhmmq .gt_center {
+  text-align: center;
+}
+
+#evjmpuhmmq .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#evjmpuhmmq .gt_font_normal {
+  font-weight: normal;
+}
+
+#evjmpuhmmq .gt_font_bold {
+  font-weight: bold;
+}
+
+#evjmpuhmmq .gt_font_italic {
+  font-style: italic;
+}
+
+#evjmpuhmmq .gt_super {
+  font-size: 65%;
+}
+
+#evjmpuhmmq .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#evjmpuhmmq .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#evjmpuhmmq .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#evjmpuhmmq .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#evjmpuhmmq .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#evjmpuhmmq .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#evjmpuhmmq .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="value">value</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="value" class="gt_row gt_left">https://www.golfpass.com/travel-advisor/courses/19794-ballybofey-and-stranorlar-golf-club</td></tr>
+    <tr><td headers="value" class="gt_row gt_left">https://www.golfpass.com/travel-advisor/courses/19705-ballyliffin-golf-club-glashedy</td></tr>
+    <tr><td headers="value" class="gt_row gt_left">https://www.golfpass.com/travel-advisor/courses/19706-ballyliffin-golf-club-old</td></tr>
+    <tr><td headers="value" class="gt_row gt_left">https://www.golfpass.com/travel-advisor/courses/39809-ballyliffin-golf-club-the-pollan-links</td></tr>
+    <tr><td headers="value" class="gt_row gt_left">https://www.golfpass.com/travel-advisor/courses/25762-buncrana-golf-club</td></tr>
+    <tr><td headers="value" class="gt_row gt_left">https://www.golfpass.com/travel-advisor/courses/19707-bundoran-golf-club</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+</div>
+<p>Navigating through this list of url’s and stripping out the details for each hole on each course is a job for <code>purrr</code>. I wrote a function that works for one course at a time and then ran it through <code>map</code>. Twice. Then I put all the courses together using <code>data.table::rbindlist</code>.</p>
+<p>Some things to watch out for:</p>
+<ul>
+<li><p>some courses had an entry in <a href="https://www.golfpass.com/">Golfpass</a> but no scorecard. Hence the use of <code>safely</code> so that they didn’t crash the first call to <code>map</code>.</p></li>
+<li><p>the <code>regex</code> set-up in the function is fundamentally geared for 18 hole courses but then needed to be adapted to cater for their 9 hole brethren. Dropping NA’s and then checking the length of each tibble in the list did this.</p></li>
+<li><p>having distances measured in either meters or yards was a real pain. Especially for courses that gave an overall length in yards but then each hole in meters. Or vice-versa. Summing up the lengths of the holes and then comparing to the total course length was my best work-around for this.</p></li>
+<li><p>some of the figures from <a href="https://www.golfpass.com/">Golfpass</a> were patently wrong. The par-5 11<span class="math inline">\(^{th}\)</span> hole in Derry, for example, is obviously longer than 311 yards. I didn’t try and correct for these.</p></li>
+<li><p>courses have different tee-boxes, <em>championship</em>, <em>society</em>, <em>ladies</em>, and <em>juniors</em> for example. I just took the <em>championship</em> figures, in general the longest distance tee-box for each hole.</p></li>
+</ul>
+<p>The function that works course-by-course is shown below.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>course_card</span> <span class='op'>&lt;-</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>  <span class='co'># use the url to work out the golf club name</span></span>
+<span>  <span class='va'>course</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/grep.html'>sub</a></span><span class='op'>(</span><span class='st'>".*courses/\\d+-"</span>, <span class='st'>""</span>, <span class='va'>url</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>    <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_replace.html'>str_replace_all</a></span><span class='op'>(</span><span class='st'>"-"</span>, <span class='st'>" "</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>    <span class='fu'><a href='https://stringr.tidyverse.org/reference/case.html'>str_to_title</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='co'># get raw data from the url using rvest</span></span>
+<span>  <span class='va'>w</span> <span class='op'>&lt;-</span> <span class='fu'><a href='http://xml2.r-lib.org/reference/read_xml.html'>read_html</a></span><span class='op'>(</span><span class='va'>url</span><span class='op'>)</span></span>
+<span>  <span class='va'>pathway_data_html</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rvest.tidyverse.org/reference/rename.html'>html_nodes</a></span><span class='op'>(</span><span class='va'>w</span>, <span class='st'>"td"</span><span class='op'>)</span></span>
+<span>  <span class='va'>card</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rvest.tidyverse.org/reference/html_text.html'>html_text</a></span><span class='op'>(</span><span class='va'>pathway_data_html</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='co'># get distance units (m or yds) for the total length, and the total length itself</span></span>
+<span>  <span class='va'>unit</span> <span class='op'>&lt;-</span> <span class='va'>card</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='st'>"[a-z]+"</span><span class='op'>)</span></span>
+<span>  <span class='va'>total_length</span> <span class='op'>&lt;-</span> <span class='va'>card</span><span class='op'>[</span><span class='fl'>3</span><span class='op'>]</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_extract.html'>str_extract</a></span><span class='op'>(</span><span class='st'>"\\d+"</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span>  </span>
+<span>  <span class='co'># work out the lengths for each hole</span></span>
+<span>  <span class='va'>lengths</span> <span class='op'>&lt;-</span> <span class='va'>card</span><span class='op'>[</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>card</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='st'>": \\d\\d\\.\\d"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>:</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>card</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='st'>": \\d\\d\\.\\d"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>+</span><span class='fl'>20</span><span class='op'>)</span><span class='op'>]</span></span>
+<span>  <span class='co'># work out the handicap indices for each hole</span></span>
+<span>  <span class='va'>indexs</span> <span class='op'>&lt;-</span> <span class='va'>card</span><span class='op'>[</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>card</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='st'>"Handicap$"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>:</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>card</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='st'>"Handicap$"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>20</span><span class='op'>)</span><span class='op'>]</span></span>
+<span>  <span class='co'># work out the pars (3, 4, or 5) for each hole</span></span>
+<span>  <span class='va'>par</span> <span class='op'>&lt;-</span> <span class='va'>card</span><span class='op'>[</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>card</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='st'>"Par"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>1</span><span class='op'>)</span><span class='op'>:</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>card</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_detect.html'>str_detect</a></span><span class='op'>(</span><span class='st'>"Par"</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span><span class='fl'>20</span><span class='op'>)</span><span class='op'>]</span></span>
+<span>  </span>
+<span>  <span class='co'># put all this together into a tibble</span></span>
+<span>  <span class='va'>my_card</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://tibble.tidyverse.org/reference/tibble.html'>tibble</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='fl'>18</span><span class='op'>)</span>,</span>
+<span>                        hole <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>18</span>,</span>
+<span>                        par <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>par</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>9</span><span class='op'>]</span>, <span class='va'>par</span><span class='op'>[</span><span class='fl'>11</span><span class='op'>:</span><span class='fl'>19</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span>                        length <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>lengths</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>9</span><span class='op'>]</span>, <span class='va'>lengths</span><span class='op'>[</span><span class='fl'>11</span><span class='op'>:</span><span class='fl'>19</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span>,</span>
+<span>                        index <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>indexs</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>9</span><span class='op'>]</span>, <span class='va'>indexs</span><span class='op'>[</span><span class='fl'>11</span><span class='op'>:</span><span class='fl'>19</span><span class='op'>]</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span>                    <span class='op'>)</span></span>
+<span>  <span class='co'># correct for 9 hole courses</span></span>
+<span>  <span class='va'>my_card</span> <span class='op'>&lt;-</span> <span class='va'>my_card</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://tidyr.tidyverse.org/reference/drop_na.html'>drop_na</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>my_card</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>&lt;</span> <span class='fl'>18</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>    <span class='va'>my_card</span> <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>my_card</span>, <span class='va'>hole</span><span class='op'>&lt;=</span><span class='fl'>9</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span> </span>
+<span>  <span class='va'>hole_lengths</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>my_card</span><span class='op'>$</span><span class='va'>length</span><span class='op'>)</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>my_card</span><span class='op'>)</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>]</span> <span class='op'>==</span> <span class='fl'>9</span><span class='op'>)</span> <span class='op'>{</span></span>
+<span>    <span class='va'>hole_lengths</span> <span class='op'>=</span> <span class='fl'>2</span> <span class='op'>*</span> <span class='va'>hole_lengths</span></span>
+<span>  <span class='op'>}</span></span>
+<span>  </span>
+<span>  <span class='co'># total length given in yards but holes in meters</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='va'>total_length</span> <span class='op'>&gt;</span> <span class='va'>hole_lengths</span> <span class='op'>*</span> <span class='fl'>1.05</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>    <span class='va'>my_card</span> <span class='op'>&lt;-</span> <span class='va'>my_card</span> <span class='op'>|&gt;</span> </span>
+<span>      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>unit <span class='op'>=</span> <span class='st'>"meters"</span>,</span>
+<span>             yards <span class='op'>=</span> <span class='va'>length</span> <span class='op'>*</span> <span class='fl'>1.09361</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span></span>
+<span>  </span>
+<span>  <span class='co'># total length given in meters but holes in yards</span></span>
+<span>  <span class='kw'>if</span><span class='op'>(</span><span class='va'>total_length</span> <span class='op'>&lt;</span> <span class='va'>hole_lengths</span> <span class='op'>*</span> <span class='fl'>1.05</span><span class='op'>)</span><span class='op'>{</span></span>
+<span>    <span class='va'>my_card</span> <span class='op'>&lt;-</span> <span class='va'>my_card</span> <span class='op'>|&gt;</span> </span>
+<span>      <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>unit <span class='op'>=</span> <span class='st'>"yards"</span>,</span>
+<span>             yards <span class='op'>=</span> <span class='va'>length</span><span class='op'>)</span></span>
+<span>  <span class='op'>}</span></span>
+<span></span>
+<span>  <span class='va'>my_card</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='va'>course</span>, <span class='va'>hole</span>, <span class='va'>par</span>, <span class='va'>length</span>, <span class='va'>unit</span>, <span class='va'>index</span>, <span class='va'>yards</span><span class='op'>)</span></span>
+<span><span class='op'>}</span></span></code></pre>
+</div>
+</div>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<p>And the calls to <code>map</code> to create the overall data frame are shown here.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>z1</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='va'>scorecard_urls</span><span class='op'>$</span><span class='va'>value</span>, <span class='fu'><a href='https://purrr.tidyverse.org/reference/safely.html'>safely</a></span><span class='op'>(</span><span class='va'>course_card</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>z2</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://purrr.tidyverse.org/reference/map.html'>map</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>z1</span><span class='op'>)</span>, <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='va'>z1</span><span class='op'>[[</span><span class='va'>x</span><span class='op'>]</span><span class='op'>]</span><span class='op'>$</span><span class='va'>result</span><span class='op'>)</span></span>
+<span><span class='va'>donegal_golf</span> <span class='op'>&lt;-</span> <span class='fu'>data.table</span><span class='fu'>::</span><span class='fu'><a href='https://rdatatable.gitlab.io/data.table/reference/rbindlist.html'>rbindlist</a></span><span class='op'>(</span><span class='va'>z2</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>par <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/factor.html'>as.factor</a></span><span class='op'>(</span><span class='va'>par</span><span class='op'>)</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>Finally, we’ll do a little cleaning. We know these are all golf courses, so we can skip that part of the name. Also, for nine hole courses, players tend to go around twice, so we’ll double up their holes and adjust the hole indices accordingly.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>donegal_golf</span> <span class='op'>&lt;-</span> <span class='va'>donegal_golf</span> <span class='op'>|&gt;</span> </span>
+<span>    <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>course <span class='op'>=</span> <span class='va'>course</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_remove.html'>str_remove</a></span><span class='op'>(</span><span class='st'>"Golf"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>           <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_remove.html'>str_remove</a></span><span class='op'>(</span><span class='st'>"Links"</span><span class='op'>)</span> <span class='op'>|&gt;</span></span>
+<span>           <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_remove.html'>str_remove</a></span><span class='op'>(</span><span class='st'>"Club"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>           <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_remove.html'>str_remove</a></span><span class='op'>(</span><span class='st'>"And"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>           <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_remove.html'>str_remove</a></span><span class='op'>(</span><span class='st'>"Hotel"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>           <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_remove.html'>str_remove</a></span><span class='op'>(</span><span class='st'>"International"</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>           <span class='fu'><a href='https://stringr.tidyverse.org/reference/str_trim.html'>str_squish</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>course_summary</span> <span class='op'>&lt;-</span> <span class='va'>donegal_golf</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>course</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>total_length <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>yards</span><span class='op'>)</span>,</span>
+<span>            total_par <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>par</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>,</span>
+<span>            highlight <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/context.html'>n</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>&lt;</span> <span class='fl'>10</span>, <span class='st'>"nine"</span>, <span class='st'>"eighteen"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span> </span>
+<span><span class='va'>course_summary</span> <span class='op'>&lt;-</span> <span class='va'>course_summary</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>highlight <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>course</span> <span class='op'>==</span> <span class='st'>"Dunfanaghy"</span>, <span class='st'>"yes"</span>, <span class='va'>highlight</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>nines</span> <span class='op'>&lt;-</span> <span class='va'>course_summary</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>highlight</span> <span class='op'>==</span> <span class='st'>"nine"</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>nine_cards</span> <span class='op'>&lt;-</span> <span class='va'>donegal_golf</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>course</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>nines</span><span class='op'>$</span><span class='va'>course</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>nine_type</span> <span class='op'>&lt;-</span> <span class='va'>nine_cards</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>group_by</a></span><span class='op'>(</span><span class='va'>course</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise.html'>summarise</a></span><span class='op'>(</span>index_type <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/sum.html'>sum</a></span><span class='op'>(</span><span class='va'>index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/group_by.html'>ungroup</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>nine_cards</span> <span class='op'>&lt;-</span> <span class='va'>nine_cards</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate-joins.html'>left_join</a></span><span class='op'>(</span><span class='va'>nine_type</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>index <span class='op'>=</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/case_when.html'>case_when</a></span><span class='op'>(</span><span class='va'>index_type</span> <span class='op'>==</span> <span class='fl'>81</span> <span class='op'>~</span> <span class='va'>index</span><span class='op'>+</span><span class='fl'>1</span>,</span>
+<span>                           <span class='va'>index_type</span> <span class='op'>==</span> <span class='fl'>90</span> <span class='op'>~</span> <span class='va'>index</span><span class='op'>-</span><span class='fl'>1</span>,</span>
+<span>                           <span class='va'>index_type</span> <span class='op'>==</span> <span class='fl'>45</span> <span class='op'>~</span> <span class='va'>index</span><span class='op'>*</span><span class='fl'>2</span><span class='op'>)</span>,</span>
+<span>         hole <span class='op'>=</span> <span class='va'>hole</span> <span class='op'>+</span> <span class='fl'>9</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></span><span class='op'>(</span><span class='op'>-</span><span class='va'>index_type</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>otway_style_indices</span> <span class='op'>&lt;-</span> <span class='va'>nine_type</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>index_type</span> <span class='op'>==</span> <span class='fl'>45</span><span class='op'>)</span> <span class='op'>|&gt;</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/pull.html'>pull</a></span><span class='op'>(</span><span class='va'>course</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>donegal_golf</span> <span class='op'>&lt;-</span> <span class='va'>donegal_golf</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></span><span class='op'>(</span>index <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/ifelse.html'>ifelse</a></span><span class='op'>(</span><span class='va'>course</span> <span class='op'><a href='https://rdrr.io/r/base/match.html'>%in%</a></span> <span class='va'>otway_style_indices</span>, <span class='va'>index</span><span class='op'>*</span><span class='fl'>2</span> <span class='op'>-</span> <span class='fl'>1</span>, <span class='va'>index</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>|&gt;</span> </span>
+<span>  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind_rows.html'>bind_rows</a></span><span class='op'>(</span><span class='va'>nine_cards</span><span class='op'>)</span></span></code></pre>
+</div>
+</div>
+<p>This gives a tibble that looks like this:</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="datatables html-widget html-fill-item" id="htmlwidget-afa86ac60660528315e5" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-afa86ac60660528315e5">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108","109","110","111","112","113","114","115","116","117","118","119","120","121","122","123","124","125","126","127","128","129","130","131","132","133","134","135","136","137","138","139","140","141","142","143","144","145","146","147","148","149","150","151","152","153","154","155","156","157","158","159","160","161","162","163","164","165","166","167","168","169","170","171","172","173","174","175","176","177","178","179","180","181","182","183","184","185","186","187","188","189","190","191","192","193","194","195","196","197","198","199","200","201","202","203","204","205","206","207","208","209","210","211","212","213","214","215","216","217","218","219","220","221","222","223","224","225","226","227","228","229","230","231","232","233","234","235","236","237","238","239","240","241","242","243","244","245","246","247","248","249","250","251","252","253","254","255","256","257","258","259","260","261","262","263","264","265","266","267","268","269","270","271","272","273","274","275","276","277","278","279","280","281","282","283","284","285","286","287","288","289","290","291","292","293","294","295","296","297","298","299","300","301","302","303","304","305","306","307","308","309","310","311","312","313","314","315","316","317","318","319","320","321","322","323","324","325","326","327","328","329","330","331","332","333","334","335","336","337","338","339","340","341","342","343","344","345","346","347","348","349","350","351","352","353","354","355","356","357","358","359","360","361","362","363","364","365","366","367","368","369","370","371","372","373","374","375","376","377","378","379","380","381","382","383","384","385","386","387","388","389","390","391","392","393","394","395","396","397","398","399","400","401","402","403","404","405","406","407","408","409","410","411","412","413","414","415","416","417","418","419","420","421","422","423","424","425","426","427","428","429","430","431","432","433","434","435","436","437","438","439","440","441","442","443","444","445","446","447","448","449","450","451","452","453","454","455","456","457","458","459","460","461","462","463","464","465","466","467","468"],["Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballybofey Stranorlar","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Glashedy","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Ballyliffin Old","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Bundoran","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Donegal","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Dunfanaghy","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Greencastle","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Letterkenny","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","Narin Portnoo","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","North West","Otway","Otway","Otway","Otway","Otway","Otway","Otway","Otway","Otway","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Portsalon","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Old Tom Morris","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna Sandy Hills Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","Rosapenna St Patrick S Links","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","City Of Derry","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Earhart","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Faughan Valley","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Strabane","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Newtownstewart","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Buncrana","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cloughaneely","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Cruit Island","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Gweedore","Otway","Otway","Otway","Otway","Otway","Otway","Otway","Otway","Otway","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Redcastle","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands","Foyle Centre Woodlands"],[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18,10,11,12,13,14,15,16,17,18],["4","3","4","4","4","3","5","3","4","4","4","4","4","3","4","4","3","4","4","4","4","5","3","4","3","4","4","4","4","4","5","3","4","4","5","4","4","4","4","5","3","4","3","4","4","4","4","3","4","5","4","4","3","5","4","3","3","4","5","3","4","4","3","4","5","3","4","4","3","4","4","4","4","4","4","3","4","4","3","5","4","4","3","4","4","4","4","3","5","4","4","4","4","4","4","3","4","3","4","5","4","3","4","3","5","4","5","4","4","4","5","3","5","4","3","4","4","4","3","4","4","4","4","3","4","3","4","4","4","3","4","4","5","3","4","4","4","3","5","4","3","4","4","3","5","3","4","5","4","3","4","4","3","4","3","5","3","4","5","4","5","4","4","5","4","4","3","4","5","3","4","4","5","4","3","4","4","3","4","5","4","4","5","4","4","3","4","4","3","5","3","4","4","4","3","4","3","5","4","4","3","4","4","4","4","3","5","4","4","4","3","4","4","3","4","5","3","4","4","3","4","4","3","3","4","4","4","4","5","3","4","4","5","4","3","5","3","4","4","3","4","5","4","4","4","5","4","3","4","5","3","4","4","3","4","4","4","4","3","5","4","4","4","4","4","3","4","5","3","5","5","4","3","4","4","4","3","5","4","4","3","4","5","4","4","3","5","4","4","4","3","5","3","5","4","4","4","4","4","5","4","4","3","4","3","4","3","4","5","4","4","4","5","3","4","4","5","3","4","4","3","4","4","4","4","5","3","4","3","4","4","3","4","4","4","4","3","5","4","4","5","4","3","3","3","3","3","3","3","3","3","4","3","5","4","4","4","3","3","5","3","4","4","4","4","4","3","4","4","4","3","4","4","5","4","3","3","4","5","4","3","4","4","4","3","4","4","4","4","3","4","4","4","3","4","5","3","4","4","3","5","3","5","4","4","4","3","3","4","5","3","4","4","3","4","3","4","4","4","4","3","5","4","4","4","4","4","4","3","4","3","4","4","3","5","3","4","5","4","5","4","3","4","4","3","4","4","3","3","4","4","4","5","4","3","4","5","3","4","3","3","3","3","3","3","3","3","3"],[429,165,304,350,369,202,492,153,423,420,393,309,336,172,378,460,150,397,422,427,426,477,172,406,181,424,378,394,418,441,571,182,451,436,562,452,397,428,383,558,179,376,185,382,403,341,392,217,454,565,480,439,172,586,280,159,240,285,487,128,335,357,107,364,514,126,362,307,160,354,432,397,401,418,357,234,408,427,155,501,349,408,195,335,346,381,362,147,501,371,431,422,330,348,280,150,320,213,316,531,466,212,513,202,514,434,549,401,390,404,595,183,565,409,248,411,429,346,162,397,379,373,429,229,309,136,311,326,388,161,362,384,547,187,379,312,388,138,448,281,178,343,328,157,490,165,340,436,363,105,374,277,170,373,162,462,153,412,553,357,512,347,402,504,391,382,168,423,489,180,449,400,483,341,195,338,422,135,396,508,377,524,607,446,417,140,325,422,135,530,138,478,482,454,144,488,147,650,434,360,164,343,417,409,424,139,524,396,373,434,177,365,370,93,407,513,159,356,310,188,270,253,103,168,293,355,433,358,514,199,446,375,511,452,155,544,174,351,422,153,387,522,399,381,383,516,350,125,307,494,174,334,411,151,435,415,406,401,171,532,413,436,429,401,345,192,417,501,210,601,501,463,188,438,493,420,196,536,441,405,186,409,522,354,468,189,487,487,381,372,178,555,214,571,417,339,460,412,472,560,376,399,130,534,199,361,198,359,488,404,342,315,460,148,348,319,311,156,374,401,127,368,154,336,390,539,188,425,174,404,379,150,412,383,378,358,178,504,440,354,544,439,170,182,116,180,152,114,153,161,121,322,164,482,321,391,378,121,162,405,191,331,229,267,289,320,180,315,356,338,144,424,385,466,296,155,171,328,456,360,135,356,336,283,170,394,345,302,302,149,370,299,385,209,377,459,147,365,396,192,502,154,513,389,391,280,159,240,285,487,128,335,357,107,408,195,335,346,381,362,147,501,371,431,422,330,348,280,150,320,213,316,373,162,462,153,412,553,357,512,347,159,356,310,188,270,253,103,168,293,381,383,516,350,125,307,494,174,334,170,182,116,180,152,114,153,161,121],["yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards","yards"],[6,12,14,16,4,10,8,18,2,5,7,15,11,13,3,1,17,9,6,10,2,12,14,16,18,4,8,11,9,3,13,17,1,5,7,15,16,14,8,18,2,10,6,4,12,15,13,7,17,1,9,5,3,11,11,13,7,9,3,15,5,1,17,12,8,16,4,14,18,6,2,10,3,5,11,9,7,1,17,13,15,1,15,13,9,11,5,17,7,3,1,3,13,5,17,15,7,11,9,9,3,11,1,7,17,13,5,15,16,6,14,18,2,8,12,4,10,11,13,3,5,9,1,7,15,17,16,18,4,14,2,6,8,10,12,9,1,17,15,13,3,7,5,11,10,8,6,16,4,18,2,14,12,4,12,18,16,10,2,14,6,8,9,5,11,7,17,1,13,15,3,6,12,10,8,14,2,18,4,16,10,4,6,12,8,14,16,2,18,9,17,3,7,11,15,1,13,5,3,15,13,9,5,7,1,17,11,4,10,2,16,14,6,18,8,12,1,9,7,3,17,5,13,11,15,11,3,13,17,9,1,7,15,5,18,10,12,14,2,16,6,8,4,1,3,11,9,17,13,5,7,15,6,18,4,12,8,2,16,14,10,5,1,7,15,13,3,17,11,9,13,3,17,11,5,1,15,9,7,6,12,10,8,18,2,14,16,4,9,11,17,5,13,7,3,15,1,8,6,4,12,10,18,2,14,16,7,3,11,1,5,15,9,17,13,16,6,8,12,4,14,2,18,10,6,10,12,2,14,4,16,18,8,5,11,15,13,7,1,17,9,3,5,1,9,3,11,13,15,7,17,15,7,11,5,1,3,13,9,17,4,12,18,16,2,14,8,10,6,7,9,1,11,15,17,13,5,3,14,2,12,8,4,18,16,6,10,14,16,12,8,10,2,6,4,18,17,3,7,13,1,15,9,11,5,12,14,8,10,4,16,6,2,18,2,16,14,10,12,6,18,8,4,2,4,14,6,18,16,8,12,10,3,11,17,15,9,1,13,5,7,2,10,8,4,18,6,14,12,16,2,4,12,10,18,14,6,8,16,6,2,10,4,12,14,16,8,18]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>course<\/th>\n      <th>hole<\/th>\n      <th>par<\/th>\n      <th>length<\/th>\n      <th>unit<\/th>\n      <th>index<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,4,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"course","targets":1},{"name":"hole","targets":2},{"name":"par","targets":3},{"name":"length","targets":4},{"name":"unit","targets":5},{"name":"index","targets":6}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+<p>Now we have our data the way we want, we can look and see what this tells us. That’s for the <a href="https://www.fizzics.ie/posts/2022-08-05-golf-courses-in-donegal-part-ii-analysis/index.html">next post</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom"></div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

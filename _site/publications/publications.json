@@ -1,0 +1,88 @@
+[
+  {
+    "path": "publications/2023-01-08-Locus_ML/",
+    "title": "Using machine learning to predict the correlation of spectra using SDSS magnitudes as an improvement to the Locus Algorithm",
+    "description": "Differential Photometry works best when the target and reference star have similar spectra. But in vast majority of cases, spectra won't be available. We look at machine learning techniques to see ways inwhich stellar magnitudes can be used as proxies to predict how well spectra wil correlate.",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://www.fizzics.ie"
+      }
+    ],
+    "date": "2023-01-08",
+    "categories": [
+      "Physics",
+      "Academia",
+      "R"
+    ],
+    "contents": "\r\nWe look at the spectra of pairs of stars and how the correlation between them can be predicted based on their SDSS magnitude values. This is important for differential photometry, where we try and account for the effects of the atmosphere on stellar lightcurves by examining the optical behaviour of neighbouring stars. The benefit here is that atmospheric effects are wavelength dependent and choosing star pairs of similar spectra gives better results. Seeing as we only have spectra for a limited number of stars, using photometric magnitude values is important. This publication makes the bridge from these magnitudes to predicting the spectral matches.\r\nThe publication can be accessed from this link.\r\n\r\n\r\n\r\n",
+    "preview": "https://ars.els-cdn.com/content/image/1-s2.0-S1384107623000386-gr7_lrg.jpg",
+    "last_modified": "2023-09-13T14:51:26+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "publications/2021-12-15-Locus_Algorithm/",
+    "title": "The Locus Algorithm: A novel technique for identifying optimised pointings for differential photometry",
+    "description": "The publication detailing the workings of the Locus Algorithm, a technique to identify the best reference stars for a given target star and to calculate the corresponding telescope pointing to capture them all in the telescope field of view.",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://www.fizzics.ie"
+      }
+    ],
+    "date": "2022-01-01",
+    "categories": [
+      "Physics",
+      "Academia",
+      "R"
+    ],
+    "contents": "\r\nThis publication details the working of the Locus Algorithm, a method to optimise a telescope pointing for a given stellar target so as to include the maximum number of best reference stars (stars with similar brightness and colour). This improves the quality of differential photometry, a technique that uses these reference stars to account for the effect of teh Earth’s atmosphere on incoming starlight. In this way, it is easier to detect changes in the intrinsic output from the target star. This is useful in, for example, exoplanet detection by the transit method.\r\nThe publication can be accessed (at least till mid February 2022) from this link.\r\n\r\n\r\n\r\n",
+    "preview": "https://ars.els-cdn.com/content/image/1-s2.0-S2213133721000822-gr5_lrg.jpg",
+    "last_modified": "2023-09-13T15:10:32+01:00",
+    "input_file": {}
+  },
+  {
+    "path": "publications/2020-11-01-Quasar_Catalogue/",
+    "title": "A catalogue of Locus Algorithm pointings for optimal differential photometry for 23 779 quasars",
+    "description": "This publication details the results from running the Locus Algorithm on all the quasars identified by SDSS. It leads to the identification of quasars with a good surrounding of reference stars. In general, quasars are more difficult to observe with differential photometry because their specra are so different from stars, making it harder to account for the effects of the Earth's atmosphere.",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://www.fizzics.ie"
+      }
+    ],
+    "date": "2020-08-10",
+    "categories": [
+      "Physics",
+      "Academia"
+    ],
+    "contents": "\r\nA publication detailing the quasar catalogue of differential photometry pointings. The full publication can be seen here\r\n\r\n\r\n\r\n",
+    "preview": "publications/2020-11-01-Quasar_Catalogue/img/qso.png",
+    "last_modified": "2023-09-13T14:53:15+01:00",
+    "input_file": {},
+    "preview_width": 542,
+    "preview_height": 356
+  },
+  {
+    "path": "publications/2019-10-02-Data_Mining_Grid/",
+    "title": "Data Mining by Grid Computing in the Search for Extrasolar Planets",
+    "description": "Oisin Creaner's Thesis. Using the SDSS catalogue to refine the process of Differential Photometry.",
+    "author": [
+      {
+        "name": "Eugene Hickey",
+        "url": "https://www.fizzics.ie"
+      }
+    ],
+    "date": "2019-10-02",
+    "categories": [
+      "Academia",
+      "Physics"
+    ],
+    "contents": "\r\n\r\nOisin was the first PhD candidate I supervised. His mission was to looks for stars that serendipitously had neighbours in the sky with similar brightness and colour. This makes it easier to subtract the effects of the atmosphere on the photometry of these stars and so be able to detect smaller changes in their intrinsic output. So events like exoplanet transits can be more faithfully observed.\r\nThis was a data intensive project. Downloaded the myriad of files from SDSS, selecting the parameters of interest, and churning through all the star targets. He used Grid computing for this, but made many adaptations to optimise it for file input and output and the extremely parallel nature of the job.\r\nThe results were:\r\na routine that takes a given target star and finds the best reference stars for it, in general recommending that the telescope isn’t pointed directly at the target but offset so as to get the best references\r\na catalogue of high performing stars (ones with lots of good reference stars in their neighbourhood) and the corresponding telescope pointings\r\na catalogue of quasars and their corresponding pointings.\r\nThe entire thesis can be seen here\r\n\r\n\r\n\r\n",
+    "preview": "publications/2019-10-02-Data_Mining_Grid/img/front.png",
+    "last_modified": "2023-09-13T14:52:13+01:00",
+    "input_file": {},
+    "preview_width": 585,
+    "preview_height": 582
+  }
+]

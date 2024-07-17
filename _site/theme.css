@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Annie+Use+Your+Telescope&family=Fuzzy+Bubbles&family=Shizuru&display=swap');
+
+/* Edit the CSS properties in this file to create a custom
+   Distill theme. Only edit values in the right column
+   for each row; values shown are the CSS defaults.
+   To return any property to the default,
+   you may set its value to: unset
+   All rows must end with a semi-colon.                      */
+
+/* Optional: embed custom fonts here with `@import`          */
+/* This must remain at the top of this file.                 */
+
+
+  
+  html {
+    /*-- Main font sizes --*/
+    --title-size:      50px;
+    --text-size:       20px;
+  /*  --body-size:       1.06rem; */
+    --code-size:       14px;
+    --aside-size:      12px;
+    --fig-cap-size:    13px;
+    /*-- Main font colors --*/
+    --title-color:     white;
+    --header-color:    rgba(0, 0, 0, 0.8);
+    --body-color:      rgba(0, 0, 0, 0.8);
+    --aside-color:     rgba(0, 0, 0, 0.6);
+    --fig-cap-color:   rgba(0, 0, 0, 0.6);
+    /*-- Specify custom fonts ~~~ must be imported above   --*/
+    --heading-font:    Atma;
+    --mono-font:       monospace;
+    --body-font:       sans-serif;
+    --navbar-font:     "Annie Use Your Telescope", serif;
+  }
+
+  .distill-site-header {
+    --title-size:       50px;
+    --text-color:       #176940;
+    --text-size:        22px;
+    --hover-color:      black;
+    --bkgd-color:       #eeeeee;
+  }
+
+/*-- Additional custom styles --*/
+  /* Add any additional CSS rules below                      */
+  
+.distill-site-nav  { /* shdow line under banner */
+  border-bottom: 2px solid #DECF40;
+  -webkit-box-shadow: 1px 1px 18px #4d4d4d;
+  -moz-box-shadow: 1px 1px 18px #4d4d4d;
+  box-shadow: 1px 1px 18px #4d4d4d;
+}
+
+.distill-site-header .logo img { /* logo size */
+   max-height: 50px;
+   width: auto;
+   margin-top: 10px;
+}
+
+
+.posts-list > h1 {
+  color: black!important; /* prints "Test Blog" */
+} 
+
+
+p a { /* underlines links */
+  text-decoration: none;
+  color: black;
+  border-bottom: 3px solid #9ae28f;
+  box-shadow: inset 0 -4px 0 #9ae28f;
+  background: transparent;
+  transition: background 150ms ease;
+  font-style: italic;
+  font-family: menu;
+  font-stretch: extra-expanded;
+}
+
+p a:hover { /* makes links go green on hover */
+  text-decoration: none;
+  --bg-opacity: 1;
+  background-color: #9ae28f;
+  background-color: rgba(154, 226, 143, var(--bg-opacity));
+}
+
+
+.thumbnail {
+    padding: 0px!important;
+    margin: 0px!important;
+    max-width: 25%!important;
+    height: 10%!important;
+    vertical-align: text-top!important;
+}

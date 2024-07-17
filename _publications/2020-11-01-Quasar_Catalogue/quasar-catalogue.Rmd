@@ -1,0 +1,35 @@
+---
+title: "A catalogue of Locus Algorithm pointings for optimal differential photometry for 23 779 quasars"
+description: |
+  This publication details the results from running the Locus Algorithm on all the quasars identified by SDSS. It leads to the identification of quasars with a good surrounding of reference stars. In general, quasars are more difficult to observe with differential photometry because their specra are so different from stars, making it harder to account for the effects of the Earth's atmosphere. 
+author:
+  - name: Eugene Hickey
+    url: https://www.fizzics.ie
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 08-10-2020
+preview: img/qso.png
+url: http://www.fizzics.ie
+base_url: http://www.fizzics.ie
+twitter:
+  creator: "@eugene100hickey"
+categories: [Physics, Academia]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+<style>
+d-title {
+ display:none;
+}
+</style>
+
+```{r setup, include = FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+A publication detailing the quasar catalogue of differential photometry pointings. The full publication can be seen [here](https://academic.oup.com/mnras/article/498/3/3720/5894382?login=true)

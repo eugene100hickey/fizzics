@@ -1,0 +1,846 @@
+---
+title: "Time Higher Education - SDG7 Energy"
+subtitle: "⚡<br/>Page Down to Scroll through"
+institute: "Technological University Dublin"
+date: "`r format(Sys.Date(), '%A %B %d %Y')`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    includes:
+      in_header: favicon.html
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+background-image: url(img/alternative_energy_revolution.jpg)
+background-position: center
+background-size: contain
+
+```{r setup, include=FALSE, echo=FALSE, message=F, warning=F}
+options(htmltools.dir.version = FALSE, echo = F, message = F, warning = F)
+# http://stla.github.io/stlapblog/posts/Numextract.html
+
+library(tidyverse)
+library(tm)
+library(ggrepel)
+library(leaflet)
+library(htmltools)
+library(showtext)
+library(extrafont)
+library(collapsibleTree)
+library(gt)
+library(kableExtra)
+library(patchwork)
+library(Rtsne)
+library(ggtext)
+
+my_font <- "Josefin Slab"
+my_font <- "Indie Flower"
+font_add_google(my_font, family = my_font)
+showtext_auto()
+theme_set(theme_minimal() +
+            theme(text = element_text(family = my_font, size = 28)))
+
+```
+
+```{r xaringan-extra, echo=FALSE}
+library(xaringanExtra)
+xaringanExtra::use_panelset()
+```
+
+```{r data, echo=FALSE, message=F, warning=F, cache = T}
+irish_universities <- tibble(university=
+                               c("Technological University Dublin",
+                                 "University College Cork",
+                                 "Dublin City University",
+                                 "Trinity College Dublin",
+                                 "National University of Ireland Galway",
+                                 "University of Limerick"),
+                             abbrev = c("TUD", "UCC", "DCU", "TCD", "NUIG", "UL"))
+cohort_universities <- tibble(university=c("Technological University Dublin",
+                         "Cyprus University of Technology",
+                         "Riga Technical University",
+                         "Aalborg University",
+                         "Queensland University of Technology",
+                         "Aalto University",
+                         "University of Auckland",
+                         "UNSW Sydney",
+                         "University of Manchester"),
+                         abbrev=c("TUD", "Cyprus", "Riga",
+                                  "Aalborg", "QUT", "Aalto",
+                                  "Auckland", "UNSW", "Manchester"))
+
+SDG7_Energy <- read_csv("../data/energy/asian/SDG7_2021_readme_weightings_2021_08_05.csv", n_max = 20) %>% 
+  mutate(Weight = Weight %>% str_remove("%") %>% as.numeric()) %>% 
+  filter(`Attribute Type` == "Indicator") %>% 
+  mutate(Indicator = glue::glue("{Attribute}: ({Weight}%)"),
+         Metric = c(rep("Research on clean energy (27%)", 3),
+                        rep("University measures towards affordable and clean energy (23%)", 6),
+                        rep("Energy use density (27%)", 1),
+                        rep("Energy and the community (23%)", 5))) %>% 
+  select(Indicator, Metric) %>% 
+  mutate(Indicator = str_wrap(Indicator, 20),
+         Metric = str_wrap(Metric, 20))
+
+zq <- read_csv("../data/energy/asian/SDG7_2021_readme_weightings_2021_08_05.csv", n_max = 20) %>% 
+  mutate(Weight = Weight %>% str_remove("%") %>% as.numeric())
+
+SDG7_Energy_metrics <- read_csv("../data/energy/asian/SDG7_2021_readme_weightings_2021_08_05.csv", n_max = 20) %>% 
+  mutate(Weight = Weight %>% str_remove("%") %>% as.numeric()) %>% 
+  filter(`Attribute Type` == "Indicator") %>% 
+  mutate(Indicator = glue::glue("{Attribute}"),
+         Metric = c(rep("Research on clean energy", 3),
+                    rep("University measures towards affordable and clean energy", 6),
+                    rep("Energy use density", 1),
+                    rep("Energy and the community", 5))) %>% 
+  select(Indicator, Metric)
+
+energy <- function(filename = "../data/energy/asian/SDG7_2021_indicator_scores_2021_08_05.csv") {
+  z <- read_lines(filename)
+  
+  z <- z[-c(1)] %>%
+    as_tibble() %>%
+    filter(!(str_detect(value, "Worldwide"))) %>%
+    mutate(university = value %>% removeNumbers() %>% removePunctuation())
+  z
+}
+
+SDG7 <- function(df = z1, my_university = irish_universities, metric = "Research on clean energy") {
+  variables <- SDG7_Energy_metrics %>% 
+    filter(Metric == metric) %>% 
+    pull(Indicator)
+  z2 <- df %>% 
+    select(university, 
+           variables,
+           inverse_ranking) %>% 
+    pivot_longer(cols = -c(university, inverse_ranking), values_to = "score") %>% 
+    mutate(score = as.numeric(score),
+           univ_label = abbreviate(university, 10))
+  
+  z2 %>% ggplot(aes(name, score)) + 
+    geom_boxplot(width = 0.2) + 
+    geom_point(data = z2 %>% 
+                 filter(university %in% my_university$university) %>% 
+                 left_join(my_university), 
+               aes(y=score, x=name, color = pal(inverse_ranking)),
+               show.legend = F) + 
+    geom_text_repel(data = z2 %>% 
+                      filter(university %in% my_university$university,
+                             university != "Technological University Dublin") %>% 
+                      left_join(my_university), 
+                    aes(label = abbrev, y = score, 
+                        x = name, color = pal(inverse_ranking)),
+                    family = my_font,
+                    show.legend = F,
+                    size = 6,
+                    fontface = "bold",
+                    max.overlaps = 20) +
+    geom_text_repel(data = z2 %>% 
+                      filter(university == "Technological University Dublin") %>% 
+                      left_join(my_university), 
+                    aes(label = abbrev, y = score, 
+                        x = name),
+                    family = my_font,
+                    show.legend = F,
+                    size = 10,
+                    fontface = "bold",
+                    max.overlaps = 20) +
+    geom_point(data = z2 %>% 
+                 filter(university  == "Technological University Dublin") %>% 
+                 left_join(my_university), 
+               aes(y=score, x=name),
+               size = 3,
+               show.legend = F) + 
+    ggtitle(label = metric) +
+    theme(axis.title = element_blank(),
+          legend.position = "none",
+          plot.title.position = "plot",
+          plot.title = element_text(size=24),
+          axis.text.y = element_text(size=12)) + 
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) +
+    coord_flip()
+}
+
+dirs <- list.dirs("../data/energy") %>% 
+  paste0("/SDG7_2021_indicator_scores_2021_08_05.csv")
+dirs <- dirs[-1]
+
+z <- map(dirs, energy) %>% 
+  bind_rows() %>% 
+  distinct(university, .keep_all = T) %>% 
+  arrange(value) %>% 
+  mutate(value = value %>% str_replace_all("[//(//)]", ""))
+
+filename = "../data/energy/asian/SDG7_2021_indicator_scores_2021_08_05.csv"
+c_names <- read_lines(filename)
+column_names <- str_c(c_names[1]) %>% 
+  str_split(pattern = ",") %>% 
+  unlist()
+column_names[1] <- "university"
+
+overall <- function(filename = "../data/energy/asian/SDG7_2021_sdg_overall_2021_08_05.csv") {
+  read_lines(skip = 1, file = filename) %>% 
+    as_tibble() %>% 
+    mutate(score = str_sub(value, -6, -1) %>% parse_number()) %>% 
+    separate(col=value, into = c("university", "score1"), sep = ",\\d", remove = F) %>% 
+    select(university, score) %>% 
+    filter(!(str_detect(university, "Worldwide:")))
+}
+
+overall_dirs <- list.dirs("../data/energy") %>% 
+  paste0("/SDG7_2021_sdg_overall_2021_08_05.csv")
+overall_dirs <- overall_dirs[-1]
+
+overs <- map(overall_dirs, overall) %>% 
+  bind_rows() %>% 
+  distinct() %>% 
+  arrange(university) %>% 
+  mutate(university = university %>% str_replace_all("[//(//)]", "")) %>% 
+  mutate(irish = university %in% irish_universities$university,
+         cohort = university %in% cohort_universities$university)
+
+geos <- readRDS("../data/energy/geocodes")
+
+# geos <- geo(address = overs$university, method = "osm")
+overs <- overs %>% 
+  left_join(geos, by = c("university" = "address")) %>% 
+  mutate(ranking = dense_rank(desc(score)),
+         inverse_ranking = dense_rank(score),
+         label = glue::glue("<b>{university}</b><br/>{score}<br/>{ranking}"))
+
+# Create a continuous palette function
+pal <- colorNumeric(
+  palette = "Reds",
+  domain = overs$inverse_ranking)
+
+# overs %>% leaflet() %>% 
+#   addProviderTiles("Esri.NatGeoWorldMap") %>% 
+#   addCircleMarkers(popup = ~glue::glue("<b>{university}</b><br/>Score: {round(score, 1)}%<br/>Ranking: {ranking}"),
+#                    lng = ~long, 
+#                    lat = ~lat,
+#                    fill = ~pal(inverse_ranking),
+#                    color = ~pal(inverse_ranking))
+
+z1 <- str_remove(z$value, overs$university) %>% 
+  str_remove("imputed:") %>% 
+  as_tibble() %>% 
+  separate(col = value, into = column_names, sep = ",") %>% 
+  mutate(university = overs$university,
+         ranking = overs$ranking,
+         inverse_ranking = overs$inverse_ranking,
+         `Research on clean energy` = ((as.numeric(`Affordable and clean energy: CiteScore`) * 10 +
+                                          as.numeric(`Affordable and clean energy: FWCI`) * 10 +
+                                          as.numeric(`Affordable and clean energy: publications`) * 7) / 27) %>% round(1),
+         `Energy use density` = as.numeric(`Energy usage per sqm`),
+         `University measures towards affordable and clean energy` = ((as.numeric(`Energy-efficient renovation and building`) * 3.85 +
+                                                                         as.numeric(`Upgrade buildings to higher energy efficiency`) * 3.85 +
+                                                                         as.numeric(`Carbon reduction and emission reduction process`) * 3.85 +
+                                                                         as.numeric(`Plan to reduce energy consumption`) * 3.85 +
+                                                                         as.numeric(`Energy wastage identification`) * 3.80 +
+                                                                         as.numeric(`Divestment policy`) * 3.80) / 23) %>% round(1),
+         `Energy and the community` = ((as.numeric(`local community outreach for energy efficiency`) * 4.60 +
+                                          as.numeric(`100% renewable energy pledge`) * 4.60 +
+                                          as.numeric(`Energy efficiency services for industry`) * 4.60 +
+                                          as.numeric(`Policy development for clean energy technology`) * 4.60 +
+                                          as.numeric(`Assistance to low-carbon innovation`) * 4.60) / 23) %>% round(1)) %>% 
+  select(university, everything()) %>% 
+  left_join(overs) %>% 
+  mutate(irish_uk = between(lat, 50, 60) & between(long, -14, 2))
+
+zp <- z1 %>%
+  select(university, `Affordable and clean energy: CiteScore`:`Assistance to low-carbon innovation`) %>% 
+  pivot_longer(-university, names_to = "Attribute") %>% 
+  left_join(zq) %>% 
+  mutate(value = as.numeric(value) * Weight / 100) %>% 
+  select(university, Attribute, value) %>% 
+  pivot_wider(names_from = "Attribute", values_from = "value")
+
+z5 <- Rtsne(zp %>% 
+              select(`Affordable and clean energy: CiteScore`:`Assistance to low-carbon innovation`) %>% 
+              as.matrix() %>%
+              sapply(as.numeric) %>% 
+              matrix(nrow = 559, ncol = 15) %>% 
+              normalize_input() %>% 
+              dist(), 
+            perplexity = 10,
+            theta = 0.0)
+
+z6 <- tibble(x = z5$Y[,1], 
+       y = z5$Y[,2], 
+       label = z1$university, 
+       score = z1$score,
+       irish_uk = z1$irish_uk,
+       irish = z1$irish,
+       cohort = z1$cohort)
+tud_x <- z6[z6$label == 'Technological University Dublin','x']
+tud_y <- z6[z6$label == 'Technological University Dublin','y']
+
+z6 <- z6 %>% 
+  mutate(close = between(x, tud_x-8, tud_x+8) & between(y, tud_y-5, tud_y+5))
+
+```
+
+
+???
+
+Image credit: [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sharingan_triple.svg)
+
+---
+class: center, middle
+
+# THE University Rankings
+
+## ... based on energy
+
+
+
+---
+
+
+
+# Outline
+
+
+1. Describe Structure of THE - SDG7 - Energy Rankings  
+
+2. Accessing the Data  
+
+3. Comparison Universities  
+
+4. First Look at the Data  
+
+5. Map  
+
+6. Overall Scores  
+
+6. Overall Comparisons
+
+7. Research on clean energy
+
+8. University measures towards affordable and clean energy
+
+9. Energy use density
+
+10. Energy and the community
+
+11. Conclusions
+
+---
+
+.panelset[
+
+.panel[
+.panel-name[Metrics]
+
+### Click on nodes to expand / collapse
+
+```{r collapsibleTree, echo=FALSE, fig.align='center', fig.width=12}
+tree <- collapsibleTree(
+  SDG7_Energy,
+  fontSize = 12,
+  linkLength = 100,
+  hierarchy = c("Metric", "Indicator"), 
+  fill = c(
+    # The root
+    "seashell",
+    # Unique regions
+    rep("brown", length(unique(SDG7_Energy$Metric))),
+   # Unique names per region
+    rep("forestgreen", length(unique(paste(SDG7_Energy$Indicator, SDG7_Energy$Metric))))
+  )
+)
+
+tree[[1]]$options$margin$left <- 280
+tree[[1]]$options$margin$right <- 100
+tree
+
+```
+
+] <!-- end of panel -->
+
+
+.panel[
+.panel-name[Webpage]
+
+![](img/times-higher.png)
+
+
+] <!-- end of panel -->
+
+.panel[
+.panel-name[Comparison]
+
+### These are the universities that we'll use to compare to TUD
+
+.pull-left[
+
+```{r irish_unis, echo=FALSE}
+irish_universities %>% 
+  gt()
+```
+
+]
+
+.pull-right[
+
+```{r compare_unis, echo=FALSE}
+cohort_universities %>% 
+  gt()
+```
+
+]
+
+
+] <!-- end of panel -->
+
+.panel[
+.panel-name[Data]
+
+```{r all_data, echo=FALSE}
+z3 <- z1 %>% 
+  select(university:`Assistance to low-carbon innovation`)
+z2 <- z3 %>% column_to_rownames(var = "university")
+z2 <- slice(z2, sample(1:n()))
+rownames(z2) <- z3$university
+z2 <- select(z2, one_of(sample(names(z2)))) 
+names(z2) <- names(z3)[-1]
+z2 <- z2 %>% rownames_to_column(var = "university")
+
+
+z2 %>%
+  kable("html") %>%
+  kable_styling() %>%
+  scroll_box(
+    height = "500px",
+    box_css = "border: 1px solid #ddd; padding: 5px; ",
+    fixed_thead = TRUE
+  )
+```
+
+
+] <!-- end of panel -->
+
+.panel[
+.panel-name[Map]
+
+- Dark red indicates a high score / click on the circles to see details
+
+```{r map, echo=FALSE, message=F, warning=F, fig.width=10}
+z1 %>% leaflet() %>% 
+  addProviderTiles("Esri.NatGeoWorldMap") %>% 
+  addCircleMarkers(popup = ~glue::glue("<b>{university}</b>
+                                       <br/>Score: {round(score, 1)}%
+                                       <br/><b>Ranking: {ranking}</b>
+                                       <br/>Research on clean energy: {`Research on clean energy`}%
+                                       <br/>Uni. measures for affordable & clean energy: {`University measures towards affordable and clean energy`}%
+                                       <br/>Energy use density: {`Energy use density`}%
+                                       <br/>Energy and the community: {`Energy and the community`}%"),
+                   lng = ~long, 
+                   lat = ~lat,
+                   fill = ~pal(inverse_ranking),
+                   color = ~pal(inverse_ranking)) %>% 
+  setView(lng = -8, lat = 55, zoom = 4)
+
+```
+
+
+] <!-- end of panel -->
+
+.panel[
+.panel-name[Score]
+
+
+```{r overall, echo=FALSE, message=F, warning=F, fig.width=10}
+irish <- overs %>% 
+  ggplot(aes(1, score)) + 
+  geom_violin(fill = "gray80", alpha = 0.5) + 
+  geom_point(data = overs %>% 
+               filter(university %in% irish_universities$university), 
+             aes(y=score, x=1, color = pal(inverse_ranking)),
+             show.legend = F) + 
+  geom_text_repel(data = overs %>% 
+                    filter(university %in% irish_universities$university), 
+                  aes(label = university, y = score, x = 1, color = pal(inverse_ranking)),
+                  family = my_font,
+                  size = 8,
+                  show.legend = F) + 
+  coord_flip() +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank())
+
+
+international <- overs %>% 
+  ggplot(aes(1, score)) + 
+  geom_violin(fill = "gray80", alpha = 0.5) + 
+  geom_point(data = overs %>% 
+               filter(university %in% cohort_universities$university), 
+             aes(y=score, x=1, color = pal(inverse_ranking)),
+             show.legend = F) + 
+  geom_text_repel(data = overs %>% 
+                    filter(university %in% cohort_universities$university) %>% 
+                    left_join(cohort_universities), 
+                  aes(label = abbrev, y = score, x = 1, color = pal(inverse_ranking)),
+                  family = my_font,
+                  size = 10,
+                  show.legend = F,
+                  max.overlaps = 20) + 
+  coord_flip() +
+  theme(axis.title.y = element_blank(),
+        axis.text.y = element_blank())
+
+irish / international
+
+```
+
+
+]<!-- end of panel -->
+
+]<!-- end of panelset -->
+
+---
+
+.panelset[
+
+.panel[
+.panel-name[7a]
+
+```{r energy_a, echo=FALSE, message=F, warning=F, fig.width=10}
+z2 <- z1 %>% 
+  select(university, 
+         inverse_ranking,
+         `Research on clean energy`, 
+         `University measures towards affordable and clean energy`, 
+         `Energy use density`,
+         `Energy and the community`) %>% 
+  pivot_longer(cols = -c(university, inverse_ranking), values_to = "score") %>% 
+  mutate(score = as.numeric(score),
+         univ_label = abbreviate(university, 10),
+         name = factor(name, levels = c("Research on clean energy",
+                                        "University measures towards affordable and clean energy",
+                                        "Energy use density",
+                                        "Energy and the community")))
+
+z2 %>% ggplot(aes(name %>% fct_rev(), score)) + 
+  geom_boxplot(width = 0.2) + 
+  geom_point(data = z2 %>% 
+               filter(university %in% irish_universities$university) %>% 
+               left_join(irish_universities), 
+             aes(y=score, x=name, color = pal(inverse_ranking)),
+             show.legend = F) + 
+  geom_text_repel(data = z2 %>% 
+                    filter(university %in% irish_universities$university,
+                           university != "Technological University Dublin") %>% 
+                    left_join(irish_universities), 
+                  aes(label = abbrev, y = score, 
+                      x = name, color = pal(inverse_ranking)),
+                  family = my_font,
+                  show.legend = F,
+                  size = 6,
+                  fontface = "bold",
+                  max.overlaps = 20) +
+  geom_text_repel(data = z2 %>% 
+                    filter(university == "Technological University Dublin") %>% 
+                    left_join(irish_universities), 
+                  aes(label = abbrev, y = score, 
+                      x = name),
+                  family = my_font,
+                  show.legend = F,
+                  size = 10,
+                  fontface = "bold",
+                  max.overlaps = 20) +
+  geom_point(data = z2 %>% 
+               filter(university  == "Technological University Dublin") %>% 
+               left_join(irish_universities), 
+             aes(y=score, x=name),
+             size = 3,
+             show.legend = F) + 
+  ggtitle(label = "SDG7 - Energy") +
+  theme(axis.title = element_blank(),
+        legend.position = "none",
+        plot.title.position = "plot",
+        plot.title = element_text(size=24),
+        axis.text.y = element_text(size=12)) + 
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) +
+  coord_flip()
+```
+
+
+
+]<!-- end of panel -->
+
+
+.panel[
+.panel-name[7b]
+
+```{r energy_b, echo=FALSE, message=F, warning=F, fig.width=10}
+z2 %>% ggplot(aes(name %>% fct_rev(), score)) + 
+  geom_boxplot(width = 0.2) + 
+  geom_point(data = z2 %>% 
+               filter(university %in% cohort_universities$university) %>% 
+               left_join(cohort_universities), 
+             aes(y=score, x=name, color = pal(inverse_ranking)),
+             show.legend = F) + 
+  geom_text_repel(data = z2 %>% 
+                    filter(university %in% cohort_universities$university,
+                           university != "Technological University Dublin") %>% 
+                    left_join(cohort_universities), 
+                  aes(label = abbrev, y = score, 
+                      x = name, color = pal(inverse_ranking)),
+                  family = my_font,
+                  show.legend = F,
+                  size = 6,
+                  fontface = "bold",
+                  max.overlaps = 20) +
+  geom_text_repel(data = z2 %>% 
+                    filter(university == "Technological University Dublin") %>% 
+                    left_join(cohort_universities), 
+                  aes(label = abbrev, y = score, 
+                      x = name),
+                  family = my_font,
+                  show.legend = F,
+                  size = 10,
+                  fontface = "bold",
+                  max.overlaps = 20) +
+  geom_point(data = z2 %>% 
+               filter(university  == "Technological University Dublin") %>% 
+               left_join(cohort_universities), 
+             aes(y=score, x=name),
+             size = 3,
+             show.legend = F) + 
+  ggtitle(label = "SDG7 - Energy") +
+  theme(axis.title = element_blank(),
+        legend.position = "none",
+        plot.title.position = "plot",
+        plot.title = element_text(size=24),
+        axis.text.y = element_text(size=12)) + 
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 20)) +
+  coord_flip()
+```
+
+]<!-- end of panel -->
+
+
+.panel[
+.panel-name[8a]
+
+```{r clean_energy_a, echo=FALSE, message=F, warning=F, fig.width=10}
+SDG7(my_university = irish_universities)
+```
+
+]<!-- end of panel -->
+
+.panel[
+.panel-name[8b]
+
+```{r clean_energy_b, echo=FALSE, message=F, warning=F, fig.width=10}
+SDG7(my_university = cohort_universities)
+```
+
+]<!-- end of panel -->
+
+.panel[
+.panel-name[9a]
+
+```{r affordable_energy_a, echo=FALSE, message=F, warning=F, fig.width=10}
+SDG7(my_university = irish_universities, metric = "University measures towards affordable and clean energy")
+```
+
+
+
+]<!-- end of panel -->
+
+
+.panel[
+.panel-name[9b]
+
+```{r affordable_energy_b, echo=FALSE, message=F, warning=F, fig.width=10}
+SDG7(my_university = cohort_universities, metric = "University measures towards affordable and clean energy")
+```
+
+]<!-- end of panel -->
+
+.panel[
+.panel-name[10a]
+
+```{r use_energy_a, echo=FALSE, message=F, warning=F, fig.width=10}
+SDG7(my_university = irish_universities, metric = "Energy use density")
+```
+
+
+
+]<!-- end of panel -->
+
+
+.panel[
+.panel-name[10b]
+
+```{r use_energy_b, echo=FALSE, message=F, warning=F, fig.width=10}
+SDG7(my_university = cohort_universities, metric = "Energy use density")
+```
+
+]<!-- end of panel -->
+
+
+.panel[
+.panel-name[11a]
+
+```{r community_energy_a, echo=FALSE, message=F, warning=F, fig.width=10}
+SDG7(my_university = irish_universities, metric = "Energy and the community")
+```
+
+
+
+]<!-- end of panel -->
+
+
+.panel[
+.panel-name[11b]
+
+```{r community_energy_b, echo=FALSE, message=F, warning=F, fig.width=10}
+SDG7(my_university = cohort_universities, metric = "Energy and the community")
+```
+
+]<!-- end of panel -->
+
+] <!-- end of panelset -->
+
+---
+
+# Conclusions
+
+1. Seems to be an issue with _Energy Use Density_ (worth 27%) in Ireland, and even in the UK, compared with _Rest of World_.
+
+2. We do badly on:
+
+- _Upgrade Buildings for Higher Energy Efficiency_ (worth 3.85%)
+- _Local Community Outreach for Energy Efficiency_ (worth 4.60%)
+- _100% Renewable Energy Pledge_ (worth 4.60%)
+
+---
+
+### Appendix 1
+
+Is the _Energy Use Density_ measured differently in Ireland / UK?
+
+```{r energy_use_density_comparison, echo=FALSE, message=F, warning=F, fig.width=10, fig.height=6}
+z1 %>% 
+  ggplot(aes(`Energy use density`, fill = irish_uk)) +
+  geom_density(alpha = 0.4, show.legend = F) +
+  geom_rug(aes(col = irish_uk), show.legend = F) +
+  labs(title = "Energy Use Density for <i style = 'color:blue;'>Irish-Uk</i> and <i style = 'color:red;'>Rest of World</i> Universities") +
+  theme(plot.title = element_markdown(size = 18),
+        plot.title.position = "plot")
+```
+
+Looks like it is, Irish-UK between 0% and 50%, Rest of World evenly spread.
+
+---
+
+In the plot below, universities that are points closer together are more similar (as measured by [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding)).
+
+.panelset[
+
+.panel[
+.panel-name[Irish]
+
+```{r tsne-irish, echo=FALSE, message=F, warning=F, fig.width=10, fig.height=6}
+z6 %>% 
+  ggplot(aes(x, y, label = label)) + 
+  geom_point(aes(fill = score), 
+             shape=21, 
+             size=5,
+             alpha = 0.5,
+             show.legend = F) + 
+  geom_text_repel(data = z6 %>% 
+                    filter(irish),
+                  aes(x, y, label = label %>% str_wrap(20)),
+                  family = my_font, 
+                  size = 6, 
+                  show.legend = F,
+                  max.overlaps = 40) +
+  geom_point(data = z6 %>% 
+               filter(irish),
+             fill = "red", 
+             shape=21, 
+             size=2,
+             alpha = 1,
+             show.legend = F) + 
+  scale_color_discrete(aes(irish)) +
+  scale_fill_gradient(low = "lightblue1", high = "darkblue") +
+  theme_void() +
+  theme(panel.background = element_rect(fill = "snow1"),
+        text = element_text(size = 8, face = "bold"))
+```
+
+]<!-- end of panel -->
+
+.panel[
+.panel-name[Cohort]
+
+```{r tsne-cohort, echo=FALSE, message=F, warning=F, fig.width=10, fig.height=6}
+z6 %>% 
+  ggplot(aes(x, y, label = label)) + 
+  geom_point(aes(fill = score), 
+             shape=21, 
+             size=5,
+             alpha = 0.5,
+             show.legend = F) + 
+  geom_text_repel(data = z6 %>% 
+                    filter(cohort),
+                  aes(x, y, label = label %>% str_wrap(20)),
+                  family = my_font, 
+                  size = 6, 
+                  show.legend = F,
+                  max.overlaps = 40) +
+  geom_point(data = z6 %>% 
+               filter(cohort),
+             fill = "red", 
+             shape=21, 
+             size=2,
+             alpha = 1,
+             show.legend = F) + 
+  scale_color_discrete(aes(cohort)) +
+  scale_fill_gradient(low = "lightblue1", high = "darkblue") +
+  theme_void() +
+  theme(panel.background = element_rect(fill = "snow1"),
+        text = element_text(size = 8))
+```
+
+]<!-- end of panel -->
+
+.panel[
+.panel-name[Close]
+
+```{r tsne-close, echo=FALSE, message=F, warning=F, fig.width=10, fig.height=6}
+z6 %>% 
+  ggplot(aes(x, y, label = label)) + 
+  geom_point(aes(fill = score), 
+             shape=21, 
+             size=5,
+             alpha = 0.5,
+             show.legend = F) + 
+  geom_text_repel(data = z6 %>% 
+                    filter(close),
+                  aes(x, y, label = label %>% str_wrap(20)),
+                  family = my_font, 
+                  size = 6, 
+                  show.legend = F,
+                  max.overlaps = 40) +
+  geom_point(data = z6 %>% 
+               filter(close),
+             fill = "red", 
+             shape=21, 
+             size=2,
+             alpha = 1,
+             show.legend = F) + 
+  scale_color_discrete(aes(close)) +
+  scale_fill_gradient(low = "lightblue1", high = "darkblue") +
+  theme_void() +
+  theme(panel.background = element_rect(fill = "snow1"),
+        text = element_text(size = 8))
+```
+]<!-- end of panel -->
+
+]<!-- end of panelset -->

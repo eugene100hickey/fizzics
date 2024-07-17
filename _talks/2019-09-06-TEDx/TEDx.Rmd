@@ -1,0 +1,37 @@
+---
+title: "Use Open Source Software"
+description: |
+  A talk given at TEDx Ballyroan 
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.netlify.app
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 09-06-2019
+preview: tedx.png
+url: http://fizzics.netlify.app
+base_url: http://fizzics.netlify.app
+twitter:
+  creator: "@eugene100hickey"
+categories: [R]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      out.width = "100%",
+                      out.extra="style='border:1px solid black;'")
+```
+
+
+
+A video of the talk is available [here](https://www.youtube.com/watch?v=VsEuOy2kZzs)  
+
+The slides are [here](2019-09-06-TEDx/tedx_eugene.pdf)
+
+
+
+
+

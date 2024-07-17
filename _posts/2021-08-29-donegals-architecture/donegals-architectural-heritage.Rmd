@@ -1,0 +1,106 @@
+---
+title: "Donegal's Architectural Heritage"
+description: |
+  Having a look at some of the historical buildings in Donegal, thanks to data from the National Inventory of Architectural Heritage. Also a chance to check out crosstalk and leafpop. Note; images will take a while to appear
+author:
+  - name: Eugene
+    url: https://fizzics.netlify.app
+date: 08-29-2021
+categories: [Maps, Donegal]
+output:
+  distill::distill_article:
+    self_contained: false
+preview: img/oakpark.jpg
+---
+
+
+  
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+library(knitr)
+library(reactable)
+library(plotly)
+library(crosstalk)
+library(htmltools)
+library(leaflet)
+library(leafpop)
+library(RColorBrewer)
+
+knit_hooks$set(inline = function(x) {
+  prettyNum(x, big.mark="")
+})
+
+# https://www.buildingsofireland.ie/resources/
+```
+
+```{r data, echo=F, warning=F, message=F}
+donegal <- read_csv("data/Ulster.csv") %>% 
+  select(NAME, TOWNLAND, DATEFROM, WEBSITE_LINK, LATITUDE, LONGITUDE, IMAGE_LINK, ORIGINAL_TYPE, COUNTY) %>% 
+  filter(COUNTY == "Donegal") %>% 
+  mutate(NAME = NAME %>% iconv(from = "UTF-8", to = "UTF-8", sub = ""),
+         NAME = ifelse(is.na(NAME), TOWNLAND, NAME),
+         NAME = glue::glue("<a href='{WEBSITE_LINK}'>{NAME}</a>"),
+         DATEFROM = as_date(as.character(DATEFROM), format = "%Y") %>% year(),
+         DATEFROM_slider = DATEFROM %>% ymd(),
+         ORIGINAL_TYPE = ORIGINAL_TYPE %>% 
+           iconv(from = "UTF-8", to = "UTF-8", sub = ""),
+         ORIGINAL_TYPE_sel = ORIGINAL_TYPE %>% 
+           as.factor() %>% fct_lump_n(9))
+```
+
+
+```{r, echo = FALSE}
+donegal_df <- SharedData$new(donegal)
+pal <- colorFactor("Paired", domain=(donegal$ORIGINAL_TYPE))
+
+donegal_map <- donegal_df %>% 
+  leaflet() %>% 
+  addProviderTiles("OpenStreetMap") %>%
+  addCircleMarkers(lat = ~LATITUDE,
+             lng = ~LONGITUDE,
+             popup = ~paste0("<b>", NAME, "</b>",
+                             "<br><i>", DATEFROM, "</i>: ",
+                             ORIGINAL_TYPE, "<br>"),
+             group = "sites",
+             col = ~pal(ORIGINAL_TYPE),
+             radius = 10) %>%
+  setView(lng = -7.7, lat = 55, zoom=10) %>% 
+  addPopupImages(image = donegal$IMAGE_LINK, 
+                 group = "sites", 
+                 width = 150)
+
+
+reactable_table <-  reactable(
+  donegal_df,
+  columns = list(
+    NAME = colDef("Name", html=T),
+    TOWNLAND = colDef("Townland", show = FALSE),
+    DATEFROM = colDef("Year"),
+    WEBSITE_LINK = colDef("website", show = FALSE),
+    LATITUDE = colDef("Latitude", show = FALSE),
+    LONGITUDE = colDef("Longitude", show = FALSE),
+    IMAGE_LINK = colDef("Image", show = FALSE),
+    ORIGINAL_TYPE = colDef("Type", show = T),
+    ORIGINAL_TYPE_sel = colDef("Type", show = FALSE),
+    LATITUDE = colDef("Latitude", show = FALSE),
+    COUNTY = colDef("County", show = FALSE))
+)
+```
+
+```{r, echo = FALSE, warning=FALSE, message=FALSE}
+knit_hooks$set(inline = function(x) {
+  prettyNum(x, big.mark="")
+})
+
+div(
+  h1("Donegal Historic Buildings"),
+  h3("Filter by Year and Type"),
+  filter_slider("year", "Year", donegal_df, ~DATEFROM, width = 500, sep = NULL),
+  filter_checkbox("type", "Type", donegal_df, ~ORIGINAL_TYPE_sel, columns = 6),
+  br(),
+  donegal_map,
+  br(),
+  reactable_table
+)
+```

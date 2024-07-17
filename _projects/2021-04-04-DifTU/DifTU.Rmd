@@ -1,0 +1,65 @@
+---
+title: "Data Insights for TU Dublin (DifTU)"
+description: |
+  Looking at how the COVID pandemic has impacted the use of digital technologies in TU Dublin
+author:
+  - name: Eugene Hickey
+    url: https://fizzics.netlify.app
+    affiliation: Technological University Dublin
+    affiliation_url: https://www.tudublin.ie
+date: 04-04-2021
+preview: img/Q24.png
+url: http://fizzics.netlify.app
+base_url: http://fizzics.netlify.app
+twitter:
+  creator: "@eugene100hickey"
+categories: [R, Academia]
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+
+```{css, echo = FALSE}
+.thumbnail {
+  border: 1px solid black;
+}
+```
+
+```{r setup, include = FALSE}
+library(tidyverse)
+library(knitr)
+knitr::opts_chunk$set(echo = FALSE,
+                      message = FALSE,
+                      warning = FALSE)
+```
+
+<br>
+<br>
+
+
+### Data Insights for TU Dublin (DifTU)  
+
+This project incorporated a survey carried out in our university at a time of severe lock-down. We asked students and staff about their digital experiences with the college, and we found some interesting results. We compared our responses to those for a similar survey from 2019, i.e. pre-COVID, called INDEx. 
+
+From the responses to the question below, we can the impact of restrictions on new ways of course delivery, note the overall increase in all things digital from INDEx to DifTU.
+
+
+```{r fig.height=10, fig.width=12}
+# All defaults
+include_graphics("img/Q12.png")
+```
+
+We see an even more stark example of this in the nest question, see the dramatic rise of _Recorded Lectures_.
+
+```{r}
+# All defaults
+include_graphics("img/Q13.png")
+```
+
+And finally, it seems as the students are maxing-out on digital learning, see the responses to the questions below where there is a marked decrease from INDEx to DifTU. 
+
+```{r}
+# All defaults
+include_graphics("img/Q24.png")
+```
