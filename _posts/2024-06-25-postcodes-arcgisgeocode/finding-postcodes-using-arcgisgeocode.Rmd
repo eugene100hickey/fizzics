@@ -6,6 +6,7 @@ author:
   - name: Eugene
     url: https://www.fizzics.ie
 date: 2024-06-25
+preview: images/sheephaven.png
 output:
   distill::distill_article:
     self_contained: false
@@ -73,5 +74,13 @@ shinyApp(ui, server)
 ```
 
 Unfortunately, shinyapps.io can't handle the `arcgiscoder` package just yet, so I can't deploy this app. Yet. But I'll keep trying to find a way around this.
+
+At the moment, shinyapps.io is having trouble working with `arcgisgeocoder`, otherwise I’d link to a web version of this app. I’ll work on this. For the moment, here is a version based on tidygeocoder that doesn’t quite work as well.
+
+
+
+```{r codes, echo=FALSE}
+xaringanExtra::embed_xaringan(url = "https://eugene-hickey.shinyapps.io/postal-codes/", ratio = "16:9")
+```
 
 

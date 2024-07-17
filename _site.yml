@@ -4,7 +4,7 @@ theme: theme.css
 description: |
   Some posts about data science in general, with an emphasis on astrophysics, neuroscience, genomics...
 base_url: https://www.fizzics.ie
-favicon: images/atlantic.png
+favicon: images/favicon.ico
 output_dir: "_site"
 twitter: 
   site: "@eugene100hickey"
