@@ -17,7 +17,7 @@ collections:
     authors_metadata: false
     feed_iems_max: 20 # default
     disqus: physics
-    share: [twitter, linkedin]
+    share: [github, mastodon, linkedin, orcid]
     subscribe: _subscribe.html
     custom: _custom.html
   projects:
@@ -26,28 +26,28 @@ collections:
     authors_metadata: false
     feed_iems_max: 20 # default
     disqus: physics
-    share: [twitter, linkedin]
+    share: [github, mastodon, linkedin, orcid]
   talks:
     categories: true
     categories_metadata: true
     authors_metadata: false
     feed_iems_max: 20 # default
     disqus: physics
-    share: [twitter, linkedin]
+    share: [github, mastodon, linkedin, orcid]
   teaching:
     categories: true
     categories_metadata: true
     authors_metadata: false
     feed_iems_max: 20 # default
     disqus: physics
-    share: [twitter, linkedin]
+    share: [github, mastodon, linkedin, orcid]
   publications:
     categories: true
     categories_metadata: true
     authors_metadata: false
     feed_iems_max: 20 # default
     disqus: physics
-    share: [twitter, linkedin]
+    share: [github, mastodon, linkedin, orcid]
 navbar:
   logo:
     image: images/atlantic.png
@@ -70,8 +70,12 @@ navbar:
   right:
     - icon: fab fa-github
       href: https://github.com/eugene100hickey
-    - icon: fab fa-twitter
-      href: https://twitter.com/eugene100hickey
+    - icon: fab fa-mastodon
+      href: https://mastodon.social/@eugene100hickey
+    - icon: fab fa-linkedin
+      href: https://www.linkedin.com/in/eugene100hickey/
+    - icon: fab fa-orcid
+      href: https://orcid.org/my-orcid?orcid=0000-0001-9813-9323
     - icon: fa fa-rss
       href: blog.xml
 output:

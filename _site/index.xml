@@ -12,14 +12,14 @@
       <link>https://www.fizzics.ie</link>
     </image>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 24 Jun 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Jun 2024 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Finding Postcodes using `arcgisgeocode`</title>
       <dc:creator>Eugene</dc:creator>
       <link>https://www.fizzics.ie/posts/2024-06-25-postcodes-arcgisgeocode</link>
       <description>Using the arcgiscoder package to find postal codes, making a shiny app using leaflet.</description>
       <guid>https://www.fizzics.ie/posts/2024-06-25-postcodes-arcgisgeocode</guid>
-      <pubDate>Mon, 24 Jun 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 25 Jun 2024 00:00:00 +0000</pubDate>
       <media:content url="https://www.fizzics.ie/posts/2024-06-25-postcodes-arcgisgeocode/images/sheephaven.png" medium="image" type="image/png" width="1233" height="956"/>
     </item>
     <item>

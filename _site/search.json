@@ -6,14 +6,14 @@
       "description": "",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n\r\n\r\nI lecture in physics at the Technological University Dublin and I’m a part of ML-Labs. Research-wise, I work in data science, mostly astrophysics or neuroscience. My original background was in materials science, making new inter-metallic compounds based on uranium and looking at their structural and physical properties at temperatures down to 2.2K. I then spent some time as a medical physicist, developing teleradiology systems. But then discovered R programming about 2015 and haven’t looked back since.\r\nThis blog is an eclectic set of posts featuring stuff I find interesting. I’ve have a fondness for maps, and specifically coordinate transformations, and especially maps of my home turf of Donegal. Over the years, I’ve spent a lot of time on golf courses, volleyball courts, and tennis courts, so they feature here too. I’m involved in politics. And of course there will be plenty of physics, and not just the astrophysics / neuroscience / bioinformatics stuff.\r\n\r\n\r\n\r\nLoading my github calendar data.\r\n\r\n\r\n\r\nYou can find me at …\r\n\r\n\r\neugene100hickey\r\n\r\neugene100hickey\r\n\r\neugene.hickey@tudublin.ie\r\n\r\nDepartment of Applied ScienceTechnological University Dublin,TallaghtD24FKT9Ireland\r\n\r\n\r\n\r\nYou can also find me at various conferences and events. I’m a regular at the NHSr Community Conferences, involved with WhyR! and various meetups in Dublin (or other chapters sometimes). And I’m now using Mastodon quite a bit, rather than the other thing.\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2024-07-17T23:10:28+01:00"
+      "last_modified": "2025-01-12T10:30:35+00:00"
     },
     {
       "path": "index.html",
       "title": "Eugene's Blog",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n",
-      "last_modified": "2024-07-17T23:10:35+01:00"
+      "last_modified": "2025-01-12T10:30:37+00:00"
     },
     {
       "path": "projects.html",
@@ -21,7 +21,7 @@
       "description": "Some of other stuff I'm working on right now, or in the recent past\n",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2024-07-17T23:10:41+01:00"
+      "last_modified": "2025-01-12T10:30:38+00:00"
     },
     {
       "path": "publications.html",
@@ -29,7 +29,7 @@
       "description": "This section contains the list of my publications.\n",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2024-07-17T23:10:47+01:00"
+      "last_modified": "2025-01-12T10:30:40+00:00"
     },
     {
       "path": "resources.html",
@@ -37,7 +37,7 @@
       "description": "This section contains some resources that are perhaps useful for others.",
       "author": [],
       "contents": "\r\n\r\nResources\r\nGenomics\r\nThe laboratory of Rafael Irizarry \r\nBook by Avril Coghlan \r\nBook by Cristianini and Hahn \r\nBioconductor conferences \r\nMaps Stuff\r\nR and GIS \r\nBook by Lovelace and Nowosad \r\nCourse from Antonio Paez \r\nCopernicus (Sentinel etc) satellite data \r\nLearning R\r\nDublin R Meetup  \r\nR for data science community  \r\nTidy Tuesday\r\nBig Book of R \r\nData Visualisation\r\nExcellent course from Cédric Scherer \r\nBook by Claus Wilkie \r\nBook by Kieran Healy \r\nCheatsheet from Zev Ross \r\nBlogs I like\r\nShannon Pileggi at Piping Hot Data \r\nShirin Elsinghorst on all things R \r\nGarrick Aden-Buie, he of xaringanExtra etc \r\nWill Chase and the Glamour of Graphics \r\nAnd Maëlle Salmon for R coding \r\nAnd Emi Tanaka who largely inspired the layout of these pages \r\nAnd Silvia Canelon for some great examples of using xaringan \r\n\r\n\r\n\r\n",
-      "last_modified": "2024-07-17T23:10:52+01:00"
+      "last_modified": "2025-01-12T10:30:41+00:00"
     },
     {
       "path": "talks.html",
@@ -45,7 +45,7 @@
       "description": "This section contains the list of my talks and workshops where made available. Not all talks are listed here.\n",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\n\r\n\r\n",
-      "last_modified": "2024-07-17T23:10:57+01:00"
+      "last_modified": "2025-01-12T10:30:42+00:00"
     },
     {
       "path": "teaching.html",
@@ -53,7 +53,7 @@
       "description": "This section contains the list of my workshops and teaching.\n",
       "author": [],
       "contents": "\r\n\r\n\r\n\r\nI currently teach on the following courses\r\nData Visualisation with ggplot2 to Postgraduate Students (100%)\r\nManufacturing Technology to 4th Year Pharmaceutical Science (50%)\r\nComputer Measurement Systems to 2nd Year Bioanalysis (33%)\r\nPrinciples of Physics to 1st Year Sports Science (100%)\r\n\r\n\r\n\r\n",
-      "last_modified": "2024-07-17T23:11:03+01:00"
+      "last_modified": "2025-01-12T10:30:44+00:00"
     }
   ],
   "collections": ["posts/posts.json", "projects/projects.json", "talks/talks.json", "teaching/teaching.json", "publications/publications.json"]
